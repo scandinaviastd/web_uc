@@ -13,6 +13,9 @@ Investigación (5), Programas (listado + 10 fichas), Extensión (3), Productos A
 Componentes: Card/Programa, Noticia, Acceso, Persona, Documento, Opinión. Los frames `📝 Nota/*`
 traen anotaciones de diseño por página.
 
+Las anotaciones del Figma (comportamiento, filtros, estados) están transcritas en `docs/figma-notas.md`,
+junto con la tabla de choques Figma ↔ Kit.
+
 Si el Figma choca con alguna de las 4 cosas intocables, **manda el Kit**, no el Figma.
 
 ## Arquitectura
