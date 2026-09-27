@@ -1,0 +1,503 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+}
+
+body.uc-navbar_mobile--open {
+    position: fixed !important;
+}
+
+body>* {
+    position: relative;
+}
+
+.uc-form-group.uc-form-group-icon {
+    position: relative;
+}
+
+.uc-form-group.uc-form-group-icon input {
+    text-indent: 30px;
+}
+
+.uc-form-group.uc-form-group-icon i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+}
+
+.uc-bg {
+    background: none transparent no-repeat scroll center center;
+    background-size: cover;
+}
+
+a.page-link {
+    cursor: pointer;
+}
+
+/* Unificar selectores para que funcione en el Editor (bloque estándar) y Frontend (con clase uc-tag) */
+.wp-block-tag-cloud a,
+.uc-tag-cloud-wrapper a,
+a.uc-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: #0176de;
+    color: white !important;
+    border-radius: 4px;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin: 0 !important;
+}
+
+.wp-block-tag-cloud a:hover,
+.uc-tag-cloud-wrapper a:hover,
+a.uc-tag:hover {
+    background-color: #015bb5;
+    text-decoration: none !important;
+}
+.wp-block-tag-cloud a:focus,
+.uc-tag-cloud-wrapper a:focus,
+a.uc-tag:focus {
+    outline: 2px solid #0176de;
+    outline-offset: 2px;
+}
+
+.uc-card.card-border--left {
+    border-left: 4px solid #0176de
+}
+
+.decoration-none {
+    text-decoration: none !important;
+}
+
+.uc-navbar.navbar-dark ul.uc-navbar-dropdown_menu {
+    background-color: #0176de;
+}
+
+.uc-navbar.navbar-dark ul.uc-navbar-dropdown_menu .uc-navbar_arrow:before {
+    background-color: #0176de;
+}
+
+.uc-navbar.navbar-dark ul.uc-navbar-dropdown_menu .uc-navbar-dropdown_item .uc-btn {
+    color: #ffffff !important;
+}
+
+.uc-navbar.navbar-dark .uc-navbar_nav .nav-item .uc-btn .uc-icon {
+    color: #ffffff !important;
+}
+
+.uc-table {
+    width: 100%;
+    text-align: center;
+}
+
+/* Calendario */
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+    width: 35% !important;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    font-size: 14px !important;
+    text-align: center !important;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+    color: #173F8A !important;
+    font-weight: 500 !important;
+}
+
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+    color: #0176DE !important;
+}
+
+.uc-card .tag-fixed {
+    z-index: 0 !important;
+}
+
+.ui-widget-content {
+    border: none;
+    box-shadow: 0px 0px 6px 0px #a2a2a2 !important;
+}
+
+.ui-widget-header {
+    background: white !important;
+    border: none !important;
+    color: black !important;
+    font-weight: 400 !important;
+}
+
+div#ui-datepicker-div {
+    font-family: "Roboto", sans-serif !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: none !important;
+    text-align: center !important;
+    background: white !important;
+}
+
+/* FORMULARIO */
+.wpcf7 form .wpcf7-response-output {
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    align-items: center;
+    font-size: 0.875em;
+    line-height: 1.5;
+    padding: 7px 16px;
+    border-radius: 4px;
+}
+
+/*Error*/
+.wpcf7-not-valid {
+    border-color: #F24F4F;
+}
+
+.wpcf7-not-valid-tip {
+    color: black;
+    display: flex;
+    margin: 8px 0 20px;
+    align-items: flex-start;
+    grid-gap: 8px;
+    gap: 8px;
+}
+
+.wpcf7-not-valid-tip::before {
+    content: "error";
+    color: #F24F4F;
+    vertical-align: middle;
+    font-family: "Material Icons";
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga";
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+    background-color: rgba(242, 79, 79, 0.1);
+    border: 1px solid #F24F4F;
+}
+
+.wpcf7-response-output::before {
+    content: "error";
+    color: #f24f4f;
+    vertical-align: middle;
+    font-family: "Material Icons";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga";
+    margin-right: 8px;
+}
+
+/* OK */
+.wpcf7 form.sent .wpcf7-response-output {
+    background-color: rgba(0, 170, 0, 0.1);
+    border: 1px solid #0a0;
+}
+
+.wpcf7 form.sent .wpcf7-response-output::before {
+    content: "check_circle";
+    color: #0a0;
+    vertical-align: middle;
+    font-family: "Material Icons";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga";
+    margin-right: 8px;
+}
+
+.mce-content-body:empty::before {
+    content: attr(placeholder);
+    color: #757575;
+    /* Placeholder text color */
+}
+
+.backforward {
+    transform: rotate(-180deg);
+}
+
+.wp-block-tag-cloud,
+.uc-tag-cloud-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.archive-posts {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Aplica estilos a todas las tablas con la clase de Gutenberg */
+.wp-block-table {
+    margin: 20px 0; /* Espaciado vertical */
+    overflow-x: auto; /* Para tablas muy anchas */
+}
+
+.wp-block-table table {
+    border-collapse: collapse; /* Combina bordes adyacentes */
+    width: 100%; /* Ancho completo */
+}
+
+.wp-block-table table th,
+.wp-block-table table td {
+    border: 1px solid #ddd; /* Bordes de celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación de texto */
+}
+
+.wp-block-table table th {
+    background-color: #f4f4f4; /* Fondo de encabezados */
+    font-weight: bold; /* Negrita en encabezados */
+}
+
+/* Opcional: Estilo para tablas con .has-fixed-layout */
+.wp-block-table.has-fixed-layout table {
+    table-layout: fixed; /* Fija el ancho de las celdas */
+}
+
+/* Hover para filas */
+.wp-block-table table tr:hover {
+    background-color: #f9f9f9; /* Fondo más claro al pasar el ratón */
+}
+
+.external.menu-item.nav-item::after {
+    content: "open_in_new";
+    font-family: "Material Icons";
+    font-style: normal;
+    font-size: 14px;
+    margin-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.external.menu-item.menu-item-type-custom.menu-item-object-custom.list-item a::after {
+    content: "open_in_new";
+    font-family: "Material Icons";
+    font-style: normal;
+    font-size: 14px;
+    color: #0176de;
+    margin-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.external.menu-item.menu-item-type-custom.menu-item-object-custom.list-item::after {
+    content: none; /* Removes the content of the second ::after */
+} 
+.external.menu-item.nav-item.light::after {
+    color: #0176de;
+}
+.external.menu-item.nav-item.dark::after {
+    color:#f9f9f9;
+}
+
+.menu-item.menu-item-type-custom.light a i {
+    color: #0176de; /* Blue for light theme */
+}
+
+.menu-item.menu-item-type-custom.dark a i {
+    color: #f9f9f9; /* White for dark theme */
+}
+
+.uc-navbar-dropdown_menu .active {
+    border-bottom: none !important;
+    text-decoration: none !important;
+}
+
+
+.uc-navbar-dropdown_child .current-menu-item > .uc-btn {
+    text-decoration: none !important; /* Desactiva el subrayado predeterminado */
+    border-bottom: 1px solid black; /* Línea negra recta */
+    display: inline-block; /* Asegura que el borde coincida con el ancho del texto */
+    padding-bottom: 1px; /* Ajusta el espacio entre el texto y la línea */
+}
+
+/* Subrayado para el enlace del padre activo */
+.uc-navbar-dropdown_menu > .active > .uc-btn {
+    text-decoration: none !important; /* Desactiva el subrayado predeterminado */
+    border-bottom: 1px solid black !important; /* Subrayado negro para el padre */
+    display: inline-block; /* Asegura que el subrayado coincida con el texto */
+}
+
+.uc-bg-card {
+    position: relative;
+    width: 100%;
+    padding-top: 72.92%;    
+    overflow: hidden;
+}
+
+.uc-bg-card .uc-bg-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Iconos para cards con imagen según tipo de contenido */
+.card-link-external::after {
+    content: "open_in_new";
+    font-family: "Material Icons";
+    font-style: normal;
+    font-size: 18px;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    color: white;
+}
+
+.card-link-internal::after {
+    content: "arrow_forward";
+    font-family: "Material Icons";
+    font-style: normal;
+    font-size: 18px;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    color: white;
+}
+
+/* Fix responsividad para cards con imagen (cuadrados) */
+.uc-card.uc-card--type-square .uc-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Content Divider (uc-hr) - estilo de puntos del Kit Digital */
+hr.uc-hr,
+.uc-hr {
+	border: 0 !important;
+	height: 1px !important;
+	width: 100% !important;
+	overflow: hidden !important;
+	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjEiIHZpZXdCb3g9IjAgMCA4IDEiPiAgPHBvbHlnb24gZmlsbD0iI2QwZDVkZCIgZmlsbC1ydWxlPSJldmVub2RkIiBwb2ludHM9IjAgMSAwIDAgMyAwIDMgMSIvPjwvc3ZnPg==)
+		center center repeat !important;
+	opacity: 1 !important;
+}
+
+/* Local Menu (uc-in-page-nav) */
+.uc-in-page-nav {
+    position: sticky;
+    top: 120px;
+}
+.uc-in-page-nav_title {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    color: #707070;
+}
+.uc-in-page-nav_list {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+}
+.uc-in-page-nav_item {
+    margin-bottom: 16px;
+}
+.uc-in-page-nav_link,
+.uc-in-page-nav_link:link,
+.uc-in-page-nav_link:visited,
+.uc-in-page-nav_link:active,
+.uc-in-page-nav_link:focus {
+    color: #0176de !important;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+}
+.uc-in-page-nav_link:hover {
+    color: #0056b3 !important;
+    text-decoration: none !important;
+}
+.uc-in-page-nav_link.active {
+    color: #0056b3 !important;
+    font-weight: 600;
+    text-decoration: none !important;
+}
+
+/* Estilo Kit Digital para componentes Imagen y Video */
+.uc-media-frame {
+    border: 1px solid #C6C6C6;
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+}
+
+/* Aplica el marco al bloque core/video renderizado por WP */
+figure.wp-block-video video,
+figure.wp-block-video iframe {
+    border: 1px solid #C6C6C6;
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+}
+
+/* ====== Componente ====== */
+.uc-video {
+    margin: 0 0 1rem;
+}
+.uc-video__ratio {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+.uc-video__ratio iframe,
+.uc-video__ratio video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.uc-video--small  { max-width: 480px; }
+.uc-video--medium { max-width: 720px; }
+.uc-video--large  { max-width: 960px; }
+.uc-video--full   { max-width: 100%; }

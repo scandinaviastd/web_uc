@@ -1,0 +1,35 @@
+{
+    "name": "uc-kit-blocks",
+    "version": "1.1.2",
+    "description": "UC Kit block written with ESNext standard and JSX support – build step required.",
+    "author": "Felipe Ortega",
+    "license": "GPL-2.0-or-later",
+    "main": "src/index.js",
+    "scripts": {
+        "build": "wp-scripts build --output-path=./lib/gutenberg/build",
+        "format:js": "wp-scripts format-js",
+        "lint:css": "wp-scripts lint-style",
+        "lint:js": "wp-scripts lint-js",
+        "start": "wp-scripts start",
+        "packages-update": "wp-scripts packages-update"
+    },
+    "devDependencies": {
+        "@wordpress/blocks": "^6.24.1",
+        "@wordpress/components": "^11.1.1",
+        "@wordpress/editor": "^9.24.1",
+        "@wordpress/element": "^2.18.0",
+        "@wordpress/scripts": "^12.4.0"
+    },
+    "dependencies": {
+        "classnames": "^2.2.6",
+        "gutenberg-sortable": "^1.0.5",
+        "react": "^17.0.1",
+        "react-sortable-hoc": "^2.0.0"
+    },
+    "browserslist": [
+        "last 2 Chrome versions",
+        "last 2 Firefox versions",
+        "last 2 Edge versions",
+        "last 2 Safari versions"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "phpVersion": "8.2",
+  "themes": ["./cgc-uc", "./kit-uc"],
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true
+  }
+}
