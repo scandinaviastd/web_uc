@@ -24,6 +24,10 @@ fi
 # ---------------------------------------------------------------------------
 # 'uckit_menu_type' controla header y footer normados. La filiación marcaria
 # del Centro es Submarca (ver CLAUDE.md).
+echo "==> Activando el tema cgc-uc (kit-uc queda instalado e inactivo, como referencia)"
+wpcli theme activate cgc-uc > /dev/null
+echo "    cgc-uc activo"
+
 echo "==> Configurando el Kit UC (filiación marcaria: Submarca)"
 wpcli theme mod set uckit_menu_type submarca > /dev/null
 echo "    uckit_menu_type = submarca"
