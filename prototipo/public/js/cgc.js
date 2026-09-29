@@ -7,6 +7,14 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  // Listas con mensaje propio cuando los filtros (chips o calendario) no dejan nada visible
+  var actualizarVacios = function (cont) {
+    $$('[data-lista]', cont).forEach(function (l) {
+      var vacio = l.nextElementSibling;
+      if (vacio && vacio.hasAttribute('data-vacio')) vacio.hidden = !!l.querySelector('[data-item]:not(.is-oculto):not(.is-fuera-rango)');
+    });
+  };
+
   /* ---------- Filtros instantáneos (chips + buscador) ---------- */
   $$('[data-chips]').forEach(function (grupo) {
     var cont = grupo.closest('[data-filtro]') || document;
@@ -25,11 +33,7 @@
         it.classList.toggle('is-oculto', !ok);
         if (ok) visibles++;
       });
-      // listas con mensaje propio cuando el filtro no deja nada visible
-      $$('[data-lista]', cont).forEach(function (l) {
-        var vacio = l.nextElementSibling;
-        if (vacio && vacio.hasAttribute('data-vacio')) vacio.hidden = !!l.querySelector('[data-item]:not(.is-oculto)');
-      });
+      actualizarVacios(cont);
       // el calendario también escucha el filtro de tipo
       document.dispatchEvent(new CustomEvent('cgc:filtro', { detail: { grupo: grupo.getAttribute('data-chips'), valor: valor } }));
       if (contador) {
@@ -68,17 +72,22 @@
     mqBtn.innerHTML = p ? '<i class="uc-icon">play_arrow</i> Reanudar' : '<i class="uc-icon">pause</i> Pausar';
   });
 
-  /* ---------- Calendario mensual de eventos ---------- */
+  /* ---------- Calendario mensual: filtro de la lista de próximos eventos ---------- */
   var cal = $('[data-calendario]');
   if (cal) {
     var eventos = JSON.parse(cal.getAttribute('data-eventos'));
+    var lista = $('[data-lista-proximos]');
+    var toggle = $('[data-cal-toggle]');
+    var estado = $('[data-cal-estado]');
+    var estadoInicial = estado.textContent;
     var meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     var ini = cal.getAttribute('data-inicio').split('-');
-    var anio = +ini[0], mes = +ini[1] - 1, tipo = '*';
+    var anio = +ini[0], mes = +ini[1] - 1, tipo = '*', abierto = false, diaSel = null;
     var cap = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };
     var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var ym = function () { return anio + '-' + String(mes + 1).padStart(2, '0'); };
     var pintar = function () {
-      var delMes = eventos.filter(function (e) { var d = e.fecha.split('-'); return +d[0] === anio && +d[1] - 1 === mes && (tipo === '*' || e.tipo === tipo); });
+      var delMes = eventos.filter(function (e) { return e.fecha.slice(0, 7) === ym() && (tipo === '*' || e.tipo === tipo); });
       $('[data-cal-titulo]', cal).textContent = cap(meses[mes]) + ' ' + anio;
       var primero = new Date(anio, mes, 1), offset = (primero.getDay() + 6) % 7;
       var inicio = new Date(anio, mes, 1 - offset), html = '';
@@ -89,16 +98,50 @@
           var enMes = d.getMonth() === mes; if (enMes) algunoDelMes = true;
           var iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
           var evs = enMes ? delMes.filter(function (e) { return e.fecha === iso; }) : [];
-          fila += '<div class="cgc-cal-dia' + (enMes ? '' : ' is-fuera') + (evs.length ? ' is-con-evento' : '') + '" role="gridcell"><span class="cgc-cal-num">' + d.getDate() + '</span>' +
-            evs.map(function (e) { return '<a href="#' + e.id + '" class="cgc-cal-evento"><strong>' + esc(e.hora.indexOf(':') > -1 ? e.hora.split(' ')[0] + ' · ' + e.tipo : e.tipo) + '</strong><span>' + esc(e.titulo) + '</span></a>'; }).join('') + '</div>';
+          var contenido = '<span class="cgc-cal-num">' + d.getDate() + '</span>' + evs.map(function (e) {
+            return '<span class="cgc-cal-evento d-none d-md-block"><strong>' + esc(e.hora.indexOf(':') > -1 ? e.hora.split(' ')[0] + ' · ' + e.tipo : e.tipo) + '</strong><span>' + esc(e.titulo) + '</span></span>';
+          }).join('');
+          fila += '<div class="cgc-cal-dia' + (enMes ? '' : ' is-fuera') + (evs.length ? ' is-con-evento' : '') + (iso === diaSel ? ' is-seleccionado' : '') + '" role="gridcell">' +
+            (evs.length ? '<button type="button" class="cgc-cal-dia_btn" data-dia="' + iso + '" aria-pressed="' + (iso === diaSel) + '" aria-label="' + d.getDate() + ' de ' + meses[mes] + ': ' + evs.length + (evs.length === 1 ? ' evento' : ' eventos') + '">' + contenido + '</button>' : contenido) + '</div>';
         }
         if (algunoDelMes) html += '<div class="cgc-cal-row" role="row">' + fila + '</div>';
       }
       $('[data-cal-semanas]', cal).innerHTML = html;
     };
-    $('[data-cal-prev]', cal).addEventListener('click', function () { mes--; if (mes < 0) { mes = 11; anio--; } pintar(); });
-    $('[data-cal-next]', cal).addEventListener('click', function () { mes++; if (mes > 11) { mes = 0; anio++; } pintar(); });
-    document.addEventListener('cgc:filtro', function (ev) { if (ev.detail.grupo === 'eventos') { tipo = ev.detail.valor; pintar(); } });
+    // Aplica el rango (mes o día) a la lista y actualiza el texto de estado
+    var filtrar = function () {
+      var visibles = 0;
+      $$('[data-item]', lista).forEach(function (it) {
+        var f = it.getAttribute('data-fecha');
+        var ok = !abierto || (diaSel ? f === diaSel : f.slice(0, 7) === ym());
+        it.classList.toggle('is-fuera-rango', !ok);
+        if (ok && !it.classList.contains('is-oculto')) visibles++;
+      });
+      if (!abierto) estado.textContent = estadoInicial;
+      else {
+        var n = visibles + (visibles === 1 ? ' evento' : ' eventos');
+        estado.textContent = diaSel ? n + ' el ' + (+diaSel.slice(8)) + ' de ' + meses[mes] + ' · clic de nuevo en el día para ver todo el mes' : n + ' en ' + meses[mes] + ' ' + anio;
+      }
+      actualizarVacios(lista.closest('[data-filtro]') || document);
+    };
+    var refrescar = function () { pintar(); filtrar(); };
+    toggle.addEventListener('click', function () {
+      abierto = !abierto; diaSel = null;
+      if (abierto) { anio = +ini[0]; mes = +ini[1] - 1; } // abre siempre en el mes del próximo evento
+      cal.hidden = !abierto;
+      toggle.setAttribute('aria-expanded', String(abierto));
+      $('[data-cal-toggle-texto]', toggle).textContent = abierto ? 'Ver todos los próximos' : 'Filtrar por calendario';
+      refrescar();
+    });
+    $('[data-cal-semanas]', cal).addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-dia]'); if (!b) return;
+      var iso = b.getAttribute('data-dia');
+      diaSel = diaSel === iso ? null : iso;
+      refrescar();
+    });
+    $('[data-cal-prev]', cal).addEventListener('click', function () { mes--; if (mes < 0) { mes = 11; anio--; } diaSel = null; refrescar(); });
+    $('[data-cal-next]', cal).addEventListener('click', function () { mes++; if (mes > 11) { mes = 0; anio++; } diaSel = null; refrescar(); });
+    document.addEventListener('cgc:filtro', function (ev) { if (ev.detail.grupo === 'eventos') { tipo = ev.detail.valor; refrescar(); } });
     pintar();
   }
 

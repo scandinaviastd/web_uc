@@ -1,17 +1,19 @@
 ---
-// Calendario mensual de eventos (decisión A3 del 29-09). El JS (cgc.js) navega entre meses con los datos de data-eventos.
-// Solo escritorio: debajo va la lista completa de próximos eventos, que en móvil es la única vista.
-// Cada evento del calendario enlaza a su card en esa lista.
+// Calendario mensual de eventos (decisión A3 del 29-09), como filtro de la lista de próximos eventos.
+// Se abre con el botón "Filtrar por calendario" junto al título. Abierto: la lista muestra solo el mes
+// visible; un clic en un día con eventos deja solo ese día (otro clic vuelve al mes). Lo maneja cgc.js.
 import { eventosProximos } from '../data/contenidos.js';
+interface Props { id: string }
+const { id } = Astro.props;
 const hoy = new Date().toISOString().slice(0, 7);
 const inicio = eventosProximos[0]?.fecha.slice(0, 7) ?? hoy;
 ---
-<div class="cgc-calendario d-none d-md-block" data-calendario data-eventos={JSON.stringify(eventosProximos)} data-inicio={inicio}>
-  <div class="d-flex align-items-center mb-16 cgc-calendario_nav">
+<div id={id} class="cgc-calendario mb-40" data-calendario data-eventos={JSON.stringify(eventosProximos.map(({ fecha, tipo, titulo, hora }) => ({ fecha, tipo, titulo, hora })))} data-inicio={inicio} hidden>
+  <div class="d-flex align-items-center flex-wrap mb-16 cgc-calendario_nav">
     <button type="button" class="cgc-cal-btn" data-cal-prev aria-label="Mes anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
     <h3 class="h4 mb-0 mx-16" data-cal-titulo aria-live="polite">Calendario</h3>
     <button type="button" class="cgc-cal-btn" data-cal-next aria-label="Mes siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
-    <span class="ml-auto text-size--sm text-color--gray"><span class="cgc-cal-swatch"></span> Día con evento</span>
+    <span class="ml-auto text-size--sm text-color--gray"><span class="cgc-cal-swatch"></span> Día con evento · clic para ver solo ese día</span>
   </div>
   <div class="cgc-cal-grid" role="grid" aria-label="Calendario de eventos">
     <div class="cgc-cal-row cgc-cal-head" role="row">
