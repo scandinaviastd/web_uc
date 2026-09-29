@@ -98,7 +98,9 @@ html { scroll-behavior: smooth; }
 .cgc-dato_icon { width: 40px; height: 40px; border-radius: 50%; background: #e5f3ff; color: var(--cgc-celeste); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .cgc-dato dt { font-weight: 400; }
 .cgc-acciones { display: flex; flex-direction: column; gap: 8px; min-width: 220px; }
-.cgc-acciones .uc-btn { justify-content: center; }
+.cgc-acciones .uc-btn { justify-content: center; text-align: center; }
+/* En columna (ficha): los tres botones del mismo ancho y centrados */
+.cgc-acciones:not(.cgc-acciones--fila) .uc-btn { align-self: stretch; width: 100%; }
 .cgc-acciones--fila { flex-direction: row; flex-wrap: wrap; }
 .cgc-mini { background: var(--cgc-gris-fondo); border-radius: 4px; padding: 20px; height: 100%; }
 .cgc-persona-h_foto { width: 120px; height: 120px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
