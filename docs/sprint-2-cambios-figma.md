@@ -66,21 +66,41 @@ propaga a todo el sitio.
   Ciberseguridad, Workshop ESG, Fondos Concursables, Seminarios de Investigación, Extensión/Landing,
   Jornadas, Productos Académicos, IyO/Landing, Guías, Diálogo.
 
-## P1 · Lo que necesitamos del Centro
+## P1 · Lo que necesitamos del Centro (misma numeración que en el Figma)
 
-1. Qué contiene **Asesorías** y dónde van Productos Académicos e In Company.
-2. Dónde quedan **Noticias y Newsletters**.
-3. A dónde lleva **"Postula"**.
-4. Frase general de cada programa; contenidos de las fichas (equipo docente, objetivos, metodología,
-   aprobación, admisión); módulos de Claves y Empresas familiares; si los descuentos aplican a todos.
-5. **Calendario interno** de eventos y fecha/lugar de la Jornada 2026.
-6. **Banco de imágenes** (directores, carrusel, imagen genérica) y logos de colaboradores.
-7. Correo de Sara y número de WhatsApp del Centro.
-8. Texto de Artículos y Working Papers; formato de cita; ejemplos para Estudios.
-9. Lista actualizada de profesores afiliados y si Josefina Tocornal sigue (la minuta dice que se va).
-10. Qué pasa con los 10 PDF de Diálogo y si sigue la Guía de buenas prácticas.
-11. Si los administradores de WordPress necesitan correo UC.
-12. Plazo de conservación y destino de los datos del formulario.
+| # | Pedido |
+|---|---|
+| P1-01 | Qué contiene Asesorías; dónde va Productos Académicos; diseño de In Company |
+| P1-02 | Dónde quedan Noticias y Newsletters |
+| P1-03 | A dónde lleva "Postula" |
+| P1-04 | Frase general de cada programa |
+| P1-05 | Contenidos de las fichas (docentes, objetivos, metodología, aprobación, admisión) |
+| P1-06 | ¿Descuentos iguales para todos los programas? |
+| P1-07 | Módulos de Claves para decisiones financieras y de Empresas familiares |
+| P1-08 | Calendario interno de eventos y Jornada 2026 |
+| P1-09 | Diálogos (10 PDF) y Guía de buenas prácticas |
+| P1-10 | Banco de imágenes |
+| P1-11 | Reseñas de las personas |
+| P1-12 | Cargo y correo de Sara; número y horario del WhatsApp |
+| P1-13 | Lista de profesores afiliados; ¿sigue Josefina Tocornal? |
+| P1-14 | Texto de Artículos y Working Papers; formato de cita |
+| P1-15 | Ejemplos para Estudios |
+| P1-16 | Síntesis del texto de Nosotros |
+| P1-17 | Logos de colaboradores y autorización de uso |
+| P1-18 | Prensa: ¿columna completa o enlace al medio? |
+| P1-19 | Formularios: destino y plazo de conservación de los datos; ¿brochure por programa? |
+| P1-20 | ¿Administradores de WordPress con correo UC? |
+
+## Validar con el Centro
+
+| # | Propuesta |
+|---|---|
+| V-01 | Nueva arquitectura: menú de 6 secciones + "Fuera de alcance" (antes/después) |
+| V-02 | Textos provisorios: pilar Extensión y bloque In Company |
+| V-03 | Nuevo modelo de ficha: Postula · Más información · Descargar brochure, sin acordeones |
+| V-04 | Calendario mensual en Extensión |
+| V-05 | Formularios con cláusula de privacidad y consentimiento opcional |
+| V-06 | Red de Investigación sin los 5 investigadores |
 
 ## P2-A · Decisiones tomadas (29-09)
 
