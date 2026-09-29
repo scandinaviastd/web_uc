@@ -90,6 +90,8 @@ propaga a todo el sitio.
 | P1-18 | Prensa: ¿columna completa o enlace al medio? |
 | P1-19 | Formularios: destino y plazo de conservación de los datos; ¿brochure por programa? |
 | P1-20 | ¿Administradores de WordPress con correo UC? |
+| P1-21 | Sprint 3: dos celulares de contacto — coordinación In Company +56 9 5504 2151 y WhatsApp +56 9 5418 3811. ¿Cuál es el canal? |
+| P1-22 | Sprint 3: ¿vuelven los Fondos Concursables como bloque de convocatoria en la landing de Investigación? |
 
 ## Validar con el Centro
 
@@ -101,6 +103,9 @@ propaga a todo el sitio.
 | V-04 | Calendario mensual en Extensión |
 | V-05 | Formularios con cláusula de privacidad y consentimiento opcional |
 | V-06 | Red de Investigación sin los 5 investigadores |
+| V-07 | Sprint 3: síntesis de «Quiénes somos» (4 → 2 párrafos; antes P1-16) |
+| V-08 | Sprint 3: modelo de Extensión (A7) — 8 tipos, calendario principal y filtro por fecha en cada sección |
+| V-09 | Sprint 3: Diplomados y Cursos separados en Formación; botón «Postular» |
 
 ## P2-A · Decisiones tomadas (29-09)
 

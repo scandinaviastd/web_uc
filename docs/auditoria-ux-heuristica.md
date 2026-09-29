@@ -14,7 +14,7 @@ composición de una página queda como propuesta a validar.
 | | Cantidad |
 |---|---|
 | Hallazgos corregidos en el prototipo | 22 |
-| Propuestas a validar con el Centro | 9 |
+| Recomendaciones para después de la reunión | 10 |
 | Revisado y se mantiene a propósito | 6 |
 
 ## Corregido
@@ -46,19 +46,24 @@ Severidad: **A** alta (bloquea una tarea o incumple WCAG), **M** media (confunde
 | 21 | Relación con el mundo real | B | Red de Investigación mencionaba «documentos de trabajo» (nombre anterior) | «artículos, working papers y estudios» |
 | 22 | Seguridad / checklist | B | Enlaces a pestaña nueva sin `rel="noopener"` (créditos, política de privacidad); botón del formulario lateral de WhatsApp desalineado | `noopener` en todos; botón alineado |
 
-## Propuestas a validar (no aplicadas: cambian la composición o dependen del Centro)
+## Recomendado después de la reunión (no aplicado: cambia la composición o depende del Centro)
 
-| # | Propuesta | Por qué |
+Misma numeración que las anotaciones violetas del Figma (página «Sitio · Sprint 3 · desde código»).
+
+| # | Recomendación | Por qué |
 |---|---|---|
-| P-1 | Sumar al Home una franja «Próximos eventos» (3 cards) con enlace a Extensión | Extensión es uno de los tres pilares y hoy no aparece en el Home; los eventos son la puerta de entrada más frecuente |
-| P-2 | Sumar a la landing de Investigación «Estudios recientes» | Hoy destaca solo artículos; los estudios (p. ej. Juntas IPSA) son lo más citado del Centro |
-| P-3 | Estado del programa automático por fecha | El Diplomado muestra «Matrículas abiertas» con inicio el 11-may-2026 (ya comenzó). Con estado derivado de las fechas no queda desactualizado (anotación H9 del Figma) |
-| P-4 | Un solo número de contacto móvil | In Company muestra +56 9 5504 2151 y el sitio el WhatsApp +56 9 5418 3811: confirmar cuál es el canal (P1-12) |
-| P-5 | Asesorías en el menú mientras no tenga contenido | Hoy es una página «por definir»: ocultarla del menú hasta que el Centro la defina, o mantenerla solo para la revisión (P1-01) |
-| P-6 | Páginas de detalle | Evento (inscripción), noticia, newsletter y columna: plantillas en WordPress (hoy muestran aviso) |
-| P-7 | Página de Noticias y de Newsletters | Destino de los «Ver todas» del Home (P1-02) |
-| P-8 | Foco dentro del modal del brochure | El modal es del Kit; en WordPress verificar que el foco quede dentro mientras está abierto y vuelva al botón al cerrar |
-| P-9 | Buscador desplegable en el header | Hoy es un ícono que lleva a la página de búsqueda (cumple el checklist); un campo en el header ahorra un paso |
+| R-01 | Sumar al Home una franja «Próximos eventos» (3 cards) con enlace a Extensión | Extensión es uno de los tres pilares y hoy no aparece en el Home; los eventos son la puerta de entrada más frecuente |
+| R-02 | Sumar a la landing de Investigación «Estudios recientes» | Hoy destaca solo artículos; los estudios (p. ej. Juntas IPSA) son lo más citado del Centro |
+| R-03 | Estado del programa automático por fecha | El Diplomado muestra «Matrículas abiertas» con inicio el 11-may-2026 (ya comenzó). Con estado derivado de las fechas no queda desactualizado (anotación H9 del Figma) |
+| R-04 | Asesorías fuera del menú mientras no tenga contenido | Hoy es una página «por definir»: ocultarla del menú hasta que el Centro la defina, o mantenerla solo para la revisión (P1-01) |
+| R-05 | Páginas de detalle | Evento (inscripción), noticia, newsletter y columna: plantillas en WordPress (hoy muestran aviso) |
+| R-06 | Página de Noticias y de Newsletters | Destino de los «Ver todas» del Home (P1-02) |
+| R-07 | Foco dentro del modal del brochure | El modal es del Kit; en WordPress verificar que el foco quede dentro mientras está abierto y vuelva al botón al cerrar |
+| R-08 | Buscador desplegable en el header | Hoy es un ícono que lleva a la página de búsqueda (cumple el checklist); un campo en el header ahorra un paso |
+| R-09 | Vistas móviles en el Figma | El sitio es responsivo en el código; el Figma solo tiene escritorio |
+| R-10 | Seminarios de Investigación visibles en Extensión | La minuta los manda a los eventos; hoy no hay ninguno de ejemplo ni tipo propio para filtrarlos |
+
+El doble número de contacto (antes P-4) pasó a pendiente del Centro: P1-21.
 
 ## Revisado y se mantiene a propósito
 

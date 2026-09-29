@@ -18,6 +18,10 @@ junto con la tabla de choques Figma ↔ Kit.
 
 Si el Figma choca con alguna de las 4 cosas intocables, **manda el Kit**, no el Figma.
 
+**Espejo vigente del Figma: página "Sitio · Sprint 3 · desde código (29-09)"** — captura de las 20 pantallas del
+prototipo, con la guía arriba y anotaciones: verde = aplicado en el Sprint 3, rojo = P1 pendiente del Centro,
+rosado = V validar, violeta = R recomendado después de la reunión (detalle en `docs/auditoria-ux-heuristica.md`).
+
 **Sprint 2 (29-09-2026) ya aplicado en el Figma**: página "Sitio · Sprint 2" (resumen arriba a la izquierda,
 componentes nuevos en "Componentes · Sprint 2") y página "Fuera de alcance". Detalle y pendientes en
 `docs/sprint-2-cambios-figma.md`.
