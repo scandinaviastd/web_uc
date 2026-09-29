@@ -5,6 +5,11 @@ import PageTitle from '../../components/PageTitle.astro';
 import CardPrograma from '../../components/CardPrograma.astro';
 import InCompanyBlock from '../../components/InCompanyBlock.astro';
 import { programas } from '../../data/programas.js';
+// Programas abiertos separados por tipo (campo "tipo" del CPT): un programa nuevo cae solo en su sección.
+const grupos = [
+  { id: 'diplomados', titulo: 'Diplomados', tipo: 'Diplomado' },
+  { id: 'cursos', titulo: 'Cursos', tipo: 'Curso' },
+].map((g) => ({ ...g, items: programas.filter((p) => p.tipo === g.tipo) })).filter((g) => g.items.length);
 ---
 <Base title="Formación" seccion="formacion">
   <Breadcrumb items={[{ label: 'Formación' }]} />
@@ -12,9 +17,14 @@ import { programas } from '../../data/programas.js';
   <section class="container mb-60" id="programas-abiertos">
     <h2 class="h3 mb-8">Programas abiertos</h2>
     <p class="mb-32">Cursos y diplomados para directores y ejecutivos.</p>
-    <div class="row">
-      {programas.map((p) => <div class="col-md-6 col-lg-3 mb-32"><CardPrograma p={p} /></div>)}
-    </div>
+    {grupos.map((g) => (
+      <div id={g.id} class="mb-16">
+        <h3 class="h4 mb-24">{g.titulo}</h3>
+        <div class="row">
+          {g.items.map((p) => <div class="col-md-6 col-lg-3 mb-32"><CardPrograma p={p} nivel={4} /></div>)}
+        </div>
+      </div>
+    ))}
   </section>
   <section class="container mb-80" id="programas-para-empresas">
     <h2 class="h3 mb-24">Programas para empresas (In Company)</h2>

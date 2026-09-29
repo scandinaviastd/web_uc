@@ -1,14 +1,16 @@
 ---
 // Card/Programa — card con imagen del Kit (.uc-card + .uc-card-img + .uc-tag).
 // Título bajo la imagen (regla UC: nunca texto sobre foto en cards). Toda la card es clic (enlace en el título).
-interface Props { p: { slug: string; tipo: string; titulo: string; inicioCorto?: string; modalidad?: string; imagen?: string } ; href?: string }
-const { p, href = `/formacion/${p.slug}/` } = Astro.props;
+interface Props { p: { slug: string; tipo: string; titulo: string; inicioCorto?: string; modalidad?: string; imagen?: string } ; href?: string; nivel?: 3 | 4 }
+// nivel: etiqueta del título según la jerarquía de la página (el tamaño visual no cambia).
+const { p, href = `/formacion/${p.slug}/`, nivel = 3 } = Astro.props;
+const Titulo = `h${nivel}`;
 ---
 <article class="uc-card card-height--same cgc-card cgc-card-programa">
   <img src={p.imagen ?? '/img/ph-16x9.svg'} class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />
   <div class="uc-card_body">
     <div class="mb-12"><span class="uc-tag">{p.tipo}</span></div>
-    <h3 class="h4 cgc-clamp-2 cgc-title-2l"><a href={href} class="cgc-card-link">{p.titulo}</a></h3>
+    <Titulo class="h4 cgc-clamp-2 cgc-title-2l"><a href={href} class="cgc-card-link">{p.titulo}</a></Titulo>
     {(p.inicioCorto || p.modalidad) && (
       <ul class="cgc-meta mt-12">
         {p.inicioCorto && <li><i class="uc-icon">event</i>{p.inicioCorto}</li>}
