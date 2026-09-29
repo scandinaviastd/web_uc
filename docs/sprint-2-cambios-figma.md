@@ -7,23 +7,26 @@ la UC manda el Kit.
 
 Figma: https://www.figma.com/design/F576MdCtMY2dY88WMVmtUQ/Untitled
 
-## Estructura del archivo
+## Estructura del archivo (ordenado el 29-09 para la reunión)
 
 | Página | Qué hay |
 |---|---|
-| **Sitio · Sprint 2** | Resumen "📝 Sprint 2 — Resumen de cambios" arriba a la izquierda (leer primero). Columnas en el orden del menú: Home · Nosotros · Formación · Asesorías · Investigación · Extensión · Transversales. A la izquierda, "Componentes · Sprint 2". |
-| **Fuera de alcance** | 13 pantallas del Sprint 1 que la minuta saca, cada una con su motivo. No se construyen. |
+| **Sitio · Sprint 2** | Arriba, "📌 Guía para la reunión" (leer primero). Debajo, columnas numeradas en el orden del menú: 01 Home · 02 Nosotros · 03 Formación · 04 Asesorías · 05 Investigación · 06 Extensión · 07 Transversales (búsqueda y 404). A la izquierda, "Componentes" (todos los componentes del sitio). |
+| **Fuera de alcance** | 13 pantallas del Sprint 1 que la minuta saca, cada una con su motivo. |
+| **Archivo · Notas Sprint 1** | Las 22 notas 📝 originales del diseño, solo para consulta. |
 
-## Categorías de anotación
+## Anotaciones
 
-| Categoría | Color | Uso |
-|---|---|---|
-| Aplicado · minuta 07-09 | Verde | Cambio hecho según la minuta |
-| Ajuste Kit UC | Azul | Cambio hecho para cumplir el Kit |
-| P1 · Pendiente Centro | Rojo | Recurso o definición que solo tiene el cliente |
-| P2-A · Decidir ahora | Violeta | Las 6 decisiones (A1–A6) se tomaron el 29-09 y pasaron a verde |
-| P2-B · Más adelante (UC / tareas) | Naranjo | Consultas a la UC y tareas de Scandinavia; no requieren decisión hoy |
-| Interaction / Content / Development / Accessibility | — | Comportamiento del Sprint 1 que sigue vigente |
+| Categoría | Color | Para qué | ¿Para la reunión? |
+|---|---|---|---|
+| P1 · Pendiente Centro | Rojo | **P1-01 a P1-20**: lo que necesitamos del Centro (numerado, sin duplicar el contenido) | **Sí** |
+| Validar con el Centro | Rosado | **V-01 a V-06**: propuestas de Scandinavia a validar | **Sí** |
+| ✔ Resuelto · Sprint 2 | Verde | Una por pantalla y por componente: qué se hizo en esta ronda | Como respaldo |
+| P2-B · Más adelante (UC / tareas) | Naranjo | Consultas a la UC y tareas internas ("Interno · no es para la reunión") | No |
+| Interaction / Development | — | Comportamiento para desarrollo | No |
+
+Categorías vacías que la API no permite borrar (eliminarlas a mano en Figma si molestan): "Aplicado · minuta
+07-09", "Ajuste Kit UC", "P2 · Revisar Scandinavia", "P2-A · Decidir ahora".
 
 ## Componentes nuevos o modificados
 
