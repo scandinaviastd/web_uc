@@ -91,7 +91,7 @@ export const equipo = [
 ];
 
 export const red = {
-  'Profesores afiliados': ['Mauricio Larraín', 'Felipe Aldunate', 'Daniel Ferrés', 'Consuelo Silva', 'Carlos Pombo', 'Matías Zegers', 'Álvaro Bustos', 'Roberto Guerrero', 'Enrique Alcalde', 'Luis Hernán Paúl', 'Eduardo Walker', 'Teresita Tagle'],
+  'Profesores afiliados': ['Consuelo Silva', 'Carlos Pombo', 'Matías Zegers', 'Álvaro Bustos', 'Roberto Guerrero', 'Enrique Alcalde', 'Luis Hernán Paúl', 'Eduardo Walker', 'Teresita Tagle'],
   'Investigadores': ['Josefina Tocornal'],
   'Ayudantes de investigación': ['Pablo Araya'],
 };

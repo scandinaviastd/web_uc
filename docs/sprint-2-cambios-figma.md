@@ -106,7 +106,7 @@ propaga a todo el sitio.
 
 | # | Decisión | Qué se aplicó |
 |---|---|---|
-| A1 | Red de Investigación | Los 5 investigadores (Mejía-Amaya, López-Iturriaga, Cabezón, Ossandón, Wagner) **se sacan de la Red**. Quedan 12 profesores afiliados, Josefina Tocornal y Pablo Araya |
+| A1 | Red de Investigación | Los 5 investigadores (Mejía-Amaya, López-Iturriaga, Cabezón, Ossandón, Wagner) **se sacan de la Red**. Quedan 9 profesores afiliados (29-09: se sacan también Mauricio Larraín, Felipe Aldunate y Daniel Ferrés), Josefina Tocornal y Pablo Araya |
 | A2 | Textos provisorios | Pilar Extensión y bloque In Company se muestran **como propuesta** al Centro (P1: validar) |
 | A3 | Calendario | **Grilla mensual** con navegación entre meses + detalle de los eventos del mes con Card/Evento. En móvil, lista del mes |
 | A4 | Brochure | **Pasa por formulario** en un modal del Kit (nombre*, correo*, empresa opcional + privacidad). Nueva pantalla "Formación / Ficha / Modal Descargar brochure" |
