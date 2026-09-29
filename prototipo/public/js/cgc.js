@@ -15,6 +15,41 @@
     });
   };
 
+  // Paginación real: muestra N items por página entre los que pasan los filtros (lista con data-paginar="N")
+  var paginar = function (cont, pagina) {
+    $$('[data-paginar]', cont).forEach(function (lista) {
+      var n = +lista.getAttribute('data-paginar');
+      var nav = $('[data-paginacion]', cont);
+      var items = $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto'); });
+      var total = Math.max(1, Math.ceil(items.length / n));
+      var actual = Math.min(Math.max(1, pagina || +lista.getAttribute('data-pagina') || 1), total);
+      lista.setAttribute('data-pagina', actual);
+      $$('[data-item]', lista).forEach(function (it) { it.classList.remove('is-otra-pagina'); });
+      items.forEach(function (it, i) { it.classList.toggle('is-otra-pagina', Math.floor(i / n) + 1 !== actual); });
+      if (!nav) return;
+      nav.hidden = total < 2;
+      var pags = '';
+      for (var p = 1; p <= total; p++) pags += '<li class="page-item' + (p === actual ? ' active' : '') + '"><a href="#" class="page-link" data-pag="' + p + '"' + (p === actual ? ' aria-current="page"' : '') + ' aria-label="Página ' + p + '">' + p + '</a></li>';
+      $('.uc-pagination_pages', nav).innerHTML = pags;
+      $('.uc-pagination_prev', nav).disabled = actual === 1;
+      $('.uc-pagination_next', nav).disabled = actual === total;
+      if (!nav.hasAttribute('data-listo')) {
+        nav.setAttribute('data-listo', '');
+        nav.addEventListener('click', function (ev) {
+          var a = ev.target.closest('[data-pag]'), actualAhora = +lista.getAttribute('data-pagina'), destino = null;
+          if (a) { ev.preventDefault(); destino = +a.getAttribute('data-pag'); }
+          else if (ev.target.closest('.uc-pagination_prev')) destino = actualAhora - 1;
+          else if (ev.target.closest('.uc-pagination_next')) destino = actualAhora + 1;
+          if (destino === null) return;
+          paginar(cont, destino);
+          var arriba = lista.getBoundingClientRect().top;
+          if (arriba < 0) window.scrollBy({ top: arriba - 120, behavior: 'smooth' });
+        });
+      }
+    });
+  };
+  $$('[data-paginar]').forEach(function (l) { paginar(l.closest('[data-filtro]') || document, 1); });
+
   /* ---------- Filtros instantáneos (chips + buscador) ---------- */
   $$('[data-chips]').forEach(function (grupo) {
     var cont = grupo.closest('[data-filtro]') || document;
@@ -34,6 +69,7 @@
         if (ok) visibles++;
       });
       actualizarVacios(cont);
+      paginar(cont, 1);
       // el calendario también escucha el filtro de tipo
       document.dispatchEvent(new CustomEvent('cgc:filtro', { detail: { grupo: grupo.getAttribute('data-chips'), valor: valor } }));
       if (contador) {

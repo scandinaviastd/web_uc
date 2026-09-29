@@ -70,7 +70,9 @@
 .cgc-chip:hover { background-color: #e5f3ff; text-decoration: none; }
 .cgc-chip.is-active, .cgc-chip[aria-pressed="true"] { background-color: var(--cgc-celeste); color: #fff; }
 .cgc-chip:focus-visible { outline: 2px solid var(--cgc-azul); outline-offset: 2px; }
-[data-item].is-oculto { display: none !important; }
+[data-item].is-oculto, [data-item].is-otra-pagina { display: none !important; }
+.uc-pagination[hidden] { display: none; }
+.uc-pagination button:disabled { opacity: .4; cursor: default; }
 
 /* ---------- Nosotros: barra de anclas sticky ---------- */
 .cgc-anclas { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--cgc-gris-claro); padding: 12px 0; }

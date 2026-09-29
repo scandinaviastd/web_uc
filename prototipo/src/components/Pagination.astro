@@ -1,12 +1,13 @@
 ---
 // Paginador del Kit (.uc-pagination).
-interface Props { paginas: (number | string)[]; activa?: number }
-const { paginas, activa = 1 } = Astro.props;
+// dinamica: la paginación es real (cgc.js la completa según los items visibles de la lista con data-paginar).
+interface Props { paginas: (number | string)[]; activa?: number; dinamica?: boolean }
+const { paginas, activa = 1, dinamica = false } = Astro.props;
 ---
-<nav class="uc-pagination mt-40" aria-label="Paginación">
-  <button class="uc-pagination_prev mr-12" aria-label="Página anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
+<nav class="uc-pagination mt-40" aria-label="Paginación" data-paginacion={dinamica ? '' : undefined}>
+  <button type="button" class="uc-pagination_prev mr-12" aria-label="Página anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
   <ul class="uc-pagination_pages">
     {paginas.map((p) => <li class:list={['page-item', { active: p === activa }]}><a href="#" class="page-link">{p}</a></li>)}
   </ul>
-  <button class="uc-pagination_next ml-12" aria-label="Página siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
+  <button type="button" class="uc-pagination_next ml-12" aria-label="Página siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
 </nav>
