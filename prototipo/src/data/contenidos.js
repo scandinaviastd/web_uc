@@ -6,8 +6,8 @@ const FOTOS = {
   'Matías Zegers': 'matias-zegers.webp', 'Álvaro Bustos': 'alvaro-bustos.webp', 'Roberto Guerrero': 'roberto-guerrero.webp',
   'Enrique Alcalde': 'enrique-alcalde.webp', 'Marta del Sante': 'marta-del-sante.webp', 'Luis Hernán Paúl': 'luis-hernan-paul.webp',
   'Eduardo Walker': 'eduardo-walker.webp', 'Teresita María Tagle': 'teresita-maria-tagle.webp',
-  'Alejandra Wood': 'alejandra-wood.jpg', // sitio actual; fondo oscuro distinto al resto (reemplazar con banco de imágenes)
-  'Josefina Tocornal': 'josefina-tocornal.jpg', // recorte del flyer del webinar Cuprum (baja resolución: pedir original)
+  // Equipo ejecutivo (Alejandra Wood, Sara Marambio, Josefina Tocornal): sin foto hasta que el Centro entregue
+  // fotos con el mismo encuadre y fondo que el Directorio (P1-10); se muestra el avatar con iniciales.
 };
 export const fotoDe = (nombre = '') => {
   const k = Object.keys(FOTOS).find((n) => nombre.trim().startsWith(n));

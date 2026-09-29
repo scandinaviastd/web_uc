@@ -21,8 +21,6 @@ Regla aplicada: sin texto incrustado ni logos de terceros dentro de la foto; pro
 | `newsletters/2026-07.jpg` | Newsletter julio | Ilustración del newsletter original |
 | `eventos/ciclo-debates-abril-2026.jpg` | Debate abril (realizado) | Foto real; se recortó la franja con logo |
 | `estudios/*.jpg` (6) | Portadas de Estudios | Portadas reales de cada PDF, montadas en el marco 32:17 |
-| `personas/alejandra-wood.jpg` | Equipo, Prensa | Fondo oscuro distinto al resto: pedir foto nueva |
-| `personas/josefina-tocornal.jpg` | Equipo | Recorte del flyer del webinar Cuprum (~240 px): pedir original |
 | `colaboradores/cuprum.png`, `mazars.jpg` | Cinta de colaboradores | Logos que ya publica el Centro |
 
 Descartadas: flyers con texto (debates, webinars), recortes de prensa (DF, La Tercera), la foto del panel de la
@@ -64,5 +62,7 @@ Se agregaron como propuesta; el Centro confirma si van y gestiona la autorizaci�
 
 ## Sin imagen a propósito
 
-Sara Marambio: avatar con iniciales del Kit. No hay foto suya y no corresponde usar una cara de stock para una
-persona real.
+Equipo ejecutivo (Alejandra Wood, Sara Marambio, Josefina Tocornal): avatar con iniciales del Kit, también en
+Prensa. Se sacaron (29-09) las fotos provisorias de Alejandra (fondo distinto) y Josefina (recorte de baja
+resolución) hasta tener fotos con el mismo encuadre y fondo que el Directorio (P1-10). No corresponde usar caras
+de stock para personas reales.
