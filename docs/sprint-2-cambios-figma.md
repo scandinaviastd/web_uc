@@ -152,5 +152,6 @@ Se revisaron las 91 anotaciones de "Sitio · Sprint 2" contra "Sprint 3 Desktop"
 - **Interaction / Development (17):** verificadas en el prototipo. Carrusel: pasaba cada 5 s (valor por defecto del
   Kit); ahora `data-autoplay-timeout="6000"`. El carrusel del Kit no trae pausa por hover/foco ni flechas
   (`autoplayHoverPause` y `arrowKeys` no se leen de `data-*`): se pausa con su botón. Barra de anclas y columna
-  lateral no quedan fijas: `index.css` del Kit pone `overflow-x: hidden` en `html, body` → R-11.
+  lateral no quedan fijas: `index.css` del Kit pone `overflow-x: hidden` en `html, body` → R-11, decidido el
+  29-09: se dejan sin fijar (manda el Kit).
 
