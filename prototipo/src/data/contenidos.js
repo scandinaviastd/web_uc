@@ -87,7 +87,7 @@ export const directorio = [
 export const equipo = [
   { nombre: 'Alejandra Wood', cargo: 'Directora Ejecutiva', correo: 'awoodh@uc.cl', telefono: '+56 9 5504 2132' },
   { nombre: sara.nombre, cargo: 'Coordinadora de formación y extensión', correo: sara.correo },
-  { nombre: 'Josefina Tocornal', cargo: 'Coordinadora de investigación', correo: 'jtc@uc.cl' },
+  { nombre: 'Josefina Tocornal', cargo: 'Coordinadora de investigación y extensión', correo: 'jtc@uc.cl' },
 ];
 
 export const red = {
