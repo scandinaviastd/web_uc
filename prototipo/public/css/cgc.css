@@ -50,6 +50,7 @@
 .cgc-meta .uc-icon { font-size: 16px; }
 .cgc-card-acceso:hover { border-color: var(--cgc-celeste); }
 .cgc-card-persona .uc-card_body { padding: 16px 20px 20px; }
+.cgc-card-persona a { overflow-wrap: anywhere; } /* correos largos (s.marambio.bunster@uc.cl) no se salen de la card en 2 columnas */
 .cgc-avatar-card { --size: 100%; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 0; font-size: 48px; font-weight: 500; }
 .cgc-avatar-sm { --size: 72px; flex-shrink: 0; font-size: 24px; font-weight: 500; }
 .cgc-avatar-sm img { height: 100%; }

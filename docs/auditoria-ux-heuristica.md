@@ -13,7 +13,7 @@ composición de una página queda como propuesta a validar.
 
 | | Cantidad |
 |---|---|
-| Hallazgos corregidos en el prototipo | 22 |
+| Hallazgos corregidos en el prototipo | 23 |
 | Recomendaciones para después de la reunión | 10 |
 | Revisado y se mantiene a propósito | 6 |
 
@@ -45,6 +45,7 @@ Severidad: **A** alta (bloquea una tarea o incumple WCAG), **M** media (confunde
 | 20 | Consistencia | B | «Equipo Ejecutivo» con mayúscula; el resto de títulos va en mayúscula de oración | «Equipo ejecutivo» (título y ancla) |
 | 21 | Relación con el mundo real | B | Red de Investigación mencionaba «documentos de trabajo» (nombre anterior) | «artículos, working papers y estudios» |
 | 22 | Seguridad / checklist | B | Enlaces a pestaña nueva sin `rel="noopener"` (créditos, política de privacidad); botón del formulario lateral de WhatsApp desalineado | `noopener` en todos; botón alineado |
+| 23 | Diseño responsivo | M | Nosotros en 375 px: el correo de Sara (`s.marambio.bunster@uc.cl`) se salía de la card en 2 columnas (detectado al capturar el móvil) | Los enlaces de Card/Persona cortan en cualquier punto (`overflow-wrap: anywhere`): el correo pasa a una segunda línea |
 
 ## Recomendado después de la reunión (no aplicado: cambia la composición o depende del Centro)
 
