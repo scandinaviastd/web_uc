@@ -14,7 +14,7 @@ const lista = [...colaboradores, ...colaboradores];
     <ul class="cgc-marquee_track">
       {lista.map((c, i) => (
         <li class="cgc-marquee_item" aria-hidden={i >= colaboradores.length ? 'true' : undefined}>
-          {c === 'Logo socio' ? <img src="/img/ph-logo.svg" alt="Logo de colaborador (pendiente)" /> : <span class="cgc-logo-text">{c}</span>}
+          {c.logo ? <img src={c.logo} alt={`Logo ${c.nombre}`} loading="lazy" /> : <img src="/img/ph-logo.svg" alt={c.nombre} />}
         </li>
       ))}
     </ul>

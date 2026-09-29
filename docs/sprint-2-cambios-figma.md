@@ -77,9 +77,9 @@ propaga a todo el sitio.
 | P1-05 | Contenidos de las fichas (docentes, objetivos, metodología, aprobación, admisión) |
 | P1-06 | ¿Descuentos iguales para todos los programas? |
 | P1-07 | Módulos de Claves para decisiones financieras y de Empresas familiares |
-| P1-08 | Calendario interno de eventos y Jornada 2026 |
+| P1-08 | Calendario interno de eventos y Jornada 2026. **Contradicción**: el sitio actual publica la noticia "Jornada Gobierno Corporativo 2026" el 11-jun-2026, pero el Figma la muestra como evento próximo (en el prototipo, 26-nov). ¿Ya se hizo o es la de 2027? |
 | P1-09 | Diálogos (10 PDF) y Guía de buenas prácticas |
-| P1-10 | Banco de imágenes |
+| P1-10 | Banco de imágenes. El prototipo usa provisoriamente fotos del sitio actual (banners, programas, 1 noticia, 1 newsletter, 1 debate, foto de Alejandra Wood): son de stock, falta confirmar la licencia. Se descartaron las que traían texto |
 | P1-11 | Reseñas de las personas |
 | P1-12 | Cargo y correo de Sara; número y horario del WhatsApp |
 | P1-13 | Lista de profesores afiliados; ¿sigue Josefina Tocornal? |

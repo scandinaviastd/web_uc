@@ -2,16 +2,17 @@
 // Carrusel principal del Kit (componentes/carrusel-principal). Solo en la home, bajo el header.
 // Estilo y comportamiento del Kit sin modificar; data-autoplaybutton agrega el botón de pausa (WCAG 2.2.2).
 const slides = [
-  { tag: 'Matrículas abiertas', titulo: 'Formando nuevos Directores de empresas', cta: 'Conoce el programa', href: '/formacion/formando-nuevos-directores/' },
-  { tag: 'Matrículas abiertas', titulo: 'Diplomado en Gobierno Corporativo', cta: 'Conoce el programa', href: '/formacion/diplomado-gobierno-corporativo/' },
-  { tag: 'Próximamente', titulo: 'Jornada Gobierno Corporativo 2026', cta: 'Ver calendario de eventos', href: '/extension/' },
+  { tag: 'Matrículas abiertas', titulo: 'Formando nuevos Directores de empresas', cta: 'Conoce el programa', href: '/formacion/formando-nuevos-directores/', imagen: '/img/hero/formando-nuevos-directores.jpg' },
+  { tag: 'Matrículas abiertas', titulo: 'Diplomado en Gobierno Corporativo', cta: 'Conoce el programa', href: '/formacion/diplomado-gobierno-corporativo/', imagen: '/img/hero/diplomado.jpg' },
+  { tag: 'Matrículas abiertas', titulo: 'Gobierno corporativo de empresas familiares y family office', cta: 'Conoce el programa', href: '/formacion/empresas-familiares/', imagen: '/img/hero/empresas-familiares.jpg' },
 ];
+// Imágenes del sitio actual del Centro (banners sin texto; fotos de stock: confirmar licencia).
 ---
 <div class="uc-carousel cgc-hero" data-carousel="uc-primary-carousel" data-type="carousel" data-items="1" data-slideby="1" data-loop="true" data-nav="true" data-autoplay="true" data-controls="false" data-navcontainer="#carousel-nav" data-autoplaybutton="#carousel-autoplay" data-autoplay-text="true">
   <div class="uc-primary-carousel">
     {slides.map((s) => (
       <div class="primary-carousel_item uc-card card-bg--image card-gradient--bottom-black card-radius--none card-border--none">
-        <img class="carousel-img" src="/img/ph-hero.svg" alt="" />
+        <img class="carousel-img" src={s.imagen} alt="" />
         <div class="primary-carousel_item-content">
           <div class="container mt-auto">
             <div class="row">

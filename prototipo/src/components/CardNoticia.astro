@@ -1,10 +1,10 @@
 ---
 // Card/Noticia — card con imagen del Kit, fecha, título y enlace. Se usa en noticias, newsletters y eventos realizados.
-interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string }
-const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo } = Astro.props;
+interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string; imagen?: string }
+const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo, imagen } = Astro.props;
 ---
 <article class="uc-card card-height--same cgc-card" data-tipo={tipo}>
-  <img src="/img/ph-16x9.svg" class="uc-card-img cgc-img-16x9" alt="" loading="lazy" />
+  <img src={imagen ?? '/img/ph-16x9.svg'} class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />
   <div class="uc-card_body">
     <p class="text-size--sm text-color--gray mb-8">{tipo ? `${tipo} · ${fecha}` : fecha}</p>
     <h3 class="h5 cgc-clamp-3"><a href={href} class="cgc-card-link">{titulo}</a></h3>

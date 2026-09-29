@@ -104,6 +104,9 @@ export const programas = [
   },
 ];
 
+// Imagen de cada programa (sitio actual del Centro; fotos de stock: confirmar licencia de uso).
+programas.forEach((p) => { p.imagen = `/img/programas/${p.slug}.jpg`; });
+
 export const inCompany = {
   slug: 'in-company',
   tipo: 'In Company',

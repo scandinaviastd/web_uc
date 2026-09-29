@@ -23,7 +23,7 @@ import { eventosRealizados, prensa, tiposEvento } from '../../data/contenidos.js
     <h2 class="h3 mt-60 mb-8">Realizados</h2>
     <p class="text-size--sm text-color--gray mb-24">23 actividades realizadas · mostrando 6</p>
     <div class="row">
-      {eventosRealizados.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo}><CardNoticia fecha={e.fecha} tipo={e.tipo} titulo={e.titulo} cta="Ver resumen" /></div>)}
+      {eventosRealizados.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo}><CardNoticia fecha={e.fecha} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" /></div>)}
     </div>
     <Pagination paginas={[1, 2, 3, 4]} />
   </div>

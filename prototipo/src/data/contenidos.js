@@ -4,6 +4,7 @@ const FOTOS = {
   'Matías Zegers': 'matias-zegers', 'Álvaro Bustos': 'alvaro-bustos', 'Roberto Guerrero': 'roberto-guerrero',
   'Enrique Alcalde': 'enrique-alcalde', 'Marta del Sante': 'marta-del-sante', 'Luis Hernán Paúl': 'luis-hernan-paul',
   'Eduardo Walker': 'eduardo-walker', 'Teresita María Tagle': 'teresita-maria-tagle',
+  'Alejandra Wood': 'alejandra-wood', // sitio actual; fondo oscuro distinto al resto (reemplazar con banco de imágenes)
 };
 export const fotoDe = (nombre = '') => {
   const k = Object.keys(FOTOS).find((n) => nombre.trim().startsWith(n));
@@ -17,12 +18,12 @@ export const inicialesDe = (nombre = '') => nombre.split(' ').filter(Boolean).sl
 export const noticias = [
   { fecha: '17 - Jul - 2026', titulo: 'Forbes Chile participó del debate coorganizado por el CGC UC y BH Compliance' },
   { fecha: '11 - Jun - 2026', titulo: 'Jornada Gobierno Corporativo 2026' },
-  { fecha: '12 - May - 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026' },
+  { fecha: '12 - May - 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026', imagen: '/img/noticias/bienvenida-diplomado-2026.jpg' },
   { fecha: '08 - May - 2026', titulo: 'Estudio CGC UC: representación femenina en empresas IPSA' },
 ];
 
 export const newsletters = [
-  { fecha: '02 - Jul - 2026', titulo: 'El presidente del directorio también necesita ser supervisado' },
+  { fecha: '02 - Jul - 2026', titulo: 'El presidente del directorio también necesita ser supervisado', imagen: '/img/newsletters/2026-07.jpg' },
   { fecha: '28 - May - 2026', titulo: 'Ser director de una fundación ya no es un rol simbólico' },
   { fecha: '30 - Abr - 2026', titulo: 'La IA y nuevas exigencias de productividad' },
 ];
@@ -48,7 +49,7 @@ export const eventosRealizados = [
   { tipo: 'Debate', fecha: '8 - Jul - 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades' },
   { tipo: 'Webinar', fecha: '6 - May - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF' },
   { tipo: 'Webinar', fecha: '22 - Abr - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Responsabilidad de directores' },
-  { tipo: 'Debate', fecha: 'Mar 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: sesión anterior' },
+  { tipo: 'Debate', fecha: 'Abr 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: sesión anterior', imagen: '/img/eventos/ciclo-debates-abril-2026.jpg' },
   { tipo: 'Seminario', fecha: 'Ene 2026', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones' },
   { tipo: 'Webinar', fecha: 'Dic 2025', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo' },
 ];
@@ -92,4 +93,8 @@ export const red = {
   'Ayudantes de investigación': ['Pablo Araya'],
 };
 
-export const colaboradores = ['Cuprum AFP', 'mazars', 'Logo socio', 'Logo socio', 'Logo socio', 'Logo socio', 'Logo socio'];
+export const colaboradores = [
+  { nombre: 'Cuprum AFP', logo: '/img/colaboradores/cuprum.png' },
+  { nombre: 'Mazars', logo: '/img/colaboradores/mazars.jpg' },
+  ...Array(5).fill({ nombre: 'Logo socio (pendiente)' }),
+];
