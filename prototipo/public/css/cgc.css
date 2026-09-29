@@ -198,8 +198,8 @@ html { scroll-behavior: smooth; }
 .cgc-tabla-valores tr { background: #fff; }
 .cgc-tabla-valores .cgc-fila-valor { background: var(--cgc-gris-fondo); }
 
-/* Card de evento del Kit: la fecha sobresale hacia arriba; dejar espacio sobre la lista del mes */
-.cgc-calendario [data-cal-lista] > [class*="col-"] { margin-top: 48px; }
+/* Card de evento del Kit: la fecha sobresale hacia arriba; dejar espacio sobre cada card de la lista */
+.cgc-evento-item { padding-top: 32px; }
 
 /* Aviso de enlace pendiente */
 .cgc-toast { position: fixed; right: 24px; bottom: 24px; z-index: 2000; max-width: 420px; background-color: #fff !important; border: 1px solid #0176de !important; padding: 12px 16px; opacity: 0; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease; pointer-events: none; box-shadow: 0 0 20px rgba(0,0,0,.18); background: #fff; }

@@ -4,28 +4,44 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import CalendarioMensual from '../../components/CalendarioMensual.astro';
 import CardNoticia from '../../components/CardNoticia.astro';
+import CardEvento from '../../components/CardEvento.astro';
 import CardOpinion from '../../components/CardOpinion.astro';
 import Pagination from '../../components/Pagination.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
-import { eventosRealizados, prensa, tiposEvento } from '../../data/contenidos.js';
+import { eventosProximos, eventosRealizados, fechaEvento, prensa, tiposEvento } from '../../data/contenidos.js';
+const vacio = (texto: string) => `<div class="uc-alert info"><div class="uc-alert_content"><i class="uc-icon icon-size--sm">info</i><span class="p p-size--sm bold ml-8">${texto}</span></div></div>`;
 ---
 <Base title="Extensión" seccion="extension">
   <Breadcrumb items={[{ label: 'Extensión' }]} />
-  <PageTitle titulo="Extensión" bajada="Jornadas, seminarios, webinars, diálogos y debates abiertos a la comunidad." />
+  <PageTitle titulo="Extensión" bajada="Seminarios, webinars, workshops, debates, charlas, desayunos, diálogos y jornadas abiertos a la comunidad." />
   <div class="container mb-60" data-filtro="eventos">
     <div class="cgc-chips mb-40" role="group" aria-label="Filtrar por tipo" data-chips="eventos" data-atributo="tipo">
       <span class="cgc-chips_label">Tipo:</span>
       <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
-      {tiposEvento.map((t) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={t}>{t === 'Diálogo' ? 'Diálogos' : `${t}s`}</button>)}
+      {tiposEvento.map((t) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={t}>{`${t}s`}</button>)}
     </div>
-    <h2 class="h3 mb-24">Próximos eventos</h2>
-    <CalendarioMensual />
-    <h2 class="h3 mt-60 mb-8">Realizados</h2>
-    <p class="text-size--sm text-color--gray mb-24">23 actividades realizadas · mostrando 6</p>
-    <div class="row">
-      {eventosRealizados.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo}><CardNoticia fecha={e.fecha} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" /></div>)}
-    </div>
-    <Pagination paginas={[1, 2, 3, 4]} />
+    <section id="proximos" aria-labelledby="proximos-titulo">
+      <h2 id="proximos-titulo" class="h3 mb-8">Próximos eventos</h2>
+      <p class="text-size--sm text-color--gray mb-24">{eventosProximos.length} eventos programados · en orden cronológico</p>
+      <CalendarioMensual />
+      <div class="row mt-40" data-lista>
+        {eventosProximos.map((e) => {
+          const f = fechaEvento(e.fecha);
+          return <div class="col-md-6 mb-32 cgc-evento-item" data-item data-tipo={e.tipo}><CardEvento id={e.id} dia={f.dia} mes={f.mes} fechaLarga={f.larga} tipo={e.tipo} titulo={e.titulo} hora={e.hora} lugar={e.lugar} /></div>;
+        })}
+      </div>
+      <div data-vacio hidden set:html={vacio('No hay próximos eventos de este tipo.')} />
+      <p class="text-size--sm text-color--gray mt-8"><em>Eventos de ejemplo: las fechas reales llegan con el calendario interno del Centro.</em></p>
+    </section>
+    <section id="realizados" aria-labelledby="realizados-titulo">
+      <h2 id="realizados-titulo" class="h3 mt-60 mb-8">Realizados</h2>
+      <p class="text-size--sm text-color--gray mb-24">23 actividades realizadas · mostrando 6 · de la más reciente a la más antigua</p>
+      <div class="row" data-lista>
+        {eventosRealizados.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" /></div>)}
+      </div>
+      <div data-vacio hidden set:html={vacio('No hay eventos realizados de este tipo.')} />
+      <Pagination paginas={[1, 2, 3, 4]} />
+    </section>
   </div>
   <section class="cgc-section cgc-section--gray">
     <div class="container">

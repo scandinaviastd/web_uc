@@ -112,6 +112,7 @@ propaga a todo el sitio.
 | A4 | Brochure | **Pasa por formulario** en un modal del Kit (nombre*, correo*, empresa opcional + privacidad). Nueva pantalla "Formación / Ficha / Modal Descargar brochure" |
 | A5 | Asesorías en el menú | **Sin desplegable** |
 | A6 | Formulario "Más información" | **Se mantiene** como está |
+| A7 | Tipos de evento (Extensión) | **Seminario · Webinar · Workshop · Debate · Charla · Desayuno · Diálogo · Jornada**. Extensión muestra *Próximos eventos* (grilla mensual en escritorio + lista completa en orden cronológico) y *Realizados* (del más reciente al más antiguo); se separan solos según la fecha |
 
 ## P2-B · Más adelante (naranjo)
 

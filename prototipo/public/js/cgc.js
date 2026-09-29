@@ -25,6 +25,11 @@
         it.classList.toggle('is-oculto', !ok);
         if (ok) visibles++;
       });
+      // listas con mensaje propio cuando el filtro no deja nada visible
+      $$('[data-lista]', cont).forEach(function (l) {
+        var vacio = l.nextElementSibling;
+        if (vacio && vacio.hasAttribute('data-vacio')) vacio.hidden = !!l.querySelector('[data-item]:not(.is-oculto)');
+      });
       // el calendario también escucha el filtro de tipo
       document.dispatchEvent(new CustomEvent('cgc:filtro', { detail: { grupo: grupo.getAttribute('data-chips'), valor: valor } }));
       if (contador) {
@@ -68,7 +73,6 @@
   if (cal) {
     var eventos = JSON.parse(cal.getAttribute('data-eventos'));
     var meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    var mesesCortos = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
     var ini = cal.getAttribute('data-inicio').split('-');
     var anio = +ini[0], mes = +ini[1] - 1, tipo = '*';
     var cap = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };
@@ -76,7 +80,6 @@
     var pintar = function () {
       var delMes = eventos.filter(function (e) { var d = e.fecha.split('-'); return +d[0] === anio && +d[1] - 1 === mes && (tipo === '*' || e.tipo === tipo); });
       $('[data-cal-titulo]', cal).textContent = cap(meses[mes]) + ' ' + anio;
-      $('[data-cal-lista-titulo]', cal).textContent = 'Eventos de ' + meses[mes] + ' ' + anio;
       var primero = new Date(anio, mes, 1), offset = (primero.getDay() + 6) % 7;
       var inicio = new Date(anio, mes, 1 - offset), html = '';
       for (var w = 0; w < 6; w++) {
@@ -87,17 +90,11 @@
           var iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
           var evs = enMes ? delMes.filter(function (e) { return e.fecha === iso; }) : [];
           fila += '<div class="cgc-cal-dia' + (enMes ? '' : ' is-fuera') + (evs.length ? ' is-con-evento' : '') + '" role="gridcell"><span class="cgc-cal-num">' + d.getDate() + '</span>' +
-            evs.map(function (e) { return '<a href="#" class="cgc-cal-evento"><strong>' + esc(e.hora.indexOf(':') > -1 ? e.hora.split(' ')[0] + ' · ' + e.tipo : e.tipo) + '</strong><span>' + esc(e.titulo) + '</span></a>'; }).join('') + '</div>';
+            evs.map(function (e) { return '<a href="#' + e.id + '" class="cgc-cal-evento"><strong>' + esc(e.hora.indexOf(':') > -1 ? e.hora.split(' ')[0] + ' · ' + e.tipo : e.tipo) + '</strong><span>' + esc(e.titulo) + '</span></a>'; }).join('') + '</div>';
         }
         if (algunoDelMes) html += '<div class="cgc-cal-row" role="row">' + fila + '</div>';
       }
       $('[data-cal-semanas]', cal).innerHTML = html;
-      $('[data-cal-lista]', cal).innerHTML = delMes.length ? delMes.map(function (e) {
-        var dd = +e.fecha.split('-')[2];
-        return '<div class="col-lg-6 mb-24"><article class="uc-card card-type--event card-height--same cgc-card"><div class="uc-card card-type--date"><div class="day">' + dd + '</div><div class="month">' + mesesCortos[mes] + '</div></div>' +
-          '<div class="uc-card_body"><span class="uc-subtitle mt-20 mb-16">' + esc(e.tipo) + '</span><a href="#" class="d-flex h4 color-black uc-card-link mb-16 cgc-card-link">' + esc(e.titulo) + '</a>' +
-          '<div class="uc-card_event--content"><div class="date">' + dd + ' de ' + meses[mes] + '</div><div class="time">' + esc(e.hora) + '</div><div class="venue">' + esc(e.lugar) + '</div></div></div></article></div>';
-      }).join('') : '<div class="col-12"><div class="uc-alert info"><div class="uc-alert_content"><i class="uc-icon icon-size--sm">info</i><span class="p p-size--sm bold ml-8">No hay eventos programados para este mes.</span></div></div></div>';
     };
     $('[data-cal-prev]', cal).addEventListener('click', function () { mes--; if (mes < 0) { mes = 11; anio--; } pintar(); });
     $('[data-cal-next]', cal).addEventListener('click', function () { mes++; if (mes > 11) { mes = 0; anio++; } pintar(); });

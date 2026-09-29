@@ -40,24 +40,40 @@ export const prensa = [
   { fecha: '26 - Feb - 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Líbero' },
 ];
 
-// Eventos: un solo pool (minuta 07-09 §5). fecha ISO para el calendario mensual.
-export const eventosProximos = [
+// Eventos: un solo pool (minuta 07-09 §5). En WordPress: CPT "evento" con fecha ISO y tipo.
+// Próximos y realizados se separan solos según la fecha de hoy y se ordenan cronológicamente.
+// Contenido de ejemplo: las fechas reales llegan con el calendario interno del Centro (P1-08).
+export const tiposEvento = ['Seminario', 'Webinar', 'Workshop', 'Debate', 'Charla', 'Desayuno', 'Diálogo', 'Jornada'];
+
+const eventos = [
+  // Próximos
   { fecha: '2026-10-15', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: próxima sesión', hora: '18:30 – 20:00', lugar: 'Lugar por confirmar' },
+  { fecha: '2026-10-22', tipo: 'Workshop', titulo: 'Workshop: el Comité de Directores en la práctica', hora: '09:00 – 13:00', lugar: 'Escuela de Administración UC' },
   { fecha: '2026-10-28', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": próxima sesión', hora: '09:00 – 10:00', lugar: 'Online' },
+  { fecha: '2026-11-05', tipo: 'Charla', titulo: 'Charla: el rol del directorio frente a la ciberseguridad', hora: '18:00 – 19:30', lugar: 'Lugar por confirmar' },
   { fecha: '2026-11-12', tipo: 'Diálogo', titulo: 'Diálogo CGC UC: primeros resultados de la NCG 461', hora: 'Horario por confirmar', lugar: 'Lugar por confirmar' },
   { fecha: '2026-11-26', tipo: 'Jornada', titulo: 'Jornada Gobierno Corporativo 2026', hora: 'Horario por confirmar', lugar: 'Lugar por confirmar · Inscripción gratuita' },
-];
+  { fecha: '2026-12-03', tipo: 'Desayuno', titulo: 'Desayuno de directores: balance del año en gobierno corporativo', hora: '08:30 – 10:00', lugar: 'Lugar por confirmar' },
+  // Realizados
+  { fecha: '2026-07-08', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades', imagen: '/img/eventos/debate-julio-2026.jpg' },
+  { fecha: '2026-05-06', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF', imagen: '/img/eventos/webinar-interlocking-2026.jpg' },
+  { fecha: '2026-04-22', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Responsabilidad de directores', imagen: '/img/eventos/webinar-responsabilidad-directores-2026.jpg' },
+  { fecha: '2026-04-08', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: sesión de abril', imagen: '/img/eventos/ciclo-debates-abril-2026.jpg' },
+  { fecha: '2026-01-20', tipo: 'Seminario', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones', imagen: '/img/eventos/seminario-fundaciones-2026.jpg' },
+  { fecha: '2025-12-10', tipo: 'Webinar', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo', imagen: '/img/eventos/webinar-delitos-economicos-2025.jpg' },
+].map((e, i) => ({ ...e, id: `evento-${i + 1}` }));
 
-export const eventosRealizados = [
-  { tipo: 'Debate', fecha: '8 - Jul - 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades', imagen: '/img/eventos/debate-julio-2026.jpg' },
-  { tipo: 'Webinar', fecha: '6 - May - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF', imagen: '/img/eventos/webinar-interlocking-2026.jpg' },
-  { tipo: 'Webinar', fecha: '22 - Abr - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Responsabilidad de directores', imagen: '/img/eventos/webinar-responsabilidad-directores-2026.jpg' },
-  { tipo: 'Debate', fecha: 'Abr 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: sesión anterior', imagen: '/img/eventos/ciclo-debates-abril-2026.jpg' },
-  { tipo: 'Seminario', fecha: 'Ene 2026', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones', imagen: '/img/eventos/seminario-fundaciones-2026.jpg' },
-  { tipo: 'Webinar', fecha: 'Dic 2025', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo', imagen: '/img/eventos/webinar-delitos-economicos-2025.jpg' },
-];
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const MESES_CORTOS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+// Formatos de fecha derivados del campo ISO (nunca se escriben a mano).
+export const fechaEvento = (iso) => {
+  const [a, m, d] = iso.split('-').map(Number);
+  return { dia: String(d), mes: MESES_CORTOS[m - 1].toUpperCase(), larga: `${d} de ${MESES[m - 1]}`, corta: `${d} - ${MESES_CORTOS[m - 1]} - ${a}` };
+};
 
-export const tiposEvento = ['Jornada', 'Seminario', 'Webinar', 'Diálogo', 'Debate'];
+const HOY = new Date().toISOString().slice(0, 10);
+export const eventosProximos = eventos.filter((e) => e.fecha >= HOY).sort((a, b) => a.fecha.localeCompare(b.fecha));
+export const eventosRealizados = eventos.filter((e) => e.fecha < HOY).sort((a, b) => b.fecha.localeCompare(a.fecha));
 
 // Artículos y Working Papers (antes "Documentos de Trabajo").
 export const articulos = [
