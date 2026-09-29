@@ -47,13 +47,13 @@ export const tiposEvento = ['Seminario', 'Webinar', 'Workshop', 'Debate', 'Charl
 
 const eventos = [
   // Próximos
-  { fecha: '2026-10-15', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: próxima sesión', hora: '18:30 – 20:00', lugar: 'Lugar por confirmar' },
-  { fecha: '2026-10-22', tipo: 'Workshop', titulo: 'Workshop: el Comité de Directores en la práctica', hora: '09:00 – 13:00', lugar: 'Escuela de Administración UC' },
-  { fecha: '2026-10-28', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": próxima sesión', hora: '09:00 – 10:00', lugar: 'Online' },
-  { fecha: '2026-11-05', tipo: 'Charla', titulo: 'Charla: el rol del directorio frente a la ciberseguridad', hora: '18:00 – 19:30', lugar: 'Lugar por confirmar' },
-  { fecha: '2026-11-12', tipo: 'Diálogo', titulo: 'Diálogo CGC UC: primeros resultados de la NCG 461', hora: 'Horario por confirmar', lugar: 'Lugar por confirmar' },
-  { fecha: '2026-11-26', tipo: 'Jornada', titulo: 'Jornada Gobierno Corporativo 2026', hora: 'Horario por confirmar', lugar: 'Lugar por confirmar · Inscripción gratuita' },
-  { fecha: '2026-12-03', tipo: 'Desayuno', titulo: 'Desayuno de directores: balance del año en gobierno corporativo', hora: '08:30 – 10:00', lugar: 'Lugar por confirmar' },
+  { fecha: '2026-10-15', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: próxima sesión', hora: '18:30 – 20:00', lugar: 'Lugar por confirmar', imagen: '/img/eventos/debate-octubre-2026.jpg' },
+  { fecha: '2026-10-22', tipo: 'Workshop', titulo: 'Workshop: el Comité de Directores en la práctica', hora: '09:00 – 13:00', lugar: 'Escuela de Administración UC', imagen: '/img/eventos/workshop-comite-directores-2026.jpg' },
+  { fecha: '2026-10-28', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": próxima sesión', hora: '09:00 – 10:00', lugar: 'Online', imagen: '/img/eventos/webinar-octubre-2026.jpg' },
+  { fecha: '2026-11-05', tipo: 'Charla', titulo: 'Charla: el rol del directorio frente a la ciberseguridad', hora: '18:00 – 19:30', lugar: 'Lugar por confirmar', imagen: '/img/eventos/charla-ciberseguridad-2026.jpg' },
+  { fecha: '2026-11-12', tipo: 'Diálogo', titulo: 'Diálogo CGC UC: primeros resultados de la NCG 461', hora: 'Horario por confirmar', lugar: 'Lugar por confirmar', imagen: '/img/eventos/dialogo-ncg-461-2026.jpg' },
+  { fecha: '2026-11-26', tipo: 'Jornada', titulo: 'Jornada Gobierno Corporativo 2026', hora: 'Horario por confirmar', lugar: 'Lugar por confirmar · Inscripción gratuita', imagen: '/img/eventos/jornada-gobierno-corporativo-2026.jpg' },
+  { fecha: '2026-12-03', tipo: 'Desayuno', titulo: 'Desayuno de directores: balance del año en gobierno corporativo', hora: '08:30 – 10:00', lugar: 'Lugar por confirmar', imagen: '/img/eventos/desayuno-directores-2026.jpg' },
   // Realizados
   { fecha: '2026-07-08', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades', imagen: '/img/eventos/debate-julio-2026.jpg' },
   { fecha: '2026-05-06', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF', imagen: '/img/eventos/webinar-interlocking-2026.jpg' },

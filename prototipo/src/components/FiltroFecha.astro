@@ -1,0 +1,29 @@
+---
+// Filtro por fecha de una sección (Próximos / Realizados): botón junto al título que abre un calendario chico.
+// Clic en un día con eventos: deja solo ese día. «Todo el mes»: deja el mes visible. Solo afecta a su sección,
+// no al calendario principal. Lo maneja cgc.js ([data-filtro-fecha]).
+interface Props { seccion: string; fechas: string[]; etiqueta: string }
+const { seccion, fechas, etiqueta } = Astro.props;
+const panel = `filtro-fecha-${seccion}`;
+---
+<div class="cgc-filtro-fecha" data-filtro-fecha={seccion} data-fechas={JSON.stringify(fechas)}>
+  <button type="button" class="cgc-filtro-fecha_btn" data-ff-abrir aria-expanded="false" aria-controls={panel}>
+    <i class="uc-icon">calendar_today</i> Filtrar<span class="uc-sr-only"> {etiqueta} por fecha</span>
+  </button>
+  <span class="cgc-filtro-fecha_activo" data-ff-activo hidden>
+    <span data-ff-activo-texto></span>
+    <button type="button" class="cgc-filtro-fecha_quitar" data-ff-limpiar aria-label="Quitar filtro de fecha"><i class="uc-icon">close</i></button>
+  </span>
+  <div id={panel} class="cgc-filtro-fecha_panel" data-ff-panel role="dialog" aria-label={`Filtrar ${etiqueta} por fecha`} hidden>
+    <div class="d-flex align-items-center justify-content-between mb-8">
+      <button type="button" class="cgc-cal-btn cgc-cal-btn--sm" data-ff-prev aria-label="Mes anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
+      <strong data-ff-titulo aria-live="polite"></strong>
+      <button type="button" class="cgc-cal-btn cgc-cal-btn--sm" data-ff-next aria-label="Mes siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
+    </div>
+    <div class="cgc-mini-cal" data-ff-grid></div>
+    <div class="d-flex justify-content-between mt-12">
+      <button type="button" class="uc-btn btn-inline" data-ff-mes>Todo el mes</button>
+      <button type="button" class="uc-btn btn-inline" data-ff-limpiar>Limpiar</button>
+    </div>
+  </div>
+</div>

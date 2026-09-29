@@ -37,6 +37,13 @@ incrustado).
 | `eventos/webinar-responsabilidad-directores-2026.jpg` | Webinar Responsabilidad | Bluestonex | [9Pqp6CUaIu4](https://unsplash.com/photos/9Pqp6CUaIu4) |
 | `eventos/seminario-fundaciones-2026.jpg` | Seminario fundaciones | Vitaly Gariev | [m76kVfIRS5U](https://unsplash.com/photos/m76kVfIRS5U) |
 | `eventos/webinar-delitos-economicos-2025.jpg` | Webinar delitos económicos | Sasun Bughdaryan | [ozS0tPf8QT0](https://unsplash.com/photos/ozS0tPf8QT0) |
+| `eventos/debate-octubre-2026.jpg` | Próximo · Debate 15 oct | stefano stacchini | [jhPSJDhiRyQ](https://unsplash.com/photos/jhPSJDhiRyQ) |
+| `eventos/workshop-comite-directores-2026.jpg` | Próximo · Workshop 22 oct | Dylan Gillis | [KdeqA3aTnBY](https://unsplash.com/photos/KdeqA3aTnBY) |
+| `eventos/webinar-octubre-2026.jpg` | Próximo · Webinar 28 oct | Dylan Ferreira | [HJmxky8Fvmo](https://unsplash.com/photos/HJmxky8Fvmo) |
+| `eventos/charla-ciberseguridad-2026.jpg` | Próximo · Charla 5 nov | Kevin Gonzalez | [-NXNaE9lu6w](https://unsplash.com/photos/-NXNaE9lu6w) |
+| `eventos/dialogo-ncg-461-2026.jpg` | Próximo · Diálogo 12 nov | Vitaly Gariev | [omGSZqBXkqY](https://unsplash.com/photos/omGSZqBXkqY) |
+| `eventos/jornada-gobierno-corporativo-2026.jpg` | Próximo · Jornada 26 nov | Thomas Delacrétaz | [ZXx-aoBPYuM](https://unsplash.com/photos/ZXx-aoBPYuM) |
+| `eventos/desayuno-directores-2026.jpg` | Próximo · Desayuno 3 dic | Andrew Neel | [TTPMpLl_2lc](https://unsplash.com/photos/TTPMpLl_2lc) |
 
 ## Logos de colaboradores por confirmar (P1-17)
 

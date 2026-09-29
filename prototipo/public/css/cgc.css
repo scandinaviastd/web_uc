@@ -146,11 +146,34 @@ html { scroll-behavior: smooth; }
 .cgc-cal-evento strong { display: block; color: var(--cgc-azul); font-weight: 500; }
 .cgc-cal-evento span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .cgc-cal-evento:hover { background: #d3e9fd; text-decoration: none; }
-/* Días con eventos: botón que filtra la lista por ese día */
-.cgc-cal-dia_btn { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; width: 100%; height: 100%; cursor: pointer; border-radius: 4px; }
-.cgc-cal-dia_btn:focus-visible { outline: 2px solid var(--cgc-celeste); outline-offset: 2px; }
-.cgc-cal-dia.is-seleccionado { background: #e5f3ff; box-shadow: inset 0 0 0 2px var(--cgc-celeste); }
-.cgc-cal-toggle[aria-expanded="true"] { background: var(--cgc-celeste); color: #fff; }
+/* Eventos realizados en el calendario principal: mismo formato, en gris */
+.cgc-cal-swatch--pasado { background: #b8bec6; }
+.cgc-cal-dia.is-pasado .cgc-cal-num { color: var(--cgc-gris); }
+.cgc-cal-evento.is-pasado { background: var(--cgc-gris-fondo); border-left-color: #b8bec6; color: var(--cgc-gris); }
+.cgc-cal-evento.is-pasado strong { color: var(--cgc-gris); }
+.cgc-cal-num--link { color: inherit; text-decoration: none; border-radius: 4px; padding: 0 4px; margin-left: -4px; align-self: flex-start; }
+.cgc-cal-num--link:hover, .cgc-cal-num--link:focus-visible { background: #e5f3ff; text-decoration: none; }
+
+/* Filtro por fecha de cada sección: botón simple junto al título + calendario chico */
+.cgc-filtro-fecha { position: relative; display: inline-flex; align-items: center; gap: 8px; }
+.cgc-filtro-fecha_btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--cgc-gris-claro); border-radius: 4px; padding: 4px 12px; color: var(--cgc-celeste); font: inherit; cursor: pointer; }
+.cgc-filtro-fecha_btn .uc-icon { font-size: 18px; }
+.cgc-filtro-fecha_btn:hover, .cgc-filtro-fecha_btn[aria-expanded="true"] { border-color: var(--cgc-celeste); }
+.cgc-filtro-fecha_activo { display: inline-flex; align-items: center; gap: 4px; background: #e5f3ff; color: var(--cgc-azul); border-radius: 4px; padding: 4px 4px 4px 12px; }
+.cgc-filtro-fecha_activo[hidden], .cgc-filtro-fecha_panel[hidden] { display: none; }
+.cgc-filtro-fecha_quitar { display: inline-flex; background: none; border: 0; padding: 2px; color: inherit; cursor: pointer; border-radius: 4px; }
+.cgc-filtro-fecha_quitar .uc-icon { font-size: 18px; }
+.cgc-filtro-fecha_quitar:hover { background: #d3e9fd; }
+.cgc-filtro-fecha_panel { position: absolute; top: calc(100% + 8px); left: 0; z-index: 20; width: 296px; background: #fff; border: 1px solid var(--cgc-gris-claro); border-radius: 4px; box-shadow: 0 4px 16px rgba(0, 0, 0, .12); padding: 16px; }
+.cgc-cal-btn--sm { width: 32px; height: 32px; }
+.cgc-mini-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+.cgc-mini-cal_dow { font-size: .875em; color: var(--cgc-gris); padding: 4px 0; }
+.cgc-mini-cal_dia { display: flex; align-items: center; justify-content: center; height: 34px; border-radius: 4px; font: inherit; color: #c6c6c6; }
+.cgc-mini-cal_dia.is-fuera { visibility: hidden; }
+button.cgc-mini-cal_dia { border: 0; background: #e5f3ff; color: var(--cgc-azul); font-weight: 700; cursor: pointer; }
+button.cgc-mini-cal_dia:hover { background: #d3e9fd; }
+button.cgc-mini-cal_dia.is-seleccionado { background: var(--cgc-celeste); color: #fff; }
+span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 
 /* ---------- Cinta de colaboradores ---------- */
 .cgc-marquee { overflow: hidden; }
@@ -203,7 +226,7 @@ html { scroll-behavior: smooth; }
 .cgc-tabla-valores tr { background: #fff; }
 .cgc-tabla-valores .cgc-fila-valor { background: var(--cgc-gris-fondo); }
 
-/* Filtro por calendario: oculta lo que queda fuera del mes o día elegido (se combina con los chips) */
+/* Filtro por fecha de cada sección: oculta lo que queda fuera del mes o día elegido (se combina con los chips) */
 [data-item].is-fuera-rango { display: none !important; }
 
 /* Aviso de enlace pendiente */

@@ -112,7 +112,7 @@ propaga a todo el sitio.
 | A4 | Brochure | **Pasa por formulario** en un modal del Kit (nombre*, correo*, empresa opcional + privacidad). Nueva pantalla "Formación / Ficha / Modal Descargar brochure" |
 | A5 | Asesorías en el menú | **Sin desplegable** |
 | A6 | Formulario "Más información" | **Se mantiene** como está |
-| A7 | Tipos de evento (Extensión) | **Seminario · Webinar · Workshop · Debate · Charla · Desayuno · Diálogo · Jornada**. Extensión muestra *Próximos eventos* (mismas cards que Realizados, en orden cronológico, con botón «Filtrar por calendario» junto al título: grilla mensual que filtra por mes o por día) y *Realizados* (del más reciente al más antiguo); se separan solos según la fecha |
+| A7 | Tipos de evento (Extensión) | **Seminario · Webinar · Workshop · Debate · Charla · Desayuno · Diálogo · Jornada**. Extensión: **calendario principal siempre visible** con todos los eventos (realizados en gris, próximos en celeste) y navegación libre entre meses; debajo, *Próximos eventos* (orden cronológico) y *Realizados* (del más reciente), con las mismas cards y un botón «Filtrar» junto a cada título que abre un calendario chico y filtra solo esa sección. Próximos y realizados se separan solos según la fecha |
 
 ## P2-B · Más adelante (naranjo)
 
