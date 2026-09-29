@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CardPrograma from '../../components/CardPrograma.astro';
+import InCompanyBlock from '../../components/InCompanyBlock.astro';
+import { programas } from '../../data/programas.js';
+---
+<Base title="Formación" seccion="formacion">
+  <Breadcrumb items={[{ label: 'Formación' }]} />
+  <PageTitle titulo="Formación" bajada="Formación para directores, ejecutivos y organizaciones que buscan fortalecer su gobierno corporativo." />
+  <section class="container mb-60" id="programas-abiertos">
+    <h2 class="h3 mb-8">Programas abiertos</h2>
+    <p class="mb-32">Cursos y diplomados para directores y ejecutivos.</p>
+    <div class="row">
+      {programas.map((p) => <div class="col-md-6 col-lg-3 mb-32"><CardPrograma p={p} /></div>)}
+    </div>
+  </section>
+  <section class="container mb-80" id="programas-para-empresas">
+    <h2 class="h3 mb-24">Programas para empresas (In Company)</h2>
+    <InCompanyBlock />
+  </section>
+</Base>

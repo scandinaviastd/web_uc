@@ -1,0 +1,15 @@
+---
+// Card/Opinión (Prensa) — foto redonda del autor (avatar del Kit) + fecha + título + autor.
+interface Props { fecha: string; titulo: string; autor: string; cargo?: string; autorFiltro?: string; href?: string }
+const { fecha, titulo, autor, cargo, autorFiltro, href = '#' } = Astro.props;
+---
+<article class="uc-card card-height--same cgc-card cgc-card-opinion" data-autor={autorFiltro ?? autor}>
+  <div class="uc-card_body flex-row align-items-start">
+    <img src="/img/ph-persona.svg" class="avatar avatar--circle cgc-avatar-sm mr-20" alt={`Foto de ${autor} (pendiente)`} loading="lazy" />
+    <div>
+      <p class="text-size--sm text-color--gray mb-4">{fecha}</p>
+      <h3 class="h5 mb-8"><a href={href} class="cgc-card-link">{titulo}</a></h3>
+      <p class="text-size--sm mb-0 cgc-autor"><strong>{autor}</strong>{cargo && <span class="text-color--gray"> · {cargo}</span>}</p>
+    </div>
+  </div>
+</article>

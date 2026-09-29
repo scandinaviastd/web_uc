@@ -1,0 +1,18 @@
+{
+  "name": "cgc-uc-prototipo",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Prototipo navegable del sitio del Centro UC Gobierno Corporativo (Sprint 2), con markup y CSS del Kit Digital UC",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "dependencies": {
+    "astro": "5.18.2"
+  }
+}

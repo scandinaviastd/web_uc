@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CalendarioMensual from '../../components/CalendarioMensual.astro';
+import CardNoticia from '../../components/CardNoticia.astro';
+import CardOpinion from '../../components/CardOpinion.astro';
+import Pagination from '../../components/Pagination.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { eventosRealizados, prensa, tiposEvento } from '../../data/contenidos.js';
+---
+<Base title="Extensión" seccion="extension">
+  <Breadcrumb items={[{ label: 'Extensión' }]} />
+  <PageTitle titulo="Extensión" bajada="Jornadas, seminarios, webinars, diálogos y debates abiertos a la comunidad." />
+  <div class="container mb-60" data-filtro="eventos">
+    <div class="cgc-chips mb-40" role="group" aria-label="Filtrar por tipo" data-chips="eventos" data-atributo="tipo">
+      <span class="cgc-chips_label">Tipo:</span>
+      <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
+      {tiposEvento.map((t) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={t}>{t === 'Diálogo' ? 'Diálogos' : `${t}s`}</button>)}
+    </div>
+    <h2 class="h3 mb-24">Próximos eventos</h2>
+    <CalendarioMensual />
+    <h2 class="h3 mt-60 mb-8">Realizados</h2>
+    <p class="text-size--sm text-color--gray mb-24">23 actividades realizadas · mostrando 6</p>
+    <div class="row">
+      {eventosRealizados.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo}><CardNoticia fecha={e.fecha} tipo={e.tipo} titulo={e.titulo} cta="Ver resumen" /></div>)}
+    </div>
+    <Pagination paginas={[1, 2, 3, 4]} />
+  </div>
+  <section class="cgc-section cgc-section--gray">
+    <div class="container">
+      <SectionHeading titulo="Prensa" link={{ label: 'Ver todo Prensa', href: '/extension/prensa/' }} />
+      <p class="mb-32">Columnas y apariciones en medios de académicos y directores del Centro.</p>
+      <div class="row">
+        {prensa.slice(0, 2).map((o) => <div class="col-lg-6 mb-32"><CardOpinion {...o} /></div>)}
+      </div>
+    </div>
+  </section>
+</Base>

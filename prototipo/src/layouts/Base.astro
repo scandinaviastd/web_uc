@@ -1,0 +1,41 @@
+---
+// Layout base. Equivale a header.php + footer.php del tema cgc-uc:
+// CSS/JS del Kit desde el CDN oficial de la UC (checklist UC, punto crítico) + index.css del tema + cgc.css propio.
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  seccion?: string;
+  descripcion?: string;
+  h1Oculto?: string;
+}
+const { title, seccion, descripcion = 'Centro UC Gobierno Corporativo — Pontificia Universidad Católica de Chile', h1Oculto } = Astro.props;
+const KIT = 'https://kit-digital-uc-prod.s3.amazonaws.com/uc-kitdigital';
+const VER = '1.23.15-beta.1';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Centro UC Gobierno Corporativo</title>
+    <meta name="description" content={descripcion} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href={`${KIT}/css/uc-kitdigital.css?ver=${VER}`} />
+    <link rel="stylesheet" href="/css/kit-theme.css" />
+    <link rel="stylesheet" href="/css/cgc.css" />
+  </head>
+  <body>
+    <a href="#contenido" class="uc-sr-only">Saltar al contenido</a>
+    <Header seccion={seccion} />
+    <main id="contenido">
+      {h1Oculto && <h1 class="uc-sr-only">{h1Oculto}</h1>}
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline src={`${KIT}/js/uc-kitdigital.js?ver=${VER}`}></script>
+    <script is:inline src="/js/cgc.js"></script>
+  </body>
+</html>

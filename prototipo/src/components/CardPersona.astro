@@ -1,0 +1,17 @@
+---
+// Card/Persona — card con foto 1:1 (banco de imágenes pendiente) o avatar con iniciales del Kit.
+interface Props { nombre: string; cargo: string; correo?: string; telefono?: string; foto?: boolean }
+const { nombre, cargo, correo, telefono, foto = true } = Astro.props;
+const iniciales = nombre.split(' ').filter(Boolean).slice(0, 2).map((s) => s[0]).join('');
+---
+<article class="uc-card card-height--same cgc-card-persona">
+  {foto
+    ? <img src="/img/ph-persona.svg" class="uc-card-img cgc-img-1x1" alt={`Foto de ${nombre} (pendiente)`} loading="lazy" />
+    : <div class="avatar avatar--initials cgc-avatar-card" aria-hidden="true">{iniciales}</div>}
+  <div class="uc-card_body">
+    <h3 class="h5 mb-4">{nombre}</h3>
+    <p class="text-color--gray mb-0">{cargo}</p>
+    {correo && <p class="text-size--sm mb-0 mt-8"><a href={correo.includes('@') ? `mailto:${correo}` : '#'}>{correo}</a></p>}
+    {telefono && <p class="text-size--sm mb-0">{telefono}</p>}
+  </div>
+</article>

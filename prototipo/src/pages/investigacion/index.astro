@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CardAcceso from '../../components/CardAcceso.astro';
+import CardDocumento from '../../components/CardDocumento.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { articulos } from '../../data/contenidos.js';
+---
+<Base title="Investigación" seccion="investigacion">
+  <Breadcrumb items={[{ label: 'Investigación' }]} />
+  <PageTitle titulo="Investigación" bajada="Generamos evidencia sobre gobierno corporativo en Chile y Latinoamérica." />
+  <div class="container mb-40">
+    <div class="row">
+      <div class="col-md-4 mb-32"><CardAcceso titulo="Red de Investigación" bajada="Profesores afiliados, investigadores y ayudantes" href="/investigacion/red/" /></div>
+      <div class="col-md-4 mb-32"><CardAcceso titulo="Artículos y Working Papers" bajada="Papers y artículos académicos del Centro" href="/investigacion/articulos-y-working-papers/" /></div>
+      <div class="col-md-4 mb-32"><CardAcceso titulo="Estudios" bajada="Informes y estudios del CGC UC para descargar" href="/investigacion/estudios/" /></div>
+    </div>
+  </div>
+  <section class="cgc-section cgc-section--gray">
+    <div class="container">
+      <SectionHeading titulo="Últimos artículos y working papers" link={{ label: 'Ver todos', href: '/investigacion/articulos-y-working-papers/' }} />
+      <div class="row">
+        {articulos.slice(0, 3).map((d) => <div class="col-md-4 mb-32"><CardDocumento {...d} /></div>)}
+      </div>
+    </div>
+  </section>
+</Base>

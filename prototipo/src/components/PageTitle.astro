@@ -1,0 +1,9 @@
+---
+// Título de página (h1 del Kit) + bajada.
+interface Props { titulo: string; bajada?: string }
+const { titulo, bajada } = Astro.props;
+---
+<div class="container mt-40 mb-40">
+  <h1>{titulo}</h1>
+  {bajada && <p class="p-size--lg mt-12 mb-0 cgc-bajada">{bajada}</p>}
+</div>

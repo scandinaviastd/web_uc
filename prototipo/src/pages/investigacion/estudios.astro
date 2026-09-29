@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CardDocumento from '../../components/CardDocumento.astro';
+import Pagination from '../../components/Pagination.astro';
+import { estudios } from '../../data/contenidos.js';
+---
+<Base title="Estudios" seccion="investigacion">
+  <Breadcrumb items={[{ label: 'Investigación', href: '/investigacion/' }, { label: 'Estudios' }]} />
+  <PageTitle titulo="Estudios" bajada="El Centro, por sí mismo y en colaboración con otras instituciones, elabora informes sobre materias de gobierno corporativo para aportar al conocimiento y mejoramiento continuo del mismo." />
+  <div class="container mb-80" data-filtro="estudios">
+    <div class="uc-filters mb-16">
+      <div class="uc-form-group no-margin cgc-search-field">
+        <input type="text" class="uc-input-style w-icon search" placeholder="Buscar por título" data-buscar="estudios" aria-label="Buscar por título" />
+        <span class="w-icon search"></span>
+      </div>
+      <div class="ml-auto">
+        <div class="cgc-chips" role="group" aria-label="Filtrar por año" data-chips="estudios" data-atributo="anio">
+          <span class="cgc-chips_label">Año:</span>
+          <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
+          {['2026', '2025', '2024'].map((a) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={a}>{a}</button>)}
+        </div>
+      </div>
+    </div>
+    <p class="text-size--sm text-color--gray mb-24" data-contador="estudios" data-total="11">11 estudios</p>
+    <div class="row">
+      {estudios.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-anio={e.anio} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} autores="CGC UC" portada /></div>)}
+    </div>
+    <Pagination paginas={[1, 2]} />
+  </div>
+</Base>

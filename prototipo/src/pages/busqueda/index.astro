@@ -1,0 +1,42 @@
+---
+// Resultados de búsqueda (checklist UC §6): con y sin resultados. Búsqueda en el navegador sobre un índice estático.
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CardAcceso from '../../components/CardAcceso.astro';
+import { programas } from '../../data/programas.js';
+import { articulos, estudios, eventosProximos, eventosRealizados, prensa } from '../../data/contenidos.js';
+const indice = [
+  ...programas.map((p) => ({ tipo: 'Programa · Formación', grupo: 'Programas', titulo: p.titulo, extracto: p.frase, url: `/formacion/${p.slug}/` })),
+  ...[...eventosProximos, ...eventosRealizados].map((e) => ({ tipo: `Evento · Extensión`, grupo: 'Eventos', titulo: e.titulo, extracto: `${e.tipo}${e.hora ? ' · ' + e.hora : ''}`, url: '/extension/' })),
+  ...articulos.map((d) => ({ tipo: `${d.tipo} · Investigación`, grupo: 'Estudios y papers', titulo: d.titulo, extracto: d.autores, url: '/investigacion/articulos-y-working-papers/' })),
+  ...estudios.map((d) => ({ tipo: 'Estudio · Investigación', grupo: 'Estudios y papers', titulo: d.titulo, extracto: 'CGC UC', url: '/investigacion/estudios/' })),
+  ...prensa.map((o) => ({ tipo: 'Prensa', grupo: 'Prensa', titulo: o.titulo, extracto: `${o.autor} · ${o.medio}`, url: '/extension/prensa/' })),
+];
+---
+<Base title="Resultados de búsqueda">
+  <Breadcrumb items={[{ label: 'Resultados de búsqueda' }]} />
+  <PageTitle titulo="Resultados de búsqueda" bajada="Busca en programas, eventos, estudios, papers y prensa del Centro." />
+  <div class="container mb-80" data-busqueda data-indice={JSON.stringify(indice)}>
+    <form class="d-flex cgc-search-form mb-24" action="/busqueda/" role="search">
+      <div class="uc-form-group no-margin flex-grow-1 mr-12">
+        <input type="search" name="q" class="uc-input-style w-icon search" placeholder="Buscar en el sitio" aria-label="Buscar en el sitio" data-q />
+        <span class="w-icon search"></span>
+      </div>
+      <button type="submit" class="uc-btn btn-secondary cgc-btn-auto">Buscar</button>
+    </form>
+    <p class="text-weight--medium mb-16" data-conteo></p>
+    <div class="cgc-tabs mb-8" role="tablist" data-tabs></div>
+    <ul class="cgc-resultados" data-resultados></ul>
+    <div class="cgc-hidden" data-sin-resultados>
+      <div class="uc-alert info mb-32"><div class="uc-alert_content"><i class="uc-icon icon-size--sm">info</i><span class="p p-size--sm bold ml-8" data-sin-texto>No encontramos resultados.</span></div></div>
+      <p>Revisa la ortografía, usa menos palabras o prueba con un término más general.</p>
+      <h2 class="h3 mt-40 mb-24">Quizás te interese</h2>
+      <div class="row">
+        <div class="col-md-4 mb-32"><CardAcceso titulo="Formación" bajada="Programas abiertos y programas para empresas." href="/formacion/" /></div>
+        <div class="col-md-4 mb-32"><CardAcceso titulo="Investigación" bajada="Red, artículos, working papers y estudios." href="/investigacion/" /></div>
+        <div class="col-md-4 mb-32"><CardAcceso titulo="Extensión" bajada="Próximos eventos y prensa." href="/extension/" /></div>
+      </div>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CardDocumento from '../../components/CardDocumento.astro';
+import Pagination from '../../components/Pagination.astro';
+import { articulos } from '../../data/contenidos.js';
+---
+<Base title="Artículos y Working Papers" seccion="investigacion">
+  <Breadcrumb items={[{ label: 'Investigación', href: '/investigacion/' }, { label: 'Artículos y Working Papers' }]} />
+  <PageTitle titulo="Artículos y Working Papers" bajada="[Texto breve explicativo de la sección — lo escribe el Centro]" />
+  <div class="container mb-80" data-filtro="docs">
+    <div class="uc-filters mb-16">
+      <div class="uc-form-group no-margin cgc-search-field">
+        <input type="text" class="uc-input-style w-icon search" placeholder="Buscar por título o autor" data-buscar="docs" aria-label="Buscar por título o autor" />
+        <span class="w-icon search"></span>
+      </div>
+      <div class="ml-auto">
+        <div class="cgc-chips" role="group" aria-label="Filtrar por año" data-chips="docs" data-atributo="anio">
+          <span class="cgc-chips_label">Año:</span>
+          <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
+          <button type="button" class="cgc-chip" aria-pressed="false" data-valor="2025">2025</button>
+          <button type="button" class="cgc-chip" aria-pressed="false" data-valor="2024">2024</button>
+          <button type="button" class="cgc-chip" aria-pressed="false" data-valor="2023">2023</button>
+        </div>
+      </div>
+    </div>
+    <p class="text-size--sm text-color--gray mb-24" data-contador="docs" data-total="17">17 documentos</p>
+    <div class="row">
+      {articulos.map((d) => <div class="col-md-6 col-lg-4 mb-32" data-item data-anio={d.anio} data-texto={`${d.titulo} ${d.autores}`.toLowerCase()}><CardDocumento {...d} /></div>)}
+    </div>
+    <Pagination paginas={[1, 2, 3]} />
+  </div>
+</Base>

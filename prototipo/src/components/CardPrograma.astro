@@ -1,0 +1,20 @@
+---
+// Card/Programa — card con imagen del Kit (.uc-card + .uc-card-img + .uc-tag).
+// Título bajo la imagen (regla UC: nunca texto sobre foto en cards). Toda la card es clic (enlace en el título).
+interface Props { p: { slug: string; tipo: string; titulo: string; inicioCorto?: string; modalidad?: string } ; href?: string }
+const { p, href = `/formacion/${p.slug}/` } = Astro.props;
+---
+<article class="uc-card card-height--same cgc-card cgc-card-programa">
+  <img src="/img/ph-16x9.svg" class="uc-card-img cgc-img-16x9" alt="" loading="lazy" />
+  <div class="uc-card_body">
+    <div class="mb-12"><span class="uc-tag">{p.tipo}</span></div>
+    <h3 class="h4 cgc-clamp-2 cgc-title-2l"><a href={href} class="cgc-card-link">{p.titulo}</a></h3>
+    {(p.inicioCorto || p.modalidad) && (
+      <ul class="cgc-meta mt-12">
+        {p.inicioCorto && <li><i class="uc-icon">event</i>{p.inicioCorto}</li>}
+        {p.modalidad && <li><i class="uc-icon">location_on</i>{p.modalidad}</li>}
+      </ul>
+    )}
+    <div class="mt-auto pt-16"><span class="uc-btn btn-inline">Ver programa <i class="uc-icon">keyboard_arrow_right</i></span></div>
+  </div>
+</article>

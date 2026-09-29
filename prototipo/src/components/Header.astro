@@ -1,0 +1,74 @@
+---
+// Header de submarca según Kit UC: views/header.php + views/header-submarca.php del Kit,
+// con el markup que genera el walker Desplegable_Nav (desktop) y Mobile_Nav (móvil).
+import { menu } from '../data/sitio.js';
+interface Props { seccion?: string }
+const { seccion } = Astro.props;
+---
+<header id="uc-header" class="uc-header">
+  <div id="uc-global-topbar"></div>
+  <nav class="uc-navbar">
+    <!-- Menú para versión Escritorio -->
+    <div class="container d-none d-lg-block">
+      <div class="row align-items-center">
+        <div class="col-lg-3">
+          <a href="/"><img style="max-height:80px" src="/img/logo-cgc-color.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid" /></a>
+        </div>
+        <div class="col-lg-9">
+          <ul class="uc-navbar_nav">
+            {menu.map((item) => (
+              item.hijos ? (
+                <li class:list={['nav-item', 'uc-navbar-dropdown', 'light', { active: seccion === item.id }]}>
+                  <a href="#" class:list={['uc-btn', 'btn-inline', { active: seccion === item.id }]}>{item.label} <i class="uc-icon">arrow_drop_down</i></a>
+                  <ul class="uc-navbar-dropdown_menu uc-navbar-dropdown_menu--footer">
+                    {item.hijos.map((h) => (
+                      <li class="dropdown_item--heading light"><a href={h.href} class="uc-btn">{h.label}</a></li>
+                    ))}
+                    <div class="dropdown_item--footer">
+                      <a href={item.href} class="uc-btn">Clic para ir a {item.label} <i class="uc-icon uc-icon--arrow-forward ml-4"></i></a>
+                    </div>
+                  </ul>
+                </li>
+              ) : (
+                <li class:list={['nav-item', 'light', { active: seccion === item.id }]}>
+                  <a href={item.href} class:list={['uc-btn', 'btn-inline', { active: seccion === item.id }]}>{item.label}</a>
+                </li>
+              )
+            ))}
+            <li class="nav-item light cgc-nav-search">
+              <a href="/busqueda/" class="uc-btn btn-inline" aria-label="Buscar en el sitio"><i class="uc-icon">search</i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Menú para versión Móvil -->
+    <div class="uc-navbar_mobile navbar_mobile-slide d-block d-lg-none">
+      <div class="uc-navbar_mobile-bar navbar-brand">
+        <div class="uc-navbar_mobile-logo navbar-light">
+          <a href="/"><img src="/img/logo-cgc-color.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid" style="max-height:44px" /></a>
+        </div>
+        <a href="javascript:void(0);" class="uc-navbar_mobile-button"><span class="uc-icon"></span>Menú</a>
+      </div>
+      <div class="uc-navbar_mobile-content">
+        <ul class="uc-navbar_mobile-list">
+          {menu.map((item) => (
+            item.hijos ? (
+              <li class="list-item has-list-children">
+                <a href="#" class="list-open">{item.label} <i class="uc-icon icon-size--sm">arrow_forward_ios</i></a>
+                <ul class="list-children">
+                  <li class="list-item"><a href="#" class="list-close"><div class="uc-icon icon-size--sm">arrow_back_ios</div>{item.label}</a></li>
+                  <li class="list-item"><a href={item.href}>Ir a {item.label}</a></li>
+                  {item.hijos.map((h) => <li class="list-item"><a href={h.href}>{h.label}</a></li>)}
+                </ul>
+              </li>
+            ) : (
+              <li class="list-item"><a href={item.href}>{item.label}</a></li>
+            )
+          ))}
+          <li class="list-item"><a href="/busqueda/">Buscar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,22 @@
+---
+// Calendario mensual de eventos (decisión A3 del 29-09). El JS (cgc.js) navega entre meses con los datos de data-eventos.
+// En móvil se oculta la grilla y queda la lista del mes (misma card de evento del Kit).
+import { eventosProximos } from '../data/contenidos.js';
+---
+<div class="cgc-calendario" data-calendario data-eventos={JSON.stringify(eventosProximos)} data-inicio="2026-10">
+  <div class="d-flex align-items-center mb-16 cgc-calendario_nav">
+    <button type="button" class="cgc-cal-btn" data-cal-prev aria-label="Mes anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
+    <h3 class="h4 mb-0 mx-16" data-cal-titulo aria-live="polite">Octubre 2026</h3>
+    <button type="button" class="cgc-cal-btn" data-cal-next aria-label="Mes siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
+    <span class="ml-auto text-size--sm text-color--gray d-none d-md-inline"><span class="cgc-cal-swatch"></span> Día con evento</span>
+  </div>
+  <div class="cgc-cal-grid d-none d-md-block" role="grid" aria-label="Calendario de eventos">
+    <div class="cgc-cal-row cgc-cal-head" role="row">
+      {['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'].map((d) => <div class="cgc-cal-dow" role="columnheader">{d}</div>)}
+    </div>
+    <div data-cal-semanas></div>
+  </div>
+  <p class="uc-subtitle mt-32 mb-16" data-cal-lista-titulo>Eventos de octubre 2026</p>
+  <div class="row" data-cal-lista></div>
+  <p class="text-size--sm text-color--gray mt-8"><em>Eventos de ejemplo: las fechas reales llegan con el calendario interno del Centro.</em></p>
+</div>

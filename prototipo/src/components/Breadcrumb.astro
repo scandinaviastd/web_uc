@@ -1,0 +1,13 @@
+---
+// Breadcrumb del Kit (.uc-breadcrumb), igual que views/breadcrumb.php.
+interface Props { items: { label: string; href?: string }[] }
+const { items } = Astro.props;
+---
+<div class="container mt-32">
+  <ol class="uc-breadcrumb">
+    <li class="uc-breadcrumb_item"><a href="/">Inicio</a><i class="uc-icon">keyboard_arrow_right</i></li>
+    {items.map((it, i) => i < items.length - 1
+      ? <li class="uc-breadcrumb_item"><a href={it.href}>{it.label}</a><i class="uc-icon">keyboard_arrow_right</i></li>
+      : <li class="uc-breadcrumb_item current">{it.label}</li>)}
+  </ol>
+</div>

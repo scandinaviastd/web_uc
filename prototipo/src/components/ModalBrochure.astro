@@ -1,0 +1,22 @@
+---
+// Modal del Kit (.uc-modal, data-modal / data-mtarget) con formulario antes de descargar el brochure (decisión A4).
+import BloquePrivacidad from './BloquePrivacidad.astro';
+interface Props { programa: string }
+const { programa } = Astro.props;
+---
+<div data-modal="modalBrochure" class="uc-modal cgc-modal" id="brochure">
+  <div class="uc-modal_content cgc-modal_content">
+    <button class="uc-message_close-button" data-mclosed aria-label="Cerrar"><i class="uc-icon">close</i></button>
+    <h2 class="h3 mb-4">Descarga el brochure</h2>
+    <p class="text-color--gray">{programa}</p>
+    <form class="cgc-form" data-form="brochure">
+      <p>Déjanos tus datos para enviarte el brochure. Los campos con * son obligatorios: los usamos para entregarte el documento.</p>
+      <div class="uc-form-group"><label for="b-nombre">Nombre y apellido *</label><input id="b-nombre" type="text" class="uc-input-style" placeholder="Ej: María González" required /></div>
+      <div class="uc-form-group"><label for="b-correo">Correo electrónico *</label><input id="b-correo" type="email" class="uc-input-style" placeholder="nombre@empresa.cl" required /></div>
+      <div class="uc-form-group"><label for="b-empresa">Empresa u organización (opcional)</label><input id="b-empresa" type="text" class="uc-input-style" placeholder="Nombre de tu empresa" /></div>
+      <BloquePrivacidad id="b" finalidad="Usamos tus datos para enviarte el brochure y, si la coordinación lo necesita, contactarte sobre este programa." />
+      <button type="submit" class="uc-btn btn-secondary cgc-btn-auto mt-16">Descargar brochure <i class="uc-icon">download</i></button>
+      <div class="uc-alert success mt-16 cgc-hidden" data-form-ok><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8">¡Listo! Tu descarga comenzará en unos segundos (demo).</span></div></div>
+    </form>
+  </div>
+</div>

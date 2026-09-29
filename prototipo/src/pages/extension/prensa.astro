@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import CardOpinion from '../../components/CardOpinion.astro';
+import Pagination from '../../components/Pagination.astro';
+import { prensa } from '../../data/contenidos.js';
+const autores = ['Alejandra Wood', 'Luis Hernán Paúl', 'Roberto Guerrero', 'Matías Zegers'];
+---
+<Base title="Prensa" seccion="extension">
+  <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Prensa' }]} />
+  <PageTitle titulo="Prensa" bajada="Columnas y apariciones en medios de académicos, directores y miembros del Centro." />
+  <div class="container mb-80" data-filtro="prensa">
+    <div class="cgc-chips mb-16" role="group" aria-label="Filtrar por autor" data-chips="prensa" data-atributo="autor">
+      <span class="cgc-chips_label">Autor:</span>
+      <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
+      {autores.map((a) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={a}>{a}</button>)}
+    </div>
+    <p class="text-size--sm text-color--gray mb-24">99 columnas · mostrando 6</p>
+    <div class="row">
+      {prensa.map((o) => <div class="col-lg-6 mb-32" data-item data-autor={o.autorFiltro}><CardOpinion {...o} /></div>)}
+    </div>
+    <Pagination paginas={[1, 2, 3, '…', 17]} />
+  </div>
+</Base>

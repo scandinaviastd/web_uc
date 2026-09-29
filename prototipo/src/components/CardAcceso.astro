@@ -1,0 +1,11 @@
+---
+// Card/Acceso — card simple del Kit (solo texto), sin línea ni flecha (minuta 07-09 §4).
+interface Props { titulo: string; bajada?: string; href: string }
+const { titulo, bajada, href } = Astro.props;
+---
+<article class="uc-card card-height--same cgc-card cgc-card-acceso">
+  <div class="uc-card_body">
+    <h3 class="h4 mb-8"><a href={href} class="cgc-card-link">{titulo}</a></h3>
+    {bajada && <p class="mb-0">{bajada}</p>}
+  </div>
+</article>

@@ -1,0 +1,22 @@
+---
+// Cinta de colaboradores: desplazamiento continuo, pausa con hover/foco y con botón; respeta prefers-reduced-motion.
+import { colaboradores } from '../data/contenidos.js';
+const lista = [...colaboradores, ...colaboradores];
+---
+<section class="cgc-section cgc-section--gray" aria-labelledby="colaboradores-titulo">
+  <div class="container">
+    <div class="d-flex align-items-center mb-32">
+      <h2 id="colaboradores-titulo" class="h2 mb-0">Colaboradores</h2><div class="uc-heading-decoration"></div>
+      <button type="button" class="uc-btn btn-inline ml-auto" data-marquee-toggle aria-pressed="false"><i class="uc-icon">pause</i> Pausar</button>
+    </div>
+  </div>
+  <div class="cgc-marquee" data-marquee>
+    <ul class="cgc-marquee_track">
+      {lista.map((c, i) => (
+        <li class="cgc-marquee_item" aria-hidden={i >= colaboradores.length ? 'true' : undefined}>
+          {c === 'Logo socio' ? <img src="/img/ph-logo.svg" alt="Logo de colaborador (pendiente)" /> : <span class="cgc-logo-text">{c}</span>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

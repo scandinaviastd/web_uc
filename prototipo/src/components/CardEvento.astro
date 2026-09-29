@@ -1,0 +1,20 @@
+---
+// Card de evento del Kit (componentes/evento): .uc-card.card-type--event + .card-type--date + .uc-card_event--content.
+interface Props { dia: string; mes: string; tipo: string; titulo: string; fechaLarga?: string; hora: string; lugar: string; href?: string }
+const { dia, mes, tipo, titulo, fechaLarga, hora, lugar, href = '#' } = Astro.props;
+---
+<article class="uc-card card-type--event card-height--same cgc-card" data-tipo={tipo}>
+  <div class="uc-card card-type--date">
+    <div class="day">{dia}</div>
+    <div class="month">{mes}</div>
+  </div>
+  <div class="uc-card_body">
+    <span class="uc-subtitle mt-20 mb-16">{tipo}</span>
+    <a href={href} class="d-flex h4 color-black uc-card-link mb-16 cgc-card-link">{titulo}</a>
+    <div class="uc-card_event--content">
+      {fechaLarga && <div class="date">{fechaLarga}</div>}
+      <div class="time">{hora}</div>
+      <div class="venue">{lugar}</div>
+    </div>
+  </div>
+</article>

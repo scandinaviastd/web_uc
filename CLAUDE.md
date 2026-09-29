@@ -38,6 +38,15 @@ eliminó. El estado ítem por ítem está en `docs/auditoria-anotaciones-figma.m
   (sacados de `reassetsgrficos/Editable illustrator LOGO CGC.ai`). La versión color va solo sobre blanco.
   El logo del header del Figma Sprint 1 dice "Cento UC" (con errata): no usarlo.
 
+## Prototipo en código (`prototipo/`) — fuente de verdad del diseño desde el 29-09
+
+Todo el sitio del Figma Sprint 2 está en `prototipo/` (Astro 5, HTML estático) con el markup del Kit UC,
+el CSS/JS del Kit por CDN y un solo CSS propio (`prototipo/public/css/cgc.css`, clases `cgc-`).
+**Los cambios de UI se hacen en el prototipo** y después se reflejan en Figma con captura (página aparte);
+el Figma pasa a ser espejo. Mapeo a WordPress y rutas en `prototipo/README.md`.
+Reglas: mismo stack del Kit (Bootstrap 4 del Kit, sin Tailwind ni React); contenido en `src/data/` con los
+campos de los futuros CPT; no editar el CSS del Kit. Dev: `npm run dev` en `prototipo/` (puerto 4321).
+
 ## Arquitectura
 
 | Carpeta | Qué es | Se edita |

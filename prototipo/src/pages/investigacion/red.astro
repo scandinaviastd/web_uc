@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import { red } from '../../data/contenidos.js';
+const grupos = Object.entries(red);
+const total = grupos.reduce((a, [, l]) => a + l.length, 0);
+---
+<Base title="Red de Investigación" seccion="investigacion">
+  <Breadcrumb items={[{ label: 'Investigación', href: '/investigacion/' }, { label: 'Red de Investigación' }]} />
+  <PageTitle titulo="Red de Investigación" bajada="Profesores afiliados, investigadores y ayudantes que generan las publicaciones y documentos de trabajo del Centro." />
+  <div class="container mb-80" data-filtro="red">
+    <div class="cgc-chips mb-32" role="group" aria-label="Filtrar por categoría" data-chips="red" data-atributo="grupo">
+      <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos ({total})</button>
+      {grupos.map(([g, l]) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={g}>{g} ({l.length})</button>)}
+    </div>
+    {grupos.map(([g, l]) => (
+      <section class="uc-card cgc-red-grupo mb-24" data-item data-grupo={g}>
+        <div class="uc-card_body">
+          <h2 class="h5 mb-16"><i class="uc-icon text-color--primary mr-8">person</i>{g} <span class="text-size--sm text-color--gray text-weight--regular ml-8">{l.length} {l.length === 1 ? 'persona' : 'personas'}</span></h2>
+          <ul class="cgc-red-lista">{l.map((n) => <li>{n}</li>)}</ul>
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>

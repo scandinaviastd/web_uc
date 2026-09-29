@@ -1,0 +1,10 @@
+---
+// Filtros instantáneos (checklist UC: filtros en listados extensos). El JS (cgc.js) filtra el grupo data-filtro.
+interface Props { label?: string; grupo: string; opciones: { valor: string; label: string }[]; atributo: string }
+const { label, grupo, opciones, atributo } = Astro.props;
+---
+<div class="cgc-chips" role="group" aria-label={label ?? 'Filtros'} data-chips={grupo} data-atributo={atributo}>
+  {label && <span class="cgc-chips_label">{label}</span>}
+  <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
+  {opciones.map((o) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={o.valor}>{o.label}</button>)}
+</div>

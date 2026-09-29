@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import FichaPrograma from '../../components/FichaPrograma.astro';
+import { programas } from '../../data/programas.js';
+export function getStaticPaths() {
+  return programas.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+---
+<Base title={p.titulo} seccion="formacion" descripcion={p.frase}>
+  <FichaPrograma p={p} />
+</Base>

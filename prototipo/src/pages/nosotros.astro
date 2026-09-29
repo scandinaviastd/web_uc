@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PageTitle from '../components/PageTitle.astro';
+import CardPersona from '../components/CardPersona.astro';
+import { directorio, equipo } from '../data/contenidos.js';
+const anclas = [['quienes-somos', 'Quiénes somos'], ['directorio', 'Directorio'], ['equipo-ejecutivo', 'Equipo Ejecutivo']];
+const pilares = [
+  ['school', 'Formación', 'Capacitar a directores y ejecutivos en materia de Gobierno Corporativo.'],
+  ['campaign', 'Extensión', 'Abrir el debate sobre Gobierno Corporativo con jornadas, seminarios, webinars y presencia en prensa.'],
+  ['insights', 'Investigación', 'Promover investigación teórica y aplicada y generar conocimiento sobre Gobierno Corporativo.'],
+];
+---
+<Base title="Nosotros" seccion="nosotros">
+  <Breadcrumb items={[{ label: 'Nosotros' }]} />
+  <PageTitle titulo="Nosotros" bajada="Quiénes somos, nuestro directorio y el equipo que lleva adelante el Centro." />
+
+  <nav class="cgc-anclas" aria-label="En esta página" data-anclas>
+    <div class="container">
+      <ul class="cgc-anclas_lista">
+        {anclas.map(([id, l], i) => <li><a href={`#${id}`} class:list={['cgc-chip', { 'is-active': i === 0 }]}>{l}</a></li>)}
+      </ul>
+    </div>
+  </nav>
+
+  <section id="quienes-somos" class="cgc-section" data-ancla-seccion>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="d-flex align-items-center mb-24"><h2 class="h2 mb-0">Quiénes somos</h2><div class="uc-heading-decoration"></div></div>
+          <p>Somos un centro inter-facultades formado el año 2012 por la Facultad de Derecho y la Escuela de Administración de la Facultad de Economía y Administración de la Pontificia Universidad Católica de Chile.</p>
+          <p>Nuestra misión es ser un referente en el tema gobierno corporativo y un vehículo o plataforma que permita entender y mejorar la gestión del gobierno corporativo de todo tipo de organizaciones en Chile y Latinoamérica.</p>
+          <p>Buscamos aportar a la creación de valor de Empresas, Organizaciones y sus stakeholders, poniendo a disposición el conocimiento, la investigación y la experiencia en gobierno corporativo para la mejor toma de decisiones.</p>
+          <p class="mb-0">Nuestro objetivo es entender, perfeccionar y aportar en el conocimiento del área de Gobierno Corporativo, fundamentalmente a través de la investigación y la colaboración con organismos públicos y privados en la generación de buenas prácticas y políticas públicas, así como colaborar con la docencia y realizar extensión, con el fin de fortalecer una gestión y trabajo responsable en las empresas e instituciones, y liderar la discusión sobre Gobierno Corporativo en conformidad a los principios de la UC.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cgc-section cgc-section--gray">
+    <div class="container text-center">
+      <h2 class="h3 mb-32">El origen del Centro</h2>
+      <div class="cgc-origen">
+        <div class="cgc-origen_fuentes">
+          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-8">account_balance</i><strong>Facultad de Derecho</strong></div></div>
+          <span class="cgc-origen_mas" aria-hidden="true">+</span>
+          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-8">account_balance</i><strong>Escuela de Administración</strong></div></div>
+        </div>
+        <div class="cgc-origen_linea" aria-hidden="true"></div>
+        <div class="cgc-origen_centro"><strong class="d-block">Centro de Gobierno Corporativo UC</strong><span class="text-size--sm">Centro inter-facultades · desde 2012</span></div>
+        <div class="cgc-origen_linea" aria-hidden="true"></div>
+        <div class="row text-left">
+          {pilares.map(([ic, t, d]) => (
+            <div class="col-md-4 mb-24">
+              <div class="uc-card card-height--same"><div class="uc-card_body">
+                <span class="cgc-icon-bubble mb-16"><i class="uc-icon">{ic}</i></span>
+                <h3 class="h5 mb-8">{t}</h3>
+                <p class="mb-0">{d}</p>
+              </div></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="directorio" class="cgc-section" data-ancla-seccion>
+    <div class="container">
+      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Directorio</h2><div class="uc-heading-decoration"></div></div>
+      <div class="row">
+        {directorio.map((p) => <div class="col-6 col-md-4 col-lg-3 mb-32"><CardPersona {...p} /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="equipo-ejecutivo" class="cgc-section pt-0" data-ancla-seccion>
+    <div class="container">
+      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Equipo Ejecutivo</h2><div class="uc-heading-decoration"></div></div>
+      <div class="row">
+        {equipo.map((p) => <div class="col-6 col-md-4 col-lg-3 mb-32"><CardPersona {...p} /></div>)}
+      </div>
+    </div>
+  </section>
+</Base>

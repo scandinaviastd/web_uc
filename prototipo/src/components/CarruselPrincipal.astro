@@ -1,0 +1,41 @@
+---
+// Carrusel principal del Kit (componentes/carrusel-principal). Solo en la home, bajo el header.
+// Estilo y comportamiento del Kit sin modificar; data-autoplaybutton agrega el botón de pausa (WCAG 2.2.2).
+const slides = [
+  { tag: 'Matrículas abiertas', titulo: 'Formando nuevos Directores de empresas', cta: 'Conoce el programa', href: '/formacion/formando-nuevos-directores/' },
+  { tag: 'Matrículas abiertas', titulo: 'Diplomado en Gobierno Corporativo', cta: 'Conoce el programa', href: '/formacion/diplomado-gobierno-corporativo/' },
+  { tag: 'Próximamente', titulo: 'Jornada Gobierno Corporativo 2026', cta: 'Ver calendario de eventos', href: '/extension/' },
+];
+---
+<div class="uc-carousel cgc-hero" data-carousel="uc-primary-carousel" data-type="carousel" data-items="1" data-slideby="1" data-loop="true" data-nav="true" data-autoplay="true" data-controls="false" data-navcontainer="#carousel-nav" data-autoplaybutton="#carousel-autoplay" data-autoplay-text="true">
+  <div class="uc-primary-carousel">
+    {slides.map((s) => (
+      <div class="primary-carousel_item uc-card card-bg--image card-gradient--bottom-black card-radius--none card-border--none">
+        <img class="carousel-img" src="/img/ph-hero.svg" alt="" />
+        <div class="primary-carousel_item-content">
+          <div class="container mt-auto">
+            <div class="row">
+              <div class="col-lg-7">
+                <span class="uc-tag">{s.tag}</span>
+                <div class="h1 color-white mt-12 mb-24">{s.titulo}</div>
+                <a href={s.href} class="uc-btn btn-cta cgc-btn-auto">{s.cta} <i class="uc-icon">arrow_forward</i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="uc-carousel-nav primary-carousel-nav">
+    <div class="container">
+      <div class="carousel-nav-container">
+        <ul class="carousel-nav-list" id="carousel-nav">
+          {slides.map((_, i) => (
+            <li class="carousel-nav-item"><div class="number">{String(i + 1).padStart(2, '0')}</div><div class="indicator"></div></li>
+          ))}
+        </ul>
+        <div class="autoplay-buttons" id="carousel-autoplay"></div>
+      </div>
+    </div>
+  </div>
+</div>
