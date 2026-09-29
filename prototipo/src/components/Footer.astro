@@ -1,7 +1,7 @@
 ---
 // Footer de submarca según Kit UC (views/footer-submarca.php) + footer global UC (#uc-global-footer)
 // + footer UC de créditos (.uc-dev-footer) con Políticas de Privacidad (obligatorio).
-import { sitio } from '../data/sitio.js';
+import { sitio, sara } from '../data/sitio.js';
 ---
 <footer class="uc-footer">
   <div class="container pb-80">
@@ -14,9 +14,9 @@ import { sitio } from '../data/sitio.js';
         <div class="mb-16">{sitio.direccion}</div>
         <div class="mb-16">{sitio.unidad}</div>
         <div class="mb-16"><i class="uc-icon">phone</i> {sitio.telefono} · {sitio.correo}</div>
-        <div class="mb-16">{sitio.contacto}</div>
+        <div class="mb-16">Contacto: {sara.nombre} · <a href={`mailto:${sara.correo}`} class="cgc-footer-link">{sara.correo}</a></div>
         <div class="mb-16">
-          <a href={sitio.whatsappUrl} class="cgc-footer-link" data-pendiente="Número de WhatsApp del Centro pendiente (P1-12)."><img src="/img/whatsapp-blanco.svg" alt="" width="18" height="18" class="cgc-inline-icon" /> {sitio.whatsapp}</a>
+          <a href={sitio.whatsappUrl} class="cgc-footer-link" target="_blank" rel="noopener"><img src="/img/whatsapp-blanco.svg" alt="" width="18" height="18" class="cgc-inline-icon" /> {sitio.whatsapp}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div>
         <div class="mb-32"><a href={sitio.comoLlegar} class="cgc-footer-link" target="_blank" rel="noopener">¿Cómo llegar?</a></div>
       </div>

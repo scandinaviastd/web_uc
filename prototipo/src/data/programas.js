@@ -1,6 +1,8 @@
 // Programas de Formación. En WordPress: CPT "programa" con estos campos.
 // Oferta 2027 (minuta 07-09 §3): 3 cursos + 1 diplomado. In Company aparte.
 
+import { sara } from './sitio.js';
+
 const PENDIENTE = '[Contenido por completar con la información del Centro. Antes estaba oculto en un acordeón cerrado.]';
 
 export const jefePrograma = {
@@ -11,9 +13,9 @@ export const jefePrograma = {
 
 export const coordinacion = {
   titulo: '¿Tienes dudas sobre el programa?',
-  persona: 'Sara Marambio · Coordinación de formación y extensión',
+  persona: `${sara.nombre} · Coordinación de formación y extensión`,
   telefono: '(+56) 2 2354 2132',
-  correo: '[correo por confirmar]',
+  correo: sara.correo,
 };
 
 const descuentosBase = [

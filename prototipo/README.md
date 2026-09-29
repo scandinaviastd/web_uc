@@ -41,7 +41,7 @@ Requiere Node ≥ 20.3 (Astro 5).
 
 Funciona de verdad: desplegables y menú móvil (JS del Kit), carrusel con pausa, filtros instantáneos,
 calendario que cambia de mes, buscador, formularios (sin envío real) y modal del brochure.
-Enlaces con destino pendiente ("Postula", WhatsApp, Política de Privacidad) muestran un aviso.
+Enlaces con destino pendiente ("Postula", Política de Privacidad) muestran un aviso. WhatsApp abre el chat con el programa en el mensaje.
 
 ## Estructura y paso a WordPress
 
@@ -73,5 +73,6 @@ lleva `noindex, nofollow`.
 
 ## Pendiente (ver `docs/sprint-2-cambios-figma.md`)
 
-Contenido de ejemplo en eventos, fechas de programas, fotos (banco de imágenes), correo de Sara, número de
-WhatsApp, destino de "Postula", enlace de Política de Privacidad y contenido de Asesorías.
+Contenido de ejemplo en eventos, fechas de programas, fotos provisorias (ver `docs/imagenes-prototipo.md`),
+destino de "Postula", enlace de Política de Privacidad y contenido de Asesorías. WhatsApp y correo de Sara vienen
+del sitio actual: confirmar que siguen vigentes (P1-12).

@@ -81,7 +81,7 @@ propaga a todo el sitio.
 | P1-09 | Diálogos (10 PDF) y Guía de buenas prácticas |
 | P1-10 | Banco de imágenes. El prototipo usa fotos provisorias del sitio actual y de Unsplash (licencia libre); detalle y licencias por confirmar en `docs/imagenes-prototipo.md` |
 | P1-11 | Reseñas de las personas |
-| P1-12 | Cargo y correo de Sara; número y horario del WhatsApp |
+| P1-12 | Cargo de Sara; horario del WhatsApp y quién lo atiende. Aplicados en el prototipo desde el sitio actual (/contacto): WhatsApp +56 9 5418 3811 y correo s.marambio.bunster@uc.cl — confirmar que siguen vigentes |
 | P1-13 | Lista de profesores afiliados; ¿sigue Josefina Tocornal? |
 | P1-14 | Texto de Artículos y Working Papers; formato de cita |
 | P1-15 | Ejemplos para Estudios |

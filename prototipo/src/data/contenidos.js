@@ -1,3 +1,5 @@
+import { sara } from './sitio.js';
+
 // Fotos de perfil (carpeta fotos_perfil/, recortadas 1:1 a 800 px en public/img/personas/).
 // Quien no tiene foto muestra el avatar con iniciales del Kit (nota de diseño: "nunca un hueco").
 const FOTOS = {
@@ -84,7 +86,7 @@ export const directorio = [
 
 export const equipo = [
   { nombre: 'Alejandra Wood', cargo: 'Directora Ejecutiva', correo: 'awoodh@uc.cl', telefono: '+56 9 5504 2132' },
-  { nombre: 'Sara Marambio', cargo: 'Coordinadora de formación y extensión', correo: '[correo por confirmar]' },
+  { nombre: sara.nombre, cargo: 'Coordinadora de formación y extensión', correo: sara.correo },
   { nombre: 'Josefina Tocornal', cargo: 'Coordinadora de investigación', correo: 'jtc@uc.cl' },
 ];
 

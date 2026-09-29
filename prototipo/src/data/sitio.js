@@ -1,14 +1,24 @@
 // Datos globales del sitio. En WordPress: Customizer "Opciones Kit UC" + menú "uc-kit-navbar_nav".
 
+// Contacto de formación y extensión y WhatsApp del Centro, tomados del sitio actual (/contacto).
+// Un solo campo cada uno: footer, fichas, In Company, formulario y equipo los referencian desde acá.
+export const sara = { nombre: 'Sara Marambio', correo: 's.marambio.bunster@uc.cl' };
+
+const WHATSAPP = '56954183811';
+export const whatsapp = {
+  numero: '+56 9 5418 3811',
+  // Mensaje prellenado; con el nombre del programa cuando se abre desde una ficha (nota del Figma).
+  url: (tema) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(tema ? `Hola, quisiera más información sobre ${tema}` : 'Hola, quisiera más información')}`,
+};
+
 export const sitio = {
   nombre: 'Centro UC Gobierno Corporativo',
   direccion: 'Rosario Norte 407, Piso -1. Las Condes - Chile.',
   unidad: 'Escuela de Administración UC',
   telefono: '(+56) 22354 2132',
   correo: 'centrocgc@uc.cl',
-  contacto: 'Contacto: Sara Marambio · [correo por confirmar]',
-  whatsapp: 'WhatsApp +56 9 [número por confirmar]',
-  whatsappUrl: '#whatsapp-por-confirmar',
+  whatsapp: `WhatsApp ${whatsapp.numero}`,
+  whatsappUrl: whatsapp.url(),
   comoLlegar: 'https://maps.google.com/?q=Rosario+Norte+407+Las+Condes',
   politicaPrivacidad: '#politica-de-privacidad-uc',
   creditos: {

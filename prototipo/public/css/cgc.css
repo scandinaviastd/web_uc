@@ -97,7 +97,7 @@ html { scroll-behavior: smooth; }
 .cgc-dato + .cgc-dato { border-left: 1px solid var(--cgc-gris-claro); padding-left: 16px; }
 .cgc-dato_icon { width: 40px; height: 40px; border-radius: 50%; background: #e5f3ff; color: var(--cgc-celeste); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .cgc-dato dt { font-weight: 400; }
-.cgc-acciones { display: flex; flex-direction: column; gap: 8px; min-width: 220px; margin-left: 24px; }
+.cgc-acciones { display: flex; flex-direction: column; gap: 8px; min-width: 220px; }
 .cgc-acciones .uc-btn { justify-content: center; }
 .cgc-acciones--fila { flex-direction: row; flex-wrap: wrap; }
 .cgc-mini { background: var(--cgc-gris-fondo); border-radius: 4px; padding: 20px; height: 100%; }
@@ -111,7 +111,6 @@ html { scroll-behavior: smooth; }
 .cgc-fila-valor { background: var(--cgc-gris-fondo); }
 .cgc-sticky { position: sticky; top: 24px; }
 @media (max-width: 991.98px) {
-  .cgc-acciones { margin-left: 0; }
   .cgc-dato + .cgc-dato { border-left: 0; padding-left: 0; }
 }
 
@@ -175,6 +174,12 @@ html { scroll-behavior: smooth; }
 .cgc-footer-link { color: #fff; text-decoration: underline; }
 .cgc-footer-link:hover { color: #fff; }
 .cgc-inline-icon { vertical-align: -3px; margin-right: 4px; }
+
+/* El Kit no trae márgenes por breakpoint (mt-lg-0, mr-md-24…): el espacio entre piezas que se apilan en móvil
+   y quedan lado a lado en escritorio va con gap (row-gap solo actúa cuando las columnas se apilan). */
+.cgc-row-gap { row-gap: 40px; }
+.cgc-datos-clave > .uc-card_body, .cgc-bloque-empresas .uc-card_body--lg { gap: 24px 40px; }
+.cgc-persona-h .uc-card_body { gap: 16px 24px; }
 
 /* Bloque empresas: texto a la izquierda, botón a la derecha (el Kit centra .uc-card_body--lg) */
 .cgc-bloque-empresas .uc-card_body--lg { text-align: left; align-items: flex-start; }
