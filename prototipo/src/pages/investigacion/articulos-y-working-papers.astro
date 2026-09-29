@@ -25,10 +25,10 @@ import { articulos } from '../../data/contenidos.js';
         </div>
       </div>
     </div>
-    <p class="text-size--sm text-color--gray mb-24" data-contador="docs" data-total="17">17 documentos</p>
-    <div class="row">
-      {articulos.map((d) => <div class="col-md-6 col-lg-4 mb-32" data-item data-anio={d.anio} data-texto={`${d.titulo} ${d.autores}`.toLowerCase()}><CardDocumento {...d} /></div>)}
+    <p class="text-size--sm text-color--gray mb-24" data-contador="docs" data-total={articulos.length}>{articulos.length} documentos</p>
+    <div class="row" data-paginar="3">
+      {articulos.map((d, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={d.anio} data-texto={`${d.titulo} ${d.autores}`.toLowerCase()}><CardDocumento {...d} /></div>)}
     </div>
-    <Pagination paginas={[1, 2, 3]} />
+    <Pagination total={articulos.length} porPagina={3} />
   </div>
 </Base>

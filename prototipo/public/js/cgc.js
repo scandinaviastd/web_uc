@@ -19,8 +19,8 @@
   var paginar = function (cont, pagina) {
     $$('[data-paginar]', cont).forEach(function (lista) {
       var n = +lista.getAttribute('data-paginar');
-      var nav = $('[data-paginacion]', cont);
-      var items = $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto'); });
+      var nav = $('[data-paginacion]', lista.parentElement);
+      var items = $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto') && !it.classList.contains('is-fuera-rango'); });
       var total = Math.max(1, Math.ceil(items.length / n));
       var actual = Math.min(Math.max(1, pagina || +lista.getAttribute('data-pagina') || 1), total);
       lista.setAttribute('data-pagina', actual);
@@ -152,6 +152,20 @@
         }).join('') + '</div>';
       }).join('');
     };
+    // Al ir a un evento desde el calendario, su card debe quedar visible: quita el filtro de fecha de su sección
+    // si lo oculta y salta a la página donde está
+    cal.addEventListener('click', function (ev) {
+      var a = ev.target.closest('a[href^="#evento-"]'); if (!a) return;
+      var destino = document.getElementById(a.getAttribute('href').slice(1)); if (!destino) return;
+      var seccion = destino.closest('[data-seccion-eventos]');
+      if (destino.classList.contains('is-fuera-rango') && seccion) { var limpiar = $('[data-ff-activo] [data-ff-limpiar]', seccion); if (limpiar) limpiar.click(); }
+      var lista = destino.closest('[data-paginar]');
+      if (lista && destino.classList.contains('is-otra-pagina')) {
+        var visibles = $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto') && !it.classList.contains('is-fuera-rango'); });
+        var i = visibles.indexOf(destino);
+        if (i > -1) paginar(lista.parentElement, Math.floor(i / +lista.getAttribute('data-paginar')) + 1);
+      }
+    });
     $('[data-cal-prev]', cal).addEventListener('click', function () { mes--; if (mes < 0) { mes = 11; anio--; } pintar(); });
     $('[data-cal-next]', cal).addEventListener('click', function () { mes++; if (mes > 11) { mes = 0; anio++; } pintar(); });
     document.addEventListener('cgc:filtro', function (ev) { if (ev.detail.grupo === 'eventos') pintar(); });
@@ -204,6 +218,7 @@
         activoTexto.textContent = txt; activo.hidden = false;
       }
       actualizarVacios(seccion);
+      paginar(seccion, 1);
     };
     var cerrar = function () { panel.hidden = true; abrir.setAttribute('aria-expanded', 'false'); };
     abrir.addEventListener('click', function () {

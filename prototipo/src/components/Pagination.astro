@@ -1,13 +1,15 @@
 ---
-// Paginador del Kit (.uc-pagination).
-// dinamica: la paginación es real (cgc.js la completa según los items visibles de la lista con data-paginar).
-interface Props { paginas: (number | string)[]; activa?: number; dinamica?: boolean }
-const { paginas, activa = 1, dinamica = false } = Astro.props;
+// Paginador del Kit (.uc-pagination) con paginación real: cgc.js muestra `porPagina` items de la lista hermana
+// marcada con data-paginar y rehace los números según lo que dejan visible los filtros.
+// En WordPress: paginate_links() con el mismo markup.
+interface Props { total: number; porPagina: number }
+const { total, porPagina } = Astro.props;
+const paginas = Array.from({ length: Math.max(1, Math.ceil(total / porPagina)) }, (_, i) => i + 1);
 ---
-<nav class="uc-pagination mt-40" aria-label="Paginación" data-paginacion={dinamica ? '' : undefined}>
-  <button type="button" class="uc-pagination_prev mr-12" aria-label="Página anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
+<nav class="uc-pagination mt-40" aria-label="Paginación" data-paginacion hidden={paginas.length < 2}>
+  <button type="button" class="uc-pagination_prev mr-12" aria-label="Página anterior" disabled><i class="uc-icon">keyboard_arrow_left</i></button>
   <ul class="uc-pagination_pages">
-    {paginas.map((p) => <li class:list={['page-item', { active: p === activa }]}><a href="#" class="page-link">{p}</a></li>)}
+    {paginas.map((p) => <li class:list={['page-item', { active: p === 1 }]}><a href="#" class="page-link" data-pag={p} aria-label={`Página ${p}`} aria-current={p === 1 ? 'page' : undefined}>{p}</a></li>)}
   </ul>
-  <button type="button" class="uc-pagination_next ml-12" aria-label="Página siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
+  <button type="button" class="uc-pagination_next ml-12" aria-label="Página siguiente" disabled={paginas.length < 2}><i class="uc-icon">keyboard_arrow_right</i></button>
 </nav>

@@ -41,12 +41,12 @@ const vacio = (texto: string) => `<div class="uc-alert info"><div class="uc-aler
         <h2 id="realizados-titulo" class="h3 mb-0 mr-16">Realizados</h2>
         <FiltroFecha seccion="realizados" etiqueta="eventos realizados" fechas={eventosRealizados.map((e) => e.fecha)} />
       </div>
-      <p class="text-size--sm text-color--gray mb-24" data-ff-estado>23 actividades realizadas · mostrando 6 · de la más reciente a la más antigua</p>
-      <div class="row" data-lista>
-        {eventosRealizados.map((e) => <div id={e.id} class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" /></div>)}
+      <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{eventosRealizados.length} eventos realizados · de la más reciente a la más antigua</p>
+      <div class="row" data-lista data-paginar="3">
+        {eventosRealizados.map((e, i) => <div id={e.id} class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" /></div>)}
       </div>
       <div data-vacio hidden set:html={vacio('No hay eventos realizados con estos filtros.')} />
-      <Pagination paginas={[1, 2, 3, 4]} />
+      <Pagination total={eventosRealizados.length} porPagina={3} />
     </section>
   </div>
   <section class="cgc-section cgc-section--gray">
