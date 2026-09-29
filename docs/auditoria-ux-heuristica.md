@@ -60,7 +60,7 @@ Misma numeración que las anotaciones violetas del Figma (página «Sitio · Spr
 | R-06 | Página de Noticias y de Newsletters | Destino de los «Ver todas» del Home (P1-02) |
 | R-07 | Foco dentro del modal del brochure | El modal es del Kit; en WordPress verificar que el foco quede dentro mientras está abierto y vuelva al botón al cerrar |
 | R-08 | Buscador desplegable en el header | Hoy es un ícono que lleva a la página de búsqueda (cumple el checklist); un campo en el header ahorra un paso |
-| R-09 | Vistas móviles en el Figma | El sitio es responsivo en el código; el Figma solo tiene escritorio |
+| R-09 | ✔ Hecho (29-09): vistas móviles en el Figma | Página «Sitio · Sprint 3 · móvil (375)»: las 20 pantallas a 375 × 812 |
 | R-10 | Seminarios de Investigación visibles en Extensión | La minuta los manda a los eventos; hoy no hay ninguno de ejemplo ni tipo propio para filtrarlos |
 
 El doble número de contacto (antes P-4) pasó a pendiente del Centro: P1-21.
