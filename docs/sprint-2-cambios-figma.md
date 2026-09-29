@@ -21,7 +21,8 @@ Figma: https://www.figma.com/design/F576MdCtMY2dY88WMVmtUQ/Untitled
 | Aplicado · minuta 07-09 | Verde | Cambio hecho según la minuta |
 | Ajuste Kit UC | Azul | Cambio hecho para cumplir el Kit |
 | P1 · Pendiente Centro | Rojo | Recurso o definición que solo tiene el cliente |
-| P2 · Revisar Scandinavia | Naranjo | Decisión propia o interpretación a validar |
+| P2-A · Decidir ahora | Violeta | 6 decisiones para Carlos (A1–A6), también con etiqueta violeta en el lienzo |
+| P2-B · Más adelante (UC / tareas) | Naranjo | Consultas a la UC y tareas de Scandinavia; no requieren decisión hoy |
 | Interaction / Content / Development / Accessibility | — | Comportamiento del Sprint 1 que sigue vigente |
 
 ## Componentes nuevos o modificados
@@ -78,7 +79,18 @@ propaga a todo el sitio.
 11. Si los administradores de WordPress necesitan correo UC.
 12. Plazo de conservación y destino de los datos del formulario.
 
-## P2 · Revisión y tareas de Scandinavia
+## P2-A · Decidir ahora (violeta)
+
+| # | Decisión | Dónde |
+|---|---|---|
+| A1 | ¿Los 5 investigadores pasan a Profesores afiliados? | Investigación / Red |
+| A2 | ¿Los textos provisorios (pilar Extensión, bloque In Company) se muestran como propuesta? | Nosotros · Home |
+| A3 | ¿Calendario como lista por mes, grilla mensual o ambos? | Extensión / Eventos |
+| A4 | ¿Brochure con descarga directa, por formulario o se quita? | Ficha Diplomado |
+| A5 | ¿Asesorías sin desplegable en el menú? | Header (Componentes · Sprint 2) |
+| A6 | ¿Formulario "Más información" así, más simple o con más campos? | Formación / Formulario |
+
+## P2-B · Más adelante (naranjo)
 
 1. Enviar la arquitectura antes/después (este Figma + "Fuera de alcance").
 2. Validar el formulario con proteccion.datos@uc.cl.
@@ -94,3 +106,4 @@ propaga a todo el sitio.
   copia previa fuera de este archivo.
 - Los eventos, resultados de búsqueda y algunos textos son **datos de ejemplo**, marcados como tales.
 - Las notas 📝 del Sprint 1 se conservan con una franja amarilla: mandan las anotaciones.
+- La categoría antigua "P2 · Revisar Scandinavia" quedó vacía y la API no permite borrarla: eliminarla a mano en Figma.
