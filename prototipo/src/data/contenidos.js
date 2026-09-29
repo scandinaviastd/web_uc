@@ -1,17 +1,17 @@
 import { sara } from './sitio.js';
 
-// Fotos de perfil (carpeta fotos_perfil/, recortadas 1:1 a 800 px en public/img/personas/).
-// Quien no tiene foto muestra el avatar con iniciales del Kit (nota de diseño: "nunca un hueco").
+// Fotos de perfil 1:1 (800 px) en public/img/personas/. Directorio: banco editado del 29-09 (webp, fondo celeste
+// parejo). Quien no tiene foto muestra el avatar con iniciales del Kit (nota de diseño: "nunca un hueco").
 const FOTOS = {
-  'Matías Zegers': 'matias-zegers', 'Álvaro Bustos': 'alvaro-bustos', 'Roberto Guerrero': 'roberto-guerrero',
-  'Enrique Alcalde': 'enrique-alcalde', 'Marta del Sante': 'marta-del-sante', 'Luis Hernán Paúl': 'luis-hernan-paul',
-  'Eduardo Walker': 'eduardo-walker', 'Teresita María Tagle': 'teresita-maria-tagle',
-  'Alejandra Wood': 'alejandra-wood', // sitio actual; fondo oscuro distinto al resto (reemplazar con banco de imágenes)
-  'Josefina Tocornal': 'josefina-tocornal', // recorte del flyer del webinar Cuprum (baja resolución: pedir original)
+  'Matías Zegers': 'matias-zegers.webp', 'Álvaro Bustos': 'alvaro-bustos.webp', 'Roberto Guerrero': 'roberto-guerrero.webp',
+  'Enrique Alcalde': 'enrique-alcalde.webp', 'Marta del Sante': 'marta-del-sante.webp', 'Luis Hernán Paúl': 'luis-hernan-paul.webp',
+  'Eduardo Walker': 'eduardo-walker.webp', 'Teresita María Tagle': 'teresita-maria-tagle.webp',
+  'Alejandra Wood': 'alejandra-wood.jpg', // sitio actual; fondo oscuro distinto al resto (reemplazar con banco de imágenes)
+  'Josefina Tocornal': 'josefina-tocornal.jpg', // recorte del flyer del webinar Cuprum (baja resolución: pedir original)
 };
 export const fotoDe = (nombre = '') => {
   const k = Object.keys(FOTOS).find((n) => nombre.trim().startsWith(n));
-  return k ? `/img/personas/${FOTOS[k]}.jpg` : undefined;
+  return k ? `/img/personas/${FOTOS[k]}` : undefined;
 };
 export const inicialesDe = (nombre = '') => nombre.split(' ').filter(Boolean).slice(0, 2).map((s) => s[0]).join('').toUpperCase();
 

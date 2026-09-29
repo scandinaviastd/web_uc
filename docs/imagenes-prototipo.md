@@ -5,6 +5,12 @@ Antes de producción el Centro debe entregar o validar cada una (P1-10 banco de 
 Regla aplicada: sin texto incrustado ni logos de terceros dentro de la foto; proporción fija por componente
 (16:9 cards y banners, 1:1 personas, 32:17 portadas).
 
+## Entregadas por el equipo
+
+| Archivo | Uso | Nota |
+|---|---|---|
+| `personas/*.webp` (8) | Directorio, jefe de programa, Prensa | Banco editado del 29-09: 800 × 800, fondo celeste parejo. Originales sin editar en `fotos_perfil/` |
+
 ## Del sitio actual del Centro (centrogobiernocorporativo.uc.cl)
 
 | Archivo | Uso | Nota |
