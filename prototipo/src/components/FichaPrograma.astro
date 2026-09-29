@@ -6,6 +6,7 @@ import Breadcrumb from './Breadcrumb.astro';
 import ModalBrochure from './ModalBrochure.astro';
 import { jefePrograma, coordinacion } from '../data/programas.js';
 import { sitio } from '../data/sitio.js';
+import { fotoDe } from '../data/contenidos.js';
 interface Props { p: any }
 const { p } = Astro.props;
 const datos = [
@@ -61,7 +62,7 @@ const datos = [
           <div class="d-flex align-items-center mb-24"><h2 class="h3 mb-0">Jefe de programa</h2><div class="uc-heading-decoration"></div></div>
           <div class="uc-card cgc-persona-h">
             <div class="uc-card_body flex-md-row">
-              <img src="/img/ph-persona.svg" class="cgc-persona-h_foto mr-md-24 mb-16 mb-md-0" alt={`Foto de ${jefePrograma.nombre} (pendiente)`} />
+              <img src={fotoDe(jefePrograma.nombre) ?? '/img/ph-persona.svg'} class="cgc-persona-h_foto mr-md-24 mb-16 mb-md-0" alt={`Foto de ${jefePrograma.nombre}`} width="120" height="120" />
               <div>
                 <h3 class="h5 mb-4">{jefePrograma.nombre}</h3>
                 <p class="text-color--blue text-size--sm text-weight--medium mb-8">{jefePrograma.cargo}</p>

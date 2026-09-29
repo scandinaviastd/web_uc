@@ -1,11 +1,15 @@
 ---
 // Card/Opinión (Prensa) — foto redonda del autor (avatar del Kit) + fecha + título + autor.
+import { fotoDe, inicialesDe } from '../data/contenidos.js';
 interface Props { fecha: string; titulo: string; autor: string; cargo?: string; autorFiltro?: string; href?: string }
 const { fecha, titulo, autor, cargo, autorFiltro, href = '#' } = Astro.props;
+const foto = fotoDe(autor);
 ---
 <article class="uc-card card-height--same cgc-card cgc-card-opinion" data-autor={autorFiltro ?? autor}>
   <div class="uc-card_body flex-row align-items-start">
-    <img src="/img/ph-persona.svg" class="avatar avatar--circle cgc-avatar-sm mr-20" alt={`Foto de ${autor} (pendiente)`} loading="lazy" />
+    {foto
+      ? <div class="avatar avatar--bg avatar--circle cgc-avatar-sm mr-20"><img src={foto} alt={`Foto de ${autor}`} loading="lazy" width="72" height="72" /></div>
+      : <div class="avatar avatar--circle cgc-avatar-sm mr-20" role="img" aria-label={`${autor} (foto pendiente)`}><span class="avatar--initials">{inicialesDe(autor)}</span></div>}
     <div>
       <p class="text-size--sm text-color--gray mb-4">{fecha}</p>
       <h3 class="h5 mb-8"><a href={href} class="cgc-card-link">{titulo}</a></h3>

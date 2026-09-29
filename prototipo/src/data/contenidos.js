@@ -1,3 +1,16 @@
+// Fotos de perfil (carpeta fotos_perfil/, recortadas 1:1 a 800 px en public/img/personas/).
+// Quien no tiene foto muestra el avatar con iniciales del Kit (nota de diseño: "nunca un hueco").
+const FOTOS = {
+  'Matías Zegers': 'matias-zegers', 'Álvaro Bustos': 'alvaro-bustos', 'Roberto Guerrero': 'roberto-guerrero',
+  'Enrique Alcalde': 'enrique-alcalde', 'Marta del Sante': 'marta-del-sante', 'Luis Hernán Paúl': 'luis-hernan-paul',
+  'Eduardo Walker': 'eduardo-walker', 'Teresita María Tagle': 'teresita-maria-tagle',
+};
+export const fotoDe = (nombre = '') => {
+  const k = Object.keys(FOTOS).find((n) => nombre.trim().startsWith(n));
+  return k ? `/img/personas/${FOTOS[k]}.jpg` : undefined;
+};
+export const inicialesDe = (nombre = '') => nombre.split(' ').filter(Boolean).slice(0, 2).map((s) => s[0]).join('').toUpperCase();
+
 // Contenidos de ejemplo tomados del Figma Sprint 2.
 // En WordPress cada bloque es un CPT (o posts con categoría) con estos mismos campos.
 
