@@ -26,6 +26,14 @@ acordeones, con frase general + «más información» → formulario con consent
 1 diplomado. Cuando el Figma y la minuta difieran, **manda la minuta**. No construir secciones que la minuta
 eliminó. El estado ítem por ítem está en `docs/auditoria-anotaciones-figma.md`.
 
+## Referencias del Kit y la marca
+
+- `docs/kit-digital-referencia.md`: checklist con el que la UC audita el sitio, valores de diseño (color,
+  tipografía, grilla, radios, sombras) y normativa de formularios. Consultarlo antes de diseñar o construir.
+- Logos oficiales del Centro en SVG: `cgc-uc/assets/img/cgc/logo-cgc-{color,azul,negro,gris,blanco}.svg`
+  (sacados de `reassetsgrficos/Editable illustrator LOGO CGC.ai`). La versión color va solo sobre blanco.
+  El logo del header del Figma Sprint 1 dice "Cento UC" (con errata): no usarlo.
+
 ## Arquitectura
 
 | Carpeta | Qué es | Se edita |
