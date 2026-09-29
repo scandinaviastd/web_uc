@@ -85,7 +85,7 @@ propaga a todo el sitio.
 | P1-13 | Lista de profesores afiliados; ¿sigue Josefina Tocornal? |
 | P1-14 | Texto de Artículos y Working Papers; formato de cita |
 | P1-15 | Ejemplos para Estudios |
-| P1-16 | Síntesis del texto de Nosotros |
+| P1-16 | Síntesis del texto de Nosotros. Propuesta aplicada en el prototipo (de 4 párrafos a 2, sin repetir lo que ya muestra "El origen del Centro"): validar con el Centro |
 | P1-17 | Logos de colaboradores y autorización de uso. Propuesta en el prototipo: sumar Deloitte, BH Compliance y ACAFI (coorganizan actividades con el Centro) a Cuprum y Mazars |
 | P1-18 | Prensa: ¿columna completa o enlace al medio? |
 | P1-19 | Formularios: destino y plazo de conservación de los datos; ¿brochure por programa? |
