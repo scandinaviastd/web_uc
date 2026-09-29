@@ -11,6 +11,9 @@ export const whatsapp = {
   url: (tema) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(tema ? `Hola, quisiera más información sobre ${tema}` : 'Hola, quisiera más información')}`,
 };
 
+// Enlace tel: a partir del número tal como se muestra (en móvil abre el marcador).
+export const telHref = (t = '') => `tel:${t.replace(/[^\d+]/g, '')}`;
+
 export const sitio = {
   nombre: 'Centro UC Gobierno Corporativo',
   direccion: 'Rosario Norte 407, Piso -1. Las Condes - Chile.',

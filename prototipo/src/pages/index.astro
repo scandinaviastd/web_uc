@@ -9,7 +9,7 @@ import CardAcceso from '../components/CardAcceso.astro';
 import InCompanyBlock from '../components/InCompanyBlock.astro';
 import Colaboradores from '../components/Colaboradores.astro';
 import { programas } from '../data/programas.js';
-import { noticias, newsletters, prensa } from '../data/contenidos.js';
+import { noticias, newsletters, prensa, accesosInvestigacion } from '../data/contenidos.js';
 ---
 <Base title="Inicio" seccion="inicio" h1Oculto="Centro UC Gobierno Corporativo">
   <CarruselPrincipal />
@@ -26,7 +26,7 @@ import { noticias, newsletters, prensa } from '../data/contenidos.js';
 
   <section class="cgc-section cgc-section--gray">
     <div class="container">
-      <SectionHeading titulo="Noticias" link={{ label: 'Ver todas', href: '#noticias' }} />
+      <SectionHeading titulo="Noticias" link={{ label: 'Ver todas las noticias', href: '#', pendiente: 'Dónde viven Noticias y Newsletters está por definir con el Centro (P1-02).' }} />
       <div class="row">
         {noticias.map((n) => <div class="col-md-6 col-lg-3 mb-32"><CardNoticia {...n} /></div>)}
       </div>
@@ -35,7 +35,7 @@ import { noticias, newsletters, prensa } from '../data/contenidos.js';
 
   <section class="cgc-section">
     <div class="container">
-      <SectionHeading titulo="Prensa" link={{ label: 'Ver todas', href: '/extension/prensa/' }} />
+      <SectionHeading titulo="Prensa" link={{ label: 'Ver toda la prensa', href: '/extension/prensa/' }} />
       <div class="row">
         {prensa.slice(0, 2).map((o) => <div class="col-lg-6 mb-32"><CardOpinion {...o} /></div>)}
       </div>
@@ -47,16 +47,14 @@ import { noticias, newsletters, prensa } from '../data/contenidos.js';
       <SectionHeading titulo="Investigación" claro />
       <p class="color-white cgc-bajada-dark mb-32">Generamos evidencia sobre gobierno corporativo en Chile y Latinoamérica.</p>
       <div class="row">
-        <div class="col-md-4 mb-32"><CardAcceso titulo="Red de Investigación" bajada="Profesores afiliados, investigadores y ayudantes del Centro." href="/investigacion/red/" /></div>
-        <div class="col-md-4 mb-32"><CardAcceso titulo="Artículos y Working Papers" bajada="Papers y artículos académicos del Centro." href="/investigacion/articulos-y-working-papers/" /></div>
-        <div class="col-md-4 mb-32"><CardAcceso titulo="Estudios" bajada="Informes y estudios del CGC UC para descargar." href="/investigacion/estudios/" /></div>
+        {accesosInvestigacion.map((a) => <div class="col-md-4 mb-32"><CardAcceso {...a} /></div>)}
       </div>
     </div>
   </section>
 
   <section class="cgc-section">
     <div class="container">
-      <SectionHeading titulo="Newsletters" link={{ label: 'Ver todos', href: '#newsletters' }} />
+      <SectionHeading titulo="Newsletters" link={{ label: 'Ver todos los newsletters', href: '#', pendiente: 'Dónde viven Noticias y Newsletters está por definir con el Centro (P1-02).' }} />
       <div class="row">
         {newsletters.map((n) => <div class="col-md-4 mb-32"><CardNoticia {...n} cta="Leer newsletter" /></div>)}
       </div>

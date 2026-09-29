@@ -4,7 +4,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import PageTitle from '../components/PageTitle.astro';
 import CardPersona from '../components/CardPersona.astro';
 import { directorio, equipo } from '../data/contenidos.js';
-const anclas = [['quienes-somos', 'Quiénes somos'], ['directorio', 'Directorio'], ['equipo-ejecutivo', 'Equipo Ejecutivo']];
+const anclas = [['quienes-somos', 'Quiénes somos'], ['directorio', 'Directorio'], ['equipo-ejecutivo', 'Equipo ejecutivo']];
 const pilares = [
   ['school', 'Formación', 'Capacitar a directores y ejecutivos en materia de Gobierno Corporativo.'],
   ['campaign', 'Extensión', 'Abrir el debate sobre Gobierno Corporativo con jornadas, seminarios, webinars y presencia en prensa.'],
@@ -74,7 +74,7 @@ const pilares = [
 
   <section id="equipo-ejecutivo" class="cgc-section pt-0" data-ancla-seccion>
     <div class="container">
-      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Equipo Ejecutivo</h2><div class="uc-heading-decoration"></div></div>
+      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Equipo ejecutivo</h2><div class="uc-heading-decoration"></div></div>
       <div class="row">
         {equipo.map((p) => <div class="col-6 col-md-4 col-lg-3 mb-32"><CardPersona {...p} /></div>)}
       </div>

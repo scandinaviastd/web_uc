@@ -10,7 +10,7 @@ const Titulo = `h${nivel}`;
   <img src={p.imagen ?? '/img/ph-16x9.svg'} class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />
   <div class="uc-card_body">
     <div class="mb-12"><span class="uc-tag">{p.tipo}</span></div>
-    <Titulo class="h4 cgc-clamp-2 cgc-title-2l"><a href={href} class="cgc-card-link">{p.titulo}</a></Titulo>
+    <Titulo class="h4 cgc-clamp-3 cgc-title-2l"><a href={href} class="cgc-card-link">{p.titulo}</a></Titulo>
     {(p.inicioCorto || p.modalidad) && (
       <ul class="cgc-meta mt-12">
         {p.inicioCorto && <li><i class="uc-icon">event</i>{p.inicioCorto}</li>}

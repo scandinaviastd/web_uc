@@ -1,6 +1,6 @@
 ---
 // Título de sección con decoración del Kit (.uc-heading-decoration), como en block-items-archive.php.
-interface Props { titulo: string; link?: { label: string; href: string }; tag?: string; claro?: boolean; id?: string }
+interface Props { titulo: string; link?: { label: string; href: string; pendiente?: string }; tag?: string; claro?: boolean; id?: string }
 const { titulo, link, tag = 'h2', claro = false, id } = Astro.props;
 const Tag = tag as any;
 ---
@@ -9,5 +9,5 @@ const Tag = tag as any;
     <Tag id={id} class:list={['h2', 'mb-0', { 'color-white': claro }]}>{titulo}</Tag>
     <div class="uc-heading-decoration"></div>
   </div>
-  {link && <a href={link.href} class:list={['uc-btn', 'btn-inline', 'ml-auto', { 'color-white': claro }]}>{link.label} <i class="uc-icon">arrow_forward</i></a>}
+  {link && <a href={link.href} data-pendiente={link.pendiente} class:list={['uc-btn', 'btn-inline', 'ml-auto', { 'color-white': claro }]}>{link.label} <i class="uc-icon">arrow_forward</i></a>}
 </div>

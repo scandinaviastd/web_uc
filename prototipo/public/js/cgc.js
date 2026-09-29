@@ -49,6 +49,14 @@
     });
   };
   $$('[data-paginar]').forEach(function (l) { paginar(l.closest('[data-filtro]') || document, 1); });
+  var irAlHash = function () {
+    var id = location.hash.slice(1), destino = id && document.getElementById(id);
+    if (!destino || !destino.classList.contains('is-otra-pagina')) return;
+    var lista = destino.closest('[data-paginar]');
+    var i = $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto') && !it.classList.contains('is-fuera-rango'); }).indexOf(destino);
+    if (i > -1) { paginar(lista.parentElement, Math.floor(i / +lista.getAttribute('data-paginar')) + 1); destino.scrollIntoView(); }
+  };
+  irAlHash(); window.addEventListener('hashchange', irAlHash);
 
   /* ---------- Filtros instantáneos (chips + buscador) ---------- */
   $$('[data-chips]').forEach(function (grupo) {
@@ -246,18 +254,51 @@
   });
 
   /* ---------- Formularios (demo: sin envío real) ---------- */
+  // Validación con los estados del Kit (.uc-form-group--error + .uc-form-feedback), mensajes en español
+  // junto a cada campo y foco en el primero con error. En WordPress la misma validación corre también en el servidor.
+  var mensajeDe = function (el) {
+    if (el.type === 'checkbox') return 'Para enviar, acepta la cláusula de privacidad.';
+    if (el.validity.valueMissing) return el.tagName === 'SELECT' ? 'Elige una opción.' : 'Completa este campo.';
+    if (el.type === 'email' && el.validity.typeMismatch) return 'Revisa el correo: debe tener la forma nombre@dominio.cl.';
+    return '';
+  };
+  var grupoDe = function (el) { return el.closest('.uc-form-group') || el.closest('.cgc-privacidad'); };
+  var marcar = function (el) {
+    var msg = el.checkValidity() ? '' : mensajeDe(el), g = grupoDe(el); if (!g) return !msg;
+    var fb = $('.uc-form-feedback[data-para="' + el.id + '"]', g);
+    g.classList.toggle('uc-form-group--error', !!msg);
+    if (msg) {
+      if (!fb) { fb = document.createElement('p'); fb.className = 'uc-form-feedback'; fb.id = el.id + '-error'; fb.setAttribute('data-para', el.id); g.appendChild(fb); }
+      fb.innerHTML = '<i class="uc-icon" aria-hidden="true">error</i><span></span>'; fb.querySelector('span').textContent = msg;
+      el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', fb.id);
+    } else {
+      if (fb) fb.remove();
+      el.removeAttribute('aria-invalid'); el.removeAttribute('aria-describedby');
+    }
+    return !msg;
+  };
   $$('[data-form]').forEach(function (f) {
+    var campos = $$('[required]', f);
+    campos.forEach(function (el) {
+      var revisar = function () { if (el.hasAttribute('aria-invalid')) marcar(el); };
+      el.addEventListener('input', revisar); el.addEventListener('change', revisar);
+      el.addEventListener('blur', function () { if (el.value || el.hasAttribute('aria-invalid')) marcar(el); });
+    });
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var ok = $('[data-form-ok]', f); if (ok) ok.classList.remove('cgc-hidden');
+      var invalidos = campos.filter(function (el) { return !marcar(el); });
+      var ok = $('[data-form-ok]', f);
+      if (invalidos.length) { if (ok) ok.classList.add('cgc-hidden'); invalidos[0].focus(); return; }
+      if (ok) { ok.classList.remove('cgc-hidden'); ok.setAttribute('role', 'status'); ok.setAttribute('tabindex', '-1'); ok.focus(); }
+      f.reset(); if (sel) { if (q && $('option[value="' + q + '"]', sel)) sel.value = q; sync(); }
     });
   });
-  var sel = $('[data-programa-select]');
+  var sel = $('[data-programa-select]'), sync = function () {};
   if (sel) {
     var q = new URLSearchParams(location.search).get('programa');
-    if (q) sel.value = q;
+    if (q && $('option[value="' + q + '"]', sel)) { sel.value = q; var ayuda = $('[data-programa-ayuda]'); if (ayuda) ayuda.hidden = false; }
     var nombre = $('[data-programa-nombre]');
-    var sync = function () { if (nombre) nombre.textContent = sel.options[sel.selectedIndex].text; };
+    sync = function () { if (nombre) nombre.textContent = sel.options[sel.selectedIndex].text; };
     sel.addEventListener('change', sync); sync();
   }
 
@@ -308,12 +349,12 @@
         conteo.textContent = res.length + ' resultado' + (res.length === 1 ? '' : 's') + ' para «' + term + '»';
         var grupos = ['Todo'].concat(['Programas', 'Eventos', 'Estudios y papers', 'Prensa'].filter(function (g) { return res.some(function (r) { return r.grupo === g; }); }));
         var render = function (g) {
-          $$('.cgc-tab', tabs).forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-g') === g)); });
+          $$('.cgc-tab', tabs).forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-g') === g)); });
           lista.innerHTML = res.filter(function (r) { return g === 'Todo' || r.grupo === g; }).map(function (r) {
             return '<li><span class="uc-subtitle d-block mb-4">' + esc2(r.tipo) + '</span><a href="' + r.url + '">' + marcar(r.titulo, palabras) + '</a><p class="mb-4 mt-4">' + marcar(r.extracto, palabras) + '</p><span class="cgc-url">' + r.url + '</span></li>';
           }).join('');
         };
-        tabs.innerHTML = grupos.map(function (g) { var n = g === 'Todo' ? res.length : res.filter(function (r) { return r.grupo === g; }).length; return '<button type="button" role="tab" class="cgc-tab" data-g="' + g + '">' + g + ' (' + n + ')</button>'; }).join('');
+        tabs.innerHTML = grupos.map(function (g) { var n = g === 'Todo' ? res.length : res.filter(function (r) { return r.grupo === g; }).length; return '<button type="button" class="cgc-tab" aria-pressed="false" data-g="' + g + '">' + g + ' (' + n + ')</button>'; }).join('');
         $$('.cgc-tab', tabs).forEach(function (b) { b.addEventListener('click', function () { render(b.getAttribute('data-g')); }); });
         render('Todo');
       }

@@ -75,6 +75,13 @@ const HOY = new Date().toISOString().slice(0, 10);
 export const eventosProximos = eventos.filter((e) => e.fecha >= HOY).sort((a, b) => a.fecha.localeCompare(b.fecha));
 export const eventosRealizados = eventos.filter((e) => e.fecha < HOY).sort((a, b) => b.fecha.localeCompare(a.fecha));
 
+// Accesos a las secciones de Investigación (Home y landing de Investigación): un solo lugar para el texto.
+export const accesosInvestigacion = [
+  { titulo: 'Red de Investigación', bajada: 'Profesores afiliados, investigadores y ayudantes del Centro.', href: '/investigacion/red/' },
+  { titulo: 'Artículos y Working Papers', bajada: 'Papers y artículos académicos del Centro.', href: '/investigacion/articulos-y-working-papers/' },
+  { titulo: 'Estudios', bajada: 'Informes y estudios del CGC UC para descargar.', href: '/investigacion/estudios/' },
+];
+
 // Artículos y Working Papers (antes "Documentos de Trabajo").
 export const articulos = [
   { tipo: 'Working paper', anio: '2025', titulo: 'The dynamics of CEO-COB roles: internal and external governance mechanisms influencing duality or separation', autores: 'Mejía-Amaya, A. F.; Pombo, C.; López-Iturriaga, F. J.', publicacion: 'Draft version, septiembre 2025' },

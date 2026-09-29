@@ -1,6 +1,7 @@
 ---
 // Card/Persona — foto 1:1 (fotos_perfil/) o, si aún no hay foto, avatar con iniciales del Kit (.avatar + .avatar--initials).
 import { fotoDe, inicialesDe } from '../data/contenidos.js';
+import { telHref } from '../data/sitio.js';
 interface Props { nombre: string; cargo: string; correo?: string; telefono?: string; foto?: string }
 const { nombre, cargo, correo, telefono } = Astro.props;
 const foto = Astro.props.foto ?? fotoDe(nombre);
@@ -13,6 +14,6 @@ const foto = Astro.props.foto ?? fotoDe(nombre);
     <h3 class="h5 mb-4">{nombre}</h3>
     <p class="text-color--gray mb-0">{cargo}</p>
     {correo && <p class="text-size--sm mb-0 mt-8"><a href={correo.includes('@') ? `mailto:${correo}` : '#'}>{correo}</a></p>}
-    {telefono && <p class="text-size--sm mb-0">{telefono}</p>}
+    {telefono && <p class="text-size--sm mb-0"><a href={telHref(telefono)}>{telefono}</a></p>}
   </div>
 </article>

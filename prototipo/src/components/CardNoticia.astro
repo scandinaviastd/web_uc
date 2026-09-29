@@ -1,13 +1,16 @@
 ---
 // Card/Noticia — card con imagen del Kit, fecha, título y enlace. Se usa en noticias, newsletters y eventos realizados.
-interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string; imagen?: string }
-const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo, imagen } = Astro.props;
+// Sin href: la página de detalle aún no existe (se arma en WordPress) y el enlace muestra un aviso en vez de saltar.
+// meta: datos prácticos bajo el título (hora y lugar en los próximos eventos).
+interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string; imagen?: string; meta?: { icono: string; texto: string }[]; pendiente?: string }
+const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo, imagen, meta, pendiente = 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' } = Astro.props;
 ---
 <article class="uc-card card-height--same cgc-card" data-tipo={tipo}>
   <img src={imagen ?? '/img/ph-16x9.svg'} class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />
   <div class="uc-card_body">
     <p class="text-size--sm text-color--gray mb-8">{tipo ? `${tipo} · ${fecha}` : fecha}</p>
-    <h3 class="h5 cgc-clamp-3"><a href={href} class="cgc-card-link">{titulo}</a></h3>
+    <h3 class="h5 cgc-clamp-3"><a href={href} class="cgc-card-link" data-pendiente={href === '#' ? pendiente : undefined}>{titulo}</a></h3>
+    {meta && <ul class="cgc-meta mt-4">{meta.map((m) => <li><i class="uc-icon" aria-hidden="true">{m.icono}</i>{m.texto}</li>)}</ul>}
     <div class="mt-auto pt-16"><span class="uc-btn btn-inline">{cta} <i class="uc-icon">keyboard_arrow_right</i></span></div>
   </div>
 </article>

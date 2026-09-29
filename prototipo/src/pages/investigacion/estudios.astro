@@ -24,6 +24,7 @@ import { estudios } from '../../data/contenidos.js';
       </div>
     </div>
     <p class="text-size--sm text-color--gray mb-24" data-contador="estudios" data-total={estudios.length}>{estudios.length} estudios</p>
+    <h2 class="uc-sr-only">Estudios publicados</h2>
     <div class="row" data-paginar="3">
       {estudios.map((e, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={e.anio} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} autores="CGC UC" portada={e.portada ?? true} /></div>)}
     </div>

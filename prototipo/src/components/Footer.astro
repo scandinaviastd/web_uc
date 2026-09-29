@@ -26,9 +26,11 @@ import { sitio, sara } from '../data/sitio.js';
   <div class="uc-dev-footer">
     <div class="container">
       <ul class="uc-footer-dev_content">
-        <li>Diseño y desarrollo: <a href={sitio.creditos.disenoDesarrollo.url} target="_blank" class="external">{sitio.creditos.disenoDesarrollo.nombre}</a></li>
+        <li>Diseño y desarrollo: {sitio.creditos.disenoDesarrollo.url === '#'
+          ? <a href="#" class="external" data-pendiente="Enlace de Scandinavia Studio por confirmar.">{sitio.creditos.disenoDesarrollo.nombre}</a>
+          : <a href={sitio.creditos.disenoDesarrollo.url} target="_blank" rel="noopener" class="external">{sitio.creditos.disenoDesarrollo.nombre}</a>}</li>
         <li>Sitio administrado por: <a href={sitio.creditos.administradoPor.url} class="external">{sitio.creditos.administradoPor.nombre}</a></li>
-        <li>Utilizando el <a href="https://kitdigital.uc.cl/" target="_blank" class="external">Kit Digital UC</a></li>
+        <li>Utilizando el <a href="https://kitdigital.uc.cl/" target="_blank" rel="noopener" class="external">Kit Digital UC</a></li>
         <li><a href={sitio.politicaPrivacidad} class="external" data-pendiente="Enlace a la Política de Protección de Datos UC por confirmar con proteccion.datos@uc.cl.">Políticas de Privacidad</a></li>
       </ul>
     </div>

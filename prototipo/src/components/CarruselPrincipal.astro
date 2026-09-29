@@ -1,11 +1,13 @@
 ---
 // Carrusel principal del Kit (componentes/carrusel-principal). Solo en la home, bajo el header.
 // Estilo y comportamiento del Kit sin modificar; data-autoplaybutton agrega el botón de pausa (WCAG 2.2.2).
+import { getPrograma } from '../data/programas.js';
+// Cada slide referencia un programa: título, estado y enlace vienen de su ficha (en WordPress, campo relación).
 const slides = [
-  { tag: 'Matrículas abiertas', titulo: 'Formando nuevos Directores de empresas', cta: 'Conoce el programa', href: '/formacion/formando-nuevos-directores/', imagen: '/img/hero/formando-nuevos-directores.jpg' },
-  { tag: 'Matrículas abiertas', titulo: 'Diplomado en Gobierno Corporativo', cta: 'Conoce el programa', href: '/formacion/diplomado-gobierno-corporativo/', imagen: '/img/hero/diplomado.jpg' },
-  { tag: 'Matrículas abiertas', titulo: 'Gobierno corporativo de empresas familiares y family office', cta: 'Conoce el programa', href: '/formacion/empresas-familiares/', imagen: '/img/hero/empresas-familiares.jpg' },
-];
+  { slug: 'formando-nuevos-directores', imagen: '/img/hero/formando-nuevos-directores.jpg' },
+  { slug: 'diplomado-gobierno-corporativo', imagen: '/img/hero/diplomado.jpg' },
+  { slug: 'empresas-familiares', imagen: '/img/hero/empresas-familiares.jpg' },
+].map(({ slug, imagen }) => { const p = getPrograma(slug); return { tag: p.estado, titulo: p.titulo, cta: 'Conoce el programa', href: `/formacion/${slug}/`, imagen }; });
 // Imágenes del sitio actual del Centro (banners sin texto; fotos de stock: confirmar licencia).
 ---
 <div class="uc-carousel cgc-hero" data-carousel="uc-primary-carousel" data-type="carousel" data-items="1" data-slideby="1" data-loop="true" data-nav="true" data-autoplay="true" data-controls="false" data-navcontainer="#carousel-nav" data-autoplaybutton="#carousel-autoplay" data-autoplay-text="true">

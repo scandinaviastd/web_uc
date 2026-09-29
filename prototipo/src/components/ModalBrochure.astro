@@ -6,10 +6,10 @@ const { programa } = Astro.props;
 ---
 <div data-modal="modalBrochure" class="uc-modal cgc-modal" id="brochure">
   <div class="uc-modal_content cgc-modal_content">
-    <button class="uc-message_close-button" data-mclosed aria-label="Cerrar"><i class="uc-icon">close</i></button>
+    <button type="button" class="uc-message_close-button" data-mclosed aria-label="Cerrar"><i class="uc-icon">close</i></button>
     <h2 class="h3 mb-4">Descarga el brochure</h2>
     <p class="text-color--gray">{programa}</p>
-    <form class="cgc-form" data-form="brochure">
+    <form class="cgc-form" data-form="brochure" novalidate>
       <p>Déjanos tus datos para enviarte el brochure. Los campos con * son obligatorios: los usamos para entregarte el documento.</p>
       <div class="uc-form-group"><label for="b-nombre">Nombre y apellido *</label><input id="b-nombre" type="text" class="uc-input-style" placeholder="Ej: María González" required /></div>
       <div class="uc-form-group"><label for="b-correo">Correo electrónico *</label><input id="b-correo" type="email" class="uc-input-style" placeholder="nombre@empresa.cl" required /></div>

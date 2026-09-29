@@ -1,8 +1,8 @@
 ---
 // Card/Opinión (Prensa) — foto redonda del autor (avatar del Kit) + fecha + título + autor.
 import { fotoDe, inicialesDe } from '../data/contenidos.js';
-interface Props { fecha: string; titulo: string; autor: string; cargo?: string; autorFiltro?: string; href?: string }
-const { fecha, titulo, autor, cargo, autorFiltro, href = '#' } = Astro.props;
+interface Props { fecha: string; titulo: string; autor: string; cargo?: string; autorFiltro?: string; href?: string; medio?: string }
+const { fecha, titulo, autor, cargo, autorFiltro, href = '#', medio } = Astro.props;
 const foto = fotoDe(autor);
 ---
 <article class="uc-card card-height--same cgc-card cgc-card-opinion" data-autor={autorFiltro ?? autor}>
@@ -11,8 +11,8 @@ const foto = fotoDe(autor);
       ? <div class="avatar avatar--bg avatar--circle cgc-avatar-sm mr-20"><img src={foto} alt={`Foto de ${autor}`} loading="lazy" width="72" height="72" /></div>
       : <div class="avatar avatar--circle cgc-avatar-sm mr-20" role="img" aria-label={`${autor} (foto pendiente)`}><span class="avatar--initials">{inicialesDe(autor)}</span></div>}
     <div>
-      <p class="text-size--sm text-color--gray mb-4">{fecha}</p>
-      <h3 class="h5 mb-8"><a href={href} class="cgc-card-link">{titulo}</a></h3>
+      <p class="text-size--sm text-color--gray mb-4">{medio ? `${medio} · ${fecha}` : fecha}</p>
+      <h3 class="h5 mb-8"><a href={href} class="cgc-card-link" data-pendiente={href === '#' ? 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' : undefined}>{titulo}</a></h3>
       <p class="text-size--sm mb-0 cgc-autor"><strong>{autor}</strong>{cargo && <span class="text-color--gray"> · {cargo}</span>}</p>
     </div>
   </div>

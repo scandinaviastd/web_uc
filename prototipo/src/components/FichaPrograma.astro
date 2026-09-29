@@ -5,7 +5,7 @@
 import Breadcrumb from './Breadcrumb.astro';
 import ModalBrochure from './ModalBrochure.astro';
 import { jefePrograma, coordinacion } from '../data/programas.js';
-import { whatsapp } from '../data/sitio.js';
+import { whatsapp, telHref } from '../data/sitio.js';
 import { fotoDe } from '../data/contenidos.js';
 interface Props { p: any }
 const { p } = Astro.props;
@@ -104,7 +104,7 @@ const datos = [
         <div class="uc-card_body">
           <h2 class="h5 mb-8">{(p.coordinacion ?? coordinacion).titulo}</h2>
           <p class="text-size--sm mb-16">{(p.coordinacion ?? coordinacion).persona}</p>
-          <p class="mb-8"><i class="uc-icon text-color--primary">phone</i> {(p.coordinacion ?? coordinacion).telefono}</p>
+          <p class="mb-8"><i class="uc-icon text-color--primary" aria-hidden="true">phone</i> <a href={telHref((p.coordinacion ?? coordinacion).telefono)}>{(p.coordinacion ?? coordinacion).telefono}</a></p>
           <p class="mb-24"><i class="uc-icon text-color--primary">mail</i> <a href={`mailto:${(p.coordinacion ?? coordinacion).correo}`}>{(p.coordinacion ?? coordinacion).correo}</a></p>
           <a href={whatsapp.url(`el programa «${p.titulo}»`)} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div>

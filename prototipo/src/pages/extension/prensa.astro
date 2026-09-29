@@ -17,6 +17,7 @@ const autores = ['Alejandra Wood', 'Luis Hernán Paúl', 'Roberto Guerrero', 'Ma
       {autores.map((a) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={a}>{a}</button>)}
     </div>
     <p class="text-size--sm text-color--gray mb-24" data-contador="prensa" data-total={prensa.length}>{prensa.length} columnas</p>
+    <h2 class="uc-sr-only">Columnas publicadas</h2>
     <div class="row" data-paginar="4">
       {prensa.map((o, i) => <div class:list={['col-lg-6 mb-32', { 'is-otra-pagina': i >= 4 }]} data-item data-autor={o.autorFiltro}><CardOpinion {...o} /></div>)}
     </div>

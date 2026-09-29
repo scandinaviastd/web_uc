@@ -12,11 +12,13 @@ const { titulo, tipo, anio, autores, publicacion, portada = false, href = '#' } 
         {anio && <span class="text-size--sm text-color--gray ml-8">{anio}</span>}
       </div>
     )}
-    <h3 class="h5 cgc-clamp-3 mb-8">{titulo}</h3>
+    <h3 class="h5 mb-8">{titulo}</h3>
     {autores && <p class="text-size--sm mb-4">{autores}</p>}
     {publicacion && <p class="text-size--sm text-color--gray mb-0"><em>{publicacion}</em></p>}
     <div class="mt-auto pt-16">
-      <a href={href} target="_blank" rel="noopener" class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF <i class="uc-icon">download</i><span class="uc-sr-only"> (abre en pestaña nueva)</span></a>
+      {href === '#'
+        ? <a href="#" class="uc-btn btn-secondary cgc-btn-auto" data-pendiente="El PDF lo sube el Centro al panel de WordPress; en el prototipo aún no está.">Descargar PDF <i class="uc-icon">download</i></a>
+        : <a href={href} target="_blank" rel="noopener" class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF <i class="uc-icon">download</i><span class="uc-sr-only"> (abre en pestaña nueva)</span></a>}
     </div>
   </div>
 </article>

@@ -3,7 +3,7 @@
 
 import { sara } from './sitio.js';
 
-const PENDIENTE = '[Contenido por completar con la información del Centro. Antes estaba oculto en un acordeón cerrado.]';
+const PENDIENTE = '[Por completar con el Centro]';
 
 export const jefePrograma = {
   nombre: 'Matías Zegers Ruiz-Tagle',

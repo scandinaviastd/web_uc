@@ -9,7 +9,9 @@ const { finalidad, id } = Astro.props;
   <p class="text-size--sm mb-12">{finalidad} Acceden a ellos la coordinación del Centro UC Gobierno Corporativo y se conservan por [plazo por definir].</p>
   <div class="uc-form-check">
     <input id={`${id}-privacidad`} type="checkbox" required />
-    <label for={`${id}-privacidad`}>He leído y acepto la cláusula de privacidad y la <a href={sitio.politicaPrivacidad} target="_blank" class="external">Política de Privacidad</a> de la UC. *</label>
+    <label for={`${id}-privacidad`}>He leído y acepto la cláusula de privacidad y la {sitio.politicaPrivacidad.startsWith('#')
+      ? <a href="#" class="external" data-pendiente="Enlace a la Política de Protección de Datos UC por confirmar con proteccion.datos@uc.cl.">Política de Privacidad</a>
+      : <a href={sitio.politicaPrivacidad} target="_blank" rel="noopener" class="external">Política de Privacidad</a>} de la UC. *</label>
     <input id={`${id}-uso`} type="checkbox" />
     <label for={`${id}-uso`}>Autorizo al Centro UC Gobierno Corporativo a enviarme información sobre futuros programas y actividades (opcional).</label>
   </div>

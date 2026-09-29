@@ -31,7 +31,7 @@ const vacio = (texto: string) => `<div class="uc-alert info"><div class="uc-aler
       </div>
       <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{eventosProximos.length} eventos programados · en orden cronológico</p>
       <div class="row" data-lista>
-        {eventosProximos.map((e) => <div id={e.id} class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver evento" /></div>)}
+        {eventosProximos.map((e) => <div id={e.id} class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver evento" meta={[{ icono: 'schedule', texto: e.hora }, { icono: 'location_on', texto: e.lugar }]} pendiente="La ficha de cada evento (inscripción y detalle) se arma en WordPress." /></div>)}
       </div>
       <div data-vacio hidden set:html={vacio('No hay próximos eventos con estos filtros.')} />
       <p class="text-size--sm text-color--gray mt-8"><em>Eventos de ejemplo: las fechas reales llegan con el calendario interno del Centro.</em></p>
@@ -43,7 +43,7 @@ const vacio = (texto: string) => `<div class="uc-alert info"><div class="uc-aler
       </div>
       <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{eventosRealizados.length} eventos realizados · de la más reciente a la más antigua</p>
       <div class="row" data-lista data-paginar="3">
-        {eventosRealizados.map((e, i) => <div id={e.id} class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" /></div>)}
+        {eventosRealizados.map((e, i) => <div id={e.id} class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" pendiente="El resumen de cada evento realizado (fotos y texto breve) se arma en WordPress." /></div>)}
       </div>
       <div data-vacio hidden set:html={vacio('No hay eventos realizados con estos filtros.')} />
       <Pagination total={eventosRealizados.length} porPagina={3} />
@@ -51,7 +51,7 @@ const vacio = (texto: string) => `<div class="uc-alert info"><div class="uc-aler
   </div>
   <section class="cgc-section cgc-section--gray">
     <div class="container">
-      <SectionHeading titulo="Prensa" link={{ label: 'Ver todo Prensa', href: '/extension/prensa/' }} />
+      <SectionHeading titulo="Prensa" link={{ label: 'Ver toda la prensa', href: '/extension/prensa/' }} />
       <p class="mb-32">Columnas y apariciones en medios de académicos y directores del Centro.</p>
       <div class="row">
         {prensa.slice(0, 2).map((o) => <div class="col-lg-6 mb-32"><CardOpinion {...o} /></div>)}
