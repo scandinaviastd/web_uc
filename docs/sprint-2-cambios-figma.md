@@ -79,14 +79,14 @@ propaga a todo el sitio.
 | P1-07 | Módulos de Claves para decisiones financieras y de Empresas familiares |
 | P1-08 | Calendario interno de eventos y Jornada 2026. **Contradicción**: el sitio actual publica la noticia "Jornada Gobierno Corporativo 2026" el 11-jun-2026, pero el Figma la muestra como evento próximo (en el prototipo, 26-nov). ¿Ya se hizo o es la de 2027? |
 | P1-09 | Diálogos (10 PDF) y Guía de buenas prácticas |
-| P1-10 | Banco de imágenes. El prototipo usa provisoriamente fotos del sitio actual (banners, programas, 1 noticia, 1 newsletter, 1 debate, foto de Alejandra Wood): son de stock, falta confirmar la licencia. Se descartaron las que traían texto |
+| P1-10 | Banco de imágenes. El prototipo usa fotos provisorias del sitio actual y de Unsplash (licencia libre); detalle y licencias por confirmar en `docs/imagenes-prototipo.md` |
 | P1-11 | Reseñas de las personas |
 | P1-12 | Cargo y correo de Sara; número y horario del WhatsApp |
 | P1-13 | Lista de profesores afiliados; ¿sigue Josefina Tocornal? |
 | P1-14 | Texto de Artículos y Working Papers; formato de cita |
 | P1-15 | Ejemplos para Estudios |
 | P1-16 | Síntesis del texto de Nosotros |
-| P1-17 | Logos de colaboradores y autorización de uso |
+| P1-17 | Logos de colaboradores y autorización de uso. Propuesta en el prototipo: sumar Deloitte, BH Compliance y ACAFI (coorganizan actividades con el Centro) a Cuprum y Mazars |
 | P1-18 | Prensa: ¿columna completa o enlace al medio? |
 | P1-19 | Formularios: destino y plazo de conservación de los datos; ¿brochure por programa? |
 | P1-20 | ¿Administradores de WordPress con correo UC? |

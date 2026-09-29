@@ -1,7 +1,8 @@
 ---
 // Cinta de colaboradores: desplazamiento continuo, pausa con hover/foco y con botón; respeta prefers-reduced-motion.
 import { colaboradores } from '../data/contenidos.js';
-const lista = [...colaboradores, ...colaboradores];
+// 4 copias: con pocos logos, la mitad de la cinta (lo que se desplaza) debe ser más ancha que la pantalla.
+const lista = [...colaboradores, ...colaboradores, ...colaboradores, ...colaboradores];
 ---
 <section class="cgc-section cgc-section--gray" aria-labelledby="colaboradores-titulo">
   <div class="container">

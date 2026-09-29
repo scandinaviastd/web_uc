@@ -5,6 +5,7 @@ const FOTOS = {
   'Enrique Alcalde': 'enrique-alcalde', 'Marta del Sante': 'marta-del-sante', 'Luis Hernán Paúl': 'luis-hernan-paul',
   'Eduardo Walker': 'eduardo-walker', 'Teresita María Tagle': 'teresita-maria-tagle',
   'Alejandra Wood': 'alejandra-wood', // sitio actual; fondo oscuro distinto al resto (reemplazar con banco de imágenes)
+  'Josefina Tocornal': 'josefina-tocornal', // recorte del flyer del webinar Cuprum (baja resolución: pedir original)
 };
 export const fotoDe = (nombre = '') => {
   const k = Object.keys(FOTOS).find((n) => nombre.trim().startsWith(n));
@@ -12,20 +13,20 @@ export const fotoDe = (nombre = '') => {
 };
 export const inicialesDe = (nombre = '') => nombre.split(' ').filter(Boolean).slice(0, 2).map((s) => s[0]).join('').toUpperCase();
 
-// Contenidos de ejemplo tomados del Figma Sprint 2.
+// Contenidos de ejemplo tomados del Figma Sprint 2. Fuente de cada imagen: docs/imagenes-prototipo.md
 // En WordPress cada bloque es un CPT (o posts con categoría) con estos mismos campos.
 
 export const noticias = [
-  { fecha: '17 - Jul - 2026', titulo: 'Forbes Chile participó del debate coorganizado por el CGC UC y BH Compliance' },
-  { fecha: '11 - Jun - 2026', titulo: 'Jornada Gobierno Corporativo 2026' },
+  { fecha: '17 - Jul - 2026', titulo: 'Forbes Chile participó del debate coorganizado por el CGC UC y BH Compliance', imagen: '/img/noticias/forbes-debate-bh-compliance.jpg' },
+  { fecha: '11 - Jun - 2026', titulo: 'Jornada Gobierno Corporativo 2026', imagen: '/img/noticias/jornada-gobierno-corporativo-2026.jpg' },
   { fecha: '12 - May - 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026', imagen: '/img/noticias/bienvenida-diplomado-2026.jpg' },
-  { fecha: '08 - May - 2026', titulo: 'Estudio CGC UC: representación femenina en empresas IPSA' },
+  { fecha: '08 - May - 2026', titulo: 'Estudio CGC UC: representación femenina en empresas IPSA', imagen: '/img/noticias/estudio-representacion-femenina-ipsa.jpg' },
 ];
 
 export const newsletters = [
   { fecha: '02 - Jul - 2026', titulo: 'El presidente del directorio también necesita ser supervisado', imagen: '/img/newsletters/2026-07.jpg' },
-  { fecha: '28 - May - 2026', titulo: 'Ser director de una fundación ya no es un rol simbólico' },
-  { fecha: '30 - Abr - 2026', titulo: 'La IA y nuevas exigencias de productividad' },
+  { fecha: '28 - May - 2026', titulo: 'Ser director de una fundación ya no es un rol simbólico', imagen: '/img/newsletters/2026-05-fundaciones.jpg' },
+  { fecha: '30 - Abr - 2026', titulo: 'La IA y nuevas exigencias de productividad', imagen: '/img/newsletters/2026-04-ia-productividad.jpg' },
 ];
 
 export const prensa = [
@@ -46,12 +47,12 @@ export const eventosProximos = [
 ];
 
 export const eventosRealizados = [
-  { tipo: 'Debate', fecha: '8 - Jul - 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades' },
-  { tipo: 'Webinar', fecha: '6 - May - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF' },
-  { tipo: 'Webinar', fecha: '22 - Abr - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Responsabilidad de directores' },
+  { tipo: 'Debate', fecha: '8 - Jul - 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades', imagen: '/img/eventos/debate-julio-2026.jpg' },
+  { tipo: 'Webinar', fecha: '6 - May - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF', imagen: '/img/eventos/webinar-interlocking-2026.jpg' },
+  { tipo: 'Webinar', fecha: '22 - Abr - 2026', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Responsabilidad de directores', imagen: '/img/eventos/webinar-responsabilidad-directores-2026.jpg' },
   { tipo: 'Debate', fecha: 'Abr 2026', titulo: 'Ciclo Debates de Gobierno Corporativo: sesión anterior', imagen: '/img/eventos/ciclo-debates-abril-2026.jpg' },
-  { tipo: 'Seminario', fecha: 'Ene 2026', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones' },
-  { tipo: 'Webinar', fecha: 'Dic 2025', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo' },
+  { tipo: 'Seminario', fecha: 'Ene 2026', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones', imagen: '/img/eventos/seminario-fundaciones-2026.jpg' },
+  { tipo: 'Webinar', fecha: 'Dic 2025', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo', imagen: '/img/eventos/webinar-delitos-economicos-2025.jpg' },
 ];
 
 export const tiposEvento = ['Jornada', 'Seminario', 'Webinar', 'Diálogo', 'Debate'];
@@ -68,12 +69,12 @@ export const articulos = [
 
 // Estudios (antes Informes). Card: portada + título + descargar, autor "CGC UC" (minuta §4).
 export const estudios = [
-  { anio: '2026', titulo: 'Análisis Juntas de Accionistas IPSA 2026' },
-  { anio: '2025', titulo: 'Informe CEOs y Directorio en Chile frente a la incertidumbre' },
-  { anio: '2024', titulo: 'Gobierno Corporativo y estrategias de inversión de impacto: Barrio 31, Buenos Aires' },
-  { anio: '2024', titulo: 'Algunas consideraciones del primer ejercicio de reporte bajo la NCG 461' },
-  { anio: '2023', titulo: 'Diversidad de Género en la Alta Dirección de las Empresas en Chile' },
-  { anio: '2021', titulo: 'Informe Transformación del Directorio 2021 producto del Covid-19' },
+  { anio: '2026', titulo: 'Análisis Juntas de Accionistas IPSA 2026', portada: '/img/estudios/juntas-accionistas-ipsa-2026.jpg' },
+  { anio: '2025', titulo: 'Informe CEOs y Directorio en Chile frente a la incertidumbre', portada: '/img/estudios/ceos-directorio-chile.jpg' },
+  { anio: '2024', titulo: 'Gobierno Corporativo y estrategias de inversión de impacto: Barrio 31, Buenos Aires', portada: '/img/estudios/barrio-31-buenos-aires.jpg' },
+  { anio: '2024', titulo: 'Algunas consideraciones del primer ejercicio de reporte bajo la NCG 461', portada: '/img/estudios/primer-ejercicio-ncg-461.jpg' },
+  { anio: '2023', titulo: 'Diversidad de Género en la Alta Dirección de las Empresas en Chile', portada: '/img/estudios/diversidad-genero-alta-direccion.jpg' },
+  { anio: '2021', titulo: 'Informe Transformación del Directorio 2021 producto del Covid-19', portada: '/img/estudios/transformacion-directorio-2021.jpg' },
 ];
 
 export const directorio = [
@@ -93,8 +94,12 @@ export const red = {
   'Ayudantes de investigación': ['Pablo Araya'],
 };
 
+// Cuprum y Mazars: los que muestra el sitio actual. Deloitte, BH Compliance y ACAFI: coorganizan actividades
+// con el Centro según su propio sitio; que figuren como colaboradores y el uso de sus logos está por confirmar (P1-17).
 export const colaboradores = [
   { nombre: 'Cuprum AFP', logo: '/img/colaboradores/cuprum.png' },
   { nombre: 'Mazars', logo: '/img/colaboradores/mazars.jpg' },
-  ...Array(5).fill({ nombre: 'Logo socio (pendiente)' }),
+  { nombre: 'Deloitte', logo: '/img/colaboradores/deloitte.svg', porConfirmar: true },
+  { nombre: 'BH Compliance', logo: '/img/colaboradores/bh-compliance.png', porConfirmar: true },
+  { nombre: 'ACAFI', logo: '/img/colaboradores/acafi.png', porConfirmar: true },
 ];

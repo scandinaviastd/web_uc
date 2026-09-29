@@ -25,7 +25,7 @@ import { estudios } from '../../data/contenidos.js';
     </div>
     <p class="text-size--sm text-color--gray mb-24" data-contador="estudios" data-total="11">11 estudios</p>
     <div class="row">
-      {estudios.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-anio={e.anio} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} autores="CGC UC" portada /></div>)}
+      {estudios.map((e) => <div class="col-md-6 col-lg-4 mb-32" data-item data-anio={e.anio} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} autores="CGC UC" portada={e.portada ?? true} /></div>)}
     </div>
     <Pagination paginas={[1, 2]} />
   </div>

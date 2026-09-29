@@ -1,10 +1,10 @@
 ---
 // Card/Documento — PDF descargable. Variante con portada (Estudios) o con cita en campos (Artículos y WP).
-interface Props { titulo: string; tipo?: string; anio?: string; autores?: string; publicacion?: string; portada?: boolean; href?: string }
+interface Props { titulo: string; tipo?: string; anio?: string; autores?: string; publicacion?: string; portada?: boolean | string; href?: string }
 const { titulo, tipo, anio, autores, publicacion, portada = false, href = '#' } = Astro.props;
 ---
 <article class="uc-card card-height--same cgc-card cgc-card-doc" data-anio={anio} data-texto={`${titulo} ${autores ?? ''}`.toLowerCase()}>
-  {portada && <img src="/img/ph-portada.svg" class="uc-card-img cgc-img-portada" alt={`Portada de ${titulo}`} loading="lazy" />}
+  {portada && <img src={typeof portada === 'string' ? portada : '/img/ph-portada.svg'} class="uc-card-img cgc-img-portada" alt={`Portada de ${titulo}`} loading="lazy" width="640" height="340" />}
   <div class="uc-card_body">
     {(tipo || anio) && (
       <div class="d-flex align-items-center mb-12">
