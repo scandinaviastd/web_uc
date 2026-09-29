@@ -21,7 +21,7 @@ Figma: https://www.figma.com/design/F576MdCtMY2dY88WMVmtUQ/Untitled
 | Aplicado · minuta 07-09 | Verde | Cambio hecho según la minuta |
 | Ajuste Kit UC | Azul | Cambio hecho para cumplir el Kit |
 | P1 · Pendiente Centro | Rojo | Recurso o definición que solo tiene el cliente |
-| P2-A · Decidir ahora | Violeta | 6 decisiones para Carlos (A1–A6), también con etiqueta violeta en el lienzo |
+| P2-A · Decidir ahora | Violeta | Las 6 decisiones (A1–A6) se tomaron el 29-09 y pasaron a verde |
 | P2-B · Más adelante (UC / tareas) | Naranjo | Consultas a la UC y tareas de Scandinavia; no requieren decisión hoy |
 | Interaction / Content / Development / Accessibility | — | Comportamiento del Sprint 1 que sigue vigente |
 
@@ -56,8 +56,8 @@ propaga a todo el sitio.
 - **Investigación:** Red · Artículos y Working Papers · Estudios. Red: investigadores = Josefina Tocornal,
   ayudantes = Pablo Araya, los otros 5 investigadores pasan a Profesores afiliados (interpretación a
   validar). Estudios = antigua página de Informes con card simplificada.
-- **Extensión:** una sola página: filtro por tipo, próximos eventos agrupados por mes (Card/Evento, datos de
-  ejemplo), realizados y Prensa al final. Página de Prensa completa aparte.
+- **Extensión:** una sola página: filtro por tipo, próximos eventos en **grilla mensual** + detalle del mes
+  (Card/Evento, datos de ejemplo), realizados y Prensa al final. Página de Prensa completa aparte.
 - **Transversales (nuevas):** búsqueda con resultados, búsqueda sin resultados y 404 (checklist UC).
 - **Fuera de alcance:** Competencias para Directores, Comité de Directores, GC & Compliance, IA y
   Ciberseguridad, Workshop ESG, Fondos Concursables, Seminarios de Investigación, Extensión/Landing,
@@ -79,16 +79,16 @@ propaga a todo el sitio.
 11. Si los administradores de WordPress necesitan correo UC.
 12. Plazo de conservación y destino de los datos del formulario.
 
-## P2-A · Decidir ahora (violeta)
+## P2-A · Decisiones tomadas (29-09)
 
-| # | Decisión | Dónde |
+| # | Decisión | Qué se aplicó |
 |---|---|---|
-| A1 | ¿Los 5 investigadores pasan a Profesores afiliados? | Investigación / Red |
-| A2 | ¿Los textos provisorios (pilar Extensión, bloque In Company) se muestran como propuesta? | Nosotros · Home |
-| A3 | ¿Calendario como lista por mes, grilla mensual o ambos? | Extensión / Eventos |
-| A4 | ¿Brochure con descarga directa, por formulario o se quita? | Ficha Diplomado |
-| A5 | ¿Asesorías sin desplegable en el menú? | Header (Componentes · Sprint 2) |
-| A6 | ¿Formulario "Más información" así, más simple o con más campos? | Formación / Formulario |
+| A1 | Red de Investigación | Los 5 investigadores (Mejía-Amaya, López-Iturriaga, Cabezón, Ossandón, Wagner) **se sacan de la Red**. Quedan 12 profesores afiliados, Josefina Tocornal y Pablo Araya |
+| A2 | Textos provisorios | Pilar Extensión y bloque In Company se muestran **como propuesta** al Centro (P1: validar) |
+| A3 | Calendario | **Grilla mensual** con navegación entre meses + detalle de los eventos del mes con Card/Evento. En móvil, lista del mes |
+| A4 | Brochure | **Pasa por formulario** en un modal del Kit (nombre*, correo*, empresa opcional + privacidad). Nueva pantalla "Formación / Ficha / Modal Descargar brochure" |
+| A5 | Asesorías en el menú | **Sin desplegable** |
+| A6 | Formulario "Más información" | **Se mantiene** como está |
 
 ## P2-B · Más adelante (naranjo)
 
