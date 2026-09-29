@@ -1,6 +1,7 @@
 ---
 // Carrusel principal del Kit (componentes/carrusel-principal). Solo en la home, bajo el header.
-// Estilo y comportamiento del Kit sin modificar; data-autoplaybutton agrega el botón de pausa (WCAG 2.2.2).
+// Estilo y comportamiento del Kit sin modificar; data-autoplaybutton agrega el botón de pausa (WCAG 2.2.2) y
+// data-autoplay-timeout (opción del Kit) pasa cada 6 s. El Kit no trae pausa al pasar el mouse ni flechas del teclado.
 import { getPrograma } from '../data/programas.js';
 // Cada slide referencia un programa: título, estado y enlace vienen de su ficha (en WordPress, campo relación).
 const slides = [
@@ -10,7 +11,7 @@ const slides = [
 ].map(({ slug, imagen }) => { const p = getPrograma(slug); return { tag: p.estado, titulo: p.titulo, cta: 'Conoce el programa', href: `/formacion/${slug}/`, imagen }; });
 // Imágenes del sitio actual del Centro (banners sin texto; fotos de stock: confirmar licencia).
 ---
-<div class="uc-carousel cgc-hero" data-carousel="uc-primary-carousel" data-type="carousel" data-items="1" data-slideby="1" data-loop="true" data-nav="true" data-autoplay="true" data-controls="false" data-navcontainer="#carousel-nav" data-autoplaybutton="#carousel-autoplay" data-autoplay-text="true">
+<div class="uc-carousel cgc-hero" data-carousel="uc-primary-carousel" data-type="carousel" data-items="1" data-slideby="1" data-loop="true" data-nav="true" data-autoplay="true" data-autoplay-timeout="6000" data-controls="false" data-navcontainer="#carousel-nav" data-autoplaybutton="#carousel-autoplay" data-autoplay-text="true">
   <div class="uc-primary-carousel">
     {slides.map((s) => (
       <div class="primary-carousel_item uc-card card-bg--image card-gradient--bottom-black card-radius--none card-border--none">

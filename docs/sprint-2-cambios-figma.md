@@ -136,3 +136,21 @@ propaga a todo el sitio.
 - Los eventos, resultados de búsqueda y algunos textos son **datos de ejemplo**, marcados como tales.
 - Las notas 📝 del Sprint 1 se conservan con una franja amarilla: mandan las anotaciones.
 - La categoría antigua "P2 · Revisar Scandinavia" quedó vacía y la API no permite borrarla: eliminarla a mano en Figma.
+
+## Revisión de las anotaciones del Sprint 2 contra Sprint 3 Desktop (29-09)
+
+Se revisaron las 91 anotaciones de "Sitio · Sprint 2" contra "Sprint 3 Desktop" y el prototipo. Ninguna se perdió.
+
+- **P1 (30):** todas siguen. Se recuperaron dos detalles caídos: imagen genérica del Centro para cards sin foto
+  (P1-10; hoy `ph-16x9.svg`) y logos de colaboradores en vector (P1-17; solo Deloitte está en SVG). P1-20 anotado
+  también en el pie del Home.
+- **V-01 a V-06 (8):** estaban solo en la guía; ahora también anotados en sus pantallas.
+- **Resuelto Sprint 2 (28):** vigentes. Cambiaron por decisión: «Postular», títulos hasta 3 líneas, WhatsApp verde,
+  eventos con la card de Realizados (`CardEvento.astro` ya no se usa), Diplomados/Cursos, calendario principal.
+- **Notas internas (8):** aplicadas la pausa de la cinta, las portadas de Estudios y el resaltado en la búsqueda; el
+  resto va como tareas. Se recuperó "revisar componentes propios fuera del Kit antes de la auditoría UC".
+- **Interaction / Development (17):** verificadas en el prototipo. Carrusel: pasaba cada 5 s (valor por defecto del
+  Kit); ahora `data-autoplay-timeout="6000"`. El carrusel del Kit no trae pausa por hover/foco ni flechas
+  (`autoplayHoverPause` y `arrowKeys` no se leen de `data-*`): se pausa con su botón. Barra de anclas y columna
+  lateral no quedan fijas: `index.css` del Kit pone `overflow-x: hidden` en `html, body` → R-11.
+

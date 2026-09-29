@@ -14,7 +14,7 @@ composición de una página queda como propuesta a validar.
 | | Cantidad |
 |---|---|
 | Hallazgos corregidos en el prototipo | 23 |
-| Recomendaciones para después de la reunión | 10 |
+| Recomendaciones para después de la reunión | 11 |
 | Revisado y se mantiene a propósito | 6 |
 
 ## Corregido
@@ -63,6 +63,7 @@ Misma numeración que las anotaciones violetas del Figma (página «Sprint 3 Des
 | R-08 | Buscador desplegable en el header | Hoy es un ícono que lleva a la página de búsqueda (cumple el checklist); un campo en el header ahorra un paso |
 | R-09 | ✔ Hecho (29-09): vistas móviles en el Figma | Página «Sprint 3 Mobile»: las 20 pantallas a 375 × 812 |
 | R-10 | Seminarios de Investigación visibles en Extensión | La minuta los manda a los eventos; hoy no hay ninguno de ejemplo ni tipo propio para filtrarlos |
+| R-11 | Barra de anclas de Nosotros y columna lateral (fichas, In Company, formulario) fijas al hacer scroll | El Sprint 2 lo pedía, pero `html, body { overflow-x: hidden }` del `index.css` del Kit impide `position: sticky`. Resolver con JS propio (sin tocar el Kit) o dejarlos sin fijar |
 
 El doble número de contacto (antes P-4) pasó a pendiente del Centro: P1-21.
 
