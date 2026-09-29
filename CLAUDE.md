@@ -18,6 +18,14 @@ junto con la tabla de choques Figma ↔ Kit.
 
 Si el Figma choca con alguna de las 4 cosas intocables, **manda el Kit**, no el Figma.
 
+**El Figma actual es el Sprint 1 y quedó parcialmente obsoleto.** La reunión del 07-09-2026
+(`docs/reuniones/2026-09-07-minuta-revision-sprint-1.pdf`) cambió la arquitectura: menú Inicio · Nosotros ·
+Formación · Asesorías · Investigación · Extensión; salen Productos Académicos, Informes y Opinión, Fondos
+Concursables y Seminarios de Investigación; eventos en un solo pool con calendario; fichas de programa sin
+acordeones, con frase general + «más información» → formulario con consentimiento. Oferta 2027: 3 cursos +
+1 diplomado. Cuando el Figma y la minuta difieran, **manda la minuta**. No construir secciones que la minuta
+eliminó. El estado ítem por ítem está en `docs/auditoria-anotaciones-figma.md`.
+
 ## Arquitectura
 
 | Carpeta | Qué es | Se edita |
