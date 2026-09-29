@@ -18,6 +18,10 @@ junto con la tabla de choques Figma ↔ Kit.
 
 Si el Figma choca con alguna de las 4 cosas intocables, **manda el Kit**, no el Figma.
 
+**Sprint 2 (29-09-2026) ya aplicado en el Figma**: página "Sitio · Sprint 2" (resumen arriba a la izquierda,
+componentes nuevos en "Componentes · Sprint 2") y página "Fuera de alcance". Detalle y pendientes en
+`docs/sprint-2-cambios-figma.md`.
+
 **El Figma actual es el Sprint 1 y quedó parcialmente obsoleto.** La reunión del 07-09-2026
 (`docs/reuniones/2026-09-07-minuta-revision-sprint-1.pdf`) cambió la arquitectura: menú Inicio · Nosotros ·
 Formación · Asesorías · Investigación · Extensión; salen Productos Académicos, Informes y Opinión, Fondos
