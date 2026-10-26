@@ -18,7 +18,9 @@ junto con la tabla de choques Figma ↔ Kit.
 
 Si el Figma choca con alguna de las 4 cosas intocables, **manda el Kit**, no el Figma.
 
-**Espejo vigente del Figma: página "Sprint 4 Desktop"** (revisión del Centro del 26-10 aplicada; 23 pantallas con guía y anotaciones, detalle en `docs/revision-centro-2026-10-26.md`). Prototipo publicado: https://prototipo-jade-sigma.vercel.app (Vercel, proyecto `prototipo`).
+**Espejo vigente del Figma: página "Sprint 4 Desktop"** (revisión del Centro del 26-10 aplicada; 23 pantallas con guía y anotaciones, detalle en `docs/revision-centro-2026-10-26.md`). Vistas móviles (375 × 812) de esas 23 pantallas, más el menú
+móvil abierto y el submenú de Extensión, en la página "Sprint 4 Mobile". Prototipo publicado:
+https://prototipo-jade-sigma.vercel.app (Vercel, proyecto `prototipo`).
 
 Versión anterior: página "Sprint 3 Desktop" — captura de las 20 pantallas del
 prototipo, con la guía arriba y anotaciones: verde = aplicado en el Sprint 3, rojo = P1 pendiente del Centro,
