@@ -1,7 +1,8 @@
 ---
 // Card/Documento — PDF descargable. Variante con portada (Estudios) o con cita en campos (Artículos y WP).
-interface Props { titulo: string; tipo?: string; anio?: string; autores?: string; publicacion?: string; portada?: boolean | string; href?: string }
-const { titulo, tipo, anio, autores, publicacion, portada = false, href = '#' } = Astro.props;
+// Artículos y WP: el abstract va plegado (<details>, P1-14 del 26-10) para que las cards queden parejas.
+interface Props { titulo: string; tipo?: string; anio?: string; autores?: string; publicacion?: string; abstract?: string; portada?: boolean | string; href?: string }
+const { titulo, tipo, anio, autores, publicacion, abstract, portada = false, href = '#' } = Astro.props;
 ---
 <article class="uc-card card-height--same cgc-card cgc-card-doc" data-anio={anio} data-texto={`${titulo} ${autores ?? ''}`.toLowerCase()}>
   {portada && <img src={typeof portada === 'string' ? portada : '/img/ph-portada.svg'} class="uc-card-img cgc-img-portada" alt={`Portada de ${titulo}`} loading="lazy" width="640" height="340" />}
@@ -15,6 +16,12 @@ const { titulo, tipo, anio, autores, publicacion, portada = false, href = '#' } 
     <h3 class="h5 mb-8">{titulo}</h3>
     {autores && <p class="text-size--sm mb-4">{autores}</p>}
     {publicacion && <p class="text-size--sm text-color--gray mb-0"><em>{publicacion}</em></p>}
+    {abstract && (
+      <details class="cgc-abstract mt-12">
+        <summary class="uc-btn btn-inline">Ver abstract</summary>
+        <p class="text-size--sm mt-8 mb-0">{abstract}</p>
+      </details>
+    )}
     <div class="mt-auto pt-16">
       {href === '#'
         ? <a href="#" class="uc-btn btn-secondary cgc-btn-auto" data-pendiente="El PDF lo sube el Centro al panel de WordPress; en el prototipo aún no está.">Descargar PDF <i class="uc-icon">download</i></a>

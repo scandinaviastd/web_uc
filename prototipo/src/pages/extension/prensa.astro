@@ -3,24 +3,48 @@ import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import CardOpinion from '../../components/CardOpinion.astro';
+import CardDocumento from '../../components/CardDocumento.astro';
 import Pagination from '../../components/Pagination.astro';
-import { prensa } from '../../data/contenidos.js';
-const autores = ['Alejandra Wood', 'Luis Hernán Paúl', 'Roberto Guerrero', 'Matías Zegers'];
+import { prensa, resumenes } from '../../data/contenidos.js';
+const autores = [...new Set(prensa.map((o) => o.autorFiltro))];
 ---
 <Base title="Prensa" seccion="extension">
   <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Prensa' }]} />
-  <PageTitle titulo="Prensa" bajada="Columnas y apariciones en medios de académicos, directores y miembros del Centro." />
-  <div class="container mb-80" data-filtro="prensa">
+  <PageTitle titulo="Prensa" bajada="Columnas en medios de académicos, directores y miembros del Centro, y resúmenes de nuestras actividades." />
+  <nav class="cgc-anclas" aria-label="En esta página" data-anclas>
+    <div class="container">
+      <ul class="cgc-anclas_lista">
+        <li><a href="#columnas" class="cgc-chip is-active">Columnas</a></li>
+        <li><a href="#resumenes" class="cgc-chip">Resúmenes de actividades</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="columnas" class="cgc-section pb-0" data-ancla-seccion>
+    <div class="container" data-filtro="prensa">
+    <div class="d-flex align-items-center mb-24"><h2 class="h2 mb-0">Columnas</h2><div class="uc-heading-decoration"></div></div>
     <div class="cgc-chips mb-16" role="group" aria-label="Filtrar por autor" data-chips="prensa" data-atributo="autor">
       <span class="cgc-chips_label">Autor:</span>
       <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
       {autores.map((a) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={a}>{a}</button>)}
     </div>
     <p class="text-size--sm text-color--gray mb-24" data-contador="prensa" data-total={prensa.length}>{prensa.length} columnas</p>
-    <h2 class="uc-sr-only">Columnas publicadas</h2>
     <div class="row" data-paginar="4">
       {prensa.map((o, i) => <div class:list={['col-lg-6 mb-32', { 'is-otra-pagina': i >= 4 }]} data-item data-autor={o.autorFiltro}><CardOpinion {...o} /></div>)}
     </div>
     <Pagination total={prensa.length} porPagina={4} />
-  </div>
+    </div>
+  </section>
+
+  <section id="resumenes" class="cgc-section" data-ancla-seccion>
+    <div class="container" data-filtro="resumenes">
+    <div class="d-flex align-items-center mb-8"><h2 class="h2 mb-0">Resúmenes de actividades</h2><div class="uc-heading-decoration"></div></div>
+    <p class="mb-24">Lo que se conversó en seminarios, desayunos, webinars y encuentros del Centro, en un documento para descargar.</p>
+    <p class="text-size--sm text-color--gray mb-24">{resumenes.length} resúmenes</p>
+    <div class="row" data-paginar="6">
+      {resumenes.map((r, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 6 }]} data-item><CardDocumento tipo={r.tipo} anio={r.anio} titulo={r.titulo} autores="CGC UC" href={r.href} /></div>)}
+    </div>
+    <Pagination total={resumenes.length} porPagina={6} />
+    </div>
+  </section>
 </Base>

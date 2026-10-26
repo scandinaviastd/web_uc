@@ -1,0 +1,16 @@
+---
+// Servicios (antes «Asesorías», renombrada el 26-10). Va última en el menú. Contenido por definir con el Centro (P1-01).
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PageTitle from '../../components/PageTitle.astro';
+---
+<Base title="Servicios" seccion="servicios">
+  <Breadcrumb items={[{ label: 'Servicios' }]} />
+  <PageTitle titulo="Servicios" bajada="[Bajada de la sección — la define el Centro]" />
+  <div class="container mb-80">
+    <div class="cgc-pendiente-box">
+      <h2 class="h4">Contenido por definir con el Centro</h2>
+      <p class="mb-0">El Centro define qué servicios se ofrecen aquí. Candidatos ya diseñados en el Sprint 1: investigación por encargo y documentos para directores (hoy en «Fuera de alcance»).</p>
+    </div>
+  </div>
+</Base>

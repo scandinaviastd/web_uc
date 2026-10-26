@@ -4,7 +4,7 @@
 // Sin acordeones: todo el contenido visible. En WordPress: single-programa.php.
 import Breadcrumb from './Breadcrumb.astro';
 import ModalBrochure from './ModalBrochure.astro';
-import { jefePrograma, coordinacion } from '../data/programas.js';
+import { jefePrograma, coordinacion, condicionesDescuentos, PENDIENTE } from '../data/programas.js';
 import { whatsapp, telHref } from '../data/sitio.js';
 import { fotoDe } from '../data/contenidos.js';
 interface Props { p: any }
@@ -12,13 +12,16 @@ const { p } = Astro.props;
 const datos = [
   ['event', 'Fechas', p.fechas], ['schedule', 'Horario', p.horario], ['location_on', 'Modalidad', p.modalidad], ['payments', 'Valor', p.valor],
 ];
+const c = p.coordinacion ?? coordinacion;
+// «Postular» lleva a la postulación 2027; si aún no se habilita, a la página que lo avisa (P1-03, 26-10).
+const postular = p.postularUrl ? { href: p.postularUrl, externo: true } : { href: `/formacion/${p.slug}/postular/`, externo: false };
 ---
 <Breadcrumb items={[{ label: 'Formación', href: '/formacion/' }, { label: p.titulo }]} />
 <section class="cgc-ficha-hero">
   <div class="container">
     <div class="mb-16">
       <span class="uc-tag cgc-tag-claro">{p.tipo}</span>
-      <span class="uc-tag cgc-tag-estado ml-8">{p.estado}</span>
+      <span class="uc-tag cgc-tag-estado ml-8" data-estado={p.estado}>{p.estado}</span>
     </div>
     <h1 class="color-white mb-16">{p.titulo}</h1>
     <p class="p-size--lg color-white cgc-ficha-frase mb-0">{p.frase}</p>
@@ -37,7 +40,9 @@ const datos = [
         ))}
       </dl>
       <div class="cgc-acciones">
-        <a href="#" class="uc-btn btn-cta" data-pendiente="El destino de «Postular» está pendiente de definir con el Centro (P1-03).">Postular</a>
+        {postular.externo
+          ? <a href={postular.href} class="uc-btn btn-cta" target="_blank" rel="noopener">Postular<span class="uc-sr-only"> (abre en pestaña nueva)</span></a>
+          : <a href={postular.href} class="uc-btn btn-cta">Postular</a>}
         <a href={`/formacion/mas-informacion/?programa=${p.slug}`} class="uc-btn btn-secondary cgc-btn-auto">Más información</a>
         <button type="button" class="uc-btn btn-primary cgc-btn-auto" data-mtarget="modalBrochure"><i class="uc-icon">download</i> Descargar brochure</button>
       </div>
@@ -55,6 +60,14 @@ const datos = [
           <div class="col-md-6 mb-24"><div class="cgc-mini"><h3 class="h6">Dirigido a</h3><p class="mb-0">{p.dirigido}</p></div></div>
           <div class="col-md-6 mb-24"><div class="cgc-mini"><h3 class="h6">{p.incluye ? 'Incluye' : 'Requisitos de ingreso'}</h3><p class="mb-0">{p.incluye ?? p.requisitos}</p></div></div>
         </div>
+      </section>
+
+      <section class="mb-60">
+        <div class="d-flex align-items-center mb-24"><h2 class="h3 mb-0">Fechas 2027</h2><div class="uc-heading-decoration"></div></div>
+        {p.calendario.length
+          ? <ul class="cgc-fechas">{p.calendario.map((v: any) => <li>{v.nombre && <strong>{v.nombre}: </strong>}{v.texto}.</li>)}</ul>
+          : <p class="mb-0">Fecha por confirmar. Déjanos tus datos en «Más información» y te avisamos cuando se abra la postulación.</p>}
+        {p.calendario.length > 0 && <p class="text-size--sm text-color--gray mt-12 mb-0">Horario de cada sesión por confirmar.</p>}
       </section>
 
       {!p.sinJefe && (
@@ -79,8 +92,8 @@ const datos = [
           <div class="cgc-detalle-item">
             <h3 class="h4">{d.titulo}</h3>
             {d.modulos
-              ? <ul class="cgc-modulos">{d.modulos.map((m: string) => <li>{m}</li>)}</ul>
-              : <p class="cgc-pendiente mb-0">{d.texto}</p>}
+              ? <ol class="cgc-modulos">{d.modulos.map((m: string) => <li>{m}</li>)}</ol>
+              : <p class:list={['mb-0', { 'cgc-pendiente': d.texto === PENDIENTE }]}>{d.texto}</p>}
           </div>
         ))}
       </section>
@@ -94,7 +107,9 @@ const datos = [
               {p.descuentos.map(([k, v]: string[]) => <tr><th scope="row" class="text-weight--regular">{k}</th><td class="text-right text-weight--bold text-color--primary">{v}</td></tr>)}
             </tbody>
           </table>
-          <p class="text-size--sm text-color--gray mt-12">Los descuentos no son acumulables y deben aplicarse previo al pago.</p>
+          <ul class="cgc-condiciones text-size--sm text-color--gray mt-16 mb-0">
+            {condicionesDescuentos.map((t) => <li>{t}</li>)}
+          </ul>
         </section>
       )}
     </div>
@@ -102,14 +117,14 @@ const datos = [
     <aside class="col-lg-4">
       <div class="uc-card cgc-sticky">
         <div class="uc-card_body">
-          <h2 class="h5 mb-8">{(p.coordinacion ?? coordinacion).titulo}</h2>
-          <p class="text-size--sm mb-16">{(p.coordinacion ?? coordinacion).persona}</p>
-          <p class="mb-8"><i class="uc-icon text-color--primary" aria-hidden="true">phone</i> <a href={telHref((p.coordinacion ?? coordinacion).telefono)}>{(p.coordinacion ?? coordinacion).telefono}</a></p>
-          <p class="mb-24"><i class="uc-icon text-color--primary">mail</i> <a href={`mailto:${(p.coordinacion ?? coordinacion).correo}`}>{(p.coordinacion ?? coordinacion).correo}</a></p>
-          <a href={whatsapp.url(`el programa «${p.titulo}»`)} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          <h2 class="h5 mb-8">{c.titulo}</h2>
+          <p class="text-size--sm mb-16">{c.persona}</p>
+          {c.telefono && <p class="mb-8"><i class="uc-icon text-color--primary" aria-hidden="true">phone</i> <a href={telHref(c.telefono)}>{c.telefono}</a></p>}
+          <p class="mb-24"><i class="uc-icon text-color--primary">mail</i> <a href={`mailto:${c.correo}`}>{c.correo}</a></p>
+          <a href={whatsapp.url(p.whatsappTema)} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div>
       </div>
     </aside>
   </div>
 </div>
-<ModalBrochure programa={p.titulo} />
+<ModalBrochure programa={p.titulo} slug={p.slug} />

@@ -1,0 +1,55 @@
+---
+// Página de cada evento (26-10: el calendario y las cards llevan al evento completo). En WordPress: single-evento.php.
+// Próximo: datos prácticos + inscripción. Realizado: resumen (lo completa el Centro desde el panel).
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { eventos } from '../../../data/contenidos.js';
+import { PENDIENTE } from '../../../data/programas.js';
+export function getStaticPaths() {
+  return eventos.map((e) => ({ params: { slug: e.id }, props: { e } }));
+}
+const { e } = Astro.props;
+const proximo = e.orden >= new Date().toISOString().slice(0, 10);
+const datos = [
+  ['event', 'Fecha', e.fechaLarga],
+  ['schedule', 'Horario', e.hora ?? 'Por confirmar'],
+  ['location_on', 'Lugar', e.lugar ?? 'Por confirmar'],
+  ...(e.socio ? [['handshake', 'Organiza junto a', e.socio]] : []),
+];
+---
+<Base title={e.titulo} seccion="extension" descripcion={`${e.tipo} · ${e.fechaLarga}`}>
+  <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Eventos', href: '/extension/#eventos' }, { label: e.titulo }]} />
+  <div class="container mb-80">
+    <div class="mb-16">
+      <span class="uc-tag">{e.tipo}</span>
+      <span class="uc-tag cgc-tag-estado ml-8" data-estado={proximo ? 'Próximo' : 'Realizado'}>{proximo ? 'Próximo' : 'Realizado'}</span>
+    </div>
+    <h1 class="mb-40">{e.titulo}</h1>
+    <div class="row cgc-row-gap">
+      <div class="col-lg-7">
+        <img src={e.imagen} class="cgc-evento-img" alt="" width="800" height="450" />
+      </div>
+      <div class="col-lg-5">
+        <div class="uc-card"><div class="uc-card_body">
+          <dl class="mb-0">
+            {datos.map(([ic, k, v]) => (
+              <div class="cgc-dato mb-16">
+                <i class="uc-icon cgc-dato_icon">{ic}</i>
+                <div><dt class="text-size--sm text-color--gray">{k}</dt><dd class="text-weight--bold mb-0">{v}</dd></div>
+              </div>
+            ))}
+          </dl>
+          {e.nota && <p class="text-size--sm text-color--gray mb-16">{e.nota}</p>}
+          {proximo
+            ? <a href="#" class="uc-btn btn-secondary cgc-btn-auto" data-pendiente="La inscripción se habilita cuando el Centro confirme fecha, hora y lugar del evento.">Inscribirme</a>
+            : <p class="mb-0 text-color--gray">Este evento ya se realizó.</p>}
+        </div></div>
+      </div>
+    </div>
+    <section class="mt-60">
+      <div class="d-flex align-items-center mb-24"><h2 class="h3 mb-0">{proximo ? 'Sobre el evento' : 'Resumen del evento'}</h2><div class="uc-heading-decoration"></div></div>
+      <p class:list={[{ 'cgc-pendiente': !e.descripcion }]}>{e.descripcion ?? PENDIENTE}</p>
+    </section>
+    <a href="/extension/#eventos" class="uc-btn btn-inline mt-24"><i class="uc-icon">keyboard_arrow_left</i> Volver a los eventos</a>
+  </div>
+</Base>

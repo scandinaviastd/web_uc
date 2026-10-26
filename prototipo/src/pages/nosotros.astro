@@ -30,7 +30,7 @@ const pilares = [
           <div class="d-flex align-items-center mb-24"><h2 class="h2 mb-0">Quiénes somos</h2><div class="uc-heading-decoration"></div></div>
           <!-- P1-16: síntesis propuesta del texto del sitio actual (a validar con el Centro). -->
           <p>Somos un centro inter-facultades de la Pontificia Universidad Católica de Chile, creado en 2012 por la Facultad de Derecho y la Escuela de Administración UC, con la misión de ser un referente en gobierno corporativo en Chile y Latinoamérica.</p>
-          <p class="mb-0">A través de la investigación, la formación y la extensión, y en colaboración con organismos públicos y privados, generamos conocimiento, buenas prácticas y propuestas de política pública que aportan a la creación de valor y a una mejor toma de decisiones en empresas y organizaciones, en conformidad con los principios de la UC.</p>
+          <p class="mb-0">A través de la formación, la extensión y la investigación, y en colaboración con organismos públicos y privados, generamos conocimiento, buenas prácticas y propuestas de política pública que aportan a la creación de valor y a una mejor toma de decisiones en empresas y organizaciones, en conformidad con los principios de la UC.</p>
         </div>
       </div>
     </div>
@@ -38,23 +38,23 @@ const pilares = [
 
   <section class="cgc-section cgc-section--gray">
     <div class="container text-center">
-      <h2 class="h3 mb-32">El origen del Centro</h2>
+      <h2 class="h2 mb-40">El origen del Centro</h2>
       <div class="cgc-origen">
         <div class="cgc-origen_fuentes">
-          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-8">account_balance</i><strong>Facultad de Derecho</strong></div></div>
+          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-12">account_balance</i><span class="h4 mb-0">Facultad de Derecho</span></div></div>
           <span class="cgc-origen_mas" aria-hidden="true">+</span>
-          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-8">account_balance</i><strong>Escuela de Administración</strong></div></div>
+          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-12">account_balance</i><span class="h4 mb-0">Escuela de Administración</span></div></div>
         </div>
         <div class="cgc-origen_linea" aria-hidden="true"></div>
-        <div class="cgc-origen_centro"><strong class="d-block">Centro de Gobierno Corporativo UC</strong><span class="text-size--sm">Centro inter-facultades · desde 2012</span></div>
+        <div class="cgc-origen_centro"><span class="h3 color-white d-block mb-4">Centro de Gobierno Corporativo UC</span><span class="p-size--lg">Centro inter-facultades · desde 2012</span></div>
         <div class="cgc-origen_linea" aria-hidden="true"></div>
         <div class="row text-left">
           {pilares.map(([ic, t, d]) => (
             <div class="col-md-4 mb-24">
               <div class="uc-card card-height--same"><div class="uc-card_body">
-                <span class="cgc-icon-bubble mb-16"><i class="uc-icon">{ic}</i></span>
-                <h3 class="h5 mb-8">{t}</h3>
-                <p class="mb-0">{d}</p>
+                <span class="cgc-icon-bubble cgc-icon-bubble--lg mb-24"><i class="uc-icon icon-size--lg">{ic}</i></span>
+                <h3 class="h3 mb-12">{t}</h3>
+                <p class="p-size--lg mb-0">{d}</p>
               </div></div>
             </div>
           ))}

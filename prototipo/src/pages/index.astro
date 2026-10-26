@@ -26,7 +26,7 @@ import { noticias, newsletters, prensa, accesosInvestigacion } from '../data/con
 
   <section class="cgc-section cgc-section--gray">
     <div class="container">
-      <SectionHeading titulo="Noticias" link={{ label: 'Ver todas las noticias', href: '#', pendiente: 'Dónde viven Noticias y Newsletters está por definir con el Centro (P1-02).' }} />
+      <SectionHeading titulo="Noticias" link={{ label: 'Ver todas las noticias', href: '/extension/#noticias' }} />
       <div class="row">
         {noticias.map((n) => <div class="col-md-6 col-lg-3 mb-32"><CardNoticia {...n} /></div>)}
       </div>
@@ -54,7 +54,7 @@ import { noticias, newsletters, prensa, accesosInvestigacion } from '../data/con
 
   <section class="cgc-section">
     <div class="container">
-      <SectionHeading titulo="Newsletters" link={{ label: 'Ver todos los newsletters', href: '#', pendiente: 'Dónde viven Noticias y Newsletters está por definir con el Centro (P1-02).' }} />
+      <SectionHeading titulo="Newsletters" link={{ label: 'Ver todos los newsletters', href: '/extension/#newsletters' }} />
       <div class="row">
         {newsletters.map((n) => <div class="col-md-4 mb-32"><CardNoticia {...n} cta="Leer newsletter" /></div>)}
       </div>

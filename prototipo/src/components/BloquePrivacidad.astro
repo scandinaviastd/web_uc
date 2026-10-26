@@ -6,7 +6,7 @@ interface Props { finalidad: string; id: string }
 const { finalidad, id } = Astro.props;
 ---
 <div class="cgc-privacidad">
-  <p class="text-size--sm mb-12">{finalidad} Acceden a ellos la coordinación del Centro UC Gobierno Corporativo y se conservan por [plazo por definir].</p>
+  <p class="text-size--sm mb-12">{finalidad} Acceden a ellos la coordinación del Centro UC Gobierno Corporativo y se conservan por {sitio.plazoDatos}.</p>
   <div class="uc-form-check">
     <input id={`${id}-privacidad`} type="checkbox" required />
     <label for={`${id}-privacidad`}>He leído y acepto la cláusula de privacidad y la {sitio.politicaPrivacidad.startsWith('#')

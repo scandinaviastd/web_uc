@@ -8,12 +8,14 @@ const total = grupos.reduce((a, [, l]) => a + l.length, 0);
 ---
 <Base title="Red de Investigación" seccion="investigacion">
   <Breadcrumb items={[{ label: 'Investigación', href: '/investigacion/' }, { label: 'Red de Investigación' }]} />
-  <PageTitle titulo="Red de Investigación" bajada="Profesores afiliados, investigadores y ayudantes detrás de los artículos, working papers y estudios del Centro." />
+  <PageTitle titulo="Red de Investigación" bajada="Profesores afiliados al Centro, detrás de los artículos, working papers y estudios que publicamos." />
   <div class="container mb-80" data-filtro="red">
-    <div class="cgc-chips mb-32" role="group" aria-label="Filtrar por categoría" data-chips="red" data-atributo="grupo">
-      <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos ({total})</button>
-      {grupos.map(([g, l]) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={g}>{g} ({l.length})</button>)}
-    </div>
+    {grupos.length > 1 && (
+      <div class="cgc-chips mb-32" role="group" aria-label="Filtrar por categoría" data-chips="red" data-atributo="grupo">
+        <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos ({total})</button>
+        {grupos.map(([g, l]) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={g}>{g} ({l.length})</button>)}
+      </div>
+    )}
     {grupos.map(([g, l]) => (
       <section class="uc-card cgc-red-grupo mb-24" data-item data-grupo={g}>
         <div class="uc-card_body">

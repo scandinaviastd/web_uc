@@ -2,13 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { inCompany as p } from '../../data/programas.js';
-import { whatsapp, telHref } from '../../data/sitio.js';
+import { whatsapp } from '../../data/sitio.js';
 ---
 <Base title={p.titulo} seccion="formacion" descripcion={p.frase}>
   <Breadcrumb items={[{ label: 'Formación', href: '/formacion/' }, { label: 'Programas para empresas (In Company)' }]} />
   <section class="cgc-ficha-hero">
     <div class="container">
-      <div class="mb-16"><span class="uc-tag cgc-tag-claro">{p.tipo}</span><span class="uc-tag cgc-tag-estado ml-8">{p.estado}</span></div>
+      <div class="mb-16"><span class="uc-tag cgc-tag-claro">{p.tipo}</span><span class="uc-tag cgc-tag-estado ml-8" data-estado={p.estado}>{p.estado}</span></div>
       <h1 class="color-white mb-16">{p.titulo}</h1>
       <p class="p-size--lg color-white cgc-ficha-frase mb-0">{p.frase}</p>
     </div>
@@ -47,9 +47,8 @@ import { whatsapp, telHref } from '../../data/sitio.js';
         <div class="uc-card cgc-sticky"><div class="uc-card_body">
           <h2 class="h5 mb-8">{p.coordinacion.titulo}</h2>
           <p class="text-size--sm mb-16">{p.coordinacion.persona}</p>
-          <p class="mb-8"><i class="uc-icon text-color--primary" aria-hidden="true">phone</i> <a href={telHref(p.coordinacion.telefono)}>{p.coordinacion.telefono}</a></p>
           <p class="mb-24"><i class="uc-icon text-color--primary">mail</i> <a href={`mailto:${p.coordinacion.correo}`}>{p.coordinacion.correo}</a></p>
-          <a href={whatsapp.url('In Company para Directorios')} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          <a href={whatsapp.url(p.whatsappTema)} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div></div>
       </aside>
     </div>

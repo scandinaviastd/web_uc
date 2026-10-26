@@ -28,13 +28,15 @@ Requiere Node ≥ 20.3 (Astro 5).
 | `/formacion/diplomado-gobierno-corporativo/?brochure=1` | Modal "Descargar brochure" abierto |
 | `/formacion/in-company/` | Programas para empresas (In Company) |
 | `/formacion/mas-informacion/?programa=…` | Formulario "Más información" |
-| `/asesorias/` | Asesorías (pendiente del Centro) |
+| `/formacion/<programa>/postular/` | «Postular» mientras no se abre la postulación 2027 |
+| `/servicios/` | Servicios (antes Asesorías; pendiente del Centro) |
 | `/investigacion/` | Investigación / Landing |
 | `/investigacion/red/` | Red de Investigación |
 | `/investigacion/articulos-y-working-papers/` | Artículos y Working Papers |
 | `/investigacion/estudios/` | Estudios |
-| `/extension/` | Extensión (calendario mensual + realizados + Prensa) |
-| `/extension/prensa/` | Prensa |
+| `/extension/` | Extensión: eventos (calendario + 3 próximos + 3 realizados), noticias, newsletters y prensa |
+| `/extension/eventos/<evento>/` | Página de cada evento |
+| `/extension/prensa/` | Prensa: columnas y resúmenes de actividades |
 | `/busqueda/?q=empresas+familiares` | Búsqueda con resultados |
 | `/busqueda/?q=asdfgh` | Búsqueda sin resultados |
 | `/cualquier-ruta-inexistente/` | 404 |

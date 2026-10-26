@@ -1,4 +1,5 @@
 ---
+// Extensión: eventos (calendario + próximos + realizados), noticias, newsletters y prensa (P1-02, 26-10).
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
@@ -6,53 +7,88 @@ import CalendarioMensual from '../../components/CalendarioMensual.astro';
 import FiltroFecha from '../../components/FiltroFecha.astro';
 import CardNoticia from '../../components/CardNoticia.astro';
 import CardOpinion from '../../components/CardOpinion.astro';
-import Pagination from '../../components/Pagination.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
-import { eventosProximos, eventosRealizados, fechaEvento, prensa, tiposEvento } from '../../data/contenidos.js';
+import { eventosProximos, eventosRealizados, noticias, newsletters, prensa, tiposEvento } from '../../data/contenidos.js';
+// Cada lista muestra los 3 eventos más cercanos a hoy (26-10); el calendario tiene todos. Con un filtro de fecha
+// activo se muestran todos los que coinciden.
+const LIMITE = 3;
 const vacio = (texto: string) => `<div class="uc-alert info"><div class="uc-alert_content"><i class="uc-icon icon-size--sm">info</i><span class="p p-size--sm bold ml-8">${texto}</span></div></div>`;
+const anclas = [['eventos', 'Eventos'], ['noticias', 'Noticias'], ['newsletters', 'Newsletters'], ['prensa', 'Prensa']];
+const meta = (e: any) => [{ icono: 'schedule', texto: e.hora }, { icono: 'location_on', texto: e.lugar }];
+const copyProximos = `Los ${Math.min(LIMITE, eventosProximos.length)} próximos eventos, en orden cronológico. En el calendario están todos.`;
+const copyRealizados = `Los ${Math.min(LIMITE, eventosRealizados.length)} últimos eventos realizados. Los anteriores están en el calendario.`;
 ---
 <Base title="Extensión" seccion="extension">
   <Breadcrumb items={[{ label: 'Extensión' }]} />
-  <PageTitle titulo="Extensión" bajada="Seminarios, webinars, workshops, debates, charlas, desayunos, diálogos y jornadas abiertos a la comunidad." />
-  <div class="container mb-60" data-filtro="eventos">
+  <PageTitle titulo="Extensión" bajada="Seminarios, webinars, workshops, debates, charlas, desayunos y jornadas abiertos a la comunidad, junto con noticias, newsletters y prensa del Centro." />
+
+  <nav class="cgc-anclas" aria-label="En esta página" data-anclas>
+    <div class="container">
+      <ul class="cgc-anclas_lista">
+        {anclas.map(([id, l], i) => <li><a href={`#${id}`} class:list={['cgc-chip', { 'is-active': i === 0 }]}>{l}</a></li>)}
+      </ul>
+    </div>
+  </nav>
+
+  <section id="eventos" class="cgc-section" data-ancla-seccion aria-labelledby="eventos-titulo">
+    <div class="container" data-filtro="eventos">
+    <div class="d-flex align-items-center mb-24"><h2 id="eventos-titulo" class="h2 mb-0">Eventos</h2><div class="uc-heading-decoration"></div></div>
     <div class="cgc-chips mb-40" role="group" aria-label="Filtrar por tipo" data-chips="eventos" data-atributo="tipo">
       <span class="cgc-chips_label">Tipo:</span>
       <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
       {tiposEvento.map((t) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={t}>{`${t}s`}</button>)}
     </div>
-    <section aria-labelledby="calendario-titulo" class="mb-60">
-      <h2 id="calendario-titulo" class="uc-sr-only">Calendario de eventos</h2>
+    <div class="mb-60">
+      <h3 class="uc-sr-only">Calendario de eventos</h3>
       <CalendarioMensual />
-    </section>
-    <section id="proximos" aria-labelledby="proximos-titulo" data-seccion-eventos="proximos">
+    </div>
+    <div id="proximos" data-seccion-eventos="proximos">
       <div class="d-flex align-items-center flex-wrap mb-8">
-        <h2 id="proximos-titulo" class="h3 mb-0 mr-16">Próximos eventos</h2>
-        <FiltroFecha seccion="proximos" etiqueta="próximos eventos" fechas={eventosProximos.map((e) => e.fecha)} />
+        <h3 class="h3 mb-0 mr-16">Próximos eventos</h3>
+        <FiltroFecha seccion="proximos" etiqueta="próximos eventos" fechas={eventosProximos.filter((e) => e.fecha).map((e) => e.fecha)} />
       </div>
-      <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{eventosProximos.length} eventos programados · en orden cronológico</p>
-      <div class="row" data-lista>
-        {eventosProximos.map((e) => <div id={e.id} class="col-md-6 col-lg-4 mb-32" data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver evento" meta={[{ icono: 'schedule', texto: e.hora }, { icono: 'location_on', texto: e.lugar }]} pendiente="La ficha de cada evento (inscripción y detalle) se arma en WordPress." /></div>)}
+      <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{copyProximos}</p>
+      <div class="row" data-lista data-paginar={LIMITE} data-limite={LIMITE}>
+        {eventosProximos.map((e, i) => <div id={e.id} class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= LIMITE }]} data-item data-tipo={e.tipo} data-fecha={e.fecha ?? ''}><CardNoticia fecha={e.fechaCorta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} href={e.url} cta="Ver evento" meta={meta(e)} /></div>)}
       </div>
       <div data-vacio hidden set:html={vacio('No hay próximos eventos con estos filtros.')} />
-      <p class="text-size--sm text-color--gray mt-8"><em>Eventos de ejemplo: las fechas reales llegan con el calendario interno del Centro.</em></p>
-    </section>
-    <section id="realizados" aria-labelledby="realizados-titulo" data-seccion-eventos="realizados">
-      <div class="d-flex align-items-center flex-wrap mt-60 mb-8">
-        <h2 id="realizados-titulo" class="h3 mb-0 mr-16">Realizados</h2>
+    </div>
+    <div id="realizados" data-seccion-eventos="realizados">
+      <div class="d-flex align-items-center flex-wrap mt-40 mb-8">
+        <h3 class="h3 mb-0 mr-16">Realizados</h3>
         <FiltroFecha seccion="realizados" etiqueta="eventos realizados" fechas={eventosRealizados.map((e) => e.fecha)} />
       </div>
-      <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{eventosRealizados.length} eventos realizados · de la más reciente a la más antigua</p>
-      <div class="row" data-lista data-paginar="3">
-        {eventosRealizados.map((e, i) => <div id={e.id} class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={fechaEvento(e.fecha).corta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} cta="Ver resumen" pendiente="El resumen de cada evento realizado (fotos y texto breve) se arma en WordPress." /></div>)}
+      <p class="text-size--sm text-color--gray mb-24" data-ff-estado>{copyRealizados}</p>
+      <div class="row" data-lista data-paginar={LIMITE} data-limite={LIMITE}>
+        {eventosRealizados.map((e, i) => <div id={e.id} class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= LIMITE }]} data-item data-tipo={e.tipo} data-fecha={e.fecha}><CardNoticia fecha={e.fechaCorta} tipo={e.tipo} titulo={e.titulo} imagen={e.imagen} href={e.url} cta="Ver resumen" /></div>)}
       </div>
       <div data-vacio hidden set:html={vacio('No hay eventos realizados con estos filtros.')} />
-      <Pagination total={eventosRealizados.length} porPagina={3} />
-    </section>
-  </div>
-  <section class="cgc-section cgc-section--gray">
+    </div>
+    </div>
+  </section>
+
+  <section id="noticias" class="cgc-section cgc-section--gray" data-ancla-seccion>
+    <div class="container">
+      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Noticias</h2><div class="uc-heading-decoration"></div></div>
+      <div class="row">
+        {noticias.map((n) => <div class="col-md-6 col-lg-3 mb-32"><CardNoticia {...n} pendiente="La página de cada noticia se arma en WordPress." /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletters" class="cgc-section" data-ancla-seccion>
+    <div class="container">
+      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Newsletters</h2><div class="uc-heading-decoration"></div></div>
+      <div class="row">
+        {newsletters.map((n) => <div class="col-md-4 mb-32"><CardNoticia {...n} cta="Leer newsletter" pendiente="La página de cada newsletter se arma en WordPress." /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="prensa" class="cgc-section cgc-section--gray" data-ancla-seccion>
     <div class="container">
       <SectionHeading titulo="Prensa" link={{ label: 'Ver toda la prensa', href: '/extension/prensa/' }} />
-      <p class="mb-32">Columnas y apariciones en medios de académicos y directores del Centro.</p>
+      <p class="mb-32">Columnas en medios de académicos y directores del Centro, y resúmenes de nuestras actividades.</p>
       <div class="row">
         {prensa.slice(0, 2).map((o) => <div class="col-lg-6 mb-32"><CardOpinion {...o} /></div>)}
       </div>

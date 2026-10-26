@@ -1,0 +1,31 @@
+---
+// Card/Programa destacada: horizontal y a todo el ancho del contenedor (V-09, 26-10: el Diplomado y el bloque
+// In Company de Formación). Misma card del Kit que Card/Programa: imagen a la izquierda, sin texto sobre la foto.
+interface Props { p: { slug: string; tipo: string; titulo: string; frase?: string; estado?: string; inicioCorto?: string; modalidad?: string; imagen?: string }; href?: string; cta?: string; nivel?: 3 | 4 }
+const { p, href = `/formacion/${p.slug}/`, cta = 'Ver programa', nivel = 4 } = Astro.props;
+const Titulo = `h${nivel}`;
+---
+<article class="uc-card cgc-card cgc-card-destacada">
+  <div class="row no-gutters">
+    <div class="col-lg-6">
+      <img src={p.imagen ?? '/img/ph-16x9.svg'} class="cgc-card-destacada_img" alt="" loading="lazy" width="800" height="450" />
+    </div>
+    <div class="col-lg-6 d-flex">
+      <div class="uc-card_body--lg d-flex flex-column w-100">
+        <div class="mb-16">
+          <span class="uc-tag">{p.tipo}</span>
+          {p.estado && <span class="uc-tag cgc-tag-estado ml-8" data-estado={p.estado}>{p.estado}</span>}
+        </div>
+        <Titulo class="h3 mb-16"><a href={href} class="cgc-card-link">{p.titulo}</a></Titulo>
+        {p.frase && <p class="p-size--lg mb-16">{p.frase}</p>}
+        {(p.inicioCorto || p.modalidad) && (
+          <ul class="cgc-meta">
+            {p.inicioCorto && <li><i class="uc-icon">event</i>{p.inicioCorto}</li>}
+            {p.modalidad && <li><i class="uc-icon">location_on</i>{p.modalidad}</li>}
+          </ul>
+        )}
+        <div class="mt-auto pt-24"><span class="uc-btn btn-inline">{cta} <i class="uc-icon">keyboard_arrow_right</i></span></div>
+      </div>
+    </div>
+  </div>
+</article>

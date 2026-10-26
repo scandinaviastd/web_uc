@@ -20,8 +20,8 @@ Regla aplicada: sin texto incrustado ni logos de terceros dentro de la foto; pro
 | `noticias/bienvenida-diplomado-2026.jpg` | Noticia Diplomado 2026 | Foto real de la sesión |
 | `newsletters/2026-07.jpg` | Newsletter julio | Ilustración del newsletter original |
 | `eventos/ciclo-debates-abril-2026.jpg` | Debate abril (realizado) | Foto real; se recortó la franja con logo |
-| `estudios/*.jpg` (6) | Portadas de Estudios | Portadas reales de cada PDF, montadas en el marco 32:17 |
-| `colaboradores/cuprum.png`, `mazars.jpg` | Cinta de colaboradores | Logos que ya publica el Centro |
+| `estudios/*.jpg` (6) | Portadas de Estudios | Portadas reales de cada PDF, montadas en el marco 32:17. Los otros 6 estudios (26-10) usan la portada genérica: el sitio actual bloquea la descarga automática de sus imágenes (ver «Pendiente») |
+| `colaboradores/cuprum.png` | Cinta de colaboradores | Logo que ya publica el Centro |
 
 Descartadas: flyers con texto (debates, webinars), recortes de prensa (DF, La Tercera), la foto del panel de la
 Jornada 2026 (la pantalla muestra la clave del Wi-Fi del evento) y la ilustración del newsletter de IA (texto
@@ -41,28 +41,34 @@ incrustado).
 | `eventos/webinar-responsabilidad-directores-2026.jpg` | Webinar Responsabilidad | Bluestonex | [9Pqp6CUaIu4](https://unsplash.com/photos/9Pqp6CUaIu4) |
 | `eventos/seminario-fundaciones-2026.jpg` | Seminario fundaciones | Vitaly Gariev | [m76kVfIRS5U](https://unsplash.com/photos/m76kVfIRS5U) |
 | `eventos/webinar-delitos-economicos-2025.jpg` | Webinar delitos económicos | Sasun Bughdaryan | [ozS0tPf8QT0](https://unsplash.com/photos/ozS0tPf8QT0) |
-| `eventos/debate-octubre-2026.jpg` | Próximo · Debate 15 oct | stefano stacchini | [jhPSJDhiRyQ](https://unsplash.com/photos/jhPSJDhiRyQ) |
-| `eventos/workshop-comite-directores-2026.jpg` | Próximo · Workshop 22 oct | Dylan Gillis | [KdeqA3aTnBY](https://unsplash.com/photos/KdeqA3aTnBY) |
-| `eventos/webinar-octubre-2026.jpg` | Próximo · Webinar 28 oct | Dylan Ferreira | [HJmxky8Fvmo](https://unsplash.com/photos/HJmxky8Fvmo) |
-| `eventos/charla-ciberseguridad-2026.jpg` | Próximo · Charla 5 nov | Kevin Gonzalez | [-NXNaE9lu6w](https://unsplash.com/photos/-NXNaE9lu6w) |
-| `eventos/dialogo-ncg-461-2026.jpg` | Próximo · Diálogo 12 nov | Vitaly Gariev | [omGSZqBXkqY](https://unsplash.com/photos/omGSZqBXkqY) |
-| `eventos/jornada-gobierno-corporativo-2026.jpg` | Próximo · Jornada 26 nov | Thomas Delacrétaz | [ZXx-aoBPYuM](https://unsplash.com/photos/ZXx-aoBPYuM) |
-| `eventos/desayuno-directores-2026.jpg` | Próximo · Desayuno 3 dic | Andrew Neel | [TTPMpLl_2lc](https://unsplash.com/photos/TTPMpLl_2lc) |
+| `eventos/debate-bh-compliance-2026.jpg` | Próximo · Debate con BH Compliance (dic) | stefano stacchini | [jhPSJDhiRyQ](https://unsplash.com/photos/jhPSJDhiRyQ) |
+| `eventos/webinar-cuprum-2026.jpg` | Próximo · Webinar con Cuprum (4 nov) | Dylan Ferreira | [HJmxky8Fvmo](https://unsplash.com/photos/HJmxky8Fvmo) |
+| `eventos/desayuno-forvis-mazars-2026.jpg` | Próximo · Desayuno con Forvis Mazars | Andrew Neel | [TTPMpLl_2lc](https://unsplash.com/photos/TTPMpLl_2lc) |
+| `eventos/jornada-gobierno-corporativo-2026.jpg` | Jornada 2026 (realizada, 11 jun) | Thomas Delacrétaz | [ZXx-aoBPYuM](https://unsplash.com/photos/ZXx-aoBPYuM) |
+| `eventos/jornada-gobierno-corporativo-2025.jpg` | Jornada 2025 (realizada, 26 nov) | Kevin Gonzalez | [-NXNaE9lu6w](https://unsplash.com/photos/-NXNaE9lu6w) |
+| `programas/in-company.jpg` | Card In Company (Formación) | Vitaly Gariev | [omGSZqBXkqY](https://unsplash.com/photos/omGSZqBXkqY) |
 
-## Logos de colaboradores por confirmar (P1-17)
+## Logos de colaboradores (P1-17, 26-10)
 
-Aparecen en el sitio actual como coorganizadores de actividades del Centro, pero no en su sección de colaboradores.
-Se agregaron como propuesta; el Centro confirma si van y gestiona la autorización de uso.
+Colaboradores confirmados por el Centro: Forvis Mazars, Cuprum, Morales & Besa y LarrainVial. Logos bajados de los
+sitios oficiales (SVG). Salen Deloitte, BH Compliance y ACAFI. Falta la autorización de uso de cada marca.
 
 | Archivo | Fuente |
 |---|---|
-| `colaboradores/deloitte.svg` | deloitte.com (logo oficial) — Ciclo de Encuentros de Directores, Jornada 2026 |
-| `colaboradores/bh-compliance.png` | bh-compliance.com (logo oficial) — Ciclo de Debates 2026 |
-| `colaboradores/acafi.png` | acafi.cl (logo oficial) — Guía de Buenas Prácticas ACAFI |
+| `colaboradores/forvis-mazars.svg` | forvismazars.com/cl |
+| `colaboradores/sclb.svg` | sclb.cl — Morales & Besa se llama **SCLB Abogados** desde septiembre de 2026 («SCLB, antes Morales & Besa»): confirmar con el Centro |
+| `colaboradores/larrainvial.svg` | larrainvial.com |
+| `colaboradores/cuprum.png` | Sitio actual del Centro (PNG: falta la versión en vector) |
+
+## Pendiente
+
+Portadas de 6 estudios del sitio actual (2, 3, 5, 6, 7 y 8 de su listado de informes): el sitio usa una
+verificación anti-bots que impide bajarlas de forma automática. Se descargan a mano desde
+centrogobiernocorporativo.uc.cl/informes-y-opinion/informes y se montan en el marco 32:17 como las demás.
 
 ## Sin imagen a propósito
 
-Equipo ejecutivo (Alejandra Wood, Sara Marambio, Josefina Tocornal): avatar con iniciales del Kit, también en
-Prensa. Se sacaron (29-09) las fotos provisorias de Alejandra (fondo distinto) y Josefina (recorte de baja
+Equipo ejecutivo (Alejandra Wood, Sara Marambio): avatar con iniciales del Kit, también en Prensa. Josefina
+Tocornal deja el Centro (26-10). Se sacaron (29-09) las fotos provisorias de Alejandra (fondo distinto) y Josefina (recorte de baja
 resolución) hasta tener fotos con el mismo encuadre y fondo que el Directorio (P1-10). No corresponde usar caras
 de stock para personas reales.

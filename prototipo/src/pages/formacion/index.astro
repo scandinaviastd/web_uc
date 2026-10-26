@@ -3,31 +3,35 @@ import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import CardPrograma from '../../components/CardPrograma.astro';
-import InCompanyBlock from '../../components/InCompanyBlock.astro';
-import { programas } from '../../data/programas.js';
+import CardProgramaDestacado from '../../components/CardProgramaDestacado.astro';
+import { programas, inCompany } from '../../data/programas.js';
 // Programas abiertos separados por tipo (campo "tipo" del CPT): un programa nuevo cae solo en su sección.
-const grupos = [
-  { id: 'diplomados', titulo: 'Diplomados', tipo: 'Diplomado' },
-  { id: 'cursos', titulo: 'Cursos', tipo: 'Curso' },
-].map((g) => ({ ...g, items: programas.filter((p) => p.tipo === g.tipo) })).filter((g) => g.items.length);
+// Diplomados: card destacada a todo el ancho (V-09, 26-10). Cursos: grilla de 3 por fila.
+const diplomados = programas.filter((p) => p.tipo === 'Diplomado');
+const cursos = programas.filter((p) => p.tipo === 'Curso');
 ---
 <Base title="Formación" seccion="formacion">
   <Breadcrumb items={[{ label: 'Formación' }]} />
   <PageTitle titulo="Formación" bajada="Formación para directores, ejecutivos y organizaciones que buscan fortalecer su gobierno corporativo." />
   <section class="container mb-60" id="programas-abiertos">
-    <h2 class="h3 mb-8">Programas abiertos</h2>
-    <p class="mb-32">Cursos y diplomados para directores y ejecutivos.</p>
-    {grupos.map((g) => (
-      <div id={g.id} class="mb-16">
-        <h3 class="h4 mb-24">{g.titulo}</h3>
-        <div class="row">
-          {g.items.map((p) => <div class="col-md-6 col-lg-3 mb-32"><CardPrograma p={p} nivel={4} /></div>)}
-        </div>
+    <h2 class="h2 mb-8">Programas abiertos</h2>
+    <p class="p-size--lg mb-40">Diplomados y cursos 2027 para directores y ejecutivos.</p>
+    <div id="diplomados" class="mb-40">
+      <h3 class="h3 mb-24">Diplomados</h3>
+      {diplomados.map((p) => <div class="mb-32"><CardProgramaDestacado p={p} /></div>)}
+    </div>
+    <div id="cursos" class="mb-16">
+      <h3 class="h3 mb-24">Cursos</h3>
+      <div class="row">
+        {cursos.map((p) => <div class="col-md-6 col-lg-4 mb-32"><CardPrograma p={p} nivel={4} /></div>)}
       </div>
-    ))}
+    </div>
   </section>
-  <section class="container mb-80" id="programas-para-empresas">
-    <h2 class="h3 mb-24">Programas para empresas (In Company)</h2>
-    <InCompanyBlock />
+  <section class="cgc-section cgc-section--gray" id="programas-para-empresas">
+    <div class="container">
+      <h2 class="h2 mb-8">Programas para empresas</h2>
+      <p class="p-size--lg mb-40">Diseñamos el programa según los desafíos de tu empresa.</p>
+      <CardProgramaDestacado p={inCompany} href="/formacion/in-company/" cta="Conoce In Company" nivel={3} />
+    </div>
   </section>
 </Base>

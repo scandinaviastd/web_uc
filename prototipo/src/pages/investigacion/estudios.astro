@@ -5,6 +5,8 @@ import PageTitle from '../../components/PageTitle.astro';
 import CardDocumento from '../../components/CardDocumento.astro';
 import Pagination from '../../components/Pagination.astro';
 import { estudios } from '../../data/contenidos.js';
+import { chipsAnio } from '../../data/filtros.js';
+const { chips, valorDe } = chipsAnio(estudios, 4);
 ---
 <Base title="Estudios" seccion="investigacion">
   <Breadcrumb items={[{ label: 'Investigación', href: '/investigacion/' }, { label: 'Estudios' }]} />
@@ -19,14 +21,14 @@ import { estudios } from '../../data/contenidos.js';
         <div class="cgc-chips" role="group" aria-label="Filtrar por año" data-chips="estudios" data-atributo="anio">
           <span class="cgc-chips_label">Año:</span>
           <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
-          {['2026', '2025', '2024'].map((a) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={a}>{a}</button>)}
+          {chips.map((c) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={c.valor}>{c.label}</button>)}
         </div>
       </div>
     </div>
     <p class="text-size--sm text-color--gray mb-24" data-contador="estudios" data-total={estudios.length}>{estudios.length} estudios</p>
     <h2 class="uc-sr-only">Estudios publicados</h2>
     <div class="row" data-paginar="3">
-      {estudios.map((e, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={e.anio} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} autores="CGC UC" portada={e.portada ?? true} /></div>)}
+      {estudios.map((e, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={valorDe(e.anio)} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} anio={e.anio} autores="CGC UC" portada={e.portada} href={e.href} /></div>)}
     </div>
     <Pagination total={estudios.length} porPagina={3} />
   </div>

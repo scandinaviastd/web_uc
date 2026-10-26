@@ -1,5 +1,6 @@
 ---
 // Formulario "Más información" — propuesta Scandinavia según la normativa UC de formularios (decisión A6: se mantiene).
+// 26-10 (V-03, P1-19): cada envío llega al correo de Sara con el programa elegido; los datos se guardan 12 meses.
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
@@ -41,7 +42,7 @@ const opciones = [...programas, inCompany];
           <h2 class="h5 mb-16" data-programa-nombre>{programas[0].titulo}</h2>
           <hr class="uc-hr my-16" />
           <p class="text-weight--bold mb-8">¿Prefieres hablar con alguien?</p>
-          <p class="text-size--sm mb-8">{sara.nombre} · <a href={`mailto:${sara.correo}`}>{sara.correo}</a></p>
+          <p class="text-size--sm mb-8">{sara.nombre}, {sara.cargo}<br /><a href={`mailto:${sara.correo}`}>{sara.correo}</a></p>
           <a href={sitio.whatsappUrl} class="uc-btn btn-inline cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> {sitio.whatsapp}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div></div>
       </aside>

@@ -1,0 +1,29 @@
+---
+// Destino de «Postular» cuando la postulación 2027 aún no está habilitada (P1-03, 26-10).
+// Cuando el programa tenga postularUrl, el botón de la ficha va directo a la plataforma y esta página no se usa.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { programas } from '../../../data/programas.js';
+import { whatsapp } from '../../../data/sitio.js';
+export function getStaticPaths() {
+  return programas.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+---
+<Base title={`Postulación: ${p.titulo}`} seccion="formacion">
+  <Breadcrumb items={[{ label: 'Formación', href: '/formacion/' }, { label: `Postulación · ${p.titulo}` }]} />
+  <div class="container mb-80">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="uc-tag mb-16">{p.tipo}</span>
+        <h1 class="mt-16 mb-24">Prontamente habilitaremos la postulación 2027</h1>
+        <p class="p-size--lg">La postulación al <strong>{p.titulo}</strong> para su versión 2027 todavía no está abierta. Déjanos tus datos y te avisamos apenas se habilite.</p>
+        <div class="cgc-acciones-fila mt-32">
+          <a href={`/formacion/mas-informacion/?programa=${p.slug}`} class="uc-btn btn-secondary cgc-btn-auto">Quiero que me avisen</a>
+          <a href={whatsapp.url(p.whatsappTema)} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> Escríbenos por WhatsApp<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          <a href={`/formacion/${p.slug}/`} class="uc-btn btn-inline"><i class="uc-icon">keyboard_arrow_left</i> Volver al programa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>

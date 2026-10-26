@@ -5,10 +5,12 @@ import PageTitle from '../../components/PageTitle.astro';
 import CardDocumento from '../../components/CardDocumento.astro';
 import Pagination from '../../components/Pagination.astro';
 import { articulos } from '../../data/contenidos.js';
+import { chipsAnio } from '../../data/filtros.js';
+const { chips, valorDe } = chipsAnio(articulos);
 ---
 <Base title="Artículos y Working Papers" seccion="investigacion">
   <Breadcrumb items={[{ label: 'Investigación', href: '/investigacion/' }, { label: 'Artículos y Working Papers' }]} />
-  <PageTitle titulo="Artículos y Working Papers" bajada="[Texto breve explicativo de la sección — lo escribe el Centro]" />
+  <PageTitle titulo="Artículos y Working Papers" bajada="Artículos académicos y documentos de trabajo sobre gobierno corporativo de profesores afiliados al Centro y otros autores, con su abstract." />
   <div class="container mb-80" data-filtro="docs">
     <div class="uc-filters mb-16">
       <div class="uc-form-group no-margin cgc-search-field">
@@ -19,16 +21,14 @@ import { articulos } from '../../data/contenidos.js';
         <div class="cgc-chips" role="group" aria-label="Filtrar por año" data-chips="docs" data-atributo="anio">
           <span class="cgc-chips_label">Año:</span>
           <button type="button" class="cgc-chip is-active" aria-pressed="true" data-valor="*">Todos</button>
-          <button type="button" class="cgc-chip" aria-pressed="false" data-valor="2025">2025</button>
-          <button type="button" class="cgc-chip" aria-pressed="false" data-valor="2024">2024</button>
-          <button type="button" class="cgc-chip" aria-pressed="false" data-valor="2023">2023</button>
+          {chips.map((c) => <button type="button" class="cgc-chip" aria-pressed="false" data-valor={c.valor}>{c.label}</button>)}
         </div>
       </div>
     </div>
     <p class="text-size--sm text-color--gray mb-24" data-contador="docs" data-total={articulos.length}>{articulos.length} documentos</p>
     <h2 class="uc-sr-only">Artículos y working papers publicados</h2>
     <div class="row" data-paginar="3">
-      {articulos.map((d, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={d.anio} data-texto={`${d.titulo} ${d.autores}`.toLowerCase()}><CardDocumento {...d} /></div>)}
+      {articulos.map((d, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={valorDe(d.anio)} data-texto={`${d.titulo} ${d.autores}`.toLowerCase()}><CardDocumento {...d} /></div>)}
     </div>
     <Pagination total={articulos.length} porPagina={3} />
   </div>

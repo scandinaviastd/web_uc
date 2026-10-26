@@ -135,7 +135,7 @@
   var tipoActivo = '*';
   document.addEventListener('cgc:filtro', function (ev) { if (ev.detail.grupo === 'eventos') tipoActivo = ev.detail.valor; });
 
-  // Calendario principal: siempre visible, todos los eventos, navegación libre; cada evento enlaza a su card
+  // Calendario principal: siempre visible, todos los eventos, navegación libre; cada evento abre su página
   var cal = $('[data-calendario]');
   if (cal) {
     var eventos = JSON.parse(cal.getAttribute('data-eventos'));
@@ -150,30 +150,16 @@
           var evs = x.enMes ? delMes.filter(function (e) { return e.fecha === x.iso; }) : [];
           var pasado = evs.length && evs.every(function (e) { return e.pasado; });
           var num = evs.length
-            ? '<a class="cgc-cal-num cgc-cal-num--link" href="#' + evs[0].id + '" aria-label="' + x.d.getDate() + ' de ' + MESES[mes] + ': ' + esc(evs.map(function (e) { return e.titulo; }).join(' / ')) + '">' + x.d.getDate() + '</a>'
+            ? '<a class="cgc-cal-num cgc-cal-num--link" href="' + evs[0].url + '" aria-label="' + x.d.getDate() + ' de ' + MESES[mes] + ': ' + esc(evs.map(function (e) { return e.titulo; }).join(' / ')) + '">' + x.d.getDate() + '</a>'
             : '<span class="cgc-cal-num">' + x.d.getDate() + '</span>';
           return '<div class="cgc-cal-dia' + (x.enMes ? '' : ' is-fuera') + (evs.length ? ' is-con-evento' : '') + (pasado ? ' is-pasado' : '') + '" role="gridcell">' + num +
             evs.map(function (e) {
               var h = e.hora && e.hora.indexOf(':') > -1 ? e.hora.split(' ')[0] + ' · ' : '';
-              return '<a href="#' + e.id + '" class="cgc-cal-evento d-none d-md-block' + (e.pasado ? ' is-pasado' : '') + '" tabindex="-1"><strong>' + esc(h + e.tipo) + '</strong><span>' + esc(e.titulo) + '</span></a>';
+              return '<a href="' + e.url + '" class="cgc-cal-evento d-none d-md-block' + (e.pasado ? ' is-pasado' : '') + '" tabindex="-1"><strong>' + esc(h + e.tipo) + '</strong><span>' + esc(e.titulo) + '</span></a>';
             }).join('') + '</div>';
         }).join('') + '</div>';
       }).join('');
     };
-    // Al ir a un evento desde el calendario, su card debe quedar visible: quita el filtro de fecha de su sección
-    // si lo oculta y salta a la página donde está
-    cal.addEventListener('click', function (ev) {
-      var a = ev.target.closest('a[href^="#evento-"]'); if (!a) return;
-      var destino = document.getElementById(a.getAttribute('href').slice(1)); if (!destino) return;
-      var seccion = destino.closest('[data-seccion-eventos]');
-      if (destino.classList.contains('is-fuera-rango') && seccion) { var limpiar = $('[data-ff-activo] [data-ff-limpiar]', seccion); if (limpiar) limpiar.click(); }
-      var lista = destino.closest('[data-paginar]');
-      if (lista && destino.classList.contains('is-otra-pagina')) {
-        var visibles = $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto') && !it.classList.contains('is-fuera-rango'); });
-        var i = visibles.indexOf(destino);
-        if (i > -1) paginar(lista.parentElement, Math.floor(i / +lista.getAttribute('data-paginar')) + 1);
-      }
-    });
     $('[data-cal-prev]', cal).addEventListener('click', function () { mes--; if (mes < 0) { mes = 11; anio--; } pintar(); });
     $('[data-cal-next]', cal).addEventListener('click', function () { mes++; if (mes > 11) { mes = 0; anio++; } pintar(); });
     document.addEventListener('cgc:filtro', function (ev) { if (ev.detail.grupo === 'eventos') pintar(); });
@@ -191,7 +177,7 @@
     var fechas = JSON.parse(ff.getAttribute('data-fechas'));
     // Abre en el mes más cercano a hoy: el primero de los próximos o el último de los realizados
     var orden = fechas.slice().sort();
-    var base = ff.getAttribute('data-filtro-fecha') === 'realizados' ? orden[orden.length - 1] : orden[0];
+    var base = (ff.getAttribute('data-filtro-fecha') === 'realizados' ? orden[orden.length - 1] : orden[0]) || new Date().toISOString().slice(0, 10);
     var anio = +base.slice(0, 4), mes = +base.slice(5, 7) - 1, filtro = null; // filtro: {tipo:'dia'|'mes', valor}
     var fechasVisibles = function () {
       return $$('[data-item]', lista).filter(function (it) { return !it.classList.contains('is-oculto'); }).map(function (it) { return it.getAttribute('data-fecha'); });
@@ -225,6 +211,8 @@
         estado.textContent = n + (filtro.tipo === 'dia' ? ' el ' : ' en ') + (filtro.tipo === 'dia' ? txt : txt.toLowerCase());
         activoTexto.textContent = txt; activo.hidden = false;
       }
+      // La lista muestra solo los N más cercanos a hoy (data-limite); con un filtro de fecha, todos los que coinciden
+      if (lista.hasAttribute('data-limite')) lista.setAttribute('data-paginar', filtro ? '999' : lista.getAttribute('data-limite'));
       actualizarVacios(seccion);
       paginar(seccion, 1);
     };
@@ -290,6 +278,8 @@
       var ok = $('[data-form-ok]', f);
       if (invalidos.length) { if (ok) ok.classList.add('cgc-hidden'); invalidos[0].focus(); return; }
       if (ok) { ok.classList.remove('cgc-hidden'); ok.setAttribute('role', 'status'); ok.setAttribute('tabindex', '-1'); ok.focus(); }
+      // Brochure: enviados los datos, el botón de envío da paso a la descarga
+      var enviar = $('[data-form-enviar]', f); if (enviar) enviar.hidden = true;
       f.reset(); if (sel) { if (q && $('option[value="' + q + '"]', sel)) sel.value = q; sync(); }
     });
   });
@@ -348,9 +338,21 @@
       } else {
         conteo.textContent = res.length + ' resultado' + (res.length === 1 ? '' : 's') + ' para «' + term + '»';
         var grupos = ['Todo'].concat(['Programas', 'Eventos', 'Estudios y papers', 'Prensa'].filter(function (g) { return res.some(function (r) { return r.grupo === g; }); }));
+        var cards = $('[data-resultados-cards]', bus);
+        // Programas y eventos: card completa con foto (misma estructura que Card/Programa y Card/Noticia)
+        var card = function (r) {
+          return '<div class="col-md-6 col-lg-4 mb-32"><article class="uc-card card-height--same cgc-card">' +
+            '<img src="' + r.card.imagen + '" class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />' +
+            '<div class="uc-card_body"><div class="mb-12"><span class="uc-tag">' + esc2(r.card.tag) + '</span></div>' +
+            '<h3 class="h5 cgc-clamp-3"><a href="' + r.url + '" class="cgc-card-link">' + marcar(r.titulo, palabras) + '</a></h3>' +
+            (r.card.meta.length ? '<ul class="cgc-meta mt-4">' + r.card.meta.map(function (m) { return '<li><i class="uc-icon" aria-hidden="true">' + m[0] + '</i>' + esc2(m[1]) + '</li>'; }).join('') + '</ul>' : '') +
+            '<div class="mt-auto pt-16"><span class="uc-btn btn-inline">' + r.card.cta + ' <i class="uc-icon">keyboard_arrow_right</i></span></div></div></article></div>';
+        };
         var render = function (g) {
           $$('.cgc-tab', tabs).forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-g') === g)); });
-          lista.innerHTML = res.filter(function (r) { return g === 'Todo' || r.grupo === g; }).map(function (r) {
+          var sel = res.filter(function (r) { return g === 'Todo' || r.grupo === g; });
+          cards.innerHTML = sel.filter(function (r) { return r.card; }).map(card).join('');
+          lista.innerHTML = sel.filter(function (r) { return !r.card; }).map(function (r) {
             return '<li><span class="uc-subtitle d-block mb-4">' + esc2(r.tipo) + '</span><a href="' + r.url + '">' + marcar(r.titulo, palabras) + '</a><p class="mb-4 mt-4">' + marcar(r.extracto, palabras) + '</p><span class="cgc-url">' + r.url + '</span></li>';
           }).join('');
         };

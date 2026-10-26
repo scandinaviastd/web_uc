@@ -80,13 +80,13 @@
 .cgc-anclas_lista { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap; }
 html { scroll-behavior: smooth; }
 [data-ancla-seccion] { scroll-margin-top: 72px; }
-.cgc-origen { max-width: 960px; margin: 0 auto; }
+.cgc-origen { max-width: 1140px; margin: 0 auto; }
 .cgc-origen_fuentes { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
 .cgc-origen_card { display: inline-flex; }
-.cgc-origen_card .uc-card_body { padding: 16px 24px; }
-.cgc-origen_mas { font-size: 24px; color: var(--cgc-gris); }
-.cgc-origen_linea { width: 2px; height: 32px; background: var(--cgc-gris-claro); margin: 8px auto; }
-.cgc-origen_centro { display: inline-block; background: var(--cgc-azul); color: #fff; border-radius: 4px; padding: 20px 40px; }
+.cgc-origen_card .uc-card_body { padding: 20px 32px; }
+.cgc-origen_mas { font-size: 32px; color: var(--cgc-gris); }
+.cgc-origen_linea { width: 2px; height: 40px; background: var(--cgc-gris-claro); margin: 12px auto; }
+.cgc-origen_centro { display: inline-block; background: var(--cgc-azul); color: #fff; border-radius: 4px; padding: 28px 56px; }
 .cgc-icon-bubble { display: inline-flex; width: 48px; height: 48px; border-radius: 50%; background: #e5f3ff; color: var(--cgc-celeste); align-items: center; justify-content: center; }
 
 /* ---------- Ficha de programa ---------- */
@@ -94,6 +94,9 @@ html { scroll-behavior: smooth; }
 .cgc-ficha-frase { max-width: 760px; opacity: .9; }
 .cgc-tag-claro { background: #fff; color: var(--cgc-azul); }
 .cgc-tag-estado { background: #00aa00; color: #000; } /* verde del Kit (--success) con texto oscuro: 6,75:1 (blanco daba 3,1:1) */
+/* Estado calculado por fecha (R-03): solo «Matrículas abiertas» va en verde */
+.cgc-tag-estado[data-estado="Próximamente"], .cgc-tag-estado[data-estado="Programa a medida"], .cgc-tag-estado[data-estado="Próximo"] { background: #e5f3ff; color: var(--cgc-azul); }
+.cgc-tag-estado[data-estado="Cerrado"], .cgc-tag-estado[data-estado="Realizado"] { background: #e9e9e9; color: #4d4d4d; }
 .cgc-datos-clave-wrap { margin-top: -64px; position: relative; z-index: 5; }
 .cgc-datos { gap: 16px 0; }
 .cgc-dato { display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 0; }
@@ -238,3 +241,23 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 
 /* Avatar con iniciales: el Kit usa var(--primaryblue), que no está definida en su CSS → fondo azul UC explícito */
 .avatar.cgc-avatar-card:not(.avatar--bg), .avatar.cgc-avatar-sm:not(.avatar--bg) { background-color: var(--cgc-azul); color: #fff; }
+
+/* ---------- 26-10: ajustes tras la revisión del Centro ---------- */
+.cgc-icon-bubble--lg { width: 80px; height: 80px; }
+/* Card/Programa destacada (Diplomado e In Company a todo el ancho) */
+.cgc-card-destacada { overflow: hidden; }
+.cgc-card-destacada_img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.cgc-card-destacada .uc-card_body--lg { padding: 40px; }
+/* Fechas 2027 y condiciones de descuentos en la ficha */
+.cgc-fechas, .cgc-condiciones { padding-left: 20px; margin-bottom: 0; }
+.cgc-fechas li { margin-bottom: 8px; }
+.cgc-condiciones li { margin-bottom: 4px; }
+.cgc-acciones-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+/* Abstract plegable en Artículos y WP */
+.cgc-abstract summary { list-style: none; cursor: pointer; padding: 0; position: relative; z-index: 2; }
+.cgc-abstract summary::-webkit-details-marker { display: none; }
+.cgc-abstract summary::after { content: "expand_more"; font-family: "Material Icons"; font-size: 20px; margin-left: 4px; }
+.cgc-abstract[open] summary::after { content: "expand_less"; }
+/* Página de evento */
+.cgc-evento-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
+

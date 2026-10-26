@@ -1,13 +1,15 @@
 ---
 // Calendario principal de Extensión (decisión A3 del 29-09): siempre visible, con todos los eventos
-// (realizados y próximos) y navegación libre entre meses. Cada evento enlaza a su card más abajo.
+// (realizados y próximos) y navegación libre entre meses. Clic en un evento: abre su página (26-10).
+// Los eventos sin fecha exacta no entran al calendario (sí a la lista de próximos).
 // Lo pinta cgc.js con los datos de data-eventos; responde al filtro de tipo (chips).
-import { eventosProximos, eventosRealizados } from '../data/contenidos.js';
+import { eventos } from '../data/contenidos.js';
 const hoy = new Date().toISOString().slice(0, 10);
-const todos = [...eventosRealizados, ...eventosProximos].map(({ id, fecha, tipo, titulo, hora }) => ({ id, fecha, tipo, titulo, hora: hora ?? '', pasado: fecha < hoy }));
-// Parte en el mes actual si tiene eventos; si no, en el mes del próximo evento.
+const todos = eventos.filter((e) => e.fecha).map(({ fecha, tipo, titulo, hora, url }) => ({ fecha, tipo, titulo, url, hora: hora ?? '', pasado: fecha < hoy }));
+// Parte en el mes actual si tiene eventos; si no, en el mes del próximo evento con fecha.
 const mesActual = hoy.slice(0, 7);
-const inicio = todos.some((e) => e.fecha.startsWith(mesActual)) ? mesActual : (eventosProximos[0]?.fecha.slice(0, 7) ?? mesActual);
+const proximo = todos.filter((e) => !e.pasado).sort((a, b) => a.fecha.localeCompare(b.fecha))[0];
+const inicio = todos.some((e) => e.fecha.startsWith(mesActual)) ? mesActual : (proximo?.fecha.slice(0, 7) ?? mesActual);
 ---
 <div class="cgc-calendario" data-calendario data-eventos={JSON.stringify(todos)} data-inicio={inicio}>
   <div class="d-flex align-items-center flex-wrap mb-16 cgc-calendario_nav">
