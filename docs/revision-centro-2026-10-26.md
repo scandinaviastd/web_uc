@@ -57,4 +57,9 @@ Cursos» y «Descuentos en programas»).
 ## Pendiente nuestro
 
 - Portadas de 6 estudios (ver `docs/imagenes-prototipo.md`).
-- Espejo en Figma de estos cambios.
+- Vistas móviles de Sprint 4.
+
+## Dónde quedó
+
+- Prototipo publicado (26-10): https://prototipo-jade-sigma.vercel.app
+- Figma: página «Sprint 4 Desktop» (23 pantallas, guía arriba y anotaciones: verde aplicado, rosado por confirmar, rojo pendiente del Centro).
