@@ -1,0 +1,177 @@
+---
+// Ficha de programa · propuesta v5 (sub-design system «Dirección»). Plantilla de todas las fichas (single-programa.php).
+// Espejo: Figma UC_CGC, «Ficha Diplomado v5 · propuesta Dirección» (466:1222) y su versión móvil (469:1698).
+// Portada en modo Noche con datos clave y un solo amarillo («Postular») · Sobre el programa + contacto · Jefe de programa ·
+// Módulos en modo Noche · Valor y descuentos · Lo que falta del Centro (P1-05). Sin acordeones (minuta 07-09 §3).
+import ModalBrochure from '../ModalBrochure.astro';
+import Etiqueta from './Etiqueta.astro';
+import Barra from './Barra.astro';
+import Cifra from './Cifra.astro';
+import Retrato from './Retrato.astro';
+import { jefePrograma, coordinacion, condicionesDescuentos, PENDIENTE } from '../../data/programas.js';
+import { whatsapp, telHref } from '../../data/sitio.js';
+import { portadaV5, titularModulos, etiquetaEstado } from '../../data/v5-ficha.js';
+interface Props { p: any }
+const { p } = Astro.props;
+
+const v5 = portadaV5[p.slug] ?? {};
+const [linea1, linea2] = v5.titular ?? [null, p.titulo];
+const foto = v5.foto ?? p.imagen;
+const anio = p.versiones?.[0]?.inicio.slice(0, 4);
+const datos = [
+  ['Fechas', p.fechas],
+  ['Horario', p.horario.replace('horario por confirmar', 'por confirmar')],
+  ['Modalidad', p.modalidad],
+  ['Valor', p.valor],
+];
+// «Postular» lleva a la postulación 2027; si aún no se habilita, a la página que lo avisa (P1-03, 26-10).
+const postular = p.postularUrl ? { href: p.postularUrl, externo: true } : { href: `/formacion/${p.slug}/postular/`, externo: false };
+const c = p.coordinacion ?? coordinacion;
+const [cNombre, cCargo] = c.persona.split(' · ');
+const modulos: string[] = p.detalle.find((d: any) => d.modulos)?.modulos ?? [];
+const [modA, modB] = titularModulos(modulos.length, p.tipo);
+// Campos ya entregados por el Centro (p. ej. el equipo docente de Empresas familiares) y los que faltan (P1-05).
+const extras = p.detalle.filter((d: any) => !d.modulos && d.texto && d.texto !== PENDIENTE);
+const pendientes = p.detalle.filter((d: any) => d.texto === PENDIENTE).map((d: any) => d.titulo);
+const pct = (v: string) => v.replace(/\s*%$/, ' %');
+---
+<section class="cgc-d-noche cgc-v5f-portada" aria-labelledby="ficha-titulo">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="cgc-v5f-texto">
+          <div class="cgc-v5f-etiquetas">
+            <Etiqueta texto={p.tipo} />
+            <Etiqueta texto={etiquetaEstado(p)} estilo="cian" />
+          </div>
+          <h1 id="ficha-titulo" class="cgc-d-display-l cgc-v5f-titular">{linea1 && <span class="d-block">{linea1}</span>}<strong class="d-block">{linea2}</strong></h1>
+          <p class="p-size--lg cgc-v5f-frase">{p.frase}</p>
+          <!-- Datos del Calendario Académico 2027 del Centro; horario por confirmar (N-2). -->
+          <dl class="cgc-v5f-datos">
+            {datos.map(([k, v]) => <div class="cgc-v5f-dato"><dt class="cgc-d-ante">{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+          <div class="cgc-v5f-acciones">
+            {postular.externo
+              ? <a href={postular.href} class="uc-btn btn-cta cgc-btn-auto" target="_blank" rel="noopener">Postular<span class="uc-sr-only"> (abre en pestaña nueva)</span></a>
+              : <a href={postular.href} class="uc-btn btn-cta cgc-btn-auto">Postular</a>}
+            <a href={`/formacion/mas-informacion/?programa=${p.slug}`} class="cgc-d-enlace">Más información →</a>
+            <button type="button" class="cgc-d-enlace cgc-v5f-boton-enlace" data-mtarget="modalBrochure">Descargar brochure →</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="cgc-v5f-foto">
+          <img src={foto} alt={v5.alt ?? ''} width="1600" height="1066" style={v5.foco ? `object-position: ${v5.foco}` : undefined} />
+        </div>
+      </div>
+    </div>
+    <Barra indice={1} class="cgc-v5f-barra" />
+  </div>
+</section>
+
+<section class="cgc-v5f-sobre" aria-labelledby="sobre-titulo">
+  <div class="container">
+    <div class="row cgc-row-gap">
+      <div class="col-lg-8">
+        <div class="cgc-v5f-contenido">
+          <div class="cgc-v5f-bloque">
+            <h2 id="sobre-titulo" class="h2 cgc-v5f-h2">Sobre el programa</h2>
+            <p class="p-size--lg cgc-v5f-cuerpo mb-0">{p.descripcion}</p>
+          </div>
+          <div class="row cgc-v5f-dos">
+            <div class="col-md-6 cgc-v5f-bloque">
+              <h3 class="h4 cgc-v5f-h3">Dirigido a</h3>
+              <p class="cgc-v5f-texto-sec mb-0">{p.dirigido}</p>
+            </div>
+            <div class="col-md-6 cgc-v5f-bloque">
+              <h3 class="h4 cgc-v5f-h3">{p.incluye ? 'Incluye' : 'Requisitos de ingreso'}</h3>
+              <p class="cgc-v5f-texto-sec mb-0">{p.incluye ?? p.requisitos}</p>
+            </div>
+          </div>
+          <div class="cgc-v5f-bloque">
+            <h3 class="h4 cgc-v5f-h3">{anio ? `Fechas ${anio}` : 'Fechas'}</h3>
+            {p.calendario.length
+              ? <p class="cgc-v5f-texto-sec mb-0">{p.calendario.map((v: any, i: number) => <>{i > 0 && <br />}{v.nombre && <strong>{v.nombre}: </strong>}{v.texto}.</>)} Horario de cada sesión por confirmar.</p>
+              : <p class="cgc-v5f-texto-sec mb-0">Fecha por confirmar. Déjanos tus datos en «Más información» y te avisamos cuando se abra la postulación.</p>}
+          </div>
+          {extras.map((d: any) => (
+            <div class="cgc-v5f-bloque">
+              <h3 class="h4 cgc-v5f-h3">{d.titulo}</h3>
+              <p class="cgc-v5f-texto-sec mb-0">{d.texto}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <aside class="col-lg-4" aria-labelledby="contacto-titulo">
+        <div class="cgc-v5f-contacto">
+          <h2 id="contacto-titulo" class="cgc-d-ante cgc-d-texto-marca">{c.titulo}</h2>
+          <p class="cgc-v5f-contacto-nombre">{cNombre}</p>
+          {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
+          <Barra />
+          <a href={whatsapp.url(p.whatsappTema)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          {c.telefono && <a href={telHref(c.telefono)} class="cgc-v5f-telefono">{c.telefono}</a>}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{!p.sinJefe && (
+  <section class="cgc-d-suave cgc-v5f-jefe" aria-labelledby="jefe-titulo">
+    <div class="container">
+      <div class="cgc-v5f-jefe-fila">
+        <Retrato nombre={jefePrograma.nombre} cargo="Jefe de programa" class="cgc-v5f-jefe-retrato" />
+        <div class="cgc-v5f-jefe-texto">
+          <p class="cgc-d-ante cgc-d-texto-marca cgc-v5f-solo-escritorio" aria-hidden="true">Jefe de programa</p>
+          <h2 id="jefe-titulo" class="h2 cgc-v5f-h2 cgc-v5f-jefe-nombre"><span class="uc-sr-only">Jefe de programa: </span>{jefePrograma.nombre}</h2>
+          <p class="cgc-v5f-jefe-cargo">{jefePrograma.cargo}</p>
+          <p class="p-size--lg cgc-v5f-cuerpo mb-0">{jefePrograma.resena}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{modulos.length > 0 && (
+  <section class="cgc-d-noche cgc-v5f-modulos" aria-labelledby="modulos-titulo">
+    <div class="container">
+      <h2 id="modulos-titulo" class="cgc-d-display-l cgc-v5f-titular"><span class="d-block">{modA}</span><strong class="d-block">{modB}</strong></h2>
+      <ol class="cgc-v5f-lista-modulos">
+        {modulos.map((m, i) => <li><span class="cgc-d-indice" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span class="cgc-v5f-modulo">{m}</span></li>)}
+      </ol>
+    </div>
+  </section>
+)}
+
+{p.descuentos && (
+  <section class="cgc-v5f-valor-seccion" aria-labelledby="valor-titulo">
+    <div class="container">
+      <div class="cgc-v5f-valor">
+        <h2 id="valor-titulo" class="h2 cgc-v5f-h2 cgc-v5f-valor-titulo">Valor y descuentos</h2>
+        <Cifra cifra={p.valor} etiqueta={`Valor del programa · oferta ${anio ?? '2027'}`} fondo="marca" class="cgc-v5f-valor-cifra" />
+        <table class="cgc-v5f-descuentos">
+          <caption class="uc-sr-only">Descuentos sobre el valor del programa</caption>
+          <tbody>
+            {p.descuentos.map(([k, v]: string[]) => <tr><th scope="row">{k}</th><td>{pct(v)}</td></tr>)}
+          </tbody>
+        </table>
+        <ul class="cgc-v5f-condiciones">
+          {condicionesDescuentos.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+)}
+
+{pendientes.length > 0 && (
+  <section class="cgc-d-suave cgc-v5f-pendientes" aria-labelledby="pendientes-titulo">
+    <!-- Pendiente del Centro (P1-05): contenidos de la ficha. -->
+    <div class="container">
+      <h2 id="pendientes-titulo" class="cgc-d-ante cgc-d-texto-marca">Por completar con el Centro</h2>
+      <p class="cgc-v5f-pendientes-lista">{pendientes.join(' · ')}</p>
+      <p class="cgc-v5f-texto-sec mb-0">Se muestran en la ficha cuando el Centro los entregue; mientras tanto no se publican secciones vacías.</p>
+    </div>
+  </section>
+)}
+
+<ModalBrochure programa={p.titulo} slug={p.slug} />

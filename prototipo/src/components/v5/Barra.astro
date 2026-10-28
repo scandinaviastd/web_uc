@@ -1,0 +1,7 @@
+---
+// Barra de dirección (manual de la submarca): barra gris con segmento azul. Decorativa.
+// Sin índice = firma de pie de sección (segmento al extremo derecho). Índice 1–4 = en qué sección de cuatro está el lector.
+interface Props { indice?: 1 | 2 | 3 | 4; class?: string }
+const { indice, class: clase } = Astro.props;
+---
+<div class:list={['cgc-d-barra', clase]} data-indice={indice} aria-hidden="true"></div>

@@ -1,0 +1,43 @@
+---
+// Tarjeta de programa (Formación). Curso: vertical, en fila de 3 (V-09). Diplomado e In Company: horizontal a todo el ancho.
+// El bloque azul 2727 lleva solo texto grande en blanco (4,1:1, AA para texto grande). Toda la tarjeta es clic (enlace en el título).
+import Etiqueta from './Etiqueta.astro';
+import Barra from './Barra.astro';
+interface Props {
+  titulo: string; tipo: string; meta: string; href: string;
+  horizontal?: boolean; anio?: string; descripcion?: string;
+  whatsapp?: string; nivel?: 2 | 3; class?: string;
+}
+const { titulo, tipo, meta, href, horizontal = false, anio = '2027', descripcion, whatsapp, nivel = 3, class: clase } = Astro.props;
+const Titulo = `h${nivel}`;
+---
+{horizontal ? (
+  <article class:list={['cgc-d-tarjeta', 'cgc-d-tarjeta--horizontal', clase]}>
+    <div class="cgc-d-tarjeta_bloque">
+      <Etiqueta texto={tipo} />
+      <Titulo class="h1 color-white mb-0 cgc-d-tarjeta_titulo-grande"><a href={href} class="cgc-d-tarjeta_link">{titulo}</a></Titulo>
+    </div>
+    <div class="cgc-d-tarjeta_cuerpo">
+      {descripcion && <p class="cgc-d-tarjeta_descripcion">{descripcion}</p>}
+      <p class="cgc-d-tarjeta_meta">{meta}</p>
+      <Barra />
+      <div class="cgc-d-tarjeta_acciones">
+        <span class="cgc-d-enlace" aria-hidden="true">Ver programa →</span>
+        {whatsapp && <a href={whatsapp} class="cgc-d-enlace" target="_blank" rel="noopener">Conversemos por WhatsApp<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>}
+      </div>
+    </div>
+  </article>
+) : (
+  <article class:list={['cgc-d-tarjeta', clase]}>
+    <div class="cgc-d-tarjeta_bloque">
+      <Etiqueta texto={tipo} />
+      <span class="cgc-d-display-l" aria-hidden="true">{anio}</span>
+    </div>
+    <div class="cgc-d-tarjeta_cuerpo">
+      <Titulo class="cgc-d-tarjeta_titulo"><a href={href}>{titulo}</a></Titulo>
+      <p class="cgc-d-tarjeta_meta">{meta}</p>
+      <Barra />
+      <span class="cgc-d-enlace" aria-hidden="true">Ver programa →</span>
+    </div>
+  </article>
+)}

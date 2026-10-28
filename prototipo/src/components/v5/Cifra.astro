@@ -1,0 +1,10 @@
+---
+// Cifra protagonista (brochure 2026: +45 académicos, +200 personas…). El tamaño está fuera de la escala del Kit: a validar con la DED.
+interface Props { cifra: string; etiqueta: string; fondo?: 'claro' | 'marca' | 'noche'; class?: string }
+const { cifra, etiqueta, fondo = 'claro', class: clase } = Astro.props;
+---
+<div class:list={['cgc-d-cifra-bloque', clase]} data-fondo={fondo}>
+  <span class="cgc-d-segmento" aria-hidden="true"></span>
+  <p class="cgc-d-cifra">{cifra}</p>
+  <p class="cgc-d-cifra-bloque_etiqueta">{etiqueta}</p>
+</div>

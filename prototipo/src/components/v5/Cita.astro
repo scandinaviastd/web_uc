@@ -1,0 +1,18 @@
+---
+// Cita con la comilla gigante de Full Funnel. La comilla es decorativa; la cita va en <blockquote>.
+import { fotoDe } from '../../data/contenidos.js';
+interface Props { cita: string; nombre: string; cargo: string; fondo?: 'claro' | 'marca' | 'noche'; tamano?: 'm' | 's'; class?: string }
+const { cita, nombre, cargo, fondo = 'claro', tamano = 'm', class: clase } = Astro.props;
+const foto = fotoDe(nombre);
+---
+<figure class:list={['cgc-d-cita-bloque', clase]} data-fondo={fondo}>
+  <span class="cgc-d-cita-bloque_comilla" aria-hidden="true">“</span>
+  <blockquote class:list={['cgc-d-cita', { 'cgc-d-cita--s': tamano === 's' }]}><p class="mb-0">{cita}</p></blockquote>
+  <figcaption class="cgc-d-cita-bloque_firma">
+    {foto && <img src={foto} alt="" class="cgc-d-cita-bloque_foto" width="64" height="64" loading="lazy" />}
+    <span class="cgc-d-cita-bloque_datos">
+      <cite class="cgc-d-cita-bloque_nombre">{nombre}</cite>
+      <span class="cgc-d-cita-bloque_cargo">{cargo}</span>
+    </span>
+  </figcaption>
+</figure>

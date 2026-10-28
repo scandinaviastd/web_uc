@@ -1,0 +1,142 @@
+/*
+ * v5-nosotros.css — Nosotros, propuesta v5 (sub-design system «Dirección»). Figma UC_CGC 464:826 / 467:1404.
+ * Usa los tokens y componentes de direccion.css. Breakpoints de Bootstrap (767.98 / 991.98 / 1199.98).
+ */
+
+/* ---------- Ritmo de secciones ---------- */
+.v5-nos-seccion { padding: 96px 0; }
+.v5-nos-encabezado { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; max-width: 1000px; }
+.v5-nos-encabezado h2 { color: var(--cgc-texto-principal); }
+.v5-nos-indice { display: flex; align-items: center; gap: 16px; }
+.v5-nos-bajada { font-size: 18px; line-height: 32px; letter-spacing: .5px; max-width: 720px; }
+.v5-nos-acento { position: absolute; display: block; background: var(--cgc-acento-cian); z-index: 2; }
+
+/* ---------- Portada ---------- */
+.v5-nos-portada { padding: 48px 0 72px; }
+.v5-nos-portada_texto { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; max-width: 700px; }
+.v5-nos-portada h1 { color: var(--cgc-texto-principal); }
+.v5-nos-lead { font-size: 18px; line-height: 32px; letter-spacing: .5px; max-width: 600px; color: var(--cgc-texto-principal); }
+.v5-nos-cuerpo { font-size: 16px; line-height: 24px; letter-spacing: .5px; max-width: 600px; }
+.v5-nos-portada_media { position: relative; }
+.v5-nos-portada_foto { display: block; width: 100%; object-fit: cover; }
+.v5-nos-portada_cifra { position: absolute; z-index: 1; }
+@media (min-width: 992px) {
+  .v5-nos-portada_media { width: 100%; max-width: 480px; height: 520px; margin-left: auto; }
+  .v5-nos-portada_foto { height: 100%; }
+  .v5-nos-portada_acento { top: -24px; right: -24px; width: 48px; height: 48px; }
+  .v5-nos-portada_cifra { left: -80px; bottom: -56px; width: 280px; }
+}
+/* 992–1199: la columna de texto llena su ancho; el bloque se mete menos para no pisar el párrafo */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .v5-nos-portada_cifra { left: -24px; width: 248px; }
+}
+@media (max-width: 991.98px) {
+  .v5-nos-portada_media { margin-top: 32px; padding: 0 0 60px 24px; }
+  .v5-nos-portada_foto { height: 400px; }
+  .v5-nos-portada_acento { top: -12px; right: 0; width: 32px; height: 32px; }
+  .v5-nos-portada_cifra { left: 0; bottom: 0; width: 240px; }
+}
+
+/* ---------- 01 · El origen del Centro ---------- */
+.v5-nos-origen { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.v5-nos-origen_caja { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 100%; padding: 24px; background: var(--cgc-superficie-base); border: 1px solid var(--cgc-borde-sutil); }
+.v5-nos-origen_nombre { display: block; margin: 0; color: var(--cgc-texto-principal); }
+.v5-nos-origen_caja--centro { background: var(--cgc-superficie-marca); border-color: var(--cgc-superficie-marca); }
+.v5-nos-origen_caja--centro .cgc-d-ante { color: var(--cgc-azul-oscuro); }      /* 4,5:1 sobre 2727 */
+.v5-nos-origen_caja--centro .v5-nos-origen_nombre { color: var(--cgc-blanco); }  /* texto grande: 4,1:1 */
+.v5-nos-origen_mas { font-size: 20px; line-height: 26px; font-weight: 700; color: var(--cgc-texto-marca); }
+.v5-nos-origen_conector { display: block; width: 6px; height: 40px; background: var(--cgc-barra-segmento); }
+@media (min-width: 1200px) {
+  .v5-nos-origen { flex-direction: row; gap: 24px; }
+  .v5-nos-origen_caja { width: auto; padding: 32px; }
+  .v5-nos-origen_caja .v5-nos-origen_nombre { width: 220px; }
+  .v5-nos-origen_caja--centro .v5-nos-origen_nombre { width: 300px; }
+  .v5-nos-origen_mas { font-size: 32px; line-height: 36px; font-weight: 500; }
+  .v5-nos-origen_conector { width: 96px; height: 6px; }
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .v5-nos-origen { max-width: 560px; }
+}
+@media (max-width: 991.98px) {
+  .v5-nos-origen_caja { gap: 6px; }
+  .v5-nos-origen_nombre.h3 { font-size: 18px; line-height: 22px; letter-spacing: .2px; } /* Mobile/h4 del Kit */
+}
+
+/* ---------- 02 · Lo que hacemos (Noche) ---------- */
+.v5-nos-pilares { row-gap: 32px; }
+.v5-nos-pilar { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 360px; }
+.v5-nos-pilar_titulo { margin: 0; color: var(--cgc-texto-principal); }
+.v5-nos-pilar_texto { font-size: 18px; line-height: 32px; letter-spacing: .5px; }
+.v5-nos-pilares_barra { margin-top: 48px; }
+@media (min-width: 992px) {
+  .v5-nos-pilares { margin-left: -28px; margin-right: -28px; }
+  .v5-nos-pilares > [class*="col-"] { padding-left: 28px; padding-right: 28px; }
+}
+@media (max-width: 767.98px) {
+  .v5-nos-pilar { gap: 10px; max-width: none; }
+  .v5-nos-pilar_texto { font-size: 16px; line-height: 26px; letter-spacing: .1px; }
+}
+
+/* ---------- 03 · Directorio ---------- */
+.v5-nos-directorio { row-gap: 56px; padding-top: 16px; }
+.v5-nos-directorio:focus-visible { outline: 2px solid var(--cgc-celeste); outline-offset: 4px; }
+.v5-nos-desliza { font-size: 14px; line-height: 20px; letter-spacing: .28px; margin-top: 32px; }
+@media (min-width: 1200px) {
+  .v5-nos-directorio_item .cgc-d-retrato { max-width: 280px; }
+}
+/* Móvil: carrusel horizontal con scroll-snap, sin JS. Se sale por la derecha hasta el borde de la pantalla. */
+@media (max-width: 767.98px) {
+  .v5-nos-directorio { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; gap: 16px;
+    margin-left: 0; margin-right: -16px; padding-right: 32px; padding-bottom: 4px; scrollbar-width: none; }
+  .v5-nos-directorio::-webkit-scrollbar { display: none; }
+  .v5-nos-directorio_item { flex: 0 0 240px; max-width: 240px; padding: 0; scroll-snap-align: start; }
+}
+
+/* ---------- Voz (azul 2727) ---------- */
+.v5-nos-voz .cgc-d-cita-bloque { padding-left: 0; padding-right: 0; }
+.v5-nos-voz_media { position: relative; }
+.v5-nos-voz_foto { display: block; width: 100%; object-fit: cover; }
+@media (min-width: 992px) {
+  .v5-nos-voz_media { max-width: 560px; height: 400px; margin-left: auto; }
+  .v5-nos-voz_foto { height: 100%; }
+  .v5-nos-voz_acento { top: -32px; right: -32px; width: 64px; height: 64px; }
+}
+@media (max-width: 991.98px) {
+  .v5-nos-voz_fila { row-gap: 32px; }
+  .v5-nos-voz .cgc-d-cita-bloque { padding: 24px 0 0; }
+  .v5-nos-voz_foto { height: 240px; }
+  .v5-nos-voz_acento { left: 0; bottom: -20px; width: 40px; height: 40px; }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .v5-nos-voz_foto { height: 400px; }
+}
+
+/* ---------- 04 · Equipo ejecutivo ---------- */
+.v5-nos-equipo { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 32px; }
+.v5-nos-miembro { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 280px; }
+.v5-nos-miembro_iniciales { display: flex; align-items: center; justify-content: center; width: 280px; height: 280px; background: var(--cgc-superficie-retrato);
+  font-size: 64px; line-height: 68px; font-weight: 700; letter-spacing: -.015em; color: var(--cgc-texto-marca); }
+.v5-nos-miembro_datos { display: flex; flex-direction: column; gap: 12px; }
+.v5-nos-miembro_nombre { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.v5-nos-miembro_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+@media (max-width: 767.98px) {
+  .v5-nos-equipo { flex-direction: column; }
+  .v5-nos-miembro { flex-direction: row; align-items: center; gap: 16px; width: 100%; }
+  .v5-nos-miembro_iniciales { flex: 0 0 96px; width: 96px; height: 96px; font-size: 20px; line-height: 26px; letter-spacing: .18px; }
+  .v5-nos-miembro_segmento { display: none; }
+  .v5-nos-miembro_datos { gap: 4px; min-width: 0; }
+  .v5-nos-miembro_nombre { font-size: 16px; letter-spacing: .1px; }
+}
+
+/* ---------- Móvil: márgenes y ritmo ---------- */
+@media (max-width: 767.98px) {
+  .v5-nos-seccion { padding: 56px 0; }
+  .v5-nos-encabezado { gap: 12px; margin-bottom: 32px; }
+  .v5-nos-indice { gap: 12px; }
+  .v5-nos-bajada { font-size: 16px; line-height: 26px; letter-spacing: .1px; }
+  .v5-nos-portada { padding: 24px 0 56px; }
+  .v5-nos-portada_texto { gap: 32px; }
+  .v5-nos-lead { line-height: 30px; }
+  .v5-nos-cuerpo { line-height: 26px; letter-spacing: .1px; }
+  .v5-nos-portada_foto { height: 260px; }
+}

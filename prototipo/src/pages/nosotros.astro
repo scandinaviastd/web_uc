@@ -1,83 +1,148 @@
 ---
+// Nosotros · propuesta v5 (sub-design system «Dirección»). Espejo: Figma UC_CGC, frames 464:826 (1440) y 467:1404 (375).
+// Secciones numeradas con índice (01–04), titulares Display con contraste de peso y cierre en modo Noche y en azul 2727.
+// En WordPress: página «Nosotros» con bloques; directorio y equipo salen del CPT persona (contenidos.js).
 import Base from '../layouts/Base.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import PageTitle from '../components/PageTitle.astro';
-import CardPersona from '../components/CardPersona.astro';
-import { directorio, equipo } from '../data/contenidos.js';
-const anclas = [['quienes-somos', 'Quiénes somos'], ['directorio', 'Directorio'], ['equipo-ejecutivo', 'Equipo ejecutivo']];
-const pilares = [
-  ['school', 'Formación', 'Capacitar a directores y ejecutivos en materia de Gobierno Corporativo.'],
-  ['campaign', 'Extensión', 'Abrir el debate sobre Gobierno Corporativo con jornadas, seminarios, webinars y presencia en prensa.'],
-  ['insights', 'Investigación', 'Promover investigación teórica y aplicada y generar conocimiento sobre Gobierno Corporativo.'],
-];
+import Barra from '../components/v5/Barra.astro';
+import Cifra from '../components/v5/Cifra.astro';
+import Retrato from '../components/v5/Retrato.astro';
+import Cita from '../components/v5/Cita.astro';
+import { directorio, equipo, inicialesDe } from '../data/contenidos.js';
+import { quienesSomos, origen, pilares, voz, notaEquipo } from '../data/v5-nosotros.js';
 ---
 <Base title="Nosotros" seccion="nosotros">
+  <link slot="head" rel="stylesheet" href="/css/v5-nosotros.css" />
   <Breadcrumb items={[{ label: 'Nosotros' }]} />
-  <PageTitle titulo="Nosotros" bajada="Quiénes somos, nuestro directorio y el equipo que lleva adelante el Centro." />
 
-  <nav class="cgc-anclas" aria-label="En esta página" data-anclas>
-    <div class="container">
-      <ul class="cgc-anclas_lista">
-        {anclas.map(([id, l], i) => <li><a href={`#${id}`} class:list={['cgc-chip', { 'is-active': i === 0 }]}>{l}</a></li>)}
-      </ul>
-    </div>
-  </nav>
-
-  <section id="quienes-somos" class="cgc-section" data-ancla-seccion>
+  <!-- Portada. Titular propuesto a partir de la misión del Centro (provisorio, lo valida el Centro); textos de «Quiénes somos» del Sprint 4. -->
+  <section id="quienes-somos" class="cgc-d-claro v5-nos-portada" data-ancla-seccion>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8">
-          <div class="d-flex align-items-center mb-24"><h2 class="h2 mb-0">Quiénes somos</h2><div class="uc-heading-decoration"></div></div>
-          <!-- P1-16: síntesis propuesta del texto del sitio actual (a validar con el Centro). -->
-          <p>Somos un centro inter-facultades de la Pontificia Universidad Católica de Chile, creado en 2012 por la Facultad de Derecho y la Escuela de Administración UC, con la misión de ser un referente en gobierno corporativo en Chile y Latinoamérica.</p>
-          <p class="mb-0">A través de la formación, la extensión y la investigación, y en colaboración con organismos públicos y privados, generamos conocimiento, buenas prácticas y propuestas de política pública que aportan a la creación de valor y a una mejor toma de decisiones en empresas y organizaciones, en conformidad con los principios de la UC.</p>
+        <div class="col-lg-7">
+          <div class="v5-nos-portada_texto">
+            <p class="cgc-d-ante cgc-d-texto-marca mb-0">Nosotros</p>
+            <h1 class="cgc-d-display-l">Un referente en<br /><strong>gobierno corporativo<br />en Chile y Latinoamérica</strong></h1>
+            <p class="v5-nos-lead mb-0">{quienesSomos[0]}</p>
+            <p class="v5-nos-cuerpo cgc-d-texto-sec mb-0">{quienesSomos[1]}</p>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="v5-nos-portada_media">
+            <img src="/img/v5/nosotros/portada.jpg" class="v5-nos-portada_foto" alt="Clase del Diplomado en Gobierno Corporativo en una sala de la UC" width="1600" height="1066" />
+            <span class="v5-nos-acento v5-nos-portada_acento" aria-hidden="true"></span>
+            <Cifra cifra="2012" etiqueta="Centro inter-facultades de Derecho y Administración UC" fondo="marca" class="v5-nos-portada_cifra" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cgc-section cgc-section--gray">
-    <div class="container text-center">
-      <h2 class="h2 mb-40">El origen del Centro</h2>
-      <div class="cgc-origen">
-        <div class="cgc-origen_fuentes">
-          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-12">account_balance</i><span class="h4 mb-0">Facultad de Derecho</span></div></div>
-          <span class="cgc-origen_mas" aria-hidden="true">+</span>
-          <div class="uc-card cgc-origen_card"><div class="uc-card_body flex-row align-items-center"><i class="uc-icon text-color--primary mr-12">account_balance</i><span class="h4 mb-0">Escuela de Administración</span></div></div>
+  <!-- 01 · El origen del Centro: diagrama como interfaz, no como imagen (nada de texto dentro de imágenes). Conector = segmento de la barra de dirección. -->
+  <section id="origen" class="cgc-d-suave v5-nos-seccion">
+    <div class="container">
+      <div class="v5-nos-encabezado">
+        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">01</span><span class="cgc-d-ante cgc-d-texto-sec">El origen del Centro</span></p>
+        <h2 class="cgc-d-display-l">Dos facultades,<br /><strong>un centro</strong></h2>
+      </div>
+      <div class="v5-nos-origen">
+        <div class="v5-nos-origen_caja">
+          <span class="cgc-d-ante cgc-d-texto-marca">{origen.sigla}</span>
+          <span class="h3 v5-nos-origen_nombre">{origen.fuentes[0]}</span>
         </div>
-        <div class="cgc-origen_linea" aria-hidden="true"></div>
-        <div class="cgc-origen_centro"><span class="h3 color-white d-block mb-4">Centro de Gobierno Corporativo UC</span><span class="p-size--lg">Centro inter-facultades · desde 2012</span></div>
-        <div class="cgc-origen_linea" aria-hidden="true"></div>
-        <div class="row text-left">
-          {pilares.map(([ic, t, d]) => (
-            <div class="col-md-4 mb-24">
-              <div class="uc-card card-height--same"><div class="uc-card_body">
-                <span class="cgc-icon-bubble cgc-icon-bubble--lg mb-24"><i class="uc-icon icon-size--lg">{ic}</i></span>
-                <h3 class="h3 mb-12">{t}</h3>
-                <p class="p-size--lg mb-0">{d}</p>
-              </div></div>
+        <span class="v5-nos-origen_mas" aria-hidden="true">+</span>
+        <div class="v5-nos-origen_caja">
+          <span class="cgc-d-ante cgc-d-texto-marca">{origen.sigla}</span>
+          <span class="h3 v5-nos-origen_nombre">{origen.fuentes[1]}</span>
+        </div>
+        <span class="v5-nos-origen_conector" aria-hidden="true"></span>
+        <div class="v5-nos-origen_caja v5-nos-origen_caja--centro">
+          <span class="cgc-d-ante">{origen.centroAnte}</span>
+          <span class="h3 v5-nos-origen_nombre">{origen.centro}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Lo que hacemos, en modo Noche -->
+  <section id="lo-que-hacemos" class="cgc-d-noche v5-nos-seccion">
+    <div class="container">
+      <div class="v5-nos-encabezado">
+        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">02</span><span class="cgc-d-ante cgc-d-texto-sec">Lo que hacemos</span></p>
+        <h2 class="cgc-d-display-l">Formación, extensión<br /><strong>e investigación</strong></h2>
+      </div>
+      <div class="row v5-nos-pilares">
+        {pilares.map((p, i) => (
+          <div class="col-md-4">
+            <div class="v5-nos-pilar">
+              <span class="cgc-d-segmento" aria-hidden="true"></span>
+              <span class="cgc-d-indice cgc-d-texto-marca" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="h3 v5-nos-pilar_titulo">{p.titulo}</h3>
+              <p class="v5-nos-pilar_texto cgc-d-texto-sec mb-0">{p.texto}</p>
             </div>
-          ))}
+          </div>
+        ))}
+      </div>
+      <Barra class="d-none d-md-block v5-nos-pilares_barra" />
+    </div>
+  </section>
+
+  <!-- 03 · Directorio: retratos tratados del 29-09. Orden: el del sitio actual (lo confirma el Centro). En móvil, carrusel que se desliza. -->
+  <section id="directorio" class="cgc-d-claro v5-nos-seccion" data-ancla-seccion>
+    <div class="container">
+      <div class="v5-nos-encabezado">
+        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">03</span><span class="cgc-d-ante cgc-d-texto-sec">Directorio</span></p>
+        <h2 class="cgc-d-display-l">Quienes dirigen<br /><strong>el Centro</strong></h2>
+      </div>
+      <div class="row v5-nos-directorio" data-scroll-x role="region" aria-label="Directorio del Centro" tabindex="0">
+        {directorio.map((p, i) => (
+          <div class="col-md-4 col-lg-3 v5-nos-directorio_item">
+            <Retrato nombre={p.nombre} cargo={p.cargo} acento={i % 2 ? 'marca' : 'cian'} />
+          </div>
+        ))}
+      </div>
+      <p class="d-md-none v5-nos-desliza cgc-d-texto-sec mb-0" aria-hidden="true">Desliza para ver a los ocho directores →</p>
+    </div>
+  </section>
+
+  <!-- Voz · Luis Hernán Paúl, sobre azul 2727. Foto: panel de la Jornada 2026 (banco de Full Funnel). -->
+  <section class="cgc-d-marca v5-nos-seccion v5-nos-voz">
+    <div class="container">
+      <div class="row align-items-center v5-nos-voz_fila">
+        <div class="col-lg-6">
+          <Cita cita={voz.cita} nombre={voz.nombre} cargo={voz.cargo} fondo="marca" />
+        </div>
+        <div class="col-lg-6">
+          <div class="v5-nos-voz_media">
+            <img src="/img/v5/nosotros/jornada.jpg" class="v5-nos-voz_foto" alt="Panel de conversación en la Jornada de Gobierno Corporativo" width="1600" height="1066" loading="lazy" />
+            <span class="v5-nos-acento v5-nos-voz_acento" aria-hidden="true"></span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="directorio" class="cgc-section" data-ancla-seccion>
+  <!-- 04 · Equipo ejecutivo: iniciales (como en el Sprint 4) hasta tener fotos con el mismo encuadre y fondo que el directorio (P1-10). -->
+  <section id="equipo-ejecutivo" class="cgc-d-suave v5-nos-seccion" data-ancla-seccion>
     <div class="container">
-      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Directorio</h2><div class="uc-heading-decoration"></div></div>
-      <div class="row">
-        {directorio.map((p) => <div class="col-6 col-md-4 col-lg-3 mb-32"><CardPersona {...p} /></div>)}
+      <div class="v5-nos-encabezado">
+        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">04</span><span class="cgc-d-ante cgc-d-texto-sec">Equipo ejecutivo</span></p>
+        <h2 class="cgc-d-display-l">Quienes llevan<br /><strong>adelante el Centro</strong></h2>
+        <!-- Provisorio: nota del Figma v5; se quita cuando lleguen las fotos del equipo. -->
+        <p class="v5-nos-bajada cgc-d-texto-sec mb-0">{notaEquipo}</p>
       </div>
-    </div>
-  </section>
-
-  <section id="equipo-ejecutivo" class="cgc-section pt-0" data-ancla-seccion>
-    <div class="container">
-      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Equipo ejecutivo</h2><div class="uc-heading-decoration"></div></div>
-      <div class="row">
-        {equipo.map((p) => <div class="col-6 col-md-4 col-lg-3 mb-32"><CardPersona {...p} /></div>)}
-      </div>
+      <ul class="v5-nos-equipo">
+        {equipo.map((p) => (
+          <li class="v5-nos-miembro">
+            <span class="v5-nos-miembro_iniciales" aria-hidden="true">{inicialesDe(p.nombre)}</span>
+            <span class="cgc-d-segmento v5-nos-miembro_segmento" aria-hidden="true"></span>
+            <div class="v5-nos-miembro_datos">
+              <h3 class="v5-nos-miembro_nombre">{p.nombre}</h3>
+              <p class="v5-nos-miembro_cargo mb-0">{p.cargo}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 </Base>

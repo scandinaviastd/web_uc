@@ -78,3 +78,23 @@ lleva `noindex, nofollow`.
 Contenido de ejemplo en eventos, fechas de programas, fotos provisorias (ver `docs/imagenes-prototipo.md`),
 destino de "Postula", enlace de Política de Privacidad y contenido de Asesorías. WhatsApp y correo de Sara vienen
 del sitio actual: confirmar que siguen vigentes (P1-12).
+
+## Propuesta v5 · sub-design system «Dirección» (rama `propuesta-v5`)
+
+Borrador de la versión 5: la home, Nosotros, Servicios y la ficha de programa rediseñadas con el lenguaje gráfico
+de Full Funnel adaptado a web, dentro del Kit. Espejo en el Figma `UC_CGC` (`eYC3WCOSY1gO8SR4ZiJo6O`): páginas
+«Dirección · Leer primero / Fundamentos / Componentes» y «Sprint 5 · Propuesta v5 (Dirección)». **No va a `main`
+hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revisa en la vista previa de Vercel de la rama.
+
+| Pieza | Dónde |
+|---|---|
+| Tokens (modo Claro y Noche), tipografía Display/Cifra/Cita y componentes | `public/css/direccion.css` (clases `cgc-d-`) |
+| Componentes: Barra, Etiqueta, Cifra, Retrato, Cita, Tarjeta de programa, Evento, Ficha | `src/components/v5/` |
+| CSS de cada página | `public/css/v5-{home,nosotros,servicios,ficha}.css` (se enlazan con `<link slot="head">`) |
+| Datos nuevos de cada página (cifras, citas, textos del brochure marcados como provisorios) | `src/data/v5-*.js` |
+| Fotos del banco de Full Funnel | `public/img/v5/<página>/` |
+
+**A validar con la DED antes de pasar a `main`:** escala Display/Cifra (88, 64 y 72 px, sobre el tope `.h1`), el
+azul 2727 C de la submarca como superficie, etiquetas con radio completo, Roboto Slab 300 en las citas y WhatsApp
+junto al único botón amarillo. **Al Centro:** licencia de las fotos del banco, contenido de Servicios (P1-01) y de
+las fichas (P1-05). `vercel.json` (raíz del repo) le indica a Vercel que el sitio está en `prototipo/`.

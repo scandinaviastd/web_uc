@@ -1,0 +1,21 @@
+---
+// Retrato sobre el celeste de los retratos tratados, con el cuadrado de acento que se escapa del borde.
+// Sin foto: avatar con iniciales del Kit (nunca un hueco). Fotos reales, nunca de stock.
+import { fotoDe, inicialesDe } from '../../data/contenidos.js';
+interface Props { nombre: string; cargo: string; acento?: 'cian' | 'marca'; nivel?: 3 | 4; class?: string }
+const { nombre, cargo, acento = 'cian', nivel = 3, class: clase } = Astro.props;
+const foto = fotoDe(nombre);
+const Nombre = `h${nivel}`;
+---
+<figure class:list={['cgc-d-retrato', clase]} data-acento={acento}>
+  <div class="cgc-d-retrato_foto">
+    {foto
+      ? <img src={foto} alt={`Foto de ${nombre}`} width="800" height="800" loading="lazy" />
+      : <span class="avatar cgc-avatar-card" aria-hidden="true">{inicialesDe(nombre)}</span>}
+  </div>
+  <span class="cgc-d-segmento" aria-hidden="true"></span>
+  <figcaption>
+    <Nombre class="cgc-d-retrato_nombre">{nombre}</Nombre>
+    <p class="cgc-d-retrato_cargo">{cargo}</p>
+  </figcaption>
+</figure>

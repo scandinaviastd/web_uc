@@ -1,0 +1,206 @@
+/*
+ * direccion.css — sub-design system «Dirección» del Centro (propuesta v5, rama propuesta-v5).
+ * Lenguaje gráfico de Full Funnel para el CGC UC adaptado a web, dentro del Kit Digital UC.
+ * Espejo: Figma UC_CGC (eYC3WCOSY1gO8SR4ZiJo6O), páginas «Sprint 5 · Fundamentos / Componentes / Propuesta v5».
+ * Se carga después de cgc.css. Prefijo cgc-d- (Dirección). Los tokens llevan el mismo nombre que su
+ * variable de Figma (code syntax WEB).
+ *
+ * A VALIDAR CON LA DED antes de pasar a main (ver «Leer primero» del Figma):
+ *   1. Escala Display / Cifra (88, 64, 72 px): fuera de la escala del Kit (tope .h1 40/48).
+ *   2. Azul 2727 C de la submarca (#307FE2) como superficie: no es color del Kit.
+ *   3. Radio completo de las etiquetas (el Kit pide 4 px).
+ *   4. Roboto Slab 300 en citas (el Kit carga Roboto Slab 400).
+ */
+
+:root {
+  /* Primitivos (CGC/Color + CGC/Dirección · Primitivos) */
+  --cgc-amarillo: #fec60d;
+  --cgc-blanco: #fff;
+  --cgc-gris-300: #c6c6c6;
+  --cgc-azul-2727: #307fe2;        /* Pantone 2727 C, manual de la submarca */
+  --cgc-cian-acento: #38b6ff;      /* solo decorativo o con texto azul noche */
+  --cgc-celeste-retrato: #bedffe;  /* fondo de los retratos tratados */
+  --cgc-gris-cool-11: #53565a;     /* Cool Gray 11 C, manual de la submarca */
+
+  /* Semánticos · modo Claro (CGC/Dirección · Color) */
+  --cgc-superficie-base: var(--cgc-blanco);
+  --cgc-superficie-suave: var(--cgc-gris-fondo);
+  --cgc-superficie-marca: var(--cgc-azul-2727);
+  --cgc-superficie-profunda: var(--cgc-azul-oscuro);
+  --cgc-superficie-retrato: var(--cgc-celeste-retrato);
+  --cgc-texto-principal: var(--cgc-azul-oscuro);
+  --cgc-texto-secundario: var(--cgc-gris-cool-11);
+  --cgc-texto-marca: var(--cgc-azul);
+  --cgc-texto-sobre-marca: var(--cgc-blanco);
+  --cgc-texto-enlace: var(--cgc-celeste);
+  --cgc-borde-sutil: var(--cgc-gris-claro);
+  --cgc-barra-base: var(--cgc-gris-300);
+  --cgc-barra-segmento: var(--cgc-azul-2727);
+  --cgc-accion-primaria: var(--cgc-amarillo);
+  --cgc-accion-primaria-texto: var(--cgc-azul);
+  --cgc-accion-secundaria: var(--cgc-azul);
+  --cgc-accion-secundaria-texto: var(--cgc-blanco);
+  --cgc-acento-cian: var(--cgc-cian-acento);
+
+  /* Radios */
+  --cgc-radio-kit: 4px;
+  --cgc-radio-pill: 999px;
+}
+
+/* Modo Noche: una sección entera sobre azul noche. Mismos nombres, otros valores. */
+.cgc-d-noche {
+  --cgc-superficie-base: var(--cgc-azul-oscuro);
+  --cgc-superficie-suave: var(--cgc-azul);
+  --cgc-superficie-retrato: var(--cgc-azul);
+  --cgc-texto-principal: var(--cgc-blanco);
+  --cgc-texto-secundario: var(--cgc-gris-300);
+  --cgc-texto-marca: var(--cgc-cian-acento);
+  --cgc-texto-enlace: var(--cgc-cian-acento);
+  --cgc-borde-sutil: var(--cgc-azul);
+  --cgc-barra-base: var(--cgc-azul);
+  --cgc-barra-segmento: var(--cgc-cian-acento);
+  --cgc-accion-secundaria: var(--cgc-blanco);
+  --cgc-accion-secundaria-texto: var(--cgc-azul-oscuro);
+  background-color: var(--cgc-superficie-base);
+  color: var(--cgc-texto-principal);
+}
+
+/* ---------- Superficies ---------- */
+.cgc-d-claro { background-color: var(--cgc-superficie-base); color: var(--cgc-texto-principal); }
+.cgc-d-suave { background-color: var(--cgc-superficie-suave); }
+.cgc-d-marca { background-color: var(--cgc-superficie-marca); color: var(--cgc-texto-sobre-marca); }
+.cgc-d-profunda { background-color: var(--cgc-superficie-profunda); color: var(--cgc-blanco); }
+
+/* ---------- Tipografía Dirección (Roboto y Roboto Slab, familias del Kit) ---------- */
+.cgc-d-display-xl, .cgc-d-display-l, .cgc-d-cifra { font-family: Roboto, sans-serif; margin: 0; }
+.cgc-d-display-xl { font-size: 88px; line-height: 92px; font-weight: 300; letter-spacing: -.02em; }
+.cgc-d-display-l { font-size: 64px; line-height: 68px; font-weight: 300; letter-spacing: -.015em; }
+.cgc-d-display-xl strong, .cgc-d-display-l strong, .cgc-d-display-xl b, .cgc-d-display-l b { font-weight: 700; }
+.cgc-d-cifra { font-size: 72px; line-height: 72px; font-weight: 700; letter-spacing: -.02em; }
+.cgc-d-cita { font-family: "Roboto Slab", serif; font-size: 32px; line-height: 44px; font-weight: 300; margin: 0; }
+.cgc-d-cita--s { font-size: 24px; line-height: 36px; }
+.cgc-d-cita p { font-size: inherit; line-height: inherit; letter-spacing: inherit; }
+.cgc-d-ante { display: block; font-size: 14px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+.cgc-d-indice { font-size: 14px; line-height: 16px; font-weight: 700; letter-spacing: .07em; }
+@media (max-width: 767.98px) {
+  .cgc-d-display-xl { font-size: 44px; line-height: 48px; letter-spacing: -.015em; }
+  .cgc-d-display-l { font-size: 32px; line-height: 36px; letter-spacing: -.01em; }
+  .cgc-d-cifra { font-size: 48px; line-height: 48px; }
+  .cgc-d-cita { font-size: 22px; line-height: 32px; }
+}
+.cgc-d-texto-marca { color: var(--cgc-texto-marca); }
+.cgc-d-texto-sec { color: var(--cgc-texto-secundario); }
+
+/* Enlace con flecha («Ver programa →»): estilo «a» del Kit, color según el modo */
+.cgc-d-enlace { font-size: 16px; line-height: 24px; font-weight: 500; letter-spacing: .5px; color: var(--cgc-texto-enlace); text-decoration: underline; }
+.cgc-d-enlace:hover { color: var(--cgc-texto-enlace); text-decoration-thickness: 2px; }
+.cgc-d-enlace:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 2px; }
+
+/* ---------- Barra de dirección (manual de la submarca) ---------- */
+.cgc-d-barra { position: relative; height: 6px; width: 100%; background: var(--cgc-barra-base); }
+.cgc-d-barra::after { content: ""; position: absolute; top: 0; bottom: 0; left: 83.55%; right: 0; background: var(--cgc-barra-segmento); }
+.cgc-d-barra[data-indice="1"]::after { left: 0; right: 75%; }
+.cgc-d-barra[data-indice="2"]::after { left: 25%; right: 50%; }
+.cgc-d-barra[data-indice="3"]::after { left: 50%; right: 25%; }
+.cgc-d-barra[data-indice="4"]::after { left: 75%; right: 0; }
+/* Segmento suelto (40 × 4) sobre cifras, retratos y títulos */
+.cgc-d-segmento { display: block; width: 40px; height: 4px; background: var(--cgc-barra-segmento); }
+
+/* ---------- Etiqueta ---------- */
+.cgc-d-etiqueta { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--cgc-radio-pill); font-size: 14px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
+.cgc-d-etiqueta--azul { background: var(--cgc-accion-secundaria); color: var(--cgc-accion-secundaria-texto); }
+.cgc-d-etiqueta--contorno { border: 1px solid var(--cgc-texto-marca); color: var(--cgc-texto-marca); padding: 3px 11px; }
+.cgc-d-etiqueta--cian { background: var(--cgc-acento-cian); color: var(--cgc-azul-oscuro); }
+
+/* ---------- Cifra ---------- */
+.cgc-d-cifra-bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px; }
+.cgc-d-cifra-bloque .cgc-d-cifra { color: var(--cgc-texto-marca); }
+.cgc-d-cifra-bloque_etiqueta { font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-cifra-bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); }
+.cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-segmento { background: var(--cgc-blanco); }
+.cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra { color: var(--cgc-blanco); }
+.cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra-bloque_etiqueta { color: var(--cgc-azul-oscuro); }
+.cgc-d-cifra-bloque[data-fondo="noche"] { background: var(--cgc-superficie-profunda); }
+.cgc-d-cifra-bloque[data-fondo="noche"] .cgc-d-cifra { color: var(--cgc-acento-cian); }
+.cgc-d-cifra-bloque[data-fondo="noche"] .cgc-d-cifra-bloque_etiqueta { color: var(--cgc-gris-300); }
+
+/* ---------- Retrato ---------- */
+.cgc-d-retrato { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin: 0; }
+.cgc-d-retrato_foto { position: relative; width: 100%; aspect-ratio: 1 / 1; background: var(--cgc-superficie-retrato); }
+.cgc-d-retrato_foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cgc-d-retrato_foto::after { content: ""; position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; background: var(--cgc-acento-cian); }
+.cgc-d-retrato[data-acento="marca"] .cgc-d-retrato_foto::after { background: var(--cgc-superficie-marca); }
+.cgc-d-retrato figcaption { display: flex; flex-direction: column; gap: 12px; }
+.cgc-d-retrato_nombre { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-retrato_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-retrato .avatar { width: 100%; height: 100%; border-radius: 0; font-size: 48px; font-weight: 500; }
+
+/* ---------- Cita ---------- */
+.cgc-d-cita-bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 40px 40px; margin: 0; color: var(--cgc-texto-principal); }
+.cgc-d-cita-bloque_comilla { font-family: "Roboto Slab", serif; font-weight: 700; font-size: 160px; line-height: 120px; height: 120px; overflow: visible; color: var(--cgc-texto-marca); user-select: none; }
+.cgc-d-cita-bloque_firma { display: flex; align-items: center; gap: 16px; width: 100%; }
+.cgc-d-cita-bloque_foto { width: 64px; height: 64px; flex-shrink: 0; background: var(--cgc-superficie-retrato); object-fit: cover; }
+.cgc-d-cita-bloque_datos { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cgc-d-cita-bloque_nombre { font-size: 16px; line-height: 24px; font-weight: 700; letter-spacing: .25px; font-style: normal; }
+.cgc-d-cita-bloque_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.cgc-d-cita-bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
+.cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_comilla { color: var(--cgc-blanco); }
+.cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_datos, .cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_cargo { color: var(--cgc-azul-oscuro); }
+.cgc-d-cita-bloque[data-fondo="noche"] { background: var(--cgc-superficie-profunda); color: var(--cgc-blanco); }
+.cgc-d-cita-bloque[data-fondo="noche"] .cgc-d-cita-bloque_comilla { color: var(--cgc-acento-cian); }
+.cgc-d-cita-bloque[data-fondo="noche"] .cgc-d-cita-bloque_cargo { color: var(--cgc-gris-300); }
+@media (max-width: 767.98px) {
+  .cgc-d-cita-bloque { padding: 16px 24px 32px; }
+}
+
+/* ---------- Tarjeta de programa ---------- */
+.cgc-d-tarjeta { position: relative; display: flex; flex-direction: column; height: 100%; background: var(--cgc-superficie-base); border: 1px solid var(--cgc-borde-sutil); border-radius: var(--cgc-radio-kit); overflow: hidden; transition: box-shadow .2s ease, transform .2s ease; }
+.cgc-d-tarjeta:hover { transform: translateY(-4px); box-shadow: var(--cgc-sombra); }
+.cgc-d-tarjeta:focus-within { outline: 2px solid var(--cgc-celeste); outline-offset: 2px; }
+.cgc-d-tarjeta_bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; padding: 24px; background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
+.cgc-d-tarjeta_cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; flex: 1 1 auto; }
+.cgc-d-tarjeta_titulo { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-tarjeta_titulo a, .cgc-d-tarjeta_link { color: inherit; text-decoration: none; }
+.cgc-d-tarjeta_titulo a::after, .cgc-d-tarjeta_link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.cgc-d-tarjeta_titulo a:focus, .cgc-d-tarjeta_link:focus { outline: none; }
+.cgc-d-tarjeta_link:hover { color: inherit; text-decoration: none; }
+.cgc-d-tarjeta_meta { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-tarjeta_cuerpo .cgc-d-enlace { margin-top: auto; }
+.cgc-d-tarjeta_acciones { display: flex; flex-wrap: wrap; gap: 8px 32px; position: relative; z-index: 2; }
+/* Horizontal: Diplomado e In Company a todo el ancho */
+.cgc-d-tarjeta--horizontal .cgc-d-tarjeta_bloque { gap: 24px; padding: 40px; }
+.cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo { padding: 40px; }
+.cgc-d-tarjeta--horizontal .cgc-d-tarjeta_descripcion { font-size: 18px; line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo .cgc-d-enlace { margin-top: 0; }
+@media (min-width: 992px) {
+  .cgc-d-tarjeta--horizontal { flex-direction: row; }
+  .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_bloque { flex: 0 0 480px; }
+  .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo { justify-content: center; }
+}
+@media (max-width: 767.98px) {
+  .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_bloque, .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo { padding: 24px; }
+}
+
+/* ---------- Evento (fila) ---------- */
+.cgc-d-evento { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; grid-template-areas: "fecha cuerpo accion"; align-items: center; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--cgc-borde-sutil); }
+.cgc-d-evento_fecha { grid-area: fecha; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; align-self: start; background: var(--cgc-accion-secundaria); color: var(--cgc-texto-sobre-marca); }
+.cgc-d-evento_dia { font-size: 40px; line-height: 48px; font-weight: 700; }
+.cgc-d-evento_fecha::after { content: ""; position: absolute; left: 100px; top: -8px; width: 20px; height: 20px; background: var(--cgc-acento-cian); }
+.cgc-d-evento[data-estado="realizado"] .cgc-d-evento_fecha { background: var(--cgc-superficie-suave); color: var(--cgc-texto-secundario); }
+.cgc-d-evento[data-estado="realizado"] .cgc-d-evento_fecha::after { content: none; }
+.cgc-d-evento_cuerpo { grid-area: cuerpo; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+.cgc-d-evento_titulo { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-evento_meta { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-evento .cgc-d-enlace { grid-area: accion; }
+@media (max-width: 767.98px) {
+  .cgc-d-evento { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "fecha cuerpo" "accion accion"; gap: 12px 16px; padding: 20px 0; align-items: start; }
+  .cgc-d-evento_dia { font-size: 24px; line-height: 28px; font-weight: 500; letter-spacing: .18px; }
+  .cgc-d-evento_fecha::after { left: 64px; top: -6px; width: 14px; height: 14px; }
+  .cgc-d-evento_titulo { font-size: 18px; }
+  .cgc-d-evento .cgc-d-enlace { justify-self: start; }
+}
+
+/* Sin animaciones para quien las pidió apagadas */
+@media (prefers-reduced-motion: reduce) {
+  .cgc-d-tarjeta, .cgc-d-tarjeta:hover { transition: none; transform: none; }
+}

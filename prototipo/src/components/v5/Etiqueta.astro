@@ -1,0 +1,6 @@
+---
+// Etiqueta de tipo o estado (pill de Full Funnel). Azul #173F8A con blanco 9,9:1; cian solo con texto azul noche.
+interface Props { texto: string; estilo?: 'azul' | 'contorno' | 'cian'; class?: string }
+const { texto, estilo = 'azul', class: clase } = Astro.props;
+---
+<span class:list={['cgc-d-etiqueta', `cgc-d-etiqueta--${estilo}`, clase]}>{texto}</span>

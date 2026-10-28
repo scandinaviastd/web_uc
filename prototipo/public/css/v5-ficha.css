@@ -1,0 +1,137 @@
+/*
+ * v5-ficha.css — ficha de programa de la propuesta v5 (src/components/v5/FichaDireccion.astro).
+ * Espejo: Figma UC_CGC, «Ficha Diplomado v5 · propuesta Dirección» (466:1222) y móvil (469:1698).
+ * Usa los tokens y componentes de direccion.css. Prefijo cgc-v5f- (ficha). Breakpoints de Bootstrap.
+ */
+
+/* ---------- Portada (modo Noche) ---------- */
+.cgc-v5f-portada { padding: 88px 0 42px; overflow: hidden; }
+.cgc-v5f-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.cgc-v5f-etiquetas { display: flex; flex-wrap: wrap; gap: 8px 12px; }
+.cgc-v5f-titular { color: var(--cgc-texto-principal); }
+.cgc-v5f-frase { max-width: 600px; margin: 0; line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-datos { display: flex; flex-wrap: wrap; gap: 20px 32px; margin: 0; }
+.cgc-v5f-dato { display: flex; flex-direction: column; gap: 8px; }
+.cgc-v5f-dato::before { content: ""; display: block; width: 32px; height: 4px; background: var(--cgc-barra-segmento); }
+.cgc-v5f-dato dt { color: var(--cgc-texto-secundario); }
+.cgc-v5f-dato dd { margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); white-space: nowrap; }
+.cgc-v5f-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+.cgc-v5f-acciones .uc-btn.btn-cta { min-height: 48px; }
+.cgc-v5f-boton-enlace { background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; }
+.cgc-v5f-foto { position: relative; width: 100%; max-width: 440px; margin-left: auto; aspect-ratio: 11 / 14; }
+.cgc-v5f-foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cgc-v5f-foto::after { content: ""; position: absolute; top: -24px; right: -24px; width: 48px; height: 48px; background: var(--cgc-acento-cian); }
+.cgc-v5f-barra { margin-top: 64px; }
+
+@media (max-width: 991.98px) {
+  .cgc-v5f-foto { max-width: none; margin: 24px 0 0; aspect-ratio: 343 / 260; }
+  .cgc-v5f-foto::after { top: -12px; right: 0; width: 32px; height: 32px; }
+  .cgc-v5f-barra { margin-top: 24px; }
+}
+@media (max-width: 767.98px) {
+  .cgc-v5f-portada { padding: 40px 0 56px; }
+  .cgc-v5f-texto { gap: 24px; }
+  .cgc-v5f-etiquetas { gap: 8px; }
+  .cgc-v5f-frase { line-height: 30px; }
+  .cgc-v5f-datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; width: 100%; }
+  .cgc-v5f-dato { gap: 6px; }
+  .cgc-v5f-dato dd { font-size: 16px; letter-spacing: .1px; white-space: normal; }
+  .cgc-v5f-acciones { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+/* ---------- Sobre el programa + contacto ---------- */
+.cgc-v5f-sobre { padding: 96px 0; background: var(--cgc-superficie-base); }
+.cgc-v5f-contenido { display: flex; flex-direction: column; gap: 40px; max-width: 760px; }
+.cgc-v5f-bloque { display: flex; flex-direction: column; gap: 12px; }
+.cgc-v5f-dos { row-gap: 32px; }
+.cgc-v5f-h2 { color: var(--cgc-texto-principal); margin: 0; }
+.cgc-v5f-h3 { color: var(--cgc-texto-principal); margin: 0; line-height: 24px; }
+.cgc-v5f-cuerpo { line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-principal); }
+.cgc-v5f-texto-sec { font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-contacto { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 32px; background: var(--cgc-superficie-suave); }
+.cgc-v5f-contacto h2 { margin: 0; }
+.cgc-v5f-contacto p { margin: 0; }
+.cgc-v5f-contacto .cgc-d-barra { margin: 0; }
+.cgc-v5f-contacto-nombre { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); }
+.cgc-v5f-contacto-cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-contacto .cgc-d-enlace { white-space: normal; }
+.cgc-v5f-telefono { font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-principal); text-decoration: none; }
+.cgc-v5f-telefono:hover { color: var(--cgc-texto-principal); text-decoration: underline; }
+@media (max-width: 767.98px) {
+  .cgc-v5f-sobre { padding: 56px 0; }
+  .cgc-v5f-contenido { gap: 32px; }
+  .cgc-v5f-bloque { gap: 10px; }
+  .cgc-v5f-cuerpo { line-height: 30px; }
+  .cgc-v5f-texto-sec { line-height: 26px; letter-spacing: .1px; }
+  .cgc-v5f-contacto { padding: 24px; gap: 10px; }
+  .cgc-v5f-contacto-nombre { font-size: 18px; line-height: 22px; }
+  .cgc-v5f-sobre .cgc-row-gap { row-gap: 32px; }
+}
+
+/* ---------- Jefe de programa ---------- */
+.cgc-v5f-jefe { padding: 96px 0; }
+.cgc-v5f-jefe-fila { display: flex; align-items: center; gap: 64px; }
+.cgc-v5f-jefe-retrato { flex: 0 0 280px; width: 280px; }
+.cgc-v5f-jefe-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 760px; }
+.cgc-v5f-jefe-texto p { margin: 0; }
+.cgc-v5f-jefe-cargo { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-secundario); }
+@media (max-width: 767.98px) {
+  .cgc-v5f-jefe { padding: 56px 0; }
+  .cgc-v5f-jefe-fila { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .cgc-v5f-solo-escritorio { display: none; }
+  /* En móvil el nombre ya está en el retrato: el h2 queda solo para lectores de pantalla */
+  .cgc-v5f-jefe-nombre { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .cgc-v5f-jefe-texto { gap: 24px; }
+  .cgc-v5f-jefe-cargo { font-size: 16px; letter-spacing: .1px; }
+  .cgc-v5f-jefe .cgc-v5f-cuerpo { line-height: 30px; }
+}
+
+/* ---------- Módulos (modo Noche) ---------- */
+.cgc-v5f-modulos { padding: 96px 0; }
+.cgc-v5f-lista-modulos { list-style: none; margin: 48px 0 0; padding: 0; columns: 2; column-gap: 64px; }
+.cgc-v5f-lista-modulos li { display: flex; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--cgc-borde-sutil); break-inside: avoid; }
+.cgc-v5f-lista-modulos .cgc-d-indice { color: var(--cgc-texto-marca); flex-shrink: 0; min-width: 18px; }
+.cgc-v5f-modulo { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); }
+@media (max-width: 991.98px) {
+  .cgc-v5f-lista-modulos { columns: 1; }
+}
+@media (max-width: 767.98px) {
+  .cgc-v5f-modulos { padding: 56px 0; }
+  .cgc-v5f-lista-modulos { margin-top: 24px; }
+  .cgc-v5f-lista-modulos li { align-items: flex-start; gap: 16px; padding: 16px 0; }
+  .cgc-v5f-lista-modulos .cgc-d-indice { padding-top: 4px; }
+  .cgc-v5f-modulo { font-size: 16px; letter-spacing: .1px; }
+}
+
+/* ---------- Valor y descuentos ---------- */
+.cgc-v5f-valor-seccion { padding: 96px 0; background: var(--cgc-superficie-base); }
+.cgc-v5f-valor { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "cifra" "tabla" "condiciones"; row-gap: 24px; }
+.cgc-v5f-valor-titulo { grid-area: titulo; }
+.cgc-v5f-valor-cifra { grid-area: cifra; }
+.cgc-v5f-descuentos { grid-area: tabla; width: 100%; border-collapse: collapse; align-self: start; }
+.cgc-v5f-condiciones { grid-area: condiciones; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 24px; }
+@media (min-width: 992px) {
+  .cgc-v5f-valor { grid-template-columns: 440px minmax(0, 1fr); grid-template-areas: "titulo tabla" "cifra tabla" "condiciones tabla"; grid-template-rows: auto auto 1fr; column-gap: 72px; }
+}
+.cgc-v5f-descuentos th, .cgc-v5f-descuentos td { padding: 18px 0; border-bottom: 1px solid var(--cgc-borde-sutil); vertical-align: middle; }
+.cgc-v5f-descuentos th { font-size: 16px; line-height: 24px; font-weight: 400; letter-spacing: .5px; color: var(--cgc-texto-principal); text-align: left; padding-right: 24px; }
+.cgc-v5f-descuentos td { font-size: 24px; line-height: 28px; font-weight: 500; letter-spacing: .18px; color: var(--cgc-texto-marca); text-align: right; white-space: nowrap; }
+.cgc-v5f-condiciones li { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-condiciones li::before { content: "· "; }
+@media (max-width: 767.98px) {
+  .cgc-v5f-valor-seccion { padding: 56px 0; }
+  .cgc-v5f-descuentos th, .cgc-v5f-descuentos td { padding: 14px 0; }
+  .cgc-v5f-descuentos th { line-height: 26px; letter-spacing: .1px; padding-right: 16px; }
+  .cgc-v5f-descuentos td { font-size: 18px; line-height: 22px; font-weight: 700; letter-spacing: .2px; }
+}
+
+/* ---------- Por completar con el Centro (P1-05) ---------- */
+.cgc-v5f-pendientes { padding: 64px 0; }
+.cgc-v5f-pendientes .container > * + * { margin-top: 16px; }
+.cgc-v5f-pendientes h2 { margin-bottom: 0; }
+.cgc-v5f-pendientes-lista { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); max-width: 1100px; margin-bottom: 0; }
+.cgc-v5f-pendientes .cgc-v5f-texto-sec { max-width: 900px; }
+@media (max-width: 767.98px) {
+  .cgc-v5f-pendientes { padding: 40px 0; }
+  .cgc-v5f-pendientes .container > * + * { margin-top: 12px; }
+}

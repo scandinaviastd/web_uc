@@ -1,6 +1,7 @@
 ---
 // Layout base. Equivale a header.php + footer.php del tema cgc-uc:
 // CSS/JS del Kit desde el CDN oficial de la UC (checklist UC, punto crítico) + index.css del tema + cgc.css propio.
+// Propuesta v5: + direccion.css (sub-design system «Dirección») y el slot «head» para el CSS de cada página v5.
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -26,6 +27,10 @@ const VER = '1.23.15-beta.1';
     <link rel="stylesheet" href={`${KIT}/css/uc-kitdigital.css?ver=${VER}`} />
     <link rel="stylesheet" href="/css/kit-theme.css" />
     <link rel="stylesheet" href="/css/cgc.css" />
+    <!-- Propuesta v5: Roboto Slab 300 para las citas (el Kit carga solo la 400; a validar con la DED) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;700&display=swap" />
+    <link rel="stylesheet" href="/css/direccion.css" />
+    <slot name="head" />
   </head>
   <body>
     <a href="#contenido" class="uc-sr-only">Saltar al contenido</a>

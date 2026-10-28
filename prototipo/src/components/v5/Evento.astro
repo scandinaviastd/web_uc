@@ -1,0 +1,21 @@
+---
+// Fila de evento (home y Extensión): bloque de fecha azul #173F8A con acento cian, tipo en etiqueta, título y acción.
+// Realizado: fecha en gris, sin acento, acción «Ver resumen».
+import Etiqueta from './Etiqueta.astro';
+interface Props { dia: string; mes: string; tipo: string; titulo: string; meta: string; href: string; estado?: 'proximo' | 'realizado'; fechaLarga?: string; accion?: string; nivel?: 3 | 4 }
+const { dia, mes, tipo, titulo, meta, href, estado = 'proximo', fechaLarga, accion, nivel = 3 } = Astro.props;
+const Titulo = `h${nivel}`;
+const textoAccion = accion ?? (estado === 'realizado' ? 'Ver resumen →' : 'Inscribirme →');
+---
+<article class="cgc-d-evento" data-estado={estado}>
+  <div class="cgc-d-evento_fecha" aria-hidden="true">
+    <span class="cgc-d-evento_dia">{dia}</span>
+    <span class="cgc-d-ante">{mes}</span>
+  </div>
+  <div class="cgc-d-evento_cuerpo">
+    <Etiqueta texto={tipo} estilo="contorno" />
+    <Titulo class="cgc-d-evento_titulo">{titulo}</Titulo>
+    <p class="cgc-d-evento_meta">{fechaLarga && <span class="uc-sr-only">{fechaLarga}. </span>}{meta}</p>
+  </div>
+  <a href={href} class="cgc-d-enlace">{textoAccion}<span class="uc-sr-only">: {titulo}</span></a>
+</article>

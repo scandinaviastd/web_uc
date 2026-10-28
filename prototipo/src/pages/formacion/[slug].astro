@@ -1,6 +1,8 @@
 ---
+// Propuesta v5: las fichas usan FichaDireccion (sub-design system «Dirección»). FichaPrograma.astro queda como
+// referencia de la versión Sprint 4 (main) y para volver atrás si la v5 no se aprueba.
 import Base from '../../layouts/Base.astro';
-import FichaPrograma from '../../components/FichaPrograma.astro';
+import FichaDireccion from '../../components/v5/FichaDireccion.astro';
 import { programas } from '../../data/programas.js';
 export function getStaticPaths() {
   return programas.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -8,5 +10,6 @@ export function getStaticPaths() {
 const { p } = Astro.props;
 ---
 <Base title={p.titulo} seccion="formacion" descripcion={p.frase}>
-  <FichaPrograma p={p} />
+  <link slot="head" rel="stylesheet" href="/css/v5-ficha.css" />
+  <FichaDireccion p={p} />
 </Base>
