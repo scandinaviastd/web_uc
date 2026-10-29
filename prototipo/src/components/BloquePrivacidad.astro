@@ -1,18 +1,32 @@
 ---
-// Normativa UC de formularios: finalidad, acceso y plazo; checkbox obligatorio de cláusula de privacidad
-// + checkbox opcional de uso posterior (nunca premarcado). Componentes .uc-form-check del Kit.
+// Cláusula de privacidad con los textos de los ejemplos del Kit Digital UC (kitdigital.uc.cl/componentes/formulario),
+// validados por la mesa de protección de datos UC (pedido de la DED, 27-10). Más información y brochure son del
+// tipo «contacto»: la cláusula obligatoria lleva su texto. El checkbox opcional de uso posterior, nunca premarcado,
+// usa el recuadro «Opcional» del ejemplo de inscripción (lineamiento general: solo si se hará uso posterior).
+// En WordPress faltan el reCAPTCHA que traen los ejemplos y el registro de los consentimientos del opcional.
 import { sitio } from '../data/sitio.js';
-interface Props { finalidad: string; id: string }
-const { finalidad, id } = Astro.props;
+interface Props {
+  id: string;
+  finalidad: string; // completa «tratar los datos personales para …»
+  acepto: string;    // completa «Acepto que la UC trate mis datos personales para …»
+  opcional?: boolean;
+}
+const { id, finalidad, acepto, opcional = true } = Astro.props;
 ---
 <div class="cgc-privacidad">
-  <p class="text-size--sm mb-12">{finalidad} Acceden a ellos la coordinación del Centro UC Gobierno Corporativo y se conservan por {sitio.plazoDatos}.</p>
+  <p class="text-color--gray mb-16">Autorizo expresamente a la UC para tratar los datos personales para {finalidad}. Los datos personales serán usados solamente para esta finalidad y se <strong>mantendrán mientras sean requeridos por Ley</strong>.</p>
   <div class="uc-form-check">
-    <input id={`${id}-privacidad`} type="checkbox" required />
-    <label for={`${id}-privacidad`}>He leído y acepto la cláusula de privacidad y la {sitio.politicaPrivacidad.startsWith('#')
-      ? <a href="#" class="external" data-pendiente="Enlace a la Política de Protección de Datos UC por confirmar con proteccion.datos@uc.cl.">Política de Privacidad</a>
-      : <a href={sitio.politicaPrivacidad} target="_blank" rel="noopener" class="external">Política de Privacidad</a>} de la UC. *</label>
-    <input id={`${id}-uso`} type="checkbox" />
-    <label for={`${id}-uso`}>Autorizo al Centro UC Gobierno Corporativo a enviarme información sobre futuros programas y actividades (opcional).</label>
+    <input id={`${id}-privacidad`} type="checkbox" value="true" required aria-required="true" />
+    <label for={`${id}-privacidad`} class="mb-0">* Acepto que la UC trate mis datos personales para {acepto}, y he leído y acepto la <a href={sitio.politicaPrivacidad} target="_blank" rel="noopener" class="external">Política de Privacidad UC<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>.</label>
   </div>
 </div>
+{opcional && (
+  <div class="cgc-privacidad cgc-privacidad--opcional">
+    <p class="mb-8"><strong>Opcional</strong></p>
+    <p class="text-color--gray mb-16">Si desea recibir más información de actividades o seminarios de la UC, marque la siguiente casilla:</p>
+    <div class="uc-form-check">
+      <input id={`${id}-uso`} type="checkbox" value="true" />
+      <label for={`${id}-uso`} class="mb-0">Acepto recibir más información de actividades o seminarios de la UC.</label>
+    </div>
+  </div>
+)}

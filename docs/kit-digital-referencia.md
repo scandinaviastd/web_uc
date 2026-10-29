@@ -29,6 +29,9 @@ https://kitdigital.uc.cl/checklist/detalle y entrega un informe. Se coordina esc
   académicos; en otros casos se valida con Análisis Institucional).
 - Footer: enlace obligatorio **"Políticas de Privacidad"** a la Política de Protección de Datos UC, con ícono
   de enlace externo.
+- **DED, 27-10 (correo de Rommy Carrasco):** se usa el **footer de submarca**, con la **marca del Centro** en
+  la zona azul oscura, nunca el escudo UC. «Políticas de Privacidad» va **ahí, junto al logo**, y no en el footer
+  de créditos.
 
 **3 · Estilo visual**
 - Colores primarios y secundarios del Kit (o alternativos validados por la Dirección).
@@ -126,6 +129,17 @@ Toda página debe tener un `<h1>`; si el diseño no lo muestra (típico en la ho
 - **Opcional**: checkbox de autorización de uso posterior (p. ej. invitaciones), **nunca premarcado**,
   nunca requisito, con registro de consentimientos.
 - Tipos: inscripción, suscripción, contacto, registro, inicio de sesión. Dudas: proteccion.datos@uc.cl.
+- Los ejemplos de cada tipo en kitdigital.uc.cl/componentes/formulario están **validados por la mesa de
+  protección de datos** (DED, 27-10). Se usan sus textos tal cual, completando solo la finalidad:
+  - Aviso al inicio: «(*) Campos obligatorios necesarios para …».
+  - Recuadro con «Autorizo expresamente a la UC para tratar los datos personales para … Los datos personales
+    serán usados solamente para esta finalidad y se mantendrán mientras sean requeridos por Ley.».
+  - Checkbox «Acepto que la UC trate mis datos personales para …, y he leído y acepto la Política de
+    Privacidad UC» (https://protecciondedatos.uc.cl/politicas).
+  - Uso posterior: recuadro «Opcional» aparte, como en el ejemplo de inscripción.
+  - Los ejemplos traen reCAPTCHA (va en WordPress).
+- En este sitio, «Más información» y la descarga del brochure son del tipo **contacto**. Las dos llevan,
+  además, el opcional de uso posterior (`BloquePrivacidad.astro`).
 
 ## Marca del Centro (manual `reassetsgrficos/MANUAL CGC.pdf`)
 

@@ -23,9 +23,8 @@ export const sitio = {
   whatsapp: `WhatsApp ${whatsapp.numero}`,
   whatsappUrl: whatsapp.url(),
   comoLlegar: 'https://maps.google.com/?q=Rosario+Norte+407+Las+Condes',
-  politicaPrivacidad: '#politica-de-privacidad-uc',
-  // Plazo de conservación de los datos de los formularios (P1-19, 26-10)
-  plazoDatos: '12 meses',
+  // Política de Privacidad UC: el enlace que usan los ejemplos de formulario del Kit (kitdigital.uc.cl/componentes/formulario).
+  politicaPrivacidad: 'https://protecciondedatos.uc.cl/politicas',
   creditos: {
     disenoDesarrollo: { nombre: 'Scandinavia Studio', url: '#' },
     administradoPor: { nombre: 'Centro UC Gobierno Corporativo', url: '/' },

@@ -124,8 +124,9 @@ html { scroll-behavior: smooth; }
 /* ---------- Formularios ---------- */
 .cgc-form .uc-form-group label { display: block; margin-bottom: 8px; }
 .cgc-textarea { height: auto; min-height: 120px; line-height: 1.5; }
-.cgc-privacidad { background: var(--cgc-gris-fondo); border-radius: 4px; padding: 20px; }
-.cgc-privacidad .uc-form-check label { margin-bottom: 12px; }
+/* Recuadros de la cláusula y del opcional, como en los ejemplos de formulario del Kit (DED, 27-10) */
+.cgc-privacidad { border: 1px solid #eaeaea; border-radius: 4px; padding: 16px; }
+.cgc-privacidad + .cgc-privacidad { margin-top: 16px; }
 .cgc-modal_content { max-width: 600px; width: calc(100% - 32px); max-height: calc(100vh - 48px); overflow-y: auto; background: #fff; border-radius: 4px; padding: 32px; position: relative; box-shadow: 0 0 20px rgba(0, 0, 0, .18); }
 .cgc-modal_content .uc-message_close-button { position: absolute; top: 16px; right: 16px; background: none; border: 0; cursor: pointer; }
 
@@ -208,6 +209,7 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 /* ---------- Footer ---------- */
 .cgc-footer-link { color: #fff; text-decoration: underline; }
 .cgc-footer-link:hover { color: #fff; }
+.cgc-footer-privacidad { white-space: nowrap; }
 .cgc-inline-icon { vertical-align: -3px; margin-right: 4px; }
 
 /* El Kit no trae márgenes por breakpoint (mt-lg-0, mr-md-24…): el espacio entre piezas que se apilan en móvil

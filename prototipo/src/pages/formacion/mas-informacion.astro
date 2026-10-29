@@ -1,6 +1,7 @@
 ---
 // Formulario "Más información" — propuesta Scandinavia según la normativa UC de formularios (decisión A6: se mantiene).
-// 26-10 (V-03, P1-19): cada envío llega al correo de Sara con el programa elegido; los datos se guardan 12 meses.
+// 26-10 (V-03, P1-19): cada envío llega al correo de Sara con el programa elegido.
+// DED, 27-10: tipo «contacto» del Kit (aviso de obligatorios al inicio y cláusula con el texto del Kit).
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
@@ -16,7 +17,7 @@ const opciones = [...programas, inCompany];
     <div class="row cgc-row-gap">
       <div class="col-lg-8">
         <form class="cgc-form" data-form="mas-informacion" novalidate>
-          <p>Los campos marcados con * son obligatorios: los necesitamos para responder tu consulta. Los demás son opcionales.</p>
+          <p class="text-size--sm text-color--gray">(*) Campos obligatorios necesarios para poder responder a tu consulta. Los demás son opcionales.</p>
           <div class="uc-form-group">
             <label for="f-programa">Programa de interés *</label>
             <select id="f-programa" class="uc-input-style" required data-programa-select>
@@ -31,7 +32,7 @@ const opciones = [...programas, inCompany];
             <div class="col-md-6 uc-form-group"><label for="f-empresa">Empresa u organización (opcional)</label><input id="f-empresa" type="text" class="uc-input-style" placeholder="Nombre de tu empresa" /></div>
           </div>
           <div class="uc-form-group"><label for="f-consulta">Consulta (opcional)</label><textarea id="f-consulta" class="uc-input-style cgc-textarea" rows="5" placeholder="¿Qué te gustaría saber del programa?"></textarea></div>
-          <BloquePrivacidad id="f" finalidad="Tus datos serán usados solo para responder esta consulta sobre el programa." />
+          <BloquePrivacidad id="f" finalidad="que me contacte el Centro UC Gobierno Corporativo sobre el programa que elegí" acepto="que me contacten" />
           <button type="submit" class="uc-btn btn-secondary cgc-btn-auto mt-16">Enviar solicitud</button>
           <div class="uc-alert success mt-16 cgc-hidden" data-form-ok><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8">Recibimos tu solicitud. La coordinación te contactará (demo).</span></div></div>
         </form>
