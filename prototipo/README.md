@@ -83,8 +83,8 @@ del sitio actual: confirmar que siguen vigentes (P1-12).
 ## Propuesta v5 · sub-design system «Dirección» (rama `propuesta-v5`)
 
 Borrador de la versión 5: la home, Nosotros, Servicios, la ficha de programa y la página de evento rediseñadas con el lenguaje gráfico
-de Full Funnel adaptado a web, dentro del Kit. Espejo en el Figma `UC_CGC` (`eYC3WCOSY1gO8SR4ZiJo6O`): páginas
-«Dirección · Leer primero / Fundamentos / Componentes» y «Sprint 5 · Propuesta v5 (Dirección)». **No va a `main`
+de Full Funnel adaptado a web, dentro del Kit. Espejo en el Figma `UC_CGC` (`eYC3WCOSY1gO8SR4ZiJo6O`): página
+«Design System - UPDATED» (Leer primero, Fundamentos y Componentes) y pantallas en «Sprint 5 · Propuesta v5 (Dirección)». **No va a `main`
 hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revisa en la vista previa de Vercel de la rama.
 
 | Pieza | Dónde |
