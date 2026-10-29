@@ -80,12 +80,12 @@ Contenido de ejemplo en eventos, fechas de programas, fotos provisorias (ver `do
 destino de "Postula" y contenido de Asesorías. WhatsApp y correo de Sara vienen
 del sitio actual: confirmar que siguen vigentes (P1-12).
 
-## Propuesta v5 · sub-design system «Dirección» (rama `propuesta-v5`)
+## Propuesta v5 · sub-design system «Dirección» (en `main` desde el 2026-10-29)
 
-Borrador de la versión 5: la home, Nosotros, Servicios, la ficha de programa y la página de evento rediseñadas con el lenguaje gráfico
+Versión 5: la home, Nosotros, Servicios, la ficha de programa y la página de evento rediseñadas con el lenguaje gráfico
 de Full Funnel adaptado a web, dentro del Kit. Espejo en el Figma `UC_CGC` (`eYC3WCOSY1gO8SR4ZiJo6O`): página
-«Design System - UPDATED» (Leer primero, Fundamentos y Componentes) y pantallas en «Sprint 5 · Propuesta v5 (Dirección)». **No va a `main`
-hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revisa en la vista previa de Vercel de la rama.
+«Design System - UPDATED» (Leer primero, Fundamentos y Componentes) y pantallas en «Sprint 5 · Propuesta v5 (Dirección)». **Está en `main`
+desde el 2026-10-29**, con el visto bueno de Carlos: es lo que muestra `prototipo-jade-sigma.vercel.app`. La versión Sprint 4 queda en la etiqueta `sprint-4`.
 
 | Pieza | Dónde |
 |---|---|
@@ -96,7 +96,7 @@ hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revis
 | Datos nuevos de cada página (cifras, citas, textos del brochure marcados como provisorios) | `src/data/v5-*.js` |
 | Fotos del banco de Full Funnel | `public/img/v5/<página>/` |
 
-**A validar con la DED antes de pasar a `main`:** escala Display/Cifra (88, 64 y 72 px, sobre el tope `.h1`), el
+**Pendiente de validar con la DED** (ya está publicado): escala Display/Cifra (88, 64 y 72 px, sobre el tope `.h1`), el
 azul 2727 C de la submarca como superficie, etiquetas con radio completo, Roboto Slab 300 en las citas, WhatsApp
 junto al único botón amarillo y la etiqueta blanca de las cifras sobre 2727 (4,1:1; pasa solo como texto grande). **Al Centro:** licencia de las fotos del banco, contenido de Servicios (P1-01) y de
 las fichas (P1-05). `vercel.json` (raíz del repo) le indica a Vercel que el sitio está en `prototipo/`.

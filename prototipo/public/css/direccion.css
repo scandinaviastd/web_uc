@@ -1,11 +1,11 @@
 /*
- * direccion.css — sub-design system «Dirección» del Centro (propuesta v5, rama propuesta-v5).
+ * direccion.css — sub-design system «Dirección» del Centro (propuesta v5, en main desde el 2026-10-29).
  * Lenguaje gráfico de Full Funnel para el CGC UC adaptado a web, dentro del Kit Digital UC.
- * Espejo: Figma UC_CGC (eYC3WCOSY1gO8SR4ZiJo6O), páginas «Sprint 5 · Fundamentos / Componentes / Propuesta v5».
+ * Espejo: Figma UC_CGC (eYC3WCOSY1gO8SR4ZiJo6O), páginas «Design System - UPDATED» y «Sprint 5 · Propuesta v5 (Dirección)».
  * Se carga después de cgc.css. Prefijo cgc-d- (Dirección). Los tokens llevan el mismo nombre que su
  * variable de Figma (code syntax WEB).
  *
- * A VALIDAR CON LA DED antes de pasar a main (ver «Leer primero» del Figma):
+ * A VALIDAR CON LA DED, ya publicado (ver «Leer primero» del Figma):
  *   1. Escala Display / Cifra (88, 64, 72 px): fuera de la escala del Kit (tope .h1 40/48).
  *   2. Azul 2727 C de la submarca (#307FE2) como superficie: no es color del Kit.
  *   3. Radio completo de las etiquetas (el Kit pide 4 px).
