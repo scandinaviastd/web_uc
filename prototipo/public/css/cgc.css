@@ -213,6 +213,9 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
    más los 12 del margen del logo; desde 992, los 60 px que el Kit le da arriba. */
 .cgc-footer-franja { padding-bottom: 40px; }
 .cgc-footer-marca { margin-bottom: 32px; }
+.cgc-footer-col { margin-bottom: 32px; }
+.cgc-footer-col:last-child { margin-bottom: 0; }
+@media (min-width: 768px) { .cgc-footer-col { margin-bottom: 0; } }
 @media (min-width: 992px) { .cgc-footer-franja { padding-bottom: 60px; } .cgc-footer-marca { margin-bottom: 0; } }
 .cgc-inline-icon { vertical-align: -3px; margin-right: 4px; }
 
