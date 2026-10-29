@@ -1,13 +1,16 @@
 ---
 // Footer de submarca según Kit UC (views/footer-submarca.php) + footer global UC (#uc-global-footer)
-// + footer UC de créditos (.uc-dev-footer) con Políticas de Privacidad (obligatorio).
+// + footer UC de créditos (.uc-dev-footer).
+// DED, 27-10: en la zona azul oscura va la marca del Centro (no el escudo UC) y, junto a ella, el enlace
+// obligatorio «Políticas de Privacidad», que sale de los créditos.
 import { sitio, sara } from '../data/sitio.js';
 ---
 <footer class="uc-footer">
   <div class="container pb-80">
     <div class="row align-items-center justify-content-between">
       <div class="col-6 col-md-5 col-lg-4 col-xl-3 mb-32">
-        <a href="/"><img src="https://kit-digital-uc-prod.s3.amazonaws.com/assets/logo-uc-blanco.svg" alt="Logo Pontificia Universidad Católica de Chile" class="img-fluid my-12" /></a>
+        <a href="/"><img src="/img/logo-cgc-blanco.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid my-12" width="405" height="77" /></a>
+        <div class="mt-16 cgc-footer-privacidad"><a href={sitio.politicaPrivacidad} class="cgc-footer-link external" target="_blank" rel="noopener">Políticas de Privacidad<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a></div>
       </div>
       <div class="col-lg-4 text-left text-lg-right">
         <div class="uc-subtitle color-white mb-16">{sitio.nombre}</div>
@@ -31,7 +34,6 @@ import { sitio, sara } from '../data/sitio.js';
           : <a href={sitio.creditos.disenoDesarrollo.url} target="_blank" rel="noopener" class="external">{sitio.creditos.disenoDesarrollo.nombre}</a>}</li>
         <li>Sitio administrado por: <a href={sitio.creditos.administradoPor.url} class="external">{sitio.creditos.administradoPor.nombre}</a></li>
         <li>Utilizando el <a href="https://kitdigital.uc.cl/" target="_blank" rel="noopener" class="external">Kit Digital UC</a></li>
-        <li><a href={sitio.politicaPrivacidad} class="external" data-pendiente="Enlace a la Política de Protección de Datos UC por confirmar con proteccion.datos@uc.cl.">Políticas de Privacidad</a></li>
       </ul>
     </div>
   </div>
