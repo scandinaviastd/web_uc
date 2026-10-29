@@ -185,12 +185,17 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 /* ---------- Cinta de colaboradores ---------- */
 .cgc-marquee { overflow: hidden; }
 .cgc-marquee_track { display: flex; width: max-content; list-style: none; margin: 0; padding: 0; animation: cgc-marquee 50s linear infinite; }
-.cgc-marquee:hover .cgc-marquee_track, .cgc-marquee:focus-within .cgc-marquee_track, .cgc-marquee.is-pausado .cgc-marquee_track { animation-play-state: paused; }
-.cgc-marquee_item { background: #fff; border-radius: 4px; width: 200px; height: 80px; padding: 12px 20px; margin-right: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; filter: grayscale(1); }
+.cgc-marquee:hover .cgc-marquee_track { animation-play-state: paused; }
+/* Solo el logo: sin recuadro ni fondo (Mateo, 29-10) */
+.cgc-marquee_item { width: 200px; height: 80px; padding: 12px 20px; margin-right: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; filter: grayscale(1); }
 .cgc-marquee_item img { max-width: 100%; max-height: 100%; }
 .cgc-logo-text { font-weight: 700; font-size: 20px; color: var(--cgc-gris); }
 @keyframes cgc-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .cgc-marquee_track { animation: none; } }
+/* Banda de colaboradores al cierre de la home v5: filete fino arriba, sin fondo propio */
+.cgc-colaboradores { padding-bottom: 80px; }
+.cgc-colaboradores_cabecera { border-top: 1px solid var(--cgc-borde-sutil); padding-top: 48px; margin-bottom: 24px; }
+@media (max-width: 767.98px) { .cgc-colaboradores { padding-bottom: 56px; } .cgc-colaboradores_cabecera { padding-top: 40px; } .cgc-marquee_item { width: 160px; margin-right: 32px; } }
 
 /* ---------- Búsqueda ---------- */
 .cgc-search-form .uc-form-group { max-width: none; }

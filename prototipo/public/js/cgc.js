@@ -108,14 +108,6 @@
     $$('[data-ancla-seccion]').forEach(function (s) { io.observe(s); });
   }
 
-  /* ---------- Cinta de colaboradores: botón pausar ---------- */
-  var mq = $('[data-marquee]'), mqBtn = $('[data-marquee-toggle]');
-  if (mq && mqBtn) mqBtn.addEventListener('click', function () {
-    var p = mq.classList.toggle('is-pausado');
-    mqBtn.setAttribute('aria-pressed', String(p));
-    mqBtn.innerHTML = p ? '<i class="uc-icon">play_arrow</i> Reanudar' : '<i class="uc-icon">pause</i> Pausar';
-  });
-
   /* ---------- Calendarios de Extensión ---------- */
   var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var cap = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };

@@ -1,13 +1,15 @@
 ---
 // Home v5 — propuesta «Dirección» (sub-design system con el lenguaje de Full Funnel, dentro del Kit UC).
 // Espejo: Figma UC_CGC, «Sprint 5 · Propuesta v5 (Dirección)», frames 452:2 (1440) y 461:446 (375).
-// Secciones: portada en modo Noche · cifras · 01 Formación · voz · 02 Investigación (Noche) · 03 Extensión.
+// Secciones: portada en modo Noche · cifras · 01 Formación · voz · 02 Investigación (Noche) · 03 Extensión
+// · cinta de colaboradores (Mateo, 29-10: vuelve desde el Sprint 4, sin botón de pausa y sin recuadros).
 import Base from '../layouts/Base.astro';
 import Barra from '../components/v5/Barra.astro';
 import Cifra from '../components/v5/Cifra.astro';
 import Cita from '../components/v5/Cita.astro';
 import TarjetaPrograma from '../components/v5/TarjetaPrograma.astro';
 import Evento from '../components/v5/Evento.astro';
+import Colaboradores from '../components/Colaboradores.astro';
 import { programas, getPrograma } from '../data/programas.js';
 import { whatsapp } from '../data/sitio.js';
 import { cifraPortada, cifrasCentro, descripcionDiplomado, ordenCursos, citaPortada, cifrasEstudio, eventosHome, fotos } from '../data/v5-home.js';
@@ -160,4 +162,6 @@ const secciones = [
       <a href="/extension/#eventos" class="cgc-d-enlace">Ver todos los eventos →</a>
     </div>
   </section>
+
+  <Colaboradores />
 </Base>

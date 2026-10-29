@@ -1,15 +1,13 @@
 ---
-// Cinta de colaboradores: desplazamiento continuo, pausa con hover/foco y con botón; respeta prefers-reduced-motion.
+// Cinta de colaboradores (P1-17): desplazamiento continuo; se detiene con el puntero encima y respeta
+// prefers-reduced-motion. Mateo, 29-10 (home v5): sin botón de pausa y solo los logos, sin recuadro de fondo.
 import { colaboradores } from '../data/contenidos.js';
 // 4 copias: con pocos logos, la mitad de la cinta (lo que se desplaza) debe ser más ancha que la pantalla.
 const lista = [...colaboradores, ...colaboradores, ...colaboradores, ...colaboradores];
 ---
-<section class="cgc-section cgc-section--gray" aria-labelledby="colaboradores-titulo">
+<section class="cgc-d-claro cgc-colaboradores" aria-labelledby="colaboradores-titulo">
   <div class="container">
-    <div class="d-flex align-items-center mb-32">
-      <h2 id="colaboradores-titulo" class="h2 mb-0">Colaboradores</h2><div class="uc-heading-decoration"></div>
-      <button type="button" class="uc-btn btn-inline ml-auto" data-marquee-toggle aria-pressed="false"><i class="uc-icon">pause</i> Pausar</button>
-    </div>
+    <div class="cgc-colaboradores_cabecera"><h2 id="colaboradores-titulo" class="cgc-d-ante cgc-d-texto-sec mb-0">Colaboradores</h2></div>
   </div>
   <div class="cgc-marquee" data-marquee>
     <ul class="cgc-marquee_track">
