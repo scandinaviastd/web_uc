@@ -96,6 +96,6 @@ hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revis
 | Fotos del banco de Full Funnel | `public/img/v5/<página>/` |
 
 **A validar con la DED antes de pasar a `main`:** escala Display/Cifra (88, 64 y 72 px, sobre el tope `.h1`), el
-azul 2727 C de la submarca como superficie, etiquetas con radio completo, Roboto Slab 300 en las citas y WhatsApp
-junto al único botón amarillo. **Al Centro:** licencia de las fotos del banco, contenido de Servicios (P1-01) y de
+azul 2727 C de la submarca como superficie, etiquetas con radio completo, Roboto Slab 300 en las citas, WhatsApp
+junto al único botón amarillo y la etiqueta blanca de las cifras sobre 2727 (4,1:1; pasa solo como texto grande). **Al Centro:** licencia de las fotos del banco, contenido de Servicios (P1-01) y de
 las fichas (P1-05). `vercel.json` (raíz del repo) le indica a Vercel que el sitio está en `prototipo/`.

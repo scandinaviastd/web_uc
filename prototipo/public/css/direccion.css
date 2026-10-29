@@ -119,7 +119,9 @@
 .cgc-d-cifra-bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); }
 .cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-segmento { background: var(--cgc-blanco); }
 .cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra { color: var(--cgc-blanco); }
-.cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra-bloque_etiqueta { color: var(--cgc-azul-oscuro); }
+/* Mateo, 29-10: la etiqueta sobre el azul 2727 va en blanco, como la cifra. Contraste 4,1:1: no llega al AA de
+   texto normal (4,5:1) a 16 px; pasaría como texto grande (19 px negrita o 24 px). A validar con la DED. */
+.cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra-bloque_etiqueta { color: var(--cgc-blanco); }
 .cgc-d-cifra-bloque[data-fondo="noche"] { background: var(--cgc-superficie-profunda); }
 .cgc-d-cifra-bloque[data-fondo="noche"] .cgc-d-cifra { color: var(--cgc-acento-cian); }
 .cgc-d-cifra-bloque[data-fondo="noche"] .cgc-d-cifra-bloque_etiqueta { color: var(--cgc-gris-300); }
