@@ -1,0 +1,57 @@
+/*
+ * v5-evento.css — página de evento de la propuesta v5 (src/components/v5/EventoDireccion.astro).
+ * Espejo: Figma UC_CGC, «Evento v5 · propuesta Dirección» (520:1818) y móvil (522:2045).
+ * Reusa la portada, el contacto y «Por completar» de v5-ficha.css; aquí va lo propio del evento. Prefijo cgc-v5e-.
+ */
+
+/* ---------- Fecha de evento (portada sin foto real) ---------- */
+.cgc-v5e-fecha { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; width: 100%; max-width: 440px; margin-left: auto; aspect-ratio: 1 / 1; padding: 40px; background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
+.cgc-v5e-fecha::after { content: ""; position: absolute; top: -24px; right: -24px; width: 48px; height: 48px; background: var(--cgc-acento-cian); }
+.cgc-v5e-fecha_arriba { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.cgc-v5e-fecha .cgc-d-segmento { background: var(--cgc-blanco); }
+.cgc-v5e-fecha_dia { font-size: 88px; line-height: 92px; font-weight: 700; letter-spacing: -.02em; }
+.cgc-v5e-fecha .cgc-d-ante { color: var(--cgc-blanco); }
+.cgc-v5e-fecha_detalle { font-size: 18px; line-height: 32px; letter-spacing: .5px; }
+@media (max-width: 991.98px) {
+  .cgc-v5e-fecha { max-width: none; margin: 24px 0 0; aspect-ratio: 343 / 240; padding: 24px; }
+  .cgc-v5e-fecha::after { top: -12px; right: 0; width: 32px; height: 32px; }
+}
+@media (max-width: 767.98px) {
+  .cgc-v5e-fecha_dia { font-size: 44px; line-height: 48px; }
+  .cgc-v5e-fecha_detalle { line-height: 30px; }
+}
+
+/* ---------- Inscripción (formulario de inscripción del Kit) ---------- */
+.cgc-v5e-inscripcion { padding: 96px 0; }
+.cgc-v5e-inscripcion_grid { display: grid; grid-template-columns: 440px minmax(0, 1fr); grid-template-rows: auto 1fr; grid-template-areas: "texto form" "contacto form"; column-gap: 72px; row-gap: 32px; align-items: start; }
+.cgc-v5e-inscripcion_texto { grid-area: texto; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.cgc-v5e-form { grid-area: form; display: flex; flex-direction: column; gap: 24px; padding: 40px; background: var(--cgc-superficie-base); border-radius: var(--cgc-radio-kit); }
+.cgc-v5e-form .uc-form-group { margin-bottom: 0; min-width: 0; }
+.cgc-v5e-form .uc-input-style { width: 100%; min-width: 0; }
+.cgc-v5e-form_fila { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.cgc-v5e-form .uc-btn { align-self: flex-start; }
+.cgc-v5e-contacto { grid-area: contacto; background: var(--cgc-superficie-base); }
+/* Sin formulario (fecha u horario por confirmar): texto y contacto en una columna */
+.cgc-v5e-inscripcion_grid:not(:has(.cgc-v5e-form)) { grid-template-columns: minmax(0, 440px); grid-template-areas: "texto" "contacto"; }
+@media (max-width: 1199.98px) {
+  .cgc-v5e-inscripcion_grid { grid-template-columns: 320px minmax(0, 1fr); column-gap: 48px; }
+  .cgc-v5e-form_fila { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 991.98px) {
+  .cgc-v5e-inscripcion_grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "texto" "form" "contacto"; row-gap: 24px; }
+}
+@media (max-width: 767.98px) {
+  .cgc-v5e-inscripcion { padding: 56px 0; }
+  .cgc-v5e-form { padding: 24px; }
+  .cgc-v5e-form_fila { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- Sobre / resumen y más eventos ---------- */
+.cgc-v5e-mas { padding: 96px 0; background: var(--cgc-superficie-base); }
+.cgc-v5e-mas .container { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
+.cgc-v5e-mas_lista { width: 100%; }
+.cgc-v5e-sobre { max-width: 760px; }
+@media (max-width: 767.98px) {
+  .cgc-v5e-mas { padding: 56px 0; }
+  .cgc-v5e-mas .container { gap: 32px; }
+}

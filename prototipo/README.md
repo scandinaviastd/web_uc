@@ -82,7 +82,7 @@ del sitio actual: confirmar que siguen vigentes (P1-12).
 
 ## Propuesta v5 · sub-design system «Dirección» (rama `propuesta-v5`)
 
-Borrador de la versión 5: la home, Nosotros, Servicios y la ficha de programa rediseñadas con el lenguaje gráfico
+Borrador de la versión 5: la home, Nosotros, Servicios, la ficha de programa y la página de evento rediseñadas con el lenguaje gráfico
 de Full Funnel adaptado a web, dentro del Kit. Espejo en el Figma `UC_CGC` (`eYC3WCOSY1gO8SR4ZiJo6O`): páginas
 «Dirección · Leer primero / Fundamentos / Componentes» y «Sprint 5 · Propuesta v5 (Dirección)». **No va a `main`
 hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revisa en la vista previa de Vercel de la rama.
@@ -90,8 +90,9 @@ hasta que el Centro la apruebe y la DED valide lo de abajo**; mientras, se revis
 | Pieza | Dónde |
 |---|---|
 | Tokens (modo Claro y Noche), tipografía Display/Cifra/Cita y componentes | `public/css/direccion.css` (clases `cgc-d-`) |
-| Componentes: Barra, Etiqueta, Cifra, Retrato, Cita, Tarjeta de programa, Evento, Ficha | `src/components/v5/` |
-| CSS de cada página | `public/css/v5-{home,nosotros,servicios,ficha}.css` (se enlazan con `<link slot="head">`) |
+| Componentes: Barra, Etiqueta, Cifra, Retrato, Cita, Tarjeta de programa, Evento, Ficha, Fecha de evento, Página de evento | `src/components/v5/` |
+| Página de evento (`/extension/eventos/<slug>/`): inscripción con el formulario de inscripción del Kit solo si fecha y hora están confirmadas; archivo .ics para el calendario; bloque «Fecha de evento» si no hay foto real | `src/components/v5/EventoDireccion.astro`, `public/css/v5-evento.css` (usa también `v5-ficha.css`), `src/data/v5-evento.js` |
+| CSS de cada página | `public/css/v5-{home,nosotros,servicios,ficha,evento}.css` (se enlazan con `<link slot="head">`) |
 | Datos nuevos de cada página (cifras, citas, textos del brochure marcados como provisorios) | `src/data/v5-*.js` |
 | Fotos del banco de Full Funnel | `public/img/v5/<página>/` |
 

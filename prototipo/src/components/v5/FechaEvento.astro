@@ -1,0 +1,14 @@
+---
+// Fecha de evento: bloque azul 2727 de la portada cuando el evento no tiene foto real (las de stock salen, 26-10).
+// Día grande, mes y año, y abajo horario · modalidad. Espejo: componente «Fecha de evento» (518:32) del Figma.
+interface Props { dia: string; mesAnio: string; detalle?: string; class?: string }
+const { dia, mesAnio, detalle, class: clase } = Astro.props;
+---
+<div class:list={['cgc-v5e-fecha', clase]} aria-hidden="true">
+  <div class="cgc-v5e-fecha_arriba">
+    <span class="cgc-d-segmento"></span>
+    <span class="cgc-v5e-fecha_dia">{dia}</span>
+    <span class="cgc-d-ante">{mesAnio}</span>
+  </div>
+  {detalle && <span class="cgc-v5e-fecha_detalle">{detalle}</span>}
+</div>

@@ -1,0 +1,178 @@
+---
+// Página de evento · propuesta v5 (sub-design system «Dirección»). Plantilla de todos los eventos (single-evento.php).
+// Espejo: Figma UC_CGC, «Evento v5 · propuesta Dirección» (520:1818) y su versión móvil (522:2045).
+// Portada en modo Noche con datos prácticos y un solo amarillo («Inscribirme») · Inscripción con el formulario de
+// inscripción del Kit, solo si fecha y hora están confirmadas · Resumen (realizado) · Más eventos · Por completar.
+// Sin foto real del evento la portada lleva el bloque «Fecha de evento»: las fotos de stock salen del sitio (26-10).
+// Reusa la portada, el contacto y «Por completar» de la ficha v5 (v5-ficha.css); lo propio va en v5-evento.css.
+import Etiqueta from './Etiqueta.astro';
+import Barra from './Barra.astro';
+import Evento from './Evento.astro';
+import FechaEvento from './FechaEvento.astro';
+import BloquePrivacidad from '../BloquePrivacidad.astro';
+import { eventosProximos, eventosRealizados, colaboradores, fechaEvento } from '../../data/contenidos.js';
+import { coordinacion } from '../../data/programas.js';
+import { whatsapp, telHref } from '../../data/sitio.js';
+import { fotosEvento } from '../../data/v5-evento.js';
+interface Props { e: any }
+const { e } = Astro.props;
+
+const HOY = new Date().toISOString().slice(0, 10);
+const proximo = e.orden >= HOY;
+const porConfirmar = (v?: string) => !v || /confirmar/i.test(v);
+const abierta = proximo && !!e.fecha && !porConfirmar(e.hora);
+
+// Fecha: del campo ISO; sin fecha exacta, el mes (si se sabe) o el texto del Centro.
+const MESES_CORTOS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+const f = e.fecha ? fechaEvento(e.fecha) : null;
+const anio = (e.fecha ?? e.mes ?? '').slice(0, 4);
+const dia = f ? f.dia.padStart(2, '0') : e.mes ? MESES_CORTOS[Number(e.mes.slice(5, 7)) - 1] : '—';
+const mesAnio = f ? f.larga.split(' de ').slice(1).join(' ') : e.mes ? anio : e.fechaTexto;
+const fechaCorta = f ? `${f.dia} ${f.mes.toLowerCase()} ${anio}` : e.fechaTexto;
+const detalle = [f ? e.hora : e.mes ? e.fechaTexto : null, e.lugar].filter((v) => v && v !== 'Por confirmar').join(' · ');
+
+const online = /online/i.test(e.lugar ?? '');
+const socio = e.socio ? (colaboradores.find((c) => c.nombre.startsWith(e.socio))?.nombre ?? e.socio) : null;
+// Próximo: lo que falta dice «Por confirmar». Realizado: solo los datos que existen.
+const datos = [
+  ['Fecha', fechaCorta],
+  ['Horario', e.hora ?? (proximo ? 'Por confirmar' : null)],
+  [online ? 'Modalidad' : 'Lugar', e.lugar ?? (proximo ? 'Por confirmar' : null)],
+  ['Junto a', socio],
+].filter(([, v]) => v);
+const corte = e.titulo.indexOf(': ');
+const [linea1, linea2] = corte > 0 ? [e.titulo.slice(0, corte + 1), e.titulo.slice(corte + 2)] : [null, e.titulo];
+const estado = proximo ? (abierta ? 'Próximo · inscripción abierta' : 'Próximo') : 'Realizado';
+const foto = fotosEvento[e.id];
+
+// «Agregar a mi calendario»: archivo .ics armado con la fecha y el horario (solo si los dos están confirmados).
+const horas = abierta ? (e.hora.match(/\d{1,2}:\d{2}/g) ?? []) : [];
+const ics = horas.length === 2 ? (() => {
+  const d = e.fecha.replace(/-/g, '');
+  const h = (x: string) => x.replace(':', '').padStart(4, '0') + '00';
+  const esc = (s: string) => s.replace(/([,;\\])/g, '\\$1');
+  const cuerpo = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//CGC UC//Eventos//ES', 'BEGIN:VEVENT',
+    `UID:${e.id}@centrogobiernocorporativo.uc.cl`, `DTSTAMP:${d}T000000`,
+    `DTSTART;TZID=America/Santiago:${d}T${h(horas[0])}`, `DTEND;TZID=America/Santiago:${d}T${h(horas[1])}`,
+    `SUMMARY:${esc(e.titulo)}`, `LOCATION:${esc(e.lugar ?? '')}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(cuerpo);
+})() : null;
+
+// Más eventos: el próximo que sigue y el último realizado (sin repetir este).
+const fila = (x: any) => {
+  const fx = x.fecha ? fechaEvento(x.fecha) : null;
+  return {
+    dia: fx ? fx.dia.padStart(2, '0') : x.mes ? MESES_CORTOS[Number(x.mes.slice(5, 7)) - 1] : '—',
+    mes: fx ? fx.mes : x.mes ? x.mes.slice(0, 4) : '',
+    tipo: x.tipo, titulo: x.titulo, href: x.url, fechaLarga: x.fechaLarga,
+    meta: `${x.tipo} · ${fx ? fx.larga : (x.fechaTexto ?? 'fecha por confirmar').toLowerCase()}`,
+    estado: x.orden < HOY ? 'realizado' : 'proximo',
+    // Próximo sin fecha u horario confirmados: todavía no hay inscripción, el enlace lleva al evento.
+    accion: x.orden < HOY ? undefined : x.fecha && !porConfirmar(x.hora) ? 'Inscribirme →' : 'Ver evento →',
+  };
+};
+const mas = [eventosProximos.find((x) => x.id !== e.id), eventosRealizados.find((x) => x.id !== e.id)].filter(Boolean).map(fila);
+
+const c = coordinacion;
+const [cNombre, cCargo] = c.persona.split(' · ');
+const pendientes = (proximo
+  ? [!e.descripcion && 'Descripción del evento', 'Expositores', online && 'Enlace de conexión', 'Cupos']
+  : [!e.descripcion && 'Resumen del evento', 'Expositores', 'Fotos del evento']).filter(Boolean);
+---
+<section class="cgc-d-noche cgc-v5f-portada" aria-labelledby="evento-titulo">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="cgc-v5f-texto">
+          <div class="cgc-v5f-etiquetas">
+            <Etiqueta texto={e.tipo} />
+            <Etiqueta texto={estado} estilo={proximo ? 'cian' : 'contorno'} />
+          </div>
+          <h1 id="evento-titulo" class="cgc-d-display-l cgc-v5f-titular">{linea1 && <span class="d-block">{linea1}</span>}<strong class="d-block">{linea2}</strong></h1>
+          {e.nota && <p class="p-size--lg cgc-v5f-frase">{e.nota}</p>}
+          <dl class="cgc-v5f-datos">
+            {datos.map(([k, v]) => <div class="cgc-v5f-dato"><dt class="cgc-d-ante">{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+          <div class="cgc-v5f-acciones">
+            {abierta && <a href="#inscripcion" class="uc-btn btn-cta cgc-btn-auto">Inscribirme</a>}
+            {proximo
+              ? <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">Conversemos por WhatsApp →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+              : <a href="/extension/#eventos" class="cgc-d-enlace">Ver todos los eventos →</a>}
+            {ics && <a href={ics} download={`${e.id}.ics`} class="cgc-d-enlace">Agregar a mi calendario →</a>}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        {foto
+          ? <div class="cgc-v5f-foto"><img src={foto.src} alt={foto.alt} width="1600" height="1066" /></div>
+          : <FechaEvento dia={dia} mesAnio={mesAnio} detalle={detalle} />}
+      </div>
+    </div>
+    <Barra indice={1} class="cgc-v5f-barra" />
+  </div>
+</section>
+
+{e.descripcion && (
+  <section class="cgc-v5e-mas" aria-labelledby="sobre-titulo">
+    <div class="container">
+      <h2 id="sobre-titulo" class="h2 cgc-v5f-h2">{proximo ? 'Sobre el evento' : 'Resumen del evento'}</h2>
+      <p class="p-size--lg cgc-v5f-cuerpo cgc-v5e-sobre mb-0">{e.descripcion}</p>
+    </div>
+  </section>
+)}
+
+{proximo && (
+  <section id="inscripcion" class="cgc-d-suave cgc-v5e-inscripcion" aria-labelledby="inscripcion-titulo">
+    <div class="container">
+      <div class="cgc-v5e-inscripcion_grid">
+        <div class="cgc-v5e-inscripcion_texto">
+          <p class="cgc-d-ante cgc-d-texto-marca mb-0">Inscripción</p>
+          <h2 id="inscripcion-titulo" class="h2 cgc-v5f-h2">{abierta ? `Inscríbete ${e.tipo === 'Webinar' ? 'al webinar' : 'al evento'}` : 'Inscripción por abrir'}</h2>
+          <p class="cgc-v5f-texto-sec mb-0">{abierta ? `Completa tus datos para inscribirte ${e.tipo === 'Webinar' ? 'en el webinar' : 'en el evento'}.` : 'La inscripción se abre cuando el Centro confirme la fecha, el horario y el lugar.'}</p>
+        </div>
+        {abierta && (
+          <form class="cgc-form cgc-v5e-form" data-form="inscripcion" novalidate aria-labelledby="inscripcion-titulo">
+            <input type="hidden" name="evento" value={e.id} />
+            <p class="text-size--sm text-color--gray mb-0">(*) Campos obligatorios necesarios para procesar tu inscripción.</p>
+            <div class="cgc-v5e-form_fila">
+              <div class="uc-form-group"><label for="i-nombre">Nombre *</label><input id="i-nombre" type="text" class="uc-input-style" placeholder="Nombre" autocomplete="given-name" required /></div>
+              <div class="uc-form-group"><label for="i-apellido">Apellido *</label><input id="i-apellido" type="text" class="uc-input-style" placeholder="Apellido" autocomplete="family-name" required /></div>
+            </div>
+            <div class="uc-form-group"><label for="i-correo">Correo electrónico *</label><input id="i-correo" type="email" class="uc-input-style" placeholder="nombre@empresa.cl" autocomplete="email" required /></div>
+            <BloquePrivacidad id="i" tipo="inscripcion" actividad={e.titulo} />
+            <button type="submit" class="uc-btn btn-secondary cgc-btn-auto">Inscribirme</button>
+            <div class="uc-alert success cgc-hidden" data-form-ok><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8">Recibimos tu inscripción (demo).</span></div></div>
+          </form>
+        )}
+        <aside class="cgc-v5f-contacto cgc-v5e-contacto" aria-labelledby="contacto-titulo">
+          <h2 id="contacto-titulo" class="cgc-d-ante cgc-d-texto-marca">¿Tienes dudas sobre el evento?</h2>
+          <p class="cgc-v5f-contacto-nombre">{cNombre}</p>
+          {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
+          <Barra />
+          <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          {c.telefono && <a href={telHref(c.telefono)} class="cgc-v5f-telefono">{c.telefono}</a>}
+        </aside>
+      </div>
+    </div>
+  </section>
+)}
+
+{mas.length > 0 && (
+  <section class="cgc-v5e-mas" aria-labelledby="mas-titulo">
+    <div class="container">
+      <h2 id="mas-titulo" class="h2 cgc-v5f-h2">Más eventos</h2>
+      <div class="cgc-v5e-mas_lista">
+        {mas.map((x) => <Evento {...x} />)}
+      </div>
+      <a href="/extension/#eventos" class="cgc-d-enlace">Ver todos los eventos →</a>
+    </div>
+  </section>
+)}
+
+<section class="cgc-d-suave cgc-v5f-pendientes" aria-labelledby="pendientes-titulo">
+  <div class="container">
+    <h2 id="pendientes-titulo" class="cgc-d-ante cgc-d-texto-marca">Por completar con el Centro</h2>
+    <p class="cgc-v5f-pendientes-lista">{pendientes.join(' · ')}</p>
+    <p class="cgc-v5f-texto-sec mb-0">Se muestran en la página del evento cuando el Centro los entregue; mientras tanto no se publican secciones vacías.</p>
+  </div>
+</section>

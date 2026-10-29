@@ -3,21 +3,27 @@
 // validados por la mesa de protección de datos UC (pedido de la DED, 27-10). Más información y brochure son del
 // tipo «contacto»: la cláusula obligatoria lleva su texto. El checkbox opcional de uso posterior, nunca premarcado,
 // usa el recuadro «Opcional» del ejemplo de inscripción (lineamiento general: solo si se hará uso posterior).
+// Inscripción a un evento (tipo «inscripción» del Kit): su propio texto, con el nombre de la actividad.
 // En WordPress faltan el reCAPTCHA que traen los ejemplos y el registro de los consentimientos del opcional.
 import { sitio } from '../data/sitio.js';
 interface Props {
   id: string;
-  finalidad: string; // completa «tratar los datos personales para …»
-  acepto: string;    // completa «Acepto que la UC trate mis datos personales para …»
+  tipo?: 'contacto' | 'inscripcion';
+  finalidad?: string; // contacto: completa «tratar los datos personales para …»
+  acepto?: string;    // contacto: completa «Acepto que la UC trate mis datos personales para …»
+  actividad?: string; // inscripción: nombre de la actividad
   opcional?: boolean;
 }
-const { id, finalidad, acepto, opcional = true } = Astro.props;
+const { id, tipo = 'contacto', finalidad, acepto, actividad, opcional = true } = Astro.props;
+const inscripcion = tipo === 'inscripcion';
 ---
 <div class="cgc-privacidad">
-  <p class="text-color--gray mb-16">Autorizo expresamente a la UC para tratar los datos personales para {finalidad}. Los datos personales serán usados solamente para esta finalidad y se <strong>mantendrán mientras sean requeridos por Ley</strong>.</p>
+  {inscripcion
+    ? <p class="text-color--gray mb-16">Autorizo expresamente a la UC para tratar los datos personales necesarios para la inscripción a la actividad «{actividad}», los cuales serán informados a la unidad organizadora. Los datos personales serán usados solamente para la inscripción a esta actividad y se <strong>mantendrán mientras sean requeridos por Ley</strong>.</p>
+    : <p class="text-color--gray mb-16">Autorizo expresamente a la UC para tratar los datos personales para {finalidad}. Los datos personales serán usados solamente para esta finalidad y se <strong>mantendrán mientras sean requeridos por Ley</strong>.</p>}
   <div class="uc-form-check">
     <input id={`${id}-privacidad`} type="checkbox" value="true" required aria-required="true" />
-    <label for={`${id}-privacidad`} class="mb-0">* Acepto que la UC trate mis datos personales para {acepto}, y he leído y acepto la <a href={sitio.politicaPrivacidad} target="_blank" rel="noopener" class="external">Política de Privacidad UC<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>.</label>
+    <label for={`${id}-privacidad`} class="mb-0">* Acepto que la UC trate mis datos personales para {inscripcion ? 'esta actividad' : acepto}, y he leído y acepto la <a href={sitio.politicaPrivacidad} target="_blank" rel="noopener" class="external">Política de Privacidad UC<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>.</label>
   </div>
 </div>
 {opcional && (
