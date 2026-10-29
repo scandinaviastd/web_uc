@@ -2,8 +2,9 @@
 // Footer de submarca según Kit UC (views/footer-submarca.php) + footer global UC (#uc-global-footer)
 // + footer UC de créditos (.uc-dev-footer).
 // DED, 27-10: en la zona azul oscura va la marca del Centro (no el escudo UC) y el enlace obligatorio
-// «Políticas de Privacidad», que sale de los créditos. Mateo, 29-10: el enlace va al final de la columna de
-// datos, alineado con el resto, y la franja queda con el mismo aire arriba y abajo (.cgc-footer-franja).
+// «Políticas de Privacidad», que sale de los créditos. Mateo, 29-10: los datos van en dos columnas («Centro UC
+// Gobierno Corporativo» y «Contacto»), la política al final de la primera, y la franja queda más delgada y con
+// el mismo aire arriba y abajo (.cgc-footer-franja).
 import { sitio, sara } from '../data/sitio.js';
 ---
 <footer class="uc-footer">
@@ -12,17 +13,25 @@ import { sitio, sara } from '../data/sitio.js';
       <div class="col-6 col-md-5 col-lg-4 col-xl-3 cgc-footer-marca">
         <a href="/"><img src="/img/logo-cgc-blanco.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid my-12" width="405" height="77" /></a>
       </div>
-      <div class="col-lg-4 text-left text-lg-right">
-        <div class="uc-subtitle color-white mb-16">{sitio.nombre}</div>
-        <div class="mb-16">{sitio.direccion}</div>
-        <div class="mb-16">{sitio.unidad}</div>
-        <div class="mb-16"><i class="uc-icon">phone</i> {sitio.telefono} · {sitio.correo}</div>
-        <div class="mb-16">Contacto: {sara.nombre} · <a href={`mailto:${sara.correo}`} class="cgc-footer-link">{sara.correo}</a></div>
-        <div class="mb-16">
-          <a href={sitio.whatsappUrl} class="cgc-footer-link" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="cgc-inline-icon" /> {sitio.whatsapp}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+      <!-- Dos columnas de datos (Mateo, 29-10): menos alto y la franja más delgada -->
+      <div class="col-lg-8 col-xl-7">
+        <div class="row">
+          <div class="col-md-6 cgc-footer-col">
+            <div class="uc-subtitle color-white mb-16">{sitio.nombre}</div>
+            <div class="mb-16">{sitio.direccion}</div>
+            <div class="mb-16">{sitio.unidad}</div>
+            <div class="mb-16"><a href={sitio.comoLlegar} class="cgc-footer-link" target="_blank" rel="noopener">¿Cómo llegar?</a></div>
+            <div><a href={sitio.politicaPrivacidad} class="cgc-footer-link external" target="_blank" rel="noopener">Políticas de Privacidad<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a></div>
+          </div>
+          <div class="col-md-6 cgc-footer-col">
+            <div class="uc-subtitle color-white mb-16">Contacto</div>
+            <div class="mb-16"><i class="uc-icon">phone</i> {sitio.telefono} · {sitio.correo}</div>
+            <div class="mb-16">{sara.nombre} · <a href={`mailto:${sara.correo}`} class="cgc-footer-link">{sara.correo}</a></div>
+            <div>
+              <a href={sitio.whatsappUrl} class="cgc-footer-link" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="cgc-inline-icon" /> {sitio.whatsapp}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+            </div>
+          </div>
         </div>
-        <div class="mb-16"><a href={sitio.comoLlegar} class="cgc-footer-link" target="_blank" rel="noopener">¿Cómo llegar?</a></div>
-        <div><a href={sitio.politicaPrivacidad} class="cgc-footer-link external" target="_blank" rel="noopener">Políticas de Privacidad<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a></div>
       </div>
     </div>
   </div>
