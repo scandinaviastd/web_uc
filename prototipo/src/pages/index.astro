@@ -1,22 +1,34 @@
 ---
 // Home v5 — propuesta «Dirección» (sub-design system con el lenguaje de Full Funnel, dentro del Kit UC).
 // Espejo: Figma UC_CGC, «Sprint 5 · Propuesta v5 (Dirección)», frames 452:2 (1440) y 461:446 (375).
-// Secciones: portada en modo Noche · cifras · 01 Formación · voz · 02 Investigación (Noche) · 03 Extensión
-// · cinta de colaboradores (Mateo, 29-10: vuelve desde el Sprint 4, sin botón de pausa y sin recuadros).
+// Secciones: portada en modo Noche · cifras · 01 Formación (con In Company) · voz · 02 Investigación (Noche)
+// · 03 Extensión (con «Actualidad»: Noticias y Prensa) · cinta de colaboradores.
+// Mateo, 29-10: vuelven desde el Sprint 4 In Company, Noticias, Prensa, Newsletters (enlace) y la cinta.
 import Base from '../layouts/Base.astro';
 import Barra from '../components/v5/Barra.astro';
 import Cifra from '../components/v5/Cifra.astro';
 import Cita from '../components/v5/Cita.astro';
 import TarjetaPrograma from '../components/v5/TarjetaPrograma.astro';
 import Evento from '../components/v5/Evento.astro';
+import Etiqueta from '../components/v5/Etiqueta.astro';
 import Colaboradores from '../components/Colaboradores.astro';
-import { programas, getPrograma } from '../data/programas.js';
+import { programas, getPrograma, inCompany } from '../data/programas.js';
+import { noticias, prensa } from '../data/contenidos.js';
 import { whatsapp } from '../data/sitio.js';
 import { cifraPortada, cifrasCentro, descripcionDiplomado, ordenCursos, citaPortada, cifrasEstudio, eventosHome, fotos } from '../data/v5-home.js';
 
 const diplomado = programas.find((p) => p.tipo === 'Diplomado');
 const cursos = ordenCursos.map(getPrograma).filter(Boolean);
 const oferta = (p) => `${p.tipo} · Oferta 2027`;
+// Actualidad: las dos noticias más recientes y la última columna de prensa, en orden de fecha, para que
+// siempre aparezcan las dos (con las tres más recientes a secas, hoy saldrían solo noticias).
+const MES = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
+const fechaDe = (f) => { const [d, m, a] = f.split(' - '); return new Date(+a, MES[m.toLowerCase()], +d); };
+const actualidad = [
+  ...noticias.slice(0, 2).map((n) => ({ tipo: 'Noticia', fecha: n.fecha, titulo: n.titulo, pendiente: 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' })),
+  ...prensa.slice(0, 1).map((o) => ({ tipo: 'Prensa', fecha: o.fecha, titulo: o.titulo, firma: `${o.autor} · ${o.medio}`, pendiente: 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' })),
+].sort((a, b) => fechaDe(b.fecha) - fechaDe(a.fecha));
+const fechaCorta = (f) => f.split(' - ').map((s, i) => (i === 1 ? s.toLowerCase() : s)).join(' ');
 const secciones = [
   { n: '01', label: 'Formación', href: '#formacion' },
   { n: '02', label: 'Investigación', href: '#investigacion' },
@@ -96,6 +108,7 @@ const secciones = [
       )}
 
       <!-- Cursos: fila de 3 desde lg; carrusel con scroll-snap nativo debajo (la tarjeta siguiente se asoma) -->
+      <div class="v5h-cursos">
       <div class="v5h-carrusel" data-scroll-x role="region" aria-label="Cursos 2027">
         {cursos.map((p) => (
           <div class="v5h-carrusel_item">
@@ -103,9 +116,13 @@ const secciones = [
           </div>
         ))}
       </div>
+        <p class="v5h-pista d-lg-none mb-0" aria-hidden="true">Desliza para ver los tres cursos →</p>
+      </div>
+
+      <!-- In Company: horizontal a todo el ancho como el diplomado (V-09); texto del Centro (V-02, 26-10) -->
+      <TarjetaPrograma horizontal titulo={inCompany.titulo} tipo={inCompany.tipo} meta="In Company · Programa a medida" href="/formacion/in-company/" descripcion="Diseñamos el programa según los desafíos de tu empresa." whatsapp={whatsapp.url(inCompany.whatsappTema)} />
 
       <div class="v5h-cierre">
-        <p class="v5h-pista d-lg-none mb-0" aria-hidden="true">Desliza para ver los tres cursos →</p>
         <Barra />
         <a href="/formacion/" class="cgc-d-enlace">Ver toda la oferta de Formación →</a>
       </div>
@@ -160,6 +177,25 @@ const secciones = [
         {eventosHome.map((e) => <Evento {...e} />)}
       </div>
       <a href="/extension/#eventos" class="cgc-d-enlace">Ver todos los eventos →</a>
+
+      <!-- Actualidad: Noticias y Prensa juntas; Newsletters, como enlace (Mateo, 29-10). Las páginas de detalle se arman en WordPress. -->
+      <div class="v5h-actualidad">
+        <h3 class="cgc-d-ante cgc-d-texto-sec mb-0">Actualidad</h3>
+        <div class="v5h-actualidad_grid">
+          {actualidad.map((a) => (
+            <article class="v5h-pieza">
+              <div class="v5h-pieza_meta"><Etiqueta texto={a.tipo} estilo="contorno" /><span class="v5h-pieza_fecha">{fechaCorta(a.fecha)}</span></div>
+              <h4 class="v5h-pieza_titulo"><a href="#" data-pendiente={a.pendiente}>{a.titulo}</a></h4>
+              {a.firma && <p class="v5h-pieza_firma mb-0">{a.firma}</p>}
+            </article>
+          ))}
+        </div>
+        <div class="v5h-actualidad_enlaces">
+          <a href="/extension/#noticias" class="cgc-d-enlace">Ver todas las noticias →</a>
+          <a href="/extension/prensa/" class="cgc-d-enlace">Ver toda la prensa →</a>
+          <a href="/extension/#newsletters" class="cgc-d-enlace">Lee los newsletters →</a>
+        </div>
+      </div>
     </div>
   </section>
 
