@@ -209,7 +209,11 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 /* ---------- Footer ---------- */
 .cgc-footer-link { color: #fff; text-decoration: underline; }
 .cgc-footer-link:hover { color: #fff; }
-.cgc-footer-privacidad { white-space: nowrap; }
+/* Franja azul oscura: abajo el mismo aire que se ve arriba. En móvil, los 28 px del .uc-footer del Kit
+   más los 12 del margen del logo; desde 992, los 60 px que el Kit le da arriba. */
+.cgc-footer-franja { padding-bottom: 40px; }
+.cgc-footer-marca { margin-bottom: 32px; }
+@media (min-width: 992px) { .cgc-footer-franja { padding-bottom: 60px; } .cgc-footer-marca { margin-bottom: 0; } }
 .cgc-inline-icon { vertical-align: -3px; margin-right: 4px; }
 
 /* El Kit no trae márgenes por breakpoint (mt-lg-0, mr-md-24…): el espacio entre piezas que se apilan en móvil
