@@ -149,7 +149,8 @@
 .cgc-d-cita-bloque_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 .cgc-d-cita-bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
 .cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_comilla { color: var(--cgc-blanco); }
-.cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_datos, .cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_cargo { color: var(--cgc-azul-oscuro); }
+/* Mateo, 02-11: la firma sobre el azul 2727 va en blanco, como la cita (mismo criterio que la etiqueta de Cifra, 4,1:1) */
+.cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_datos, .cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_cargo { color: var(--cgc-blanco); }
 .cgc-d-cita-bloque[data-fondo="noche"] { background: var(--cgc-superficie-profunda); color: var(--cgc-blanco); }
 .cgc-d-cita-bloque[data-fondo="noche"] .cgc-d-cita-bloque_comilla { color: var(--cgc-acento-cian); }
 .cgc-d-cita-bloque[data-fondo="noche"] .cgc-d-cita-bloque_cargo { color: var(--cgc-gris-300); }
