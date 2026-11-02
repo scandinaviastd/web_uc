@@ -111,21 +111,27 @@
   .v5-nos-voz_foto { height: 400px; }
 }
 
-/* ---------- 04 · Equipo ejecutivo ---------- */
-.v5-nos-equipo { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 32px; }
-.v5-nos-miembro { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 280px; }
-.v5-nos-miembro_iniciales { display: flex; align-items: center; justify-content: center; width: 280px; height: 280px; background: var(--cgc-superficie-retrato);
-  font-size: 64px; line-height: 68px; font-weight: 700; letter-spacing: -.015em; color: var(--cgc-texto-marca); }
-.v5-nos-miembro_datos { display: flex; flex-direction: column; gap: 12px; }
-.v5-nos-miembro_nombre { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
-.v5-nos-miembro_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+/* ---------- 03 · Equipo ejecutivo y directorio, en el mismo espacio ---------- */
+.v5-nos-grupo + .v5-nos-grupo { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--cgc-borde-sutil); }
+.v5-nos-grupo_titulo { margin: 0 0 32px; }
+.v5-nos-equipo { row-gap: 40px; padding-top: 16px; }
+.v5-nos-equipo .cgc-d-retrato { max-width: 280px; }
+/* Sin foto: iniciales sobre el mismo celeste de los retratos, no el avatar azul del Kit (que rompía la fila). */
+.v5-nos-equipo .cgc-d-retrato .avatar { background: var(--cgc-superficie-retrato); color: var(--cgc-texto-marca); font-size: 64px; font-weight: 700; letter-spacing: -.015em;
+  display: flex; align-items: center; justify-content: center; }
+.cgc-d-retrato_correo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-marca); font-weight: 500;
+  text-decoration: underline; text-underline-offset: 3px; overflow-wrap: break-word; max-width: 100%; min-height: 24px; display: inline-flex; align-items: center; }
+.cgc-d-retrato_correo:hover { text-decoration-thickness: 2px; }
+.cgc-d-retrato_correo:focus-visible { outline: 2px solid var(--cgc-celeste); outline-offset: 2px; }
 @media (max-width: 767.98px) {
-  .v5-nos-equipo { flex-direction: column; }
-  .v5-nos-miembro { flex-direction: row; align-items: center; gap: 16px; width: 100%; }
-  .v5-nos-miembro_iniciales { flex: 0 0 96px; width: 96px; height: 96px; font-size: 20px; line-height: 26px; letter-spacing: .18px; }
-  .v5-nos-miembro_segmento { display: none; }
-  .v5-nos-miembro_datos { gap: 4px; min-width: 0; }
-  .v5-nos-miembro_nombre { font-size: 16px; letter-spacing: .1px; }
+  .v5-nos-grupo + .v5-nos-grupo { margin-top: 48px; padding-top: 32px; }
+  .v5-nos-grupo_titulo { margin-bottom: 20px; }
+  .v5-nos-equipo { row-gap: 32px; padding-top: 12px; --bs-gutter-x: 16px; }
+  .v5-nos-equipo .cgc-d-retrato figcaption { gap: 6px; }
+  .v5-nos-equipo .cgc-d-retrato_nombre { font-size: 16px; line-height: 22px; letter-spacing: .1px; }
+  .v5-nos-equipo .cgc-d-retrato_foto::after { top: -10px; right: -10px; width: 28px; height: 28px; }
+  .v5-nos-equipo .cgc-d-retrato .avatar { font-size: 36px; }
+  .cgc-d-retrato_correo { font-size: 13px; line-height: 18px; letter-spacing: .1px; }
 }
 
 /* ---------- Móvil: márgenes y ritmo ---------- */
