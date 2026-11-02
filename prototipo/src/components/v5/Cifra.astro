@@ -1,10 +1,18 @@
 ---
 // Cifra protagonista (brochure 2026: +45 académicos, +200 personas…). El tamaño está fuera de la escala del Kit: a validar con la DED.
-interface Props { cifra: string; etiqueta: string; fondo?: 'claro' | 'marca' | 'noche'; class?: string }
-const { cifra, etiqueta, fondo = 'claro', class: clase } = Astro.props;
+// Conteo al entrar en pantalla (Mateo, 02-11): el HTML trae la cifra final (sin JS o con movimiento reducido se ve tal cual);
+// cgc.js cuenta de 0 al valor. No cuentan los años (2012) ni los precios: ahí el conteo no dice nada.
+interface Props { cifra: string; etiqueta: string; fondo?: 'claro' | 'marca' | 'noche'; contar?: boolean; class?: string }
+const { cifra, etiqueta, fondo = 'claro', contar, class: clase } = Astro.props;
+const m = cifra.match(/^(\D*?)(\d{1,3}(?:\.\d{3})+|\d+)(.*)$/s);
+const esAnio = !!m && !m[1] && !m[3] && /^(19|20)\d\d$/.test(m[2]);
+const esPrecio = /\$|UF|CLP/i.test(cifra);
+const cuenta = m && (contar ?? (!esAnio && !esPrecio));
 ---
 <div class:list={['cgc-d-cifra-bloque', clase]} data-fondo={fondo}>
   <span class="cgc-d-segmento" aria-hidden="true"></span>
-  <p class="cgc-d-cifra">{cifra}</p>
+  {cuenta
+    ? <p class="cgc-d-cifra"><span class="uc-sr-only">{cifra}</span><span aria-hidden="true">{m[1]}<span class="cgc-d-cifra_num" data-conteo={m[2].replace(/\./g, '')}>{m[2]}</span>{m[3]}</span></p>
+    : <p class="cgc-d-cifra">{cifra}</p>}
   <p class="cgc-d-cifra-bloque_etiqueta">{etiqueta}</p>
 </div>

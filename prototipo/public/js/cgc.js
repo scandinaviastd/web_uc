@@ -354,4 +354,25 @@
       }
     }
   }
+  // Cifras que cuentan de 0 al valor al entrar en pantalla (Cifra.astro). El HTML ya trae el valor final.
+  var conteos = $$('[data-conteo]');
+  var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (conteos.length && !quieto && 'IntersectionObserver' in window) {
+    var miles = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+    var contar = function (el) {
+      var fin = parseInt(el.getAttribute('data-conteo'), 10), conPunto = el.textContent.indexOf('.') > -1;
+      var t0 = null, dur = 1400;
+      var paso = function (t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min((t - t0) / dur, 1), v = Math.round(fin * (1 - Math.pow(1 - k, 3)));
+        el.textContent = conPunto ? miles(v) : String(v);
+        if (k < 1) requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+    };
+    var ioConteo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { ioConteo.unobserve(en.target); contar(en.target); } });
+    }, { threshold: 0.6 });
+    conteos.forEach(function (el) { ioConteo.observe(el); });
+  }
 })();

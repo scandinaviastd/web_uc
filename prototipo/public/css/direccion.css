@@ -77,6 +77,8 @@
 .cgc-d-display-l { font-size: 64px; line-height: 68px; font-weight: 300; letter-spacing: -.015em; }
 .cgc-d-display-xl strong, .cgc-d-display-l strong, .cgc-d-display-xl b, .cgc-d-display-l b { font-weight: 700; }
 .cgc-d-cifra { font-size: 72px; line-height: 72px; font-weight: 700; letter-spacing: -.02em; }
+/* Conteo: dígitos de ancho fijo (la cifra va sola en su línea, crecer no mueve la etiqueta) */
+.cgc-d-cifra_num { display: inline-block; font-variant-numeric: tabular-nums; }
 .cgc-d-cita { font-family: "Roboto Slab", serif; font-size: 32px; line-height: 44px; font-weight: 300; margin: 0; }
 .cgc-d-cita--s { font-size: 24px; line-height: 36px; }
 .cgc-d-cita p { font-size: inherit; line-height: inherit; letter-spacing: inherit; }

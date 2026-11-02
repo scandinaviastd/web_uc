@@ -6,8 +6,9 @@ const FOTOS = {
   'Matías Zegers': 'matias-zegers.webp', 'Álvaro Bustos': 'alvaro-bustos.webp', 'Roberto Guerrero': 'roberto-guerrero.webp',
   'Enrique Alcalde': 'enrique-alcalde.webp', 'Marta del Sante': 'marta-del-sante.webp', 'Luis Hernán Paúl': 'luis-hernan-paul.webp',
   'Eduardo Walker': 'eduardo-walker.webp', 'Teresita María Tagle': 'teresita-maria-tagle.webp',
-  // Equipo ejecutivo (Alejandra Wood, Sara Marambio): sin foto hasta que el Centro entregue fotos con el mismo
-  // encuadre y fondo que el Directorio (P1-10); se muestra el avatar con iniciales.
+  // Equipo ejecutivo: Alejandra Wood (foto que trajo Mateo el 02-11, ya en el celeste del Directorio). Sara Marambio
+  // sigue sin foto hasta que el Centro la entregue con el mismo encuadre (P1-10); se muestra el avatar con iniciales.
+  'Alejandra Wood': 'alejandra-wood.webp',
 };
 export const fotoDe = (nombre = '') => {
   const k = Object.keys(FOTOS).find((n) => nombre.trim().startsWith(n));
