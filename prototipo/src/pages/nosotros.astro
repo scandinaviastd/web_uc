@@ -1,6 +1,6 @@
 ---
 // Nosotros · propuesta v5 (sub-design system «Dirección»). Espejo: Figma UC_CGC, frames 464:826 (1440) y 467:1404 (375).
-// Secciones numeradas con índice (01–04), titulares Display con contraste de peso y cierre en modo Noche y en azul 2727.
+// Secciones numeradas con índice (01–03), titulares Display con contraste de peso y cierre en modo Noche y en azul 2727.
 // En WordPress: página «Nosotros» con bloques; directorio y equipo salen del CPT persona (contenidos.js).
 import Base from '../layouts/Base.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
@@ -8,8 +8,8 @@ import Barra from '../components/v5/Barra.astro';
 import Cifra from '../components/v5/Cifra.astro';
 import Retrato from '../components/v5/Retrato.astro';
 import Cita from '../components/v5/Cita.astro';
-import { directorio, equipo, inicialesDe } from '../data/contenidos.js';
-import { quienesSomos, origen, pilares, voz, notaEquipo } from '../data/v5-nosotros.js';
+import { directorio, equipo } from '../data/contenidos.js';
+import { quienesSomos, origen, pilares, voz } from '../data/v5-nosotros.js';
 ---
 <Base title="Nosotros" seccion="nosotros">
   <link slot="head" rel="stylesheet" href="/css/v5-nosotros.css" />
@@ -87,25 +87,42 @@ import { quienesSomos, origen, pilares, voz, notaEquipo } from '../data/v5-nosot
     </div>
   </section>
 
-  <!-- 03 · Directorio: retratos tratados del 29-09. Orden: el del sitio actual (lo confirma el Centro). En móvil, carrusel que se desliza. -->
+  <!-- 03 · Equipo y directorio (ajuste de Full Funnel, 02-11): el equipo ejecutivo arriba, con cargo y correo a un clic,
+       y el directorio debajo en el mismo espacio; la cita pasa al cierre para no cortar la sección.
+       Retratos tratados del 29-09; orden del directorio: el del sitio actual. En móvil, el directorio es un carrusel. -->
   <section id="directorio" class="cgc-d-claro v5-nos-seccion" data-ancla-seccion>
     <div class="container">
       <div class="v5-nos-encabezado">
-        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">03</span><span class="cgc-d-ante cgc-d-texto-sec">Directorio</span></p>
-        <h2 class="cgc-d-display-l">Quienes dirigen<br /><strong>el Centro</strong></h2>
+        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">03</span><span class="cgc-d-ante cgc-d-texto-sec">Equipo y directorio</span></p>
+        <h2 class="cgc-d-display-l">Quienes llevan<br /><strong>adelante el Centro</strong></h2>
       </div>
-      <div class="row v5-nos-directorio" data-scroll-x role="region" aria-label="Directorio del Centro" tabindex="0">
-        {directorio.map((p, i) => (
-          <div class="col-md-4 col-lg-3 v5-nos-directorio_item">
-            <Retrato nombre={p.nombre} cargo={p.cargo} acento={i % 2 ? 'marca' : 'cian'} />
-          </div>
-        ))}
+
+      <div id="equipo-ejecutivo" class="v5-nos-grupo">
+        <h3 class="cgc-d-ante cgc-d-texto-marca v5-nos-grupo_titulo">Equipo ejecutivo</h3>
+        <div class="row v5-nos-equipo">
+          {equipo.map((p, i) => (
+            <div class="col-6 col-md-4 col-lg-3">
+              <Retrato nombre={p.nombre} cargo={p.cargo} correo={p.correo} nivel={4} acento={i % 2 ? 'marca' : 'cian'} />
+            </div>
+          ))}
+        </div>
       </div>
-      <p class="d-md-none v5-nos-desliza cgc-d-texto-sec mb-0" aria-hidden="true">Desliza para ver a los ocho directores →</p>
+
+      <div class="v5-nos-grupo">
+        <h3 class="cgc-d-ante cgc-d-texto-marca v5-nos-grupo_titulo">Directorio</h3>
+        <div class="row v5-nos-directorio" data-scroll-x role="region" aria-label="Directorio del Centro" tabindex="0">
+          {directorio.map((p, i) => (
+            <div class="col-md-4 col-lg-3 v5-nos-directorio_item">
+              <Retrato nombre={p.nombre} cargo={p.cargo} nivel={4} acento={i % 2 ? 'marca' : 'cian'} />
+            </div>
+          ))}
+        </div>
+        <p class="d-md-none v5-nos-desliza cgc-d-texto-sec mb-0" aria-hidden="true">Desliza para ver a los ocho directores →</p>
+      </div>
     </div>
   </section>
 
-  <!-- Voz · Luis Hernán Paúl, sobre azul 2727. Foto: panel de la Jornada 2026 (banco de Full Funnel). -->
+  <!-- Cierre · Voz: Luis Hernán Paúl, sobre azul 2727. Foto: panel de la Jornada 2026 (banco de Full Funnel). -->
   <section class="cgc-d-marca v5-nos-seccion v5-nos-voz">
     <div class="container">
       <div class="row align-items-center v5-nos-voz_fila">
@@ -122,27 +139,4 @@ import { quienesSomos, origen, pilares, voz, notaEquipo } from '../data/v5-nosot
     </div>
   </section>
 
-  <!-- 04 · Equipo ejecutivo: iniciales (como en el Sprint 4) hasta tener fotos con el mismo encuadre y fondo que el directorio (P1-10). -->
-  <section id="equipo-ejecutivo" class="cgc-d-suave v5-nos-seccion" data-ancla-seccion>
-    <div class="container">
-      <div class="v5-nos-encabezado">
-        <p class="v5-nos-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">04</span><span class="cgc-d-ante cgc-d-texto-sec">Equipo ejecutivo</span></p>
-        <h2 class="cgc-d-display-l">Quienes llevan<br /><strong>adelante el Centro</strong></h2>
-        <!-- Provisorio: nota del Figma v5; se quita cuando lleguen las fotos del equipo. -->
-        <p class="v5-nos-bajada cgc-d-texto-sec mb-0">{notaEquipo}</p>
-      </div>
-      <ul class="v5-nos-equipo">
-        {equipo.map((p) => (
-          <li class="v5-nos-miembro">
-            <span class="v5-nos-miembro_iniciales" aria-hidden="true">{inicialesDe(p.nombre)}</span>
-            <span class="cgc-d-segmento v5-nos-miembro_segmento" aria-hidden="true"></span>
-            <div class="v5-nos-miembro_datos">
-              <h3 class="v5-nos-miembro_nombre">{p.nombre}</h3>
-              <p class="v5-nos-miembro_cargo mb-0">{p.cargo}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
 </Base>

@@ -1,9 +1,9 @@
 ---
 // Retrato sobre el celeste de los retratos tratados, con el cuadrado de acento que se escapa del borde.
-// Sin foto: avatar con iniciales del Kit (nunca un hueco). Fotos reales, nunca de stock.
+// Con correo: enlace mailto bajo el cargo (equipo ejecutivo). Sin foto: avatar con iniciales del Kit (nunca un hueco). Fotos reales, nunca de stock.
 import { fotoDe, inicialesDe } from '../../data/contenidos.js';
-interface Props { nombre: string; cargo: string; acento?: 'cian' | 'marca'; nivel?: 3 | 4; class?: string }
-const { nombre, cargo, acento = 'cian', nivel = 3, class: clase } = Astro.props;
+interface Props { nombre: string; cargo: string; correo?: string; acento?: 'cian' | 'marca'; nivel?: 3 | 4; class?: string }
+const { nombre, cargo, correo, acento = 'cian', nivel = 3, class: clase } = Astro.props;
 const foto = fotoDe(nombre);
 const Nombre = `h${nivel}`;
 ---
@@ -17,5 +17,6 @@ const Nombre = `h${nivel}`;
   <figcaption>
     <Nombre class="cgc-d-retrato_nombre">{nombre}</Nombre>
     <p class="cgc-d-retrato_cargo">{cargo}</p>
+    {correo && <a class="cgc-d-retrato_correo" href={`mailto:${correo}`}>{correo.split('@')[0]}@<wbr />{correo.split('@')[1]}</a>}
   </figcaption>
 </figure>
