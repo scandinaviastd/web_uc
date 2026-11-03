@@ -24,24 +24,26 @@
 .v5s-encabezado { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 1000px; margin-bottom: 48px; }
 .v5s-indice { display: flex; align-items: center; gap: 16px; }
 .v5s-servicios { row-gap: 32px; }
-.v5s-servicio { background: var(--cgc-superficie-base); border: 1px solid var(--cgc-borde-sutil); border-radius: var(--cgc-radio-kit); overflow: hidden; }
+.v5s-servicio { display: flex; flex-direction: column; height: 100%; background: var(--cgc-superficie-base); border: 1px solid var(--cgc-borde-sutil); border-radius: var(--cgc-radio-kit); overflow: hidden; }
 .v5s-servicio_bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; padding: 32px; color: var(--cgc-blanco); }
 .v5s-servicio_bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); }
-.v5s-servicio_bloque[data-fondo="marca"] .v5s-servicio_n { color: var(--cgc-azul-oscuro); }
+.v5s-servicio_bloque[data-fondo="marca"] .v5s-servicio_n { color: var(--cgc-blanco); }
 .v5s-servicio_bloque[data-fondo="azul"] { background: var(--cgc-accion-secundaria); }
 .v5s-servicio_bloque[data-fondo="noche"] { background: var(--cgc-superficie-profunda); }
 .v5s-servicio_bloque[data-fondo="noche"] .v5s-servicio_n { color: var(--cgc-acento-cian); }
 .v5s-servicio_titulo { color: var(--cgc-blanco); margin: 0; }
-.v5s-servicio_cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px; color: var(--cgc-texto-principal); }
+.v5s-servicio_cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; flex: 1 1 auto; padding: 32px; color: var(--cgc-texto-principal); }
+.v5s-servicio_cuerpo .cgc-d-enlace { margin-top: auto; }
 /* cgc-d-enlace no corta línea (nowrap): entre 992 y 1199 «¿Qué logras como Empresa Socia? →» se salía de la tarjeta */
 .v5s-servicio .cgc-d-enlace { white-space: normal; }
 
 /* ---------- Banda · Empresas Socias (azul 2727) ---------- */
 .v5s-banda { padding: 80px 0; }
 .v5s-banda_titular { color: var(--cgc-blanco); }
-.v5s-banda_accion { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 352px; margin-left: auto; color: var(--cgc-azul-oscuro); }
-.v5s-banda .cgc-d-enlace, .v5s-banda .cgc-d-enlace:hover { color: var(--cgc-azul-oscuro); }
-.v5s-banda .cgc-d-enlace:focus-visible { outline-color: var(--cgc-azul-oscuro); }
+.v5s-banda_n { display: block; margin-bottom: 24px; color: var(--cgc-blanco); }
+.v5s-banda_accion { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 352px; margin-left: auto; color: var(--cgc-blanco); }
+.v5s-banda .cgc-d-enlace, .v5s-banda .cgc-d-enlace:hover { color: var(--cgc-blanco); }
+.v5s-banda .cgc-d-enlace:focus-visible { outline-color: var(--cgc-blanco); }
 
 /* ---------- Bajo lg: columnas apiladas (composición de la versión móvil) ---------- */
 @media (max-width: 991.98px) {

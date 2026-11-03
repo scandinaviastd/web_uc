@@ -30,19 +30,16 @@ export const servicios = [
     accion: { label: 'Solicitar una propuesta', href: '/formacion/in-company/' },
   },
   {
-    n: '02', fondo: 'azul', titulo: 'Investigación aplicada',
+    n: '02', fondo: 'noche', titulo: 'Investigación aplicada',
     texto: 'Generamos conocimiento pionero en Chile sobre directorios, CEOs y Alta Dirección, conectando evidencia académica con la práctica empresarial.',
     accion: { label: 'Conversemos un estudio', href: whatsapp.url('servicio de investigación aplicada'), externo: true },
   },
-  {
-    n: '03', fondo: 'noche', titulo: 'Empresas Socias CGC UC',
-    texto: 'El modelo de Empresas Socias impulsa la formación, la investigación y la incidencia en gobierno corporativo.',
-    // Sara, 03-11: antes bajaba a la banda de esta misma página; ahora sale, como las otras dos tarjetas.
-    accion: { label: 'Conversemos el modelo', href: whatsapp.url('modelo de Empresas Socias'), externo: true },
-  },
 ];
+// Mateo, 03-11: la tercera forma, Empresas Socias, deja de ser tarjeta (se repetía con la banda) y la banda pasa a ser
+// el 03, con su número grande. Las tarjetas quedan 01 azul 2727 y 02 noche.
 
 export const banda = {
+  n: '03',
   // Espacios que no cortan: «CGC UC:» y «para Chile» no se separan al pasar de línea (en móvil quedaba «UC:» suelto).
   titular: { claro: 'Empresas Socias CGC\u00a0UC:', enfasis: 'una mejor Alta Dirección para\u00a0Chile' },
   texto: 'Para ampliar una mejor Alta Dirección para Chile. ¿Te interesa? Hablemos por WhatsApp.',
