@@ -11,16 +11,8 @@ const autores = [...new Set(prensa.map((o) => o.autorFiltro))];
 <Base title="Prensa" seccion="extension">
   <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Prensa' }]} />
   <PageTitle titulo="Prensa" bajada="Columnas en medios de académicos, directores y miembros del Centro, y resúmenes de nuestras actividades." />
-  <nav class="cgc-anclas" aria-label="En esta página" data-anclas>
-    <div class="container">
-      <ul class="cgc-anclas_lista">
-        <li><a href="#columnas" class="cgc-chip is-active">Columnas</a></li>
-        <li><a href="#resumenes" class="cgc-chip">Resúmenes de actividades</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <section id="columnas" class="cgc-section pb-0" data-ancla-seccion>
+  {/* Sin botonera de anclas (Sara, 03-11): la página es corta y las dos secciones se ven al bajar. */}
+  <section id="columnas" class="cgc-section pt-0 pb-0">
     <div class="container" data-filtro="prensa">
     <div class="d-flex align-items-center mb-24"><h2 class="h2 mb-0">Columnas</h2><div class="uc-heading-decoration"></div></div>
     <div class="cgc-chips mb-16" role="group" aria-label="Filtrar por autor" data-chips="prensa" data-atributo="autor">
@@ -36,7 +28,7 @@ const autores = [...new Set(prensa.map((o) => o.autorFiltro))];
     </div>
   </section>
 
-  <section id="resumenes" class="cgc-section" data-ancla-seccion>
+  <section id="resumenes" class="cgc-section">
     <div class="container" data-filtro="resumenes">
     <div class="d-flex align-items-center mb-8"><h2 class="h2 mb-0">Resúmenes de actividades</h2><div class="uc-heading-decoration"></div></div>
     <p class="mb-24">Lo que se conversó en seminarios, desayunos, webinars y encuentros del Centro, en un documento para descargar.</p>

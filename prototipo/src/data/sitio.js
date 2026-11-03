@@ -39,9 +39,9 @@ export const menu = [
   {
     id: 'formacion', label: 'Formación', href: '/formacion/',
     hijos: [
-      { label: 'Diplomados', href: '/formacion/#diplomados' },
-      { label: 'Cursos', href: '/formacion/#cursos' },
-      { label: 'Programas para empresas (In Company)', href: '/formacion/in-company/' },
+      // Los dos grupos de la página Formación, no los tipos de programa (Sara, 03-11): In Company cuelga de «Programas para empresas».
+      { label: 'Programas abiertos', href: '/formacion/#programas-abiertos' },
+      { label: 'Programas para empresas', href: '/formacion/#programas-para-empresas' },
     ],
   },
   {

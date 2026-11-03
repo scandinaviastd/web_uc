@@ -62,7 +62,9 @@ export const resumenes = [
 // Un solo pool (minuta 07-09 §5). En WordPress: CPT "evento" con fecha ISO y tipo. Próximos y realizados se separan
 // solos según la fecha de hoy. Sin fecha exacta: «fechaTexto» (y «mes» si se sabe, para ordenarlo); no entra al calendario.
 // «Diálogo» deja de ser tipo de evento: sus resúmenes pasan a Prensa (26-10).
-export const tiposEvento = ['Seminario', 'Webinar', 'Workshop', 'Debate', 'Charla', 'Desayuno', 'Jornada'];
+// Filtro de Eventos (Sara, 03-11): solo estos cuatro tipos. Un evento de otro tipo (el seminario de enero) sale en «Todos».
+export const tiposEvento = ['Webinar', 'Debate', 'Desayuno', 'Jornada'];
+export const etiquetaTipoEvento = (t) => ({ Jornada: 'Jornadas de Gobierno Corporativo' })[t] ?? `${t}s`;
 
 const eventosBase = [
   // Próximos: calendario del Centro (P1-08, 26-10)

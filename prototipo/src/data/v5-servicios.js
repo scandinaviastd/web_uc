@@ -37,7 +37,8 @@ export const servicios = [
   {
     n: '03', fondo: 'noche', titulo: 'Empresas Socias CGC UC',
     texto: 'El modelo de Empresas Socias impulsa la formación, la investigación y la incidencia en gobierno corporativo.',
-    accion: { label: '¿Qué logras como Empresa Socia?', href: '#empresas-socias' },
+    // Sara, 03-11: antes bajaba a la banda de esta misma página; ahora sale, como las otras dos tarjetas.
+    accion: { label: 'Conversemos el modelo', href: whatsapp.url('modelo de Empresas Socias'), externo: true },
   },
 ];
 
