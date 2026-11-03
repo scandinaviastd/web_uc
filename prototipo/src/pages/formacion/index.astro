@@ -1,37 +1,77 @@
 ---
+// Formación · propuesta v5 «Dirección» (Mateo, 03-11): la página es la puerta, no el catálogo. Dos puertas, una por
+// grupo del menú (Programas abiertos y Programas para empresas), y los próximos inicios del Calendario Académico 2027.
+// Antes (Sprint 4) esta página listaba diplomados, cursos e In Company juntos, y el menú bajaba a anclas de ella
+// (comentario de Sara, 03-11). Las tarjetas de programa viven ahora en /formacion/programas-abiertos/.
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import PageTitle from '../../components/PageTitle.astro';
-import CardPrograma from '../../components/CardPrograma.astro';
-import CardProgramaDestacado from '../../components/CardProgramaDestacado.astro';
-import { programas, inCompany } from '../../data/programas.js';
-// Programas abiertos separados por tipo (campo "tipo" del CPT): un programa nuevo cae solo en su sección.
-// Diplomados: card destacada a todo el ancho (V-09, 26-10). Cursos: grilla de 3 por fila.
-const diplomados = programas.filter((p) => p.tipo === 'Diplomado');
-const cursos = programas.filter((p) => p.tipo === 'Curso');
+import Etiqueta from '../../components/v5/Etiqueta.astro';
+import Evento from '../../components/v5/Evento.astro';
+import Cita from '../../components/v5/Cita.astro';
+import { portadaFormacion as portada, puertas, inicios, calendario, MESES } from '../../data/v5-formacion.js';
+import { citaPortada } from '../../data/v5-home.js';
+const proximos = inicios.slice(0, 3);
+const dia = (iso: string) => String(Number(iso.slice(8, 10)));
+const mes = (iso: string) => MESES[Number(iso.slice(5, 7)) - 1];
+const fin = (iso: string) => `${dia(iso)} ${mes(iso)}`;
 ---
-<Base title="Formación" seccion="formacion">
+<Base title="Formación" seccion="formacion" descripcion={portada.bajada}>
+  <link slot="head" rel="stylesheet" href="/css/v5-formacion.css" />
   <Breadcrumb items={[{ label: 'Formación' }]} />
-  <PageTitle titulo="Formación" bajada="Formación para directores, ejecutivos y organizaciones que buscan fortalecer su gobierno corporativo." />
-  <section class="container mb-60" id="programas-abiertos">
-    <h2 class="h2 mb-8">Programas abiertos</h2>
-    <p class="p-size--lg mb-40">Diplomados y cursos 2027 para directores y ejecutivos.</p>
-    <div id="diplomados" class="mb-40">
-      <h3 class="h3 mb-24">Diplomados</h3>
-      {diplomados.map((p) => <div class="mb-32"><CardProgramaDestacado p={p} /></div>)}
-    </div>
-    <div id="cursos" class="mb-16">
-      <h3 class="h3 mb-24">Cursos</h3>
-      <div class="row">
-        {cursos.map((p) => <div class="col-md-6 col-lg-4 mb-32"><CardPrograma p={p} nivel={4} /></div>)}
+
+  <section class="v5fo-puerta-portada" aria-labelledby="v5fo-titulo">
+    <div class="container">
+      <h1 id="v5fo-titulo" class="cgc-d-display-l v5fo-titular">{portada.titular.claro}<br /><strong>{portada.titular.enfasis}</strong></h1>
+      <p class="p-size--lg cgc-d-texto-sec v5fo-bajada">{portada.bajada}</p>
+
+      <div class="row v5fo-puertas">
+        {puertas.map((pu) => (
+          <div class="col-lg-6">
+            <article class="v5fo-puerta" data-fondo={pu.fondo}>
+              <div class="v5fo-puerta_bloque">
+                <span class="cgc-d-indice v5fo-puerta_n" aria-hidden="true">{pu.n}</span>
+                <h2 class="cgc-d-display-l v5fo-puerta_titulo"><a href={pu.href} class="v5fo-puerta_link">{pu.titulo}</a></h2>
+                {pu.etiqueta && <Etiqueta texto={pu.etiqueta} estilo="cian" />}
+                {pu.fondo === 'marca' && (
+                  <div class="v5fo-mini" aria-hidden="true">
+                    <div class="v5fo-mini_pista">
+                      {calendario.filas.flatMap((f) => f.segmentos).map((s) => <span style={`--izq:${s.izq}%;--ancho:${s.ancho}%`}></span>)}
+                    </div>
+                    <div class="v5fo-mini_escala"><span>ene</span><span>jul</span><span>dic {calendario.anio}</span></div>
+                  </div>
+                )}
+              </div>
+              <div class="v5fo-puerta_cuerpo">
+                <p class="p-size--lg mb-0">{pu.texto}</p>
+                <span class="cgc-d-enlace" aria-hidden="true">{pu.enlace} →</span>
+              </div>
+            </article>
+          </div>
+        ))}
       </div>
     </div>
   </section>
-  <section class="cgc-section cgc-section--gray" id="programas-para-empresas">
+
+  <section class="v5fo-seccion cgc-d-suave" aria-labelledby="v5fo-prox-titulo">
     <div class="container">
-      <h2 class="h2 mb-8">Programas para empresas</h2>
-      <p class="p-size--lg mb-40">Diseñamos el programa según los desafíos de tu empresa.</p>
-      <CardProgramaDestacado p={inCompany} href="/formacion/in-company/" cta="Conoce In Company" nivel={3} />
+      <div class="v5fo-encabezado">
+        <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">{calendario.anio}</span><span class="cgc-d-ante cgc-d-texto-sec">Calendario académico</span></p>
+        <h2 id="v5fo-prox-titulo" class="cgc-d-display-l v5fo-titular">Próximos<br /><strong>inicios</strong></h2>
+      </div>
+      <div class="v5fo-proximos">
+        {proximos.map(({ p, v, i, total }) => (
+          <Evento dia={dia(v.inicio)} mes={mes(v.inicio)} tipo={p.tipo} titulo={total > 1 ? `${p.titulo} · versión ${i + 1}` : p.titulo}
+            meta={`${v.dia} · ${p.modalidad} · hasta el ${fin(v.termino)}`} fechaLarga={`Inicio el ${fin(v.inicio)} de ${v.inicio.slice(0, 4)}`}
+            href={`/formacion/${p.slug}/`} accion="Ver programa →" />
+        ))}
+      </div>
+      <a href="/formacion/programas-abiertos/" class="cgc-d-enlace v5fo-proximos_todos">Ver el calendario completo →</a>
+    </div>
+  </section>
+
+  <section class="cgc-d-marca v5fo-voz" aria-label="Una voz del Centro">
+    <div class="container">
+      <Cita cita={citaPortada.cita} nombre={citaPortada.nombre} cargo={citaPortada.cargo} fondo="marca" class="v5fo-voz_cita" />
     </div>
   </section>
 </Base>

@@ -1,0 +1,171 @@
+---
+// Programas abiertos · propuesta v5 «Dirección» (Mateo, 03-11): subpágina propia, a la que lleva el menú de Formación.
+// Portada en modo Noche · 01 Calendario 2027 (la barra de dirección de la submarca hecha calendario: cada segmento es
+// una versión, de su inicio a su término) · 02 Los programas · 03 Comparador · 04 Descuentos en modo Noche ·
+// Banda azul 2727 con la coordinación y el puente a Programas para empresas. Todo se deriva de programas.js.
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Cifra from '../../components/v5/Cifra.astro';
+import Etiqueta from '../../components/v5/Etiqueta.astro';
+import TarjetaPrograma from '../../components/v5/TarjetaPrograma.astro';
+import { portadaAbiertos as portada, calendario, diplomados, cursos, comparar, descuentosV5 as dsc, contacto, MESES } from '../../data/v5-formacion.js';
+import { whatsapp, telHref } from '../../data/sitio.js';
+const meta = (p: any) => [p.inicioCorto, p.modalidad].join(' · ');
+const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
+---
+<Base title="Programas abiertos" seccion="formacion" descripcion={portada.bajada}>
+  <link slot="head" rel="stylesheet" href="/css/v5-formacion.css" />
+  <Breadcrumb items={[{ label: 'Formación', href: '/formacion/' }, { label: 'Programas abiertos' }]} />
+
+  <!-- Portada · modo Noche, misma composición que Servicios: la cifra pisa la foto -->
+  <section class="cgc-d-noche v5fo-portada">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 v5fo-portada_texto">
+          <p class="cgc-d-ante cgc-d-texto-marca mb-0">{portada.antetitulo}</p>
+          <h1 class="cgc-d-display-l">{portada.titular.claro}<br /><strong>{portada.titular.enfasis}</strong></h1>
+          <p class="p-size--lg v5fo-bajada mb-0">{portada.bajada}</p>
+          <div class="v5fo-acciones">
+            <a href="/formacion/mas-informacion/" class="uc-btn btn-cta cgc-btn-auto">Más información</a>
+            <a href={whatsapp.url('Diplomado y los cursos 2027')} class="cgc-d-enlace" target="_blank" rel="noopener">Escríbenos por WhatsApp →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="v5fo-composicion">
+            <img src={portada.foto.src} alt={portada.foto.alt} class="v5fo-composicion_foto" width="1600" height="1066" />
+            <span class="v5fo-composicion_acento" aria-hidden="true"></span>
+            <Cifra cifra={portada.cifra.cifra} etiqueta={portada.cifra.etiqueta} fondo="marca" class="v5fo-composicion_cifra" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 · Calendario 2027 -->
+  <section class="v5fo-seccion" aria-labelledby="v5fo-cal-titulo">
+    <div class="container">
+      <div class="v5fo-encabezado">
+        <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">01</span><span class="cgc-d-ante cgc-d-texto-sec">Calendario {calendario.anio}</span></p>
+        <h2 id="v5fo-cal-titulo" class="cgc-d-display-l v5fo-titular">El año en formación,<br /><strong>del {calendario.desde} al {calendario.hasta}</strong></h2>
+        <p class="p-size--lg cgc-d-texto-sec mb-0">Cada barra es una versión de un programa, desde su primera clase hasta la última.</p>
+      </div>
+      <div class="v5fo-cal" data-cal-anual>
+        <div class="v5fo-cal_meses" aria-hidden="true">
+          <span class="v5fo-cal_vacio"></span>
+          <ol class="v5fo-cal_escala">{MESES.map((m) => <li>{m}</li>)}</ol>
+        </div>
+        <ol class="v5fo-cal_filas">
+          {calendario.filas.map((f, fi) => (
+            <li class="v5fo-cal_fila" style={`--fila:${fi}`}>
+              <div class="v5fo-cal_programa">
+                <Etiqueta texto={f.p.tipo} estilo="contorno" />
+                <h3 class="v5fo-cal_titulo"><a href={f.href}>{f.p.titulo}</a></h3>
+              </div>
+              <div class="v5fo-cal_carril">
+                <div class="v5fo-cal_pista" aria-hidden="true" data-vacia={f.segmentos.length ? undefined : ''}>
+                  {f.segmentos.map((s, i) => <span class="v5fo-cal_segmento" style={`--izq:${s.izq}%;--ancho:${s.ancho}%;--orden:${i}`}></span>)}
+                </div>
+                <p class="v5fo-cal_fechas">
+                  {f.segmentos.length
+                    ? f.segmentos.map((s) => <span>{s.nombre && <strong>{s.nombre}: </strong>}{s.texto}</span>)
+                    : <span>Fecha por confirmar</span>}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Los programas -->
+  <section class="v5fo-seccion cgc-d-suave" aria-labelledby="v5fo-prog-titulo">
+    <div class="container">
+      <div class="v5fo-encabezado">
+        <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">02</span><span class="cgc-d-ante cgc-d-texto-sec">Los programas</span></p>
+        <h2 id="v5fo-prog-titulo" class="cgc-d-display-l v5fo-titular">Elige tu<br /><strong>programa</strong></h2>
+      </div>
+      {diplomados.map((p) => <TarjetaPrograma horizontal titulo={p.titulo} tipo={p.tipo} meta={meta(p)} href={`/formacion/${p.slug}/`} descripcion={p.frase} anio={anio(p)} />)}
+      <div class="row v5fo-cursos">
+        {cursos.map((p) => <div class="col-md-6 col-lg-4"><TarjetaPrograma titulo={p.titulo} tipo={p.tipo} meta={meta(p)} href={`/formacion/${p.slug}/`} anio={p.versiones.length ? anio(p) : '—'} /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Comparador -->
+  <section class="v5fo-seccion" aria-labelledby="v5fo-comp-titulo">
+    <div class="container">
+      <div class="v5fo-encabezado">
+        <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">03</span><span class="cgc-d-ante cgc-d-texto-sec">Compara</span></p>
+        <h2 id="v5fo-comp-titulo" class="cgc-d-display-l v5fo-titular">Todos los programas,<br /><strong>lado a lado</strong></h2>
+      </div>
+      <p class="v5fo-desliza cgc-d-texto-sec" aria-hidden="true">Desliza para ver los {comparar.programas.length} programas →</p>
+      <div class="v5fo-tabla_marco" tabindex="0" role="region" aria-labelledby="v5fo-comp-titulo">
+        <table class="v5fo-tabla">
+          <caption class="uc-sr-only">Comparación de los programas abiertos 2027</caption>
+          <thead>
+            <tr>
+              <td></td>
+              {comparar.programas.map((p) => <th scope="col"><Etiqueta texto={p.tipo} estilo="contorno" /><a href={p.href}>{p.titulo}</a></th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {comparar.filas.map(([k, vals]) => (
+              <tr data-fila={k === 'Para quién' ? 'largo' : undefined}>
+                <th scope="row" class="cgc-d-ante">{k}</th>
+                {vals.map((v) => <td>{v}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Descuentos · modo Noche (la tabla única de descuentos, P1-06) -->
+  <section class="v5fo-seccion cgc-d-noche" aria-labelledby="v5fo-dsc-titulo">
+    <div class="container">
+      <div class="row v5fo-dsc">
+        <div class="col-lg-5">
+          <div class="v5fo-encabezado">
+            <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">04</span><span class="cgc-d-ante cgc-d-texto-sec">Descuentos</span></p>
+            <h2 id="v5fo-dsc-titulo" class="cgc-d-display-l v5fo-titular">Un descuento<br /><strong>para cada caso</strong></h2>
+          </div>
+          <Cifra cifra={dsc.cifra} etiqueta={dsc.etiqueta} fondo="noche" class="v5fo-dsc_cifra" />
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <ul class="v5fo-dsc_lista">
+            {dsc.filas.map((f) => <li><span>{f.quien}</span><strong>{f.cuanto}</strong></li>)}
+          </ul>
+          <ul class="v5fo-dsc_condiciones">{dsc.condiciones.map((c) => <li>{c}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banda azul 2727: coordinación + puente a Programas para empresas -->
+  <section class="cgc-d-marca v5fo-banda" aria-label="Contacto y programas para empresas">
+    <div class="container">
+      <div class="row v5fo-banda_fila">
+        <div class="col-lg-6">
+          <div class="v5fo-banda_bloque">
+            <h2 class="h2 v5fo-banda_titulo">¿Tienes dudas?</h2>
+            <p class="p-size--lg mb-0"><strong>{contacto.nombre}</strong> · {contacto.cargo}</p>
+            <ul class="v5fo-banda_datos">
+              <li><a href={`mailto:${contacto.correo}`} class="cgc-d-enlace">{contacto.correo}</a></li>
+              <li><a href={telHref(contacto.telefono)} class="cgc-d-enlace">{contacto.telefono}</a></li>
+              <li><a href={whatsapp.url('Diplomado y los cursos 2027')} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="v5fo-banda_bloque v5fo-banda_puente">
+            <h2 class="h2 v5fo-banda_titulo">¿Es para todo tu directorio?</h2>
+            <p class="p-size--lg mb-0">In Company: un programa a medida, solo para tu empresa u organización.</p>
+            <a href="/formacion/in-company/" class="cgc-d-enlace">Programas para empresas →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
