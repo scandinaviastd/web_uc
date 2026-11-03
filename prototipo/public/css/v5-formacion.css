@@ -1,0 +1,157 @@
+/*
+ * v5-formacion.css — Formación (puertas) y Programas abiertos, propuesta v5 (sub-design system «Dirección»).
+ * Prefijo v5fo-. Solo composición: colores, tipos y componentes vienen de direccion.css y del Kit.
+ * La pieza propia es el calendario: la barra de dirección de la submarca (gris con segmento azul) convertida en
+ * línea del año, con un segmento por versión de programa.
+ */
+
+.v5fo-titular { color: var(--cgc-texto-principal); }
+.v5fo-bajada { max-width: 600px; }
+.v5fo-seccion { padding: 96px 0; }
+.v5fo-encabezado { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 1000px; margin-bottom: 48px; }
+.v5fo-indice { display: flex; align-items: center; gap: 16px; }
+
+/* ---------- Portada de Programas abiertos · modo Noche (composición de Servicios) ---------- */
+.v5fo-portada { padding: 88px 0 66px; }
+.v5fo-portada_texto { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding-top: 16px; }
+.v5fo-portada .v5fo-bajada { color: var(--cgc-texto-secundario); }
+.v5fo-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+.v5fo-composicion { position: relative; padding-bottom: 46px; }
+.v5fo-composicion_foto { display: block; width: calc(100% - 74px); margin-left: 74px; aspect-ratio: 13 / 12; height: auto; object-fit: cover; }
+.v5fo-composicion_acento { position: absolute; top: -24px; right: -24px; width: 48px; height: 48px; background: var(--cgc-acento-cian); }
+.v5fo-composicion_cifra { position: absolute; left: 0; bottom: 0; width: 280px; }
+
+/* ---------- 01 · Calendario ---------- */
+.v5fo-cal { --col: 340px; }
+.v5fo-cal_meses { display: grid; grid-template-columns: var(--col) minmax(0, 1fr); column-gap: 32px; margin-bottom: 8px; }
+.v5fo-cal_escala { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+.v5fo-cal_escala li { padding-left: 6px; border-left: 1px solid var(--cgc-borde-sutil); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--cgc-texto-secundario); }
+.v5fo-cal_filas { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--cgc-borde-sutil); }
+.v5fo-cal_fila { display: grid; grid-template-columns: var(--col) minmax(0, 1fr); column-gap: 32px; align-items: start; padding: 28px 0; border-top: 1px solid var(--cgc-borde-sutil); }
+.v5fo-cal_programa { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.v5fo-cal_titulo { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; margin: 0; }
+.v5fo-cal_titulo a { color: var(--cgc-texto-principal); text-decoration: none; }
+.v5fo-cal_titulo a:hover { text-decoration: underline; }
+.v5fo-cal_titulo a:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 2px; }
+/* El carril lleva las líneas de los 12 meses; la pista es la barra gris de la submarca */
+.v5fo-cal_carril { padding-top: 34px; background: repeating-linear-gradient(to right, var(--cgc-borde-sutil) 0 1px, transparent 1px calc(100% / 12)); background-size: 100% 46px; background-repeat: no-repeat; }
+.v5fo-cal_pista { position: relative; height: 6px; background: var(--cgc-barra-base); }
+.v5fo-cal_pista[data-vacia] { background: repeating-linear-gradient(to right, var(--cgc-barra-base) 0 8px, transparent 8px 14px); }
+.v5fo-cal_segmento { position: absolute; top: -5px; left: var(--izq); width: var(--ancho); height: 16px; background: var(--cgc-barra-segmento); transform-origin: left center; }
+.v5fo-cal_segmento::after { content: ""; position: absolute; top: -8px; right: -8px; width: 12px; height: 12px; background: var(--cgc-acento-cian); }
+.v5fo-cal_fechas { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 20px 0 0; font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.v5fo-cal_fechas strong { color: var(--cgc-texto-principal); font-weight: 500; }
+/* Los segmentos crecen de izquierda a derecha al entrar en pantalla (cgc.js pone .is-animado; sin JS, quietos) */
+.v5fo-cal.is-animado .v5fo-cal_segmento { transform: scaleX(0); }
+.v5fo-cal.is-animado .v5fo-cal_segmento::after { opacity: 0; }
+.v5fo-cal.is-animado .is-visible .v5fo-cal_segmento { transform: scaleX(1); transition: transform .9s cubic-bezier(.2, .7, .2, 1) calc(var(--fila, 0) * 120ms + var(--orden, 0) * 260ms); }
+.v5fo-cal.is-animado .is-visible .v5fo-cal_segmento::after { opacity: 1; transition: opacity .3s ease calc(var(--fila, 0) * 120ms + var(--orden, 0) * 260ms + 800ms); }
+
+/* ---------- 02 · Programas ---------- */
+.v5fo-cursos { margin-top: 32px; row-gap: 32px; }
+
+/* ---------- 03 · Comparador ---------- */
+.v5fo-desliza { display: none; font-size: 14px; line-height: 20px; margin: 0 0 12px; }
+.v5fo-tabla_marco { overflow-x: auto; border: 1px solid var(--cgc-borde-sutil); border-radius: var(--cgc-radio-kit); background: var(--cgc-superficie-base); }
+.v5fo-tabla_marco:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 2px; }
+.v5fo-tabla { width: 100%; min-width: 900px; border-collapse: collapse; color: var(--cgc-texto-principal); }
+.v5fo-tabla th, .v5fo-tabla td { padding: 20px 24px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 16px; line-height: 24px; }
+.v5fo-tabla tbody tr:last-child th, .v5fo-tabla tbody tr:last-child td { border-bottom: 0; }
+.v5fo-tabla thead th { width: calc((100% - 168px) / 4); }
+.v5fo-tabla thead th a { display: block; margin-top: 12px; font-size: 18px; line-height: 24px; font-weight: 700; color: var(--cgc-texto-principal); text-decoration: none; }
+.v5fo-tabla thead th a:hover { text-decoration: underline; }
+.v5fo-tabla thead td, .v5fo-tabla tbody th { position: sticky; left: 0; z-index: 1; width: 168px; background: var(--cgc-superficie-base); }
+.v5fo-tabla tbody th { color: var(--cgc-texto-secundario); line-height: 24px; }
+.v5fo-tabla tbody tr:nth-child(odd) td, .v5fo-tabla tbody tr:nth-child(odd) th { background: var(--cgc-superficie-suave); }
+.v5fo-tabla tr[data-fila="largo"] td { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+
+/* ---------- 04 · Descuentos · modo Noche ---------- */
+.v5fo-dsc { row-gap: 40px; }
+.v5fo-dsc .v5fo-encabezado { margin-bottom: 32px; }
+.v5fo-dsc_cifra { padding: 0; }
+.v5fo-dsc_lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cgc-borde-sutil); }
+.v5fo-dsc_lista li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 16px; line-height: 24px; }
+.v5fo-dsc_lista strong { flex-shrink: 0; font-size: 20px; line-height: 24px; color: var(--cgc-texto-marca); font-variant-numeric: tabular-nums; }
+.v5fo-dsc_condiciones { margin: 24px 0 0; padding-left: 18px; font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+
+/* ---------- Banda azul 2727: dudas + puente a empresas (texto blanco, criterio del 02-11, 4,1:1) ---------- */
+.v5fo-banda { padding: 80px 0; }
+.v5fo-banda_fila { row-gap: 40px; }
+.v5fo-banda_bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; height: 100%; color: var(--cgc-blanco); }
+.v5fo-banda_titulo { color: var(--cgc-blanco); margin: 0; }
+.v5fo-banda_datos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.v5fo-banda .cgc-d-enlace, .v5fo-banda .cgc-d-enlace:hover { color: var(--cgc-blanco); }
+.v5fo-banda .cgc-d-enlace:focus-visible { outline-color: var(--cgc-blanco); }
+.v5fo-banda_puente { padding-left: 48px; border-left: 1px solid rgba(255, 255, 255, .45); }
+
+/* ---------- Formación: portada y puertas ---------- */
+.v5fo-puerta-portada { padding: 56px 0 96px; }
+.v5fo-puerta-portada .v5fo-bajada { margin: 24px 0 48px; }
+.v5fo-puertas { row-gap: 32px; }
+.v5fo-puerta { position: relative; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--cgc-borde-sutil); border-radius: var(--cgc-radio-kit); overflow: hidden; background: var(--cgc-superficie-base); transition: box-shadow .2s ease, transform .2s ease; }
+.v5fo-puerta:hover { transform: translateY(-4px); box-shadow: var(--cgc-sombra); }
+.v5fo-puerta:focus-within { outline: 2px solid var(--cgc-celeste); outline-offset: 2px; }
+.v5fo-puerta_bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; min-height: 340px; padding: 40px; color: var(--cgc-blanco); }
+.v5fo-puerta[data-fondo="marca"] .v5fo-puerta_bloque { background: var(--cgc-superficie-marca); }
+.v5fo-puerta[data-fondo="marca"] .v5fo-puerta_n { color: var(--cgc-azul-oscuro); }
+.v5fo-puerta[data-fondo="noche"] .v5fo-puerta_bloque { background: var(--cgc-superficie-profunda); }
+.v5fo-puerta[data-fondo="noche"] .v5fo-puerta_n { color: var(--cgc-acento-cian); }
+.v5fo-puerta_titulo { color: var(--cgc-blanco); font-weight: 700; }
+.v5fo-puerta_link, .v5fo-puerta_link:hover { color: inherit; text-decoration: none; }
+.v5fo-puerta_link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.v5fo-puerta_link:focus { outline: none; }
+.v5fo-puerta_cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; flex: 1 1 auto; padding: 32px 40px 40px; color: var(--cgc-texto-principal); }
+.v5fo-puerta_cuerpo .cgc-d-enlace { margin-top: auto; }
+/* Mini calendario de la puerta: todas las versiones del año sobre una sola barra */
+.v5fo-mini { width: 100%; margin-top: auto; }
+.v5fo-mini_pista { position: relative; height: 6px; background: rgba(255, 255, 255, .35); }
+.v5fo-mini_pista span { position: absolute; top: -3px; left: var(--izq); width: var(--ancho); height: 12px; background: var(--cgc-blanco); }
+.v5fo-mini_escala { display: flex; justify-content: space-between; margin-top: 12px; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+
+.v5fo-proximos { border-top: 1px solid var(--cgc-borde-sutil); }
+.v5fo-proximos_todos { display: inline-block; margin-top: 32px; }
+.v5fo-voz { padding: 96px 0; }
+.v5fo-voz .cgc-d-cita-bloque { max-width: 880px; padding-left: 0; padding-right: 0; }
+
+/* ---------- Bajo lg ---------- */
+@media (max-width: 991.98px) {
+  .v5fo-portada { padding: 40px 0 56px; }
+  .v5fo-portada_texto { gap: 24px; padding-top: 0; }
+  .v5fo-acciones { flex-direction: column; align-items: flex-start; }
+  .v5fo-composicion { max-width: 560px; margin-top: 24px; padding-bottom: 60px; }
+  .v5fo-composicion_foto { width: calc(100% - 24px); margin-left: 24px; aspect-ratio: 319 / 260; }
+  .v5fo-composicion_acento { top: -12px; right: 0; width: 32px; height: 32px; }
+  .v5fo-composicion_cifra { width: 240px; }
+  .v5fo-cal { --col: 240px; }
+  .v5fo-desliza { display: block; }
+  .v5fo-banda_puente { padding-left: 0; padding-top: 40px; border-left: 0; border-top: 1px solid rgba(255, 255, 255, .45); }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 767.98px) {
+  .v5fo-seccion, .v5fo-voz { padding: 56px 0; }
+  .v5fo-encabezado { gap: 12px; margin-bottom: 32px; }
+  .v5fo-indice { gap: 12px; }
+  .v5fo-cal_meses, .v5fo-cal_fila { grid-template-columns: minmax(0, 1fr); }
+  .v5fo-cal_meses .v5fo-cal_vacio { display: none; }
+  .v5fo-cal_escala li { font-size: 11px; padding-left: 3px; }
+  .v5fo-cal_escala li:not(:nth-child(3n + 1)) { color: transparent; }
+  .v5fo-cal_fila { row-gap: 16px; padding: 24px 0; }
+  .v5fo-cal_carril { padding-top: 14px; background-size: 100% 26px; }
+  .v5fo-cal_segmento { top: -4px; height: 14px; }
+  .v5fo-cal_segmento::after { top: -6px; right: -6px; width: 10px; height: 10px; }
+  .v5fo-cal_fechas { flex-direction: column; margin-top: 16px; }
+  .v5fo-tabla th, .v5fo-tabla td { padding: 16px; }
+  .v5fo-tabla { min-width: 760px; }
+  .v5fo-tabla thead td, .v5fo-tabla tbody th { width: 120px; }
+  .v5fo-banda { padding: 56px 0; }
+  .v5fo-puerta-portada { padding: 40px 0 56px; }
+  .v5fo-puerta-portada .v5fo-bajada { margin: 16px 0 32px; }
+  .v5fo-puerta_bloque { min-height: 0; padding: 24px; gap: 20px; }
+  .v5fo-puerta_cuerpo { padding: 24px; }
+  .v5fo-mini { margin-top: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v5fo-puerta, .v5fo-puerta:hover { transition: none; transform: none; }
+}

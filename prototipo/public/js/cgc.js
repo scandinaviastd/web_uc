@@ -375,4 +375,13 @@
     }, { threshold: 0.6 });
     conteos.forEach(function (el) { ioConteo.observe(el); });
   }
+  // Calendario de Programas abiertos: los segmentos crecen al entrar en pantalla (v5-formacion.css)
+  var calendarios = $$('[data-cal-anual]');
+  if (calendarios.length && !quieto && 'IntersectionObserver' in window) {
+    // Fila por fila: en móvil el calendario es más alto que la pantalla
+    var ioCal = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { ioCal.unobserve(en.target); en.target.classList.add('is-visible'); } });
+    }, { threshold: 0.6 });
+    calendarios.forEach(function (el) { el.classList.add('is-animado'); $$('.v5fo-cal_fila', el).forEach(function (f) { ioCal.observe(f); }); });
+  }
 })();
