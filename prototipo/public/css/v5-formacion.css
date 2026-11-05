@@ -39,6 +39,10 @@
 .v5fo-cal_pista[data-vacia] { background: repeating-linear-gradient(to right, var(--cgc-barra-base) 0 8px, transparent 8px 14px); }
 .v5fo-cal_segmento { position: absolute; top: -5px; left: var(--izq); width: var(--ancho); height: 16px; background: var(--cgc-barra-segmento); transform-origin: left center; }
 .v5fo-cal_segmento::after { content: ""; position: absolute; top: -8px; right: -8px; width: 12px; height: 12px; background: var(--cgc-acento-cian); }
+/* Dos versiones de un mismo programa: la 1 en azul 2727 y la 2 en azul #173F8A (Sara, 05-11), con su muestra en la leyenda */
+.v5fo-cal_segmento[data-version="2"] { background: var(--cgc-azul); }
+.v5fo-cal_muestra { display: inline-block; width: 16px; height: 8px; margin-right: 8px; vertical-align: 2px; background: var(--cgc-barra-segmento); }
+.v5fo-cal_muestra[data-version="2"] { background: var(--cgc-azul); }
 .v5fo-cal_fechas { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 20px 0 0; font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 .v5fo-cal_fechas strong { color: var(--cgc-texto-principal); font-weight: 500; }
 /* Los segmentos crecen de izquierda a derecha al entrar en pantalla (cgc.js pone .is-animado; sin JS, quietos) */
@@ -67,8 +71,7 @@
 
 /* ---------- 04 · Descuentos · modo Noche ---------- */
 .v5fo-dsc { row-gap: 40px; }
-.v5fo-dsc .v5fo-encabezado { margin-bottom: 32px; }
-.v5fo-dsc_cifra { padding: 0; }
+.v5fo-dsc .v5fo-encabezado { margin-bottom: 0; }
 .v5fo-dsc_lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cgc-borde-sutil); }
 .v5fo-dsc_lista li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 16px; line-height: 24px; }
 .v5fo-dsc_lista strong { flex-shrink: 0; font-size: 20px; line-height: 24px; color: var(--cgc-texto-marca); font-variant-numeric: tabular-nums; }
@@ -79,7 +82,6 @@
 .v5fo-banda_fila { row-gap: 40px; }
 .v5fo-banda_bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; height: 100%; color: var(--cgc-blanco); }
 .v5fo-banda_titulo { color: var(--cgc-blanco); margin: 0; }
-.v5fo-banda_datos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .v5fo-banda .cgc-d-enlace, .v5fo-banda .cgc-d-enlace:hover { color: var(--cgc-blanco); }
 .v5fo-banda .cgc-d-enlace:focus-visible { outline-color: var(--cgc-blanco); }
 .v5fo-banda_puente { padding-left: 48px; border-left: 1px solid rgba(255, 255, 255, .45); }
@@ -106,7 +108,8 @@
 .v5fo-mini { width: 100%; margin-top: auto; }
 .v5fo-mini_pista { position: relative; height: 6px; background: rgba(255, 255, 255, .35); }
 .v5fo-mini_pista span { position: absolute; top: -3px; left: var(--izq); width: var(--ancho); height: 12px; background: var(--cgc-blanco); }
-.v5fo-mini_escala { display: flex; justify-content: space-between; margin-top: 12px; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+/* Los meses van en los bordes de la barra blanca, no en los extremos del año */
+.v5fo-mini_escala { display: flex; justify-content: space-between; margin-top: 12px; margin-left: var(--izq); width: var(--ancho); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
 
 .v5fo-proximos { border-top: 1px solid var(--cgc-borde-sutil); }
 .v5fo-proximos_todos { display: inline-block; margin-top: 32px; }

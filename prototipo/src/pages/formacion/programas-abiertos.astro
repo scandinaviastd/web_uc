@@ -3,15 +3,16 @@
 // Portada en modo Noche · 01 Calendario 2027 (la barra de dirección de la submarca hecha calendario: cada segmento es
 // una versión, de su inicio a su término) · 02 Los programas · 03 Comparador · 04 Descuentos en modo Noche ·
 // Banda azul 2727 con la coordinación y el puente a Programas para empresas. Todo se deriva de programas.js.
+// Ajustes de Sara (05-11): versión 1 y 2 en dos azules con leyenda, cursos con nombre y descripción, descuentos sin
+// cifra protagonista y la banda solo con el WhatsApp del Centro.
 import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import Cifra from '../../components/v5/Cifra.astro';
 import Etiqueta from '../../components/v5/Etiqueta.astro';
 import TarjetaPrograma from '../../components/v5/TarjetaPrograma.astro';
 import { portadaAbiertos as portada, calendario, diplomados, cursos, comparar, descuentosV5 as dsc, contacto, MESES } from '../../data/v5-formacion.js';
-import { whatsapp, telHref } from '../../data/sitio.js';
+import { whatsapp } from '../../data/sitio.js';
 const meta = (p: any) => [p.inicioCorto, p.modalidad].join(' · ');
-const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
 ---
 <Base title="Programas abiertos" seccion="formacion" descripcion={portada.bajada}>
   <link slot="head" rel="stylesheet" href="/css/v5-formacion.css" />
@@ -63,11 +64,11 @@ const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
               </div>
               <div class="v5fo-cal_carril">
                 <div class="v5fo-cal_pista" aria-hidden="true" data-vacia={f.segmentos.length ? undefined : ''}>
-                  {f.segmentos.map((s, i) => <span class="v5fo-cal_segmento" style={`--izq:${s.izq}%;--ancho:${s.ancho}%;--orden:${i}`}></span>)}
+                  {f.segmentos.map((s, i) => <span class="v5fo-cal_segmento" data-version={s.version} style={`--izq:${s.izq}%;--ancho:${s.ancho}%;--orden:${i}`}></span>)}
                 </div>
                 <p class="v5fo-cal_fechas">
                   {f.segmentos.length
-                    ? f.segmentos.map((s) => <span>{s.nombre && <strong>{s.nombre}: </strong>}{s.texto}</span>)
+                    ? f.segmentos.map((s) => <span>{s.version && <i class="v5fo-cal_muestra" data-version={s.version} aria-hidden="true"></i>}{s.nombre && <strong>{s.nombre}: </strong>}{s.texto}</span>)
                     : <span>Fecha por confirmar</span>}
                 </p>
               </div>
@@ -85,9 +86,9 @@ const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
         <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">02</span><span class="cgc-d-ante cgc-d-texto-sec">Los programas</span></p>
         <h2 id="v5fo-prog-titulo" class="cgc-d-display-l v5fo-titular">Elige tu<br /><strong>programa</strong></h2>
       </div>
-      {diplomados.map((p) => <TarjetaPrograma horizontal titulo={p.titulo} tipo={p.tipo} meta={meta(p)} href={`/formacion/${p.slug}/`} descripcion={p.frase} anio={anio(p)} />)}
+      {diplomados.map((p) => <TarjetaPrograma horizontal titulo={p.titulo} tipo={p.tipo} meta={meta(p)} href={`/formacion/${p.slug}/`} descripcion={p.frase} />)}
       <div class="row v5fo-cursos">
-        {cursos.map((p) => <div class="col-md-6 col-lg-4"><TarjetaPrograma titulo={p.titulo} tipo={p.tipo} meta={meta(p)} href={`/formacion/${p.slug}/`} anio={p.versiones.length ? anio(p) : '—'} /></div>)}
+        {cursos.map((p) => <div class="col-md-6 col-lg-4"><TarjetaPrograma titulo={p.titulo} tipo={p.tipo} meta={meta(p)} href={`/formacion/${p.slug}/`} descripcion={p.frase} /></div>)}
       </div>
     </div>
   </section>
@@ -122,7 +123,7 @@ const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
     </div>
   </section>
 
-  <!-- 04 · Descuentos · modo Noche (la tabla única de descuentos, P1-06) -->
+  <!-- 04 · Descuentos · modo Noche (la tabla única de descuentos, P1-06). Sin el 30 % protagonista (Sara, 05-11) -->
   <section class="v5fo-seccion cgc-d-noche" aria-labelledby="v5fo-dsc-titulo">
     <div class="container">
       <div class="row v5fo-dsc">
@@ -131,7 +132,6 @@ const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
             <p class="v5fo-indice mb-0"><span class="cgc-d-indice cgc-d-texto-marca">04</span><span class="cgc-d-ante cgc-d-texto-sec">Descuentos</span></p>
             <h2 id="v5fo-dsc-titulo" class="cgc-d-display-l v5fo-titular">Un descuento<br /><strong>para cada caso</strong></h2>
           </div>
-          <Cifra cifra={dsc.cifra} etiqueta={dsc.etiqueta} fondo="noche" class="v5fo-dsc_cifra" />
         </div>
         <div class="col-lg-6 offset-lg-1">
           <ul class="v5fo-dsc_lista">
@@ -151,11 +151,7 @@ const anio = (p: any) => p.versiones[0]?.inicio.slice(0, 4) ?? '2027';
           <div class="v5fo-banda_bloque">
             <h2 class="h2 v5fo-banda_titulo">¿Tienes dudas?</h2>
             <p class="p-size--lg mb-0"><strong>{contacto.nombre}</strong> · {contacto.cargo}</p>
-            <ul class="v5fo-banda_datos">
-              <li><a href={`mailto:${contacto.correo}`} class="cgc-d-enlace">{contacto.correo}</a></li>
-              <li><a href={telHref(contacto.telefono)} class="cgc-d-enlace">{contacto.telefono}</a></li>
-              <li><a href={whatsapp.url('Diplomado y los cursos 2027')} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a></li>
-            </ul>
+            <a href={whatsapp.url('Diplomado y los cursos 2027')} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
           </div>
         </div>
         <div class="col-lg-6">

@@ -1,6 +1,6 @@
 // Programas de Formación. En WordPress: CPT "programa" con estos campos.
 // Oferta 2027 según el Calendario Académico 2027 del Centro (26-10): Diplomado, Formando nuevos directores
-// (2 versiones) y Governing empresas familiares. Claves para decisiones financieras sigue en evaluación (sin fecha).
+// (2 versiones) y Governing empresas familiares. Claves para decisiones financieras: del 6 al 20 de octubre (Sara, 05-11).
 
 import { sara } from './sitio.js';
 
@@ -120,7 +120,8 @@ const base = [
     tipo: 'Curso',
     titulo: 'Claves para la toma de decisiones financieras en Directorios',
     frase: 'Conocimientos financieros sólidos para que directores y directoras tomen decisiones informadas y responsables que lideren el crecimiento de la organización.',
-    versiones: [],
+    // Fechas: Sara (05-11). Las dos son miércoles; el día de clases está por confirmar con el Centro.
+    versiones: [{ inicio: '2027-10-06', termino: '2027-10-20', dia: 'Miércoles' }],
     postularUrl: null,
     modalidad: 'Híbrido',
     valor: '$1.300.000',

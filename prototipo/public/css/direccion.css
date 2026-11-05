@@ -171,7 +171,14 @@
 .cgc-d-tarjeta_link:hover { color: inherit; text-decoration: none; }
 .cgc-d-tarjeta_meta { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
 .cgc-d-tarjeta_cuerpo .cgc-d-enlace { margin-top: auto; }
-.cgc-d-tarjeta_acciones { display: flex; flex-wrap: wrap; gap: 8px 32px; position: relative; z-index: 2; }
+.cgc-d-tarjeta_acciones { display: flex; flex-wrap: wrap; gap: 8px 32px; position: relative; z-index: 2; pointer-events: none; }
+/* La fila de acciones queda sobre el enlace estirado del título: deja pasar el clic («Ver programa →» es texto) y solo
+   sus enlaces reales (WhatsApp) lo reciben. Antes «Ver programa →» no llevaba a ningún lado (Sara, 05-11). */
+.cgc-d-tarjeta_acciones a { pointer-events: auto; }
+/* Vertical: nombre del curso en el bloque, abajo; la descripción crece para que meta, barra y enlace queden alineados */
+.cgc-d-tarjeta--vertical .cgc-d-tarjeta_bloque { justify-content: space-between; gap: 24px; min-height: 200px; }
+.cgc-d-tarjeta_titulo-bloque { overflow-wrap: break-word; }
+.cgc-d-tarjeta--vertical .cgc-d-tarjeta_descripcion { flex: 1 0 auto; font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-principal); margin: 0; }
 /* Horizontal: Diplomado e In Company a todo el ancho */
 .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_bloque { gap: 24px; padding: 40px; }
 .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo { padding: 40px; }

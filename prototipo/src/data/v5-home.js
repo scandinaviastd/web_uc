@@ -2,12 +2,14 @@
 // referencian desde programas.js y contenidos.js (un dato, un dueño). Espejo: Figma UC_CGC, frames 452:2 y 461:446.
 // En WordPress: campos de la portada (ACF de la página de inicio).
 import { eventos } from './contenidos.js';
+import { programas } from './programas.js';
 
 // Cifras del Centro: brochure 2026 de Full Funnel (láminas 3, 6 y 9). Tamaño Cifra a validar con la DED.
 // etiquetaMovil: versión corta del Figma móvil (461:446).
 export const cifraPortada = { cifra: '+45', etiqueta: 'académicos UC y líderes empresariales en las aulas', etiquetaMovil: 'académicos UC y líderes empresariales' };
 export const cifrasCentro = [
-  { cifra: '10', etiqueta: 'programas para la Alta Dirección' },
+  // Programas abiertos 2027 (Sara, 05-11: «son 4»; el brochure 2026 decía 10). Sale de programas.js, sin In Company.
+  { cifra: String(programas.length), etiqueta: 'programas para la Alta Dirección' },
   { cifra: '+45', etiqueta: 'académicos UC y líderes empresariales' },
   { cifra: '+200', etiqueta: 'personas en la Jornada Anual de Gobierno Corporativo', etiquetaMovil: 'personas en la Jornada Anual' },
   { cifra: '+350', etiqueta: 'personas en los webinars con AFP Cuprum' },

@@ -102,7 +102,7 @@ const secciones = [
           </div>
           <!-- En móvil el diplomado usa la tarjeta vertical (la horizontal no cabe en 375) -->
           <div class="d-md-none">
-            <TarjetaPrograma titulo={diplomado.titulo} tipo={diplomado.tipo} meta={oferta(diplomado)} href={`/formacion/${diplomado.slug}/`} />
+            <TarjetaPrograma titulo={diplomado.titulo} tipo={diplomado.tipo} meta={oferta(diplomado)} href={`/formacion/${diplomado.slug}/`} descripcion={descripcionDiplomado} />
           </div>
         </>
       )}
@@ -112,7 +112,7 @@ const secciones = [
       <div class="v5h-carrusel" data-scroll-x role="region" aria-label="Cursos 2027">
         {cursos.map((p) => (
           <div class="v5h-carrusel_item">
-            <TarjetaPrograma titulo={p.titulo} tipo={p.tipo} meta={oferta(p)} href={`/formacion/${p.slug}/`} />
+            <TarjetaPrograma titulo={p.titulo} tipo={p.tipo} meta={oferta(p)} href={`/formacion/${p.slug}/`} descripcion={p.frase} />
           </div>
         ))}
       </div>

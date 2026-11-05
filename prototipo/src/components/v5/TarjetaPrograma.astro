@@ -1,14 +1,15 @@
 ---
 // Tarjeta de programa (Formación). Curso: vertical, en fila de 3 (V-09). Diplomado e In Company: horizontal a todo el ancho.
 // El bloque azul 2727 lleva solo texto grande en blanco (4,1:1, AA para texto grande). Toda la tarjeta es clic (enlace en el título).
+// Vertical (Sara, 05-11): el bloque lleva el nombre del curso (antes el año) y el cuerpo una descripción breve, como el diplomado.
 import Etiqueta from './Etiqueta.astro';
 import Barra from './Barra.astro';
 interface Props {
   titulo: string; tipo: string; meta: string; href: string;
-  horizontal?: boolean; anio?: string; descripcion?: string;
+  horizontal?: boolean; descripcion?: string;
   whatsapp?: string; nivel?: 2 | 3; class?: string;
 }
-const { titulo, tipo, meta, href, horizontal = false, anio = '2027', descripcion, whatsapp, nivel = 3, class: clase } = Astro.props;
+const { titulo, tipo, meta, href, horizontal = false, descripcion, whatsapp, nivel = 3, class: clase } = Astro.props;
 const Titulo = `h${nivel}`;
 ---
 {horizontal ? (
@@ -28,13 +29,13 @@ const Titulo = `h${nivel}`;
     </div>
   </article>
 ) : (
-  <article class:list={['cgc-d-tarjeta', clase]}>
+  <article class:list={['cgc-d-tarjeta', 'cgc-d-tarjeta--vertical', clase]}>
     <div class="cgc-d-tarjeta_bloque">
       <Etiqueta texto={tipo} />
-      <span class="cgc-d-display-l" aria-hidden="true">{anio}</span>
+      <Titulo class="h3 color-white mb-0 cgc-d-tarjeta_titulo-bloque"><a href={href} class="cgc-d-tarjeta_link">{titulo}</a></Titulo>
     </div>
     <div class="cgc-d-tarjeta_cuerpo">
-      <Titulo class="cgc-d-tarjeta_titulo"><a href={href}>{titulo}</a></Titulo>
+      {descripcion && <p class="cgc-d-tarjeta_descripcion">{descripcion}</p>}
       <p class="cgc-d-tarjeta_meta">{meta}</p>
       <Barra />
       <span class="cgc-d-enlace" aria-hidden="true">Ver programa →</span>

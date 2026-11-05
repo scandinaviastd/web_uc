@@ -9,7 +9,7 @@ import Barra from './Barra.astro';
 import Cifra from './Cifra.astro';
 import Retrato from './Retrato.astro';
 import { jefePrograma, coordinacion, condicionesDescuentos, PENDIENTE } from '../../data/programas.js';
-import { whatsapp, telHref } from '../../data/sitio.js';
+import { whatsapp } from '../../data/sitio.js';
 import { portadaV5, titularModulos, etiquetaEstado } from '../../data/v5-ficha.js';
 interface Props { p: any }
 const { p } = Astro.props;
@@ -108,8 +108,8 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
           <p class="cgc-v5f-contacto-nombre">{cNombre}</p>
           {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
           <Barra />
+          {/* Solo el WhatsApp del Centro, sin teléfono fijo (Sara, 05-11) */}
           <a href={whatsapp.url(p.whatsappTema)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
-          {c.telefono && <a href={telHref(c.telefono)} class="cgc-v5f-telefono">{c.telefono}</a>}
         </div>
       </aside>
     </div>

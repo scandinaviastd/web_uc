@@ -8,7 +8,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import Etiqueta from '../../components/v5/Etiqueta.astro';
 import Evento from '../../components/v5/Evento.astro';
 import Cita from '../../components/v5/Cita.astro';
-import { portadaFormacion as portada, puertas, inicios, calendario, MESES } from '../../data/v5-formacion.js';
+import { portadaFormacion as portada, puertas, inicios, calendario, temporada, MESES } from '../../data/v5-formacion.js';
 import { citaPortada } from '../../data/v5-home.js';
 const proximos = inicios.slice(0, 3);
 const dia = (iso: string) => String(Number(iso.slice(8, 10)));
@@ -33,11 +33,10 @@ const fin = (iso: string) => `${dia(iso)} ${mes(iso)}`;
                 <h2 class="cgc-d-display-l v5fo-puerta_titulo"><a href={pu.href} class="v5fo-puerta_link">{pu.titulo}</a></h2>
                 {pu.etiqueta && <Etiqueta texto={pu.etiqueta} estilo="cian" />}
                 {pu.fondo === 'marca' && (
-                  <div class="v5fo-mini" aria-hidden="true">
-                    <div class="v5fo-mini_pista">
-                      {calendario.filas.flatMap((f) => f.segmentos).map((s) => <span style={`--izq:${s.izq}%;--ancho:${s.ancho}%`}></span>)}
-                    </div>
-                    <div class="v5fo-mini_escala"><span>ene</span><span>jul</span><span>dic {calendario.anio}</span></div>
+                  <!-- Temporada 2027: una sola barra blanca de abril a noviembre (Sara, 05-11), con los meses en sus bordes -->
+                  <div class="v5fo-mini" aria-hidden="true" style={`--izq:${temporada.izq}%;--ancho:${temporada.ancho}%`}>
+                    <div class="v5fo-mini_pista"><span></span></div>
+                    <div class="v5fo-mini_escala"><span>{temporada.desde} {calendario.anio}</span><span>{temporada.hasta} {calendario.anio}</span></div>
                   </div>
                 )}
               </div>

@@ -1,7 +1,7 @@
 // Formación v5 · propuesta «Dirección» (Mateo, 03-11): una puerta por grupo y una subpágina «Programas abiertos».
 // Todo lo que muestra sale de programas.js (Calendario Académico 2027 del Centro): nada de este archivo se escribe a mano
 // salvo los titulares. En WordPress: página «Formación» + plantilla «Programas abiertos» que leen el CPT programa.
-import { programas, inCompany, descuentos, condicionesDescuentos, coordinacion } from './programas.js';
+import { programas, inCompany, descuentos, condicionesDescuentos } from './programas.js';
 import { sara } from './sitio.js';
 
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
@@ -41,10 +41,20 @@ export const calendario = {
     segmentos: p.versiones.map((v, i) => ({
       izq: enAnio(v.inicio), ancho: Math.max(enAnio(v.termino) - enAnio(v.inicio), 1.2),
       nombre: p.versiones.length > 1 ? `Versión ${i + 1}` : null,
+      version: p.versiones.length > 1 ? i + 1 : null, // v1 en azul 2727, v2 en azul #173F8A (Sara, 05-11)
       texto: `${v.dia} · ${corta(v.inicio)} – ${corta(v.termino)}`,
     })),
   })),
 };
+
+// Temporada de la puerta «Programas abiertos»: una sola barra blanca desde el mes del primer inicio hasta el fin del mes
+// del último término (Sara, 05-11: «de abril a noviembre, cuando parten y terminan nuestros cursos»).
+const mesDe = (iso) => Number(iso.slice(5, 7));
+const finDeMes = (m) => (m === 12 ? `${ANIO + 1}-01-01` : `${ANIO}-${String(m + 1).padStart(2, '0')}-01`);
+const mIni = inicios.length ? mesDe(inicios[0].v.inicio) : 1;
+const mFin = inicios.length ? mesDe(inicios.map((x) => x.v.termino).sort().at(-1)) : 12;
+const tIzq = enAnio(`${ANIO}-${String(mIni).padStart(2, '0')}-01`);
+export const temporada = { izq: tIzq, ancho: Math.round((enAnio(finDeMes(mFin)) - tIzq) * 100) / 100, desde: MES[mIni - 1], hasta: MES[mFin - 1] };
 
 // ---------- Comparador ----------
 const durac = (p) => (!p.versiones.length ? 'Por confirmar' : [...new Set(p.versiones.map(semanas))].map((n) => `${n} semanas`).join(' / '));
@@ -64,10 +74,8 @@ export const comparar = {
 
 // ---------- Descuentos: la tabla única de programas.js ----------
 const pct = (s) => parseInt(s, 10);
-const maximo = descuentos.reduce((a, b) => (pct(b[1]) > pct(a[1]) ? b : a));
+// Sin cifra protagonista (Sara, 05-11: «pocos son los funcionarios que toman nuestros cursos»): solo la tabla.
 export const descuentosV5 = {
-  cifra: `${pct(maximo[1])} %`,
-  etiqueta: `de descuento para ${maximo[0].toLowerCase().replace(/\buc\b/i, 'UC')}, el mayor de la tabla`,
   filas: descuentos.map(([quien, cuanto]) => ({ quien, cuanto: `${pct(cuanto)} %` })),
   condiciones: condicionesDescuentos.slice(0, 2),
 };
@@ -99,6 +107,5 @@ export const portadaAbiertos = {
   cifra: { cifra: String(inicios.length), etiqueta: 'inicios con fecha en el Calendario Académico 2027' },
 };
 
-export const contacto = {
-  nombre: sara.nombre, cargo: sara.cargo, correo: sara.correo, telefono: coordinacion.telefono,
-};
+// Banda «¿Tienes dudas?»: solo el WhatsApp del Centro (Sara, 05-11), sin correo ni teléfono.
+export const contacto = { nombre: sara.nombre, cargo: sara.cargo };

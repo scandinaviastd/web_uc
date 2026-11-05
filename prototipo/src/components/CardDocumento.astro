@@ -1,5 +1,8 @@
 ---
 // Card/Documento — PDF descargable. Variante con portada (Estudios) o con cita en campos (Artículos y WP).
+// «Descargar PDF» lleva el atributo download (Sara, 05-11: abría el PDF en vez de bajarlo). El navegador solo lo respeta si
+// el PDF está en el mismo dominio: en WordPress, subido a la biblioteca de medios del sitio. En el prototipo los PDF siguen
+// en el sitio actual del Centro, así que todavía se abren en una pestaña nueva.
 // Artículos y WP: el abstract va plegado (<details>, P1-14 del 26-10) para que las cards queden parejas.
 interface Props { titulo: string; tipo?: string; anio?: string; autores?: string; publicacion?: string; abstract?: string; portada?: boolean | string; href?: string }
 const { titulo, tipo, anio, autores, publicacion, abstract, portada = false, href = '#' } = Astro.props;
@@ -25,7 +28,7 @@ const { titulo, tipo, anio, autores, publicacion, abstract, portada = false, hre
     <div class="mt-auto pt-16">
       {href === '#'
         ? <a href="#" class="uc-btn btn-secondary cgc-btn-auto" data-pendiente="El PDF lo sube el Centro al panel de WordPress; en el prototipo aún no está.">Descargar PDF <i class="uc-icon">download</i></a>
-        : <a href={href} target="_blank" rel="noopener" class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF <i class="uc-icon">download</i><span class="uc-sr-only"> (abre en pestaña nueva)</span></a>}
+        : <a href={href} download target="_blank" rel="noopener" class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF <i class="uc-icon">download</i><span class="uc-sr-only"> (archivo PDF)</span></a>}
     </div>
   </div>
 </article>
