@@ -21,20 +21,19 @@ export const coordinacion = {
 };
 
 // Descuentos (P1-06, 26-10): una sola tabla para todos los programas; las fichas la referencian.
+// Tabla oficial de la Escuela de Administración y sus reglas, enviadas por Sara el 06-11 («los descuentos
+// oficiales de los programas son estos»). Reemplaza la tabla anterior (salen matrícula anticipada y Alumni UC).
 export const descuentos = [
   ['Funcionarios UC', '30%'],
   ['Alumni del Centro de Gobierno Corporativo UC', '20%'],
-  ['Exalumnos UC y socios Alumni UC', '15%'],
-  ['Colaboradores de empresas en convenio', '15%'],
+  ['Graduados de pregrado, postgrado y diplomados UC', '15%'],
   ['Funcionarios públicos', '15%'],
-  ['Grupos de tres o más participantes de una misma institución', '15%'],
-  ['Matrícula anticipada', '15%'],
+  ['Colaboradores de empresas en convenio', '10%'],
+  ['Grupos de tres o más participantes', '10%'],
 ];
 export const condicionesDescuentos = [
   'Los descuentos no son acumulables. Si se cumple más de una condición, se aplica el de mayor porcentaje.',
   'Los descuentos se calculan sobre el arancel oficial de cada programa.',
-  'La matrícula anticipada tiene una vigencia definida para cada programa.',
-  'Los descuentos especiales o excepcionales requieren autorización de la Dirección Ejecutiva.',
   'Su aplicación está sujeta a la revisión de los compromisos institucionales y convenios vigentes.',
 ];
 

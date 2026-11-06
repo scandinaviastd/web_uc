@@ -77,7 +77,7 @@ const pct = (s) => parseInt(s, 10);
 // Sin cifra protagonista (Sara, 05-11: «pocos son los funcionarios que toman nuestros cursos»): solo la tabla.
 export const descuentosV5 = {
   filas: descuentos.map(([quien, cuanto]) => ({ quien, cuanto: `${pct(cuanto)} %` })),
-  condiciones: condicionesDescuentos.slice(0, 2),
+  condiciones: condicionesDescuentos, // las tres reglas oficiales (Sara, 06-11)
 };
 
 // ---------- Textos ----------

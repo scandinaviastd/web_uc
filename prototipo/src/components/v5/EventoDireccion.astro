@@ -1,18 +1,20 @@
 ---
 // Página de evento · propuesta v5 (sub-design system «Dirección»). Plantilla de todos los eventos (single-evento.php).
 // Espejo: Figma UC_CGC, «Evento v5 · propuesta Dirección» (520:1818) y su versión móvil (522:2045).
-// Portada en modo Noche con datos prácticos y un solo amarillo («Inscribirme») · Inscripción con el formulario de
-// inscripción del Kit, solo si fecha y hora están confirmadas · Resumen (realizado) · Más eventos · Por completar.
+// Portada en modo Noche con datos prácticos y un solo amarillo («Inscribirme») · Inscripción: enlace al formulario
+// de Full Funnel (Sara, 05-11: «esos links y la información de quién se inscribe la maneja Full Funnel»), solo si
+// fecha y hora están confirmadas · Realizado: resumen, video de YouTube y fotos en la misma página (revisión del
+// 06-11: «que se unifique toda la información en un lugar») · Más eventos · Por completar.
+// Campos del evento (CPT evento): inscripcion (URL del formulario), youtube (id del video), fotos ([{src, alt}]).
 // Sin foto real del evento la portada lleva el bloque «Fecha de evento»: las fotos de stock salen del sitio (26-10).
 // Reusa la portada, el contacto y «Por completar» de la ficha v5 (v5-ficha.css); lo propio va en v5-evento.css.
 import Etiqueta from './Etiqueta.astro';
 import Barra from './Barra.astro';
 import Evento from './Evento.astro';
 import FechaEvento from './FechaEvento.astro';
-import BloquePrivacidad from '../BloquePrivacidad.astro';
 import { eventosProximos, eventosRealizados, colaboradores, fechaEvento } from '../../data/contenidos.js';
 import { coordinacion } from '../../data/programas.js';
-import { whatsapp, telHref } from '../../data/sitio.js';
+import { whatsapp } from '../../data/sitio.js';
 import { fotosEvento } from '../../data/v5-evento.js';
 interface Props { e: any }
 const { e } = Astro.props;
@@ -75,9 +77,14 @@ const mas = [eventosProximos.find((x) => x.id !== e.id), eventosRealizados.find(
 
 const c = coordinacion;
 const [cNombre, cCargo] = c.persona.split(' · ');
+const webinar = e.tipo === 'Webinar';
 const pendientes = (proximo
-  ? [!e.descripcion && 'Descripción del evento', 'Expositores', online && 'Enlace de conexión', 'Cupos']
-  : [!e.descripcion && 'Resumen del evento', 'Expositores', 'Fotos del evento']).filter(Boolean);
+  ? [!e.descripcion && 'Descripción del evento', abierta && !e.inscripcion && 'Enlace de inscripción', 'Expositores', online && 'Enlace de conexión', 'Cupos']
+  : [!e.descripcion && 'Resumen del evento', 'Expositores', !e.fotos?.length && 'Fotos del evento', webinar && !e.youtube && 'Video del webinar en YouTube']).filter(Boolean);
+// Inscripción: el formulario es de Full Funnel; sin enlace todavía, el botón avisa en vez de saltar.
+const inscribirse = e.inscripcion
+  ? { href: e.inscripcion, target: '_blank', rel: 'noopener' }
+  : { href: '#', 'data-pendiente': 'El enlace al formulario de inscripción lo entrega Full Funnel; en el prototipo aún no está.' };
 ---
 <section class="cgc-d-noche cgc-v5f-portada" aria-labelledby="evento-titulo">
   <div class="container">
@@ -128,21 +135,14 @@ const pendientes = (proximo
         <div class="cgc-v5e-inscripcion_texto">
           <p class="cgc-d-ante cgc-d-texto-marca mb-0">Inscripción</p>
           <h2 id="inscripcion-titulo" class="h2 cgc-v5f-h2">{abierta ? `Inscríbete ${e.tipo === 'Webinar' ? 'al webinar' : 'al evento'}` : 'Inscripción por abrir'}</h2>
-          <p class="cgc-v5f-texto-sec mb-0">{abierta ? `Completa tus datos para inscribirte ${e.tipo === 'Webinar' ? 'en el webinar' : 'en el evento'}.` : 'La inscripción se abre cuando el Centro confirme la fecha, el horario y el lugar.'}</p>
+          <p class="cgc-v5f-texto-sec mb-0">{abierta ? `La inscripción se hace en el formulario ${webinar ? 'del webinar' : 'del evento'}.` : 'La inscripción se abre cuando el Centro confirme la fecha, el horario y el lugar.'}</p>
         </div>
         {abierta && (
-          <form class="cgc-form cgc-v5e-form" data-form="inscripcion" novalidate aria-labelledby="inscripcion-titulo">
-            <input type="hidden" name="evento" value={e.id} />
-            <p class="text-size--sm text-color--gray mb-0">(*) Campos obligatorios necesarios para procesar tu inscripción.</p>
-            <div class="cgc-v5e-form_fila">
-              <div class="uc-form-group"><label for="i-nombre">Nombre *</label><input id="i-nombre" type="text" class="uc-input-style" placeholder="Nombre" autocomplete="given-name" required /></div>
-              <div class="uc-form-group"><label for="i-apellido">Apellido *</label><input id="i-apellido" type="text" class="uc-input-style" placeholder="Apellido" autocomplete="family-name" required /></div>
-            </div>
-            <div class="uc-form-group"><label for="i-correo">Correo electrónico *</label><input id="i-correo" type="email" class="uc-input-style" placeholder="nombre@empresa.cl" autocomplete="email" required /></div>
-            <BloquePrivacidad id="i" tipo="inscripcion" actividad={e.titulo} />
-            <button type="submit" class="uc-btn btn-secondary cgc-btn-auto">Inscribirme</button>
-            <div class="uc-alert success cgc-hidden" data-form-ok><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8">Recibimos tu inscripción (demo).</span></div></div>
-          </form>
+          <div class="cgc-v5e-externo">
+            <p class="cgc-d-ante cgc-d-texto-marca mb-0">Formulario de inscripción</p>
+            <p class="p-size--lg mb-0">Se abre en una pestaña nueva. Ahí completas tus datos para inscribirte {webinar ? 'en el webinar' : 'en el evento'}.</p>
+            <a {...inscribirse} class="uc-btn btn-secondary cgc-btn-auto">Ir al formulario de inscripción <i class="uc-icon">open_in_new</i>{e.inscripcion && <span class="uc-sr-only"> (abre en una pestaña nueva)</span>}</a>
+          </div>
         )}
         <aside class="cgc-v5f-contacto cgc-v5e-contacto" aria-labelledby="contacto-titulo">
           <h2 id="contacto-titulo" class="cgc-d-ante cgc-d-texto-marca">¿Tienes dudas sobre el evento?</h2>
@@ -150,9 +150,31 @@ const pendientes = (proximo
           {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
           <Barra />
           <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
-          {c.telefono && <a href={telHref(c.telefono)} class="cgc-v5f-telefono">{c.telefono}</a>}
         </aside>
       </div>
+    </div>
+  </section>
+)}
+
+{!proximo && e.youtube && (
+  <section class="cgc-v5e-mas cgc-d-noche cgc-v5e-video" aria-labelledby="video-titulo">
+    <div class="container">
+      <h2 id="video-titulo" class="h2 cgc-v5f-h2">{webinar ? 'Vuelve a ver el webinar' : 'Video del evento'}</h2>
+      <div class="cgc-v5e-video_marco">
+        <iframe src={`https://www.youtube-nocookie.com/embed/${e.youtube}`} title={`Video: ${e.titulo}`} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <a href={`https://www.youtube.com/watch?v=${e.youtube}`} class="cgc-d-enlace" target="_blank" rel="noopener">Ver en YouTube →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+    </div>
+  </section>
+)}
+
+{!proximo && e.fotos?.length > 0 && (
+  <section class="cgc-v5e-mas cgc-v5e-fotos" aria-labelledby="fotos-titulo">
+    <div class="container">
+      <h2 id="fotos-titulo" class="h2 cgc-v5f-h2">Fotos del evento</h2>
+      <ul class="cgc-v5e-fotos_grilla">
+        {e.fotos.map((ft: any) => <li><img src={ft.src} alt={ft.alt} loading="lazy" /></li>)}
+      </ul>
     </div>
   </section>
 )}
@@ -173,6 +195,6 @@ const pendientes = (proximo
   <div class="container">
     <h2 id="pendientes-titulo" class="cgc-d-ante cgc-d-texto-marca">Por completar con el Centro</h2>
     <p class="cgc-v5f-pendientes-lista">{pendientes.join(' · ')}</p>
-    <p class="cgc-v5f-texto-sec mb-0">Se muestran en la página del evento cuando el Centro los entregue; mientras tanto no se publican secciones vacías.</p>
+    <p class="cgc-v5f-texto-sec mb-0">Se muestran en la página del evento cuando el Centro o Full Funnel los entreguen; mientras tanto no se publican secciones vacías.</p>
   </div>
 </section>

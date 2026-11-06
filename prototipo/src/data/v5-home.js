@@ -9,7 +9,7 @@ import { programas } from './programas.js';
 export const cifraPortada = { cifra: '+45', etiqueta: 'académicos UC y líderes empresariales en las aulas', etiquetaMovil: 'académicos UC y líderes empresariales' };
 export const cifrasCentro = [
   // Programas abiertos 2027 (Sara, 05-11: «son 4»; el brochure 2026 decía 10). Sale de programas.js, sin In Company.
-  { cifra: String(programas.length), etiqueta: 'programas para la Alta Dirección' },
+  { cifra: String(programas.length + 1), etiqueta: 'programas para la Alta Dirección' } /* los abiertos más In Company (la Ale, 06-11) */,
   { cifra: '+45', etiqueta: 'académicos UC y líderes empresariales' },
   { cifra: '+200', etiqueta: 'personas en la Jornada Anual de Gobierno Corporativo', etiquetaMovil: 'personas en la Jornada Anual' },
   { cifra: '+350', etiqueta: 'personas en los webinars con AFP Cuprum' },
