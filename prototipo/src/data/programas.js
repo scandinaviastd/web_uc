@@ -282,6 +282,8 @@ export const inCompany = {
   descripcion: 'Programa de formación que se realiza de manera exclusiva para el Directorio y alta dirección de una empresa u organización, de acuerdo con sus intereses o necesidades. Contempla la capacitación y la entrega de un set de cuatro documentos de estudio de elaboración propia del Centro para cada participante.',
   dirigido: 'Directorios y equipos de alta dirección de empresas y organizaciones, con o sin fines de lucro.',
   incluye: 'Set de 4 documentos de estudio y consulta de elaboración propia del CGC UC para cada participante.',
+  // Franja de datos de la portada (Mateo, 09-11), sacada de la descripción y de «Incluye».
+  datos: [['Formato', 'Exclusivo para tu directorio'], ['Contenidos', 'Diseñados con tu organización'], ['Incluye', '4 documentos de estudio por participante']],
   contenidos: ['El quehacer de un director/a', 'Las responsabilidades de un director/a', 'Responsabilidad penal de la persona jurídica', 'Buen gobierno corporativo', 'Estrategia y control de gestión corporativo', 'Sustentabilidad y criterios ESG', 'Gestión de riesgos', 'Un directorio efectivo'],
   // El contacto de In Company es el WhatsApp del Centro (P1-21) y el correo de Sara (P1-19).
   coordinacion: { titulo: '¿Quieres un programa para tu directorio?', persona: `${sara.nombre} · ${sara.cargo}`, correo: sara.correo },

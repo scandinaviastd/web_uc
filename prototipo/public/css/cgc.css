@@ -286,3 +286,12 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
    indicador de foco; con Tab el foco pasa a «Inicio», justo al lado. */
 .cgc-logo, .cgc-logo:focus, .cgc-logo:focus-visible, .cgc-logo:active { outline: none !important; box-shadow: none !important; }
 .cgc-logo img { outline: none !important; box-shadow: none !important; }
+
+/* In Company: portada con franja de datos (Mateo, 09-11). Sin la card blanca, la portada no necesita el
+   espacio inferior que la montaba encima. */
+.cgc-ic-portada { padding-bottom: 72px; }
+.cgc-ic-portada .cgc-ic-datos { margin: 40px 0 32px; gap: 20px 48px; }
+@media (max-width: 767.98px) {
+  .cgc-ic-portada { padding-bottom: 48px; }
+  .cgc-ic-portada .cgc-ic-datos { margin: 32px 0 24px; gap: 20px 16px; }
+}
