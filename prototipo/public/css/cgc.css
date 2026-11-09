@@ -278,3 +278,8 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 /* Página de evento */
 .cgc-evento-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
 
+
+/* Logo que vuelve a la home: sin recuadro de foco al hacer clic (Mateo, 09-11). El logo no lleva
+   indicador de foco; con Tab el foco pasa a «Inicio», justo al lado. */
+.cgc-logo, .cgc-logo:focus, .cgc-logo:focus-visible, .cgc-logo:active { outline: none !important; box-shadow: none !important; }
+.cgc-logo img { outline: none !important; box-shadow: none !important; }
