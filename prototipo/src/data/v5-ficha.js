@@ -33,7 +33,8 @@ export const portadaV5 = {
 
 // «Siete módulos / del diplomado»: el número sale de la lista de módulos.
 const NUMERO = ['Cero', 'Un', 'Dos', 'Tres', 'Cuatro', 'Cinco', 'Seis', 'Siete', 'Ocho', 'Nueve', 'Diez', 'Once', 'Doce'];
-export const titularModulos = (n, tipo) => [`${NUMERO[n] ?? n} módulo${n === 1 ? '' : 's'}`, `del ${tipo.toLowerCase()}`];
+// El Diplomado se cuenta en cursos (unidad: 'curso'): «Cuatro cursos / del diplomado».
+export const titularModulos = (n, tipo, unidad = 'módulo') => [`${NUMERO[n] ?? n} ${unidad}${n === 1 ? '' : 's'}`, `del ${tipo.toLowerCase()}`];
 
 // Etiqueta cian de la portada, a partir del estado calculado por fecha (R-03).
 export const etiquetaEstado = (p) => {

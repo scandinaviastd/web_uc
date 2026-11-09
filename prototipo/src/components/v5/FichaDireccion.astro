@@ -28,10 +28,14 @@ const datos = [
 const postular = p.postularUrl ? { href: p.postularUrl, externo: true } : { href: `/formacion/${p.slug}/postular/`, externo: false };
 const c = p.coordinacion ?? coordinacion;
 const [cNombre, cCargo] = c.persona.split(' · ');
-const modulos: string[] = p.detalle.find((d: any) => d.modulos)?.modulos ?? [];
-const [modA, modB] = titularModulos(modulos.length, p.tipo);
-// Campos ya entregados por el Centro (p. ej. el equipo docente de Empresas familiares) y los que faltan (P1-05).
-const extras = p.detalle.filter((d: any) => !d.modulos && d.texto && d.texto !== PENDIENTE);
+const bloqueModulos = p.detalle.find((d: any) => d.modulos);
+// Un módulo es un texto o, en el Diplomado, un curso con sus temas ({ nombre, temas }).
+const modulos: any[] = bloqueModulos?.modulos ?? [];
+const [modA, modB] = titularModulos(modulos.length, p.tipo, bloqueModulos?.unidad);
+// Campos ya entregados por el Centro (descriptores, 09-11) y los que faltan (P1-05).
+const docentes = p.detalle.find((d: any) => d.personas);
+const extras = p.detalle.filter((d: any) => !d.modulos && !d.personas && d.texto !== PENDIENTE);
+const parrafos = (t: any) => (t == null ? [] : Array.isArray(t) ? t : [t]);
 const pendientes = p.detalle.filter((d: any) => d.texto === PENDIENTE).map((d: any) => d.titulo);
 const pct = (v: string) => v.replace(/\s*%$/, ' %');
 ---
@@ -91,13 +95,16 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
           <div class="cgc-v5f-bloque">
             <h3 class="h4 cgc-v5f-h3">{anio ? `Fechas ${anio}` : 'Fechas'}</h3>
             {p.calendario.length
-              ? <p class="cgc-v5f-texto-sec mb-0">{p.calendario.map((v: any, i: number) => <>{i > 0 && <br />}{v.nombre && <strong>{v.nombre}: </strong>}{v.texto}.</>)} Horario de cada sesión por confirmar.</p>
+              ? <p class="cgc-v5f-texto-sec mb-0">{p.calendario.map((v: any, i: number) => <>{i > 0 && <br />}{v.nombre && <strong>{v.nombre}: </strong>}{v.texto}.</>)} {p.hora ? `Horario: ${p.horaDetalle ?? p.hora}.` : 'Horario de cada sesión por confirmar.'}</p>
               : <p class="cgc-v5f-texto-sec mb-0">Fecha por confirmar. Déjanos tus datos en «Más información» y te avisamos cuando se abra la postulación.</p>}
           </div>
           {extras.map((d: any) => (
             <div class="cgc-v5f-bloque">
               <h3 class="h4 cgc-v5f-h3">{d.titulo}</h3>
-              <p class="cgc-v5f-texto-sec mb-0">{d.texto}</p>
+              {parrafos(d.texto).map((t: string) => <p class="cgc-v5f-texto-sec mb-0">{t}</p>)}
+              {d.lista && <ul class="cgc-v5f-lista">{d.lista.map((t: string) => <li>{t}</li>)}</ul>}
+              {d.nota && <p class="cgc-v5f-nota mb-0">{d.nota}</p>}
+              {d.enlace && <a href={d.enlace.href} class="cgc-d-enlace" target="_blank" rel="noopener">{d.enlace.texto} →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>}
             </div>
           ))}
         </div>
@@ -132,12 +139,33 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
   </section>
 )}
 
+{docentes && (
+  <section class="cgc-v5f-docentes" aria-labelledby="docentes-titulo">
+    <div class="container">
+      <h2 id="docentes-titulo" class="h2 cgc-v5f-h2">Equipo docente</h2>
+      <ul class="cgc-v5f-docentes-lista">
+        {docentes.personas.map(([nombre, resena]: string[]) => (
+          <li><p class="cgc-v5f-docente-nombre">{nombre}</p><p class="cgc-v5f-texto-sec mb-0">{resena}</p></li>
+        ))}
+      </ul>
+      {docentes.nota && <p class="cgc-v5f-nota mb-0">{docentes.nota}</p>}
+    </div>
+  </section>
+)}
+
 {modulos.length > 0 && (
   <section class="cgc-d-noche cgc-v5f-modulos" aria-labelledby="modulos-titulo">
     <div class="container">
       <h2 id="modulos-titulo" class="cgc-d-display-l cgc-v5f-titular"><span class="d-block">{modA}</span><strong class="d-block">{modB}</strong></h2>
       <ol class="cgc-v5f-lista-modulos">
-        {modulos.map((m, i) => <li><span class="cgc-d-indice" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span class="cgc-v5f-modulo">{m}</span></li>)}
+        {modulos.map((m, i) => (
+          <li>
+            <span class="cgc-d-indice" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            {typeof m === 'string'
+              ? <span class="cgc-v5f-modulo">{m}</span>
+              : <span class="cgc-v5f-curso"><span class="cgc-v5f-modulo">{m.nombre}</span><span class="cgc-v5f-temas">{m.temas.join(' · ')}</span></span>}
+          </li>
+        ))}
       </ol>
     </div>
   </section>

@@ -135,3 +135,25 @@
   .cgc-v5f-pendientes { padding: 40px 0; }
   .cgc-v5f-pendientes .container > * + * { margin-top: 12px; }
 }
+
+
+/* ---------- Detalle entregado por el Centro (descriptores, 09-11) ---------- */
+.cgc-v5f-lista { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.cgc-v5f-lista li { font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-nota { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-docentes { padding: 96px 0; background: var(--cgc-superficie-base); }
+.cgc-v5f-docentes-lista { list-style: none; margin: 40px 0 32px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; }
+.cgc-v5f-docentes-lista li { padding: 24px 0; border-top: 1px solid var(--cgc-borde-sutil); display: flex; flex-direction: column; gap: 8px; }
+.cgc-v5f-docente-nombre { margin: 0; font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); }
+.cgc-v5f-curso { display: flex; flex-direction: column; gap: 8px; }
+.cgc-v5f-temas { font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-secundario); }
+.cgc-v5f-lista-modulos li:has(.cgc-v5f-curso) { align-items: flex-start; }
+.cgc-v5f-lista-modulos li:has(.cgc-v5f-curso) .cgc-d-indice { padding-top: 4px; }
+@media (max-width: 767.98px) {
+  .cgc-v5f-lista li { line-height: 26px; letter-spacing: .1px; }
+  .cgc-v5f-docentes { padding: 56px 0; }
+  .cgc-v5f-docentes-lista { grid-template-columns: minmax(0, 1fr); margin: 24px 0; }
+  .cgc-v5f-docentes-lista li { padding: 20px 0; }
+  .cgc-v5f-docente-nombre { font-size: 18px; line-height: 22px; }
+  .cgc-v5f-temas { font-size: 14px; line-height: 20px; letter-spacing: .28px; }
+}
