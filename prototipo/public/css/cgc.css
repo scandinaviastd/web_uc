@@ -107,7 +107,10 @@ html { scroll-behavior: smooth; }
 .cgc-acciones .uc-btn { justify-content: center; text-align: center; }
 /* Ficha e In Company: botones del mismo ancho, apilados y centrados */
 .cgc-acciones .uc-btn { align-self: stretch; width: 100%; }
-.cgc-mini { background: var(--cgc-gris-fondo); border-radius: 4px; padding: 20px; height: 100%; }
+.cgc-mini { background: var(--cgc-gris-fondo); border-radius: 4px; padding: 24px; height: 100%; }
+/* Rótulo de la caja («Dirigido a», «Incluye») con el estilo de rótulo v5 (cgc-d-ante): azul de marca, mayúsculas
+   y 12 px hasta el texto (Mateo, 09-11). */
+.cgc-mini h3 { color: var(--cgc-azul); font-size: 14px; line-height: 16px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin: 0 0 12px; }
 .cgc-persona-h_foto { width: 120px; height: 120px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
 .cgc-detalle-item { border-bottom: 1px solid var(--cgc-gris-claro); padding: 24px 0; }
 .cgc-detalle-item:first-of-type { border-top: 1px solid var(--cgc-gris-claro); }
