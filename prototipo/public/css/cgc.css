@@ -287,6 +287,13 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 .cgc-logo, .cgc-logo:focus, .cgc-logo:focus-visible, .cgc-logo:active { outline: none !important; box-shadow: none !important; }
 .cgc-logo img { outline: none !important; box-shadow: none !important; }
 
+/* Header (navbar, barra superior y menú móvil): sin el recuadro celeste del Kit al presionar con el mouse o el dedo
+   (Mateo, 10-11: «un mal pressed state»). El Kit pone outline 2 px rgba(1,118,222,.7) en :focus, y el clic deja el
+   foco en el enlace. Con teclado (:focus-visible) el recuadro se queda: es el único indicador de dónde está el foco. */
+#uc-header a:focus:not(:focus-visible),
+#uc-header button:focus:not(:focus-visible),
+#uc-header [tabindex]:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
+
 /* In Company: portada con franja de datos (Mateo, 09-11). Sin la card blanca, la portada no necesita el
    espacio inferior que la montaba encima. */
 .cgc-ic-portada { padding-bottom: 72px; }
