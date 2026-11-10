@@ -2,7 +2,7 @@
 // Calendario principal de Extensión (decisión A3 del 29-09): siempre visible, con todos los eventos
 // (realizados y próximos) y navegación libre entre meses. Clic en un evento: abre su página (26-10).
 // Los eventos sin fecha exacta no entran al calendario (sí a la lista de próximos).
-// Lo pinta cgc.js con los datos de data-eventos; responde al filtro de tipo (chips).
+// Lo repinta cgc.js con los datos de data-eventos al cambiar de mes; responde al filtro de tipo (chips).
 import { eventos } from '../data/contenidos.js';
 const hoy = new Date().toISOString().slice(0, 10);
 const todos = eventos.filter((e) => e.fecha).map(({ fecha, tipo, titulo, hora, url }) => ({ fecha, tipo, titulo, url, hora: hora ?? '', pasado: fecha < hoy }));
@@ -10,11 +10,39 @@ const todos = eventos.filter((e) => e.fecha).map(({ fecha, tipo, titulo, hora, u
 const mesActual = hoy.slice(0, 7);
 const proximo = todos.filter((e) => !e.pasado).sort((a, b) => a.fecha.localeCompare(b.fecha))[0];
 const inicio = todos.some((e) => e.fecha.startsWith(mesActual)) ? mesActual : (proximo?.fecha.slice(0, 7) ?? mesActual);
+// El mes inicial ya viene pintado en el HTML, con el mismo markup que arma pintar() en cgc.js (Mateo, 10-11): antes la
+// grilla llegaba vacía y un cuadro después crecía y empujaba «Próximos eventos». Si se cambia uno, se cambia el otro.
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const pad = (n: number) => String(n).padStart(2, '0');
+const esc = (s: string) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+const isoDe = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const [anio, mes] = [+inicio.slice(0, 4), +inicio.slice(5, 7) - 1];
+const offset = (new Date(anio, mes, 1).getDay() + 6) % 7;
+const primero = new Date(anio, mes, 1 - offset);
+const semanas: { d: Date; iso: string; enMes: boolean }[][] = [];
+for (let w = 0; w < 6; w++) {
+  const dias = Array.from({ length: 7 }, (_, k) => { const d = new Date(primero); d.setDate(primero.getDate() + w * 7 + k); return { d, iso: isoDe(d), enMes: d.getMonth() === mes }; });
+  if (dias.some((x) => x.enMes)) semanas.push(dias);
+}
+const delMes = todos.filter((e) => e.fecha.slice(0, 7) === inicio);
+const grilla = semanas.map((sem) => '<div class="cgc-cal-row" role="row">' + sem.map((x) => {
+  const evs = x.enMes ? delMes.filter((e) => e.fecha === x.iso) : [];
+  const pasado = evs.length && evs.every((e) => e.pasado);
+  const num = evs.length
+    ? `<a class="cgc-cal-num cgc-cal-num--link" href="${evs[0].url}" aria-label="${x.d.getDate()} de ${MESES[mes]}: ${esc(evs.map((e) => e.titulo).join(' / '))}">${x.d.getDate()}</a>`
+    : `<span class="cgc-cal-num">${x.d.getDate()}</span>`;
+  return `<div class="cgc-cal-dia${x.enMes ? '' : ' is-fuera'}${evs.length ? ' is-con-evento' : ''}${pasado ? ' is-pasado' : ''}" role="gridcell">${num}` +
+    evs.map((e) => {
+      const h = e.hora && e.hora.indexOf(':') > -1 ? e.hora.split(' ')[0] + ' · ' : '';
+      return `<a href="${e.url}" class="cgc-cal-evento d-none d-md-block${e.pasado ? ' is-pasado' : ''}" tabindex="-1"><strong>${esc(h + e.tipo)}</strong><span>${esc(e.titulo)}</span></a>`;
+    }).join('') + '</div>';
+}).join('') + '</div>').join('');
+const titulo = `${MESES[mes].charAt(0).toUpperCase() + MESES[mes].slice(1)} ${anio}`;
 ---
 <div class="cgc-calendario" data-calendario data-eventos={JSON.stringify(todos)} data-inicio={inicio}>
   <div class="d-flex align-items-center flex-wrap mb-16 cgc-calendario_nav">
     <button type="button" class="cgc-cal-btn" data-cal-prev aria-label="Mes anterior"><i class="uc-icon">keyboard_arrow_left</i></button>
-    <h3 class="h4 mb-0 mx-16" data-cal-titulo aria-live="polite">Calendario</h3>
+    <h3 class="h4 mb-0 mx-16" data-cal-titulo aria-live="polite">{titulo}</h3>
     <button type="button" class="cgc-cal-btn" data-cal-next aria-label="Mes siguiente"><i class="uc-icon">keyboard_arrow_right</i></button>
     <span class="ml-auto text-size--sm text-color--gray d-none d-md-inline">
       <span class="cgc-cal-swatch"></span> Próximo <span class="cgc-cal-swatch cgc-cal-swatch--pasado ml-16"></span> Realizado
@@ -24,6 +52,6 @@ const inicio = todos.some((e) => e.fecha.startsWith(mesActual)) ? mesActual : (p
     <div class="cgc-cal-row cgc-cal-head" role="row">
       {['LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB', 'DOM'].map((d) => <div class="cgc-cal-dow" role="columnheader">{d}</div>)}
     </div>
-    <div data-cal-semanas></div>
+    <div data-cal-semanas set:html={grilla}></div>
   </div>
 </div>

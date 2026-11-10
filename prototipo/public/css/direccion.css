@@ -79,6 +79,13 @@
 .cgc-d-cifra { font-size: 72px; line-height: 72px; font-weight: 700; letter-spacing: -.02em; }
 /* Conteo: dígitos de ancho fijo (la cifra va sola en su línea, crecer no mueve la etiqueta) */
 .cgc-d-cifra_num { display: inline-block; font-variant-numeric: tabular-nums; }
+/* La cifra que cuenta no se pinta hasta que cgc.js la deja en 0 (.is-lista): sin esto se veía la cifra final, saltaba
+   a 0 y volvía a subir (Mateo, 10-11). Si el JS no llega, aparece igual a los 2,5 s; con movimiento reducido no hay
+   conteo y no se oculta. */
+@media (prefers-reduced-motion: no-preference) {
+  .cgc-d-cifra[data-cuenta]:not(.is-lista) > [aria-hidden] { visibility: hidden; animation: cgc-d-cifra-aparece 0s 2.5s forwards; }
+}
+@keyframes cgc-d-cifra-aparece { to { visibility: visible; } }
 .cgc-d-cita { font-family: "Roboto Slab", serif; font-size: 32px; line-height: 44px; font-weight: 300; margin: 0; }
 .cgc-d-cita--s { font-size: 24px; line-height: 36px; }
 .cgc-d-cita p { font-size: inherit; line-height: inherit; letter-spacing: inherit; }

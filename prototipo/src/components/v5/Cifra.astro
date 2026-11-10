@@ -12,7 +12,7 @@ const cuenta = m && (contar ?? (!esAnio && !esPrecio));
 <div class:list={['cgc-d-cifra-bloque', clase]} data-fondo={fondo}>
   <span class="cgc-d-segmento" aria-hidden="true"></span>
   {cuenta
-    ? <p class="cgc-d-cifra"><span class="uc-sr-only">{cifra}</span><span aria-hidden="true">{m[1]}<span class="cgc-d-cifra_num" data-conteo={m[2].replace(/\./g, '')}>{m[2]}</span>{m[3]}</span></p>
+    ? <p class="cgc-d-cifra" data-cuenta><span class="uc-sr-only">{cifra}</span><span aria-hidden="true">{m[1]}<span class="cgc-d-cifra_num" data-conteo={m[2].replace(/\./g, '')}>{m[2]}</span>{m[3]}</span></p>
     : <p class="cgc-d-cifra">{cifra}</p>}
   <p class="cgc-d-cifra-bloque_etiqueta">{etiqueta}</p>
 </div>

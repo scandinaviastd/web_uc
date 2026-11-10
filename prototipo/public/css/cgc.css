@@ -294,6 +294,13 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 #uc-header button:focus:not(:focus-visible),
 #uc-header [tabindex]:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
 
+/* Barra superior global de la UC (Ir al sitio UC, Admisión, Medios…): la inyecta el JS del Kit después del primer
+   pintado, así que en cada navegación la página aparecía sin ella y un cuadro después todo bajaba 34 px (59 px en
+   móvil): el «pestañazo» (Mateo, 10-11). El CSS sí llega antes de pintar: se reserva el alto y el color de la barra
+   y el Kit solo le pone el texto encima. Alto medido en Chrome con el Kit 1.23.15 (padding 15/8 px + contenido). */
+#uc-global-topbar { min-height: 59.15px; background-color: #0176de; }
+@media (min-width: 992px) { #uc-global-topbar { min-height: 33.6px; background-color: #173f8a; } }
+
 /* In Company: portada con franja de datos (Mateo, 09-11). Sin la card blanca, la portada no necesita el
    espacio inferior que la montaba encima. */
 .cgc-ic-portada { padding-bottom: 72px; }

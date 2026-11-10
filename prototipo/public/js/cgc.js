@@ -7,6 +7,13 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  // Desplegables del navbar (Formación, Extensión, Investigación) y del menú móvil (abrir y volver): el enlace es
+  // href="#", como en los walkers del Kit. El clic agregaba «#» a la URL y, con el scroll suave, la página subía
+  // hasta arriba (Mateo, 10-11). Abrir y cerrar lo sigue haciendo el Kit.
+  $$('.uc-navbar_nav > .uc-navbar-dropdown > a[href="#"], .uc-navbar_mobile-list a[href="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+
   // Listas con mensaje propio cuando los filtros (chips o calendario) no dejan nada visible
   var actualizarVacios = function (cont) {
     $$('[data-lista]', cont).forEach(function (l) {
@@ -127,7 +134,9 @@
   var tipoActivo = '*';
   document.addEventListener('cgc:filtro', function (ev) { if (ev.detail.grupo === 'eventos') tipoActivo = ev.detail.valor; });
 
-  // Calendario principal: siempre visible, todos los eventos, navegación libre; cada evento abre su página
+  // Calendario principal: siempre visible, todos los eventos, navegación libre; cada evento abre su página.
+  // El mes inicial ya viene pintado desde CalendarioMensual.astro con este mismo markup (sin salto al cargar):
+  // si se cambia pintar(), se cambia también allá.
   var cal = $('[data-calendario]');
   if (cal) {
     var eventos = JSON.parse(cal.getAttribute('data-eventos'));
@@ -360,10 +369,18 @@
   // Solo las que traen un número: el contador de resultados de la búsqueda también usa data-conteo (vacío) y salía «NaN».
   var conteos = $$('[data-conteo]').filter(function (el) { return /^\d+$/.test(el.getAttribute('data-conteo')); });
   var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (conteos.length && !quieto && 'IntersectionObserver' in window) {
+  var animar = conteos.length && !quieto && 'IntersectionObserver' in window;
+  // La cifra parte en 0 antes de mostrarse (direccion.css la oculta hasta .is-lista): antes se veía la cifra final,
+  // saltaba a 0 y volvía a subir (Mateo, 10-11).
+  conteos.forEach(function (el) {
+    el.cgcPunto = el.textContent.indexOf('.') > -1;
+    if (animar) el.textContent = '0';
+    var p = el.closest('.cgc-d-cifra'); if (p) p.classList.add('is-lista');
+  });
+  if (animar) {
     var miles = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
     var contar = function (el) {
-      var fin = parseInt(el.getAttribute('data-conteo'), 10), conPunto = el.textContent.indexOf('.') > -1;
+      var fin = parseInt(el.getAttribute('data-conteo'), 10), conPunto = el.cgcPunto;
       var t0 = null, dur = 1400;
       var paso = function (t) {
         if (t0 === null) t0 = t;
