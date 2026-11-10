@@ -1,7 +1,7 @@
 // Home v5 (propuesta «Dirección», rama propuesta-v5). Contenidos propios de la home; programas y eventos se
 // referencian desde programas.js y contenidos.js (un dato, un dueño). Espejo: Figma UC_CGC, frames 452:2 y 461:446.
 // En WordPress: campos de la portada (ACF de la página de inicio).
-import { eventos } from './contenidos.js';
+import { eventos, fechaEvento } from './contenidos.js';
 import { programas } from './programas.js';
 
 // Cifras del Centro: brochure 2026 de Full Funnel (láminas 3, 6 y 9). Tamaño Cifra a validar con la DED.
@@ -34,18 +34,29 @@ export const cifrasEstudio = [
   { cifra: '79 %', etiqueta: 'de los posgrados se realizó en el extranjero' },
 ];
 
-// Eventos de la home. Provisorio: títulos y metadatos del Figma v5 (el título exacto lo confirma el Centro);
-// fecha, estado y enlace salen del pool de eventos de contenidos.js.
+// Eventos de la home: tres elegidos a mano (en WordPress, un campo de la portada): el próximo y dos realizados.
+// Todo sale del pool de eventos de contenidos.js (lista de Clara, 09-11): fecha, tema como título y, en el meta, la
+// serie con su auspiciador y la fecha, como el tercer evento del Figma v5. Sin horario confirmado, «Ver evento».
 const HOY = new Date().toISOString().slice(0, 10);
-const deEvento = (buscar, figma) => {
+const deEvento = (buscar) => {
   const e = eventos.find(buscar);
-  return { ...figma, href: e?.url ?? '/extension/#eventos', fechaLarga: e?.fechaLarga, estado: e && e.orden < HOY ? 'realizado' : 'proximo' };
+  if (!e) return null;
+  const f = e.fecha ? fechaEvento(e.fecha) : null;
+  const realizado = e.orden < HOY;
+  const confirmado = !!f && !!e.hora && !/confirmar/i.test(e.hora);
+  const serie = e.serie && e.socio ? `${e.serie}, con ${e.socio}` : (e.serie ?? e.tipo);
+  return {
+    dia: f ? f.dia.padStart(2, '0') : '—', mes: f ? f.mes : '', tipo: e.tipo, titulo: e.titulo,
+    meta: [serie, f ? f.larga : e.fechaTexto].filter(Boolean).join(' · '),
+    href: e.url, fechaLarga: e.fechaLarga, estado: realizado ? 'realizado' : 'proximo',
+    accion: realizado ? undefined : confirmado ? 'Inscribirme →' : 'Ver evento →',
+  };
 };
 export const eventosHome = [
-  deEvento((e) => e.fecha === '2026-11-04', { dia: '04', mes: 'NOV', tipo: 'Webinar', titulo: 'Webinars Asuntos de la Alta Dirección, con AFP Cuprum', meta: 'Ciclo de webinars para la Alta Dirección · Online' }),
-  deEvento((e) => e.socio === 'BH Compliance', { dia: 'DIC', mes: '2026', tipo: 'Debate', titulo: 'Debates de Gobierno Corporativo, con BH Compliance', meta: 'Debate · fecha por confirmar' }),
-  deEvento((e) => e.fecha === '2026-05-06', { dia: '06', mes: 'MAY', tipo: 'Webinar', titulo: 'Interlocking: el estándar exigido por la Corte Suprema', meta: 'Webinars Asuntos de la Alta Dirección, con AFP Cuprum · 6 de mayo de 2026' }),
-];
+  deEvento((e) => e.fecha === '2026-12-02'),
+  deEvento((e) => e.fecha === '2026-11-04'),
+  deEvento((e) => e.fecha === '2026-05-06'),
+].filter(Boolean);
 
 // Fotos reales del banco de Full Funnel (28-10). Licencia y autorización de imagen: por confirmar con Clara.
 export const fotos = {

@@ -5,7 +5,8 @@
 // de Full Funnel (Sara, 05-11: «esos links y la información de quién se inscribe la maneja Full Funnel»), solo si
 // fecha y hora están confirmadas · Realizado: resumen, video de YouTube y fotos en la misma página (revisión del
 // 06-11: «que se unifique toda la información en un lugar») · Más eventos · Por completar.
-// Campos del evento (CPT evento): inscripcion (URL del formulario), youtube (id del video), fotos ([{src, alt}]).
+// Campos del evento (CPT evento): serie, expositores, foto ({src, alt}: portada y card), inscripcion (URL del
+// formulario), youtube (id del video), fotos ([{src, alt}]: galería).
 // Sin foto real del evento la portada lleva el bloque «Fecha de evento»: las fotos de stock salen del sitio (26-10).
 // Reusa la portada, el contacto y «Por completar» de la ficha v5 (v5-ficha.css); lo propio va en v5-evento.css.
 import Etiqueta from './Etiqueta.astro';
@@ -15,7 +16,6 @@ import FechaEvento from './FechaEvento.astro';
 import { eventosProximos, eventosRealizados, colaboradores, fechaEvento } from '../../data/contenidos.js';
 import { coordinacion } from '../../data/programas.js';
 import { whatsapp } from '../../data/sitio.js';
-import { fotosEvento } from '../../data/v5-evento.js';
 interface Props { e: any }
 const { e } = Astro.props;
 
@@ -42,10 +42,13 @@ const datos = [
   [online ? 'Modalidad' : 'Lugar', e.lugar ?? (proximo ? 'Por confirmar' : null)],
   ['Junto a', socio],
 ].filter(([, v]) => v);
+// Titular: la serie arriba y el tema en negrita; sin serie, se parte en el primer «: ».
 const corte = e.titulo.indexOf(': ');
-const [linea1, linea2] = corte > 0 ? [e.titulo.slice(0, corte + 1), e.titulo.slice(corte + 2)] : [null, e.titulo];
+const [linea1, linea2] = e.serie ? [e.serie, e.titulo] : corte > 0 ? [e.titulo.slice(0, corte + 1), e.titulo.slice(corte + 2)] : [null, e.titulo];
 const estado = proximo ? (abierta ? 'Próximo · inscripción abierta' : 'Próximo') : 'Realizado';
-const foto = fotosEvento[e.id];
+const foto = e.foto;
+// Expositores: [nombre] o [nombre, rol] (moderador, invitada especial).
+const expositores = (e.expositores ?? []).map((x: string | string[]) => (Array.isArray(x) ? x : [x]));
 
 // «Agregar a mi calendario»: archivo .ics armado con la fecha y el horario (solo si los dos están confirmados).
 const horas = abierta ? (e.hora.match(/\d{1,2}:\d{2}/g) ?? []) : [];
@@ -79,8 +82,8 @@ const c = coordinacion;
 const [cNombre, cCargo] = c.persona.split(' · ');
 const webinar = e.tipo === 'Webinar';
 const pendientes = (proximo
-  ? [!e.descripcion && 'Descripción del evento', abierta && !e.inscripcion && 'Enlace de inscripción', 'Expositores', online && 'Enlace de conexión', 'Cupos']
-  : [!e.descripcion && 'Resumen del evento', 'Expositores', !e.fotos?.length && 'Fotos del evento', webinar && !e.youtube && 'Video del webinar en YouTube']).filter(Boolean);
+  ? [!e.descripcion && 'Descripción del evento', abierta && !e.inscripcion && 'Enlace de inscripción', !expositores.length && 'Expositores', online && 'Enlace de conexión', 'Cupos']
+  : [!e.descripcion && 'Resumen del evento', !expositores.length && 'Expositores', !e.fotos?.length && 'Fotos del evento', webinar && !e.youtube && 'Video del webinar en YouTube']).filter(Boolean);
 // Inscripción: el formulario es de Full Funnel; sin enlace todavía, el botón avisa en vez de saltar.
 const inscribirse = e.inscripcion
   ? { href: e.inscripcion, target: '_blank', rel: 'noopener' }
@@ -124,6 +127,19 @@ const inscribirse = e.inscripcion
     <div class="container">
       <h2 id="sobre-titulo" class="h2 cgc-v5f-h2">{proximo ? 'Sobre el evento' : 'Resumen del evento'}</h2>
       <p class="p-size--lg cgc-v5f-cuerpo cgc-v5e-sobre mb-0">{e.descripcion}</p>
+    </div>
+  </section>
+)}
+
+{expositores.length > 0 && (
+  <section class="cgc-v5f-docentes cgc-v5e-expositores" aria-labelledby="expositores-titulo">
+    <div class="container">
+      <h2 id="expositores-titulo" class="h2 cgc-v5f-h2">Expositores</h2>
+      <ul class="cgc-v5f-docentes-lista cgc-v5e-expositores_lista">
+        {expositores.map(([nombre, rol]: string[]) => (
+          <li><p class="cgc-v5f-docente-nombre">{nombre}</p>{rol && <p class="cgc-v5f-texto-sec mb-0">{rol}</p>}</li>
+        ))}
+      </ul>
     </div>
   </section>
 )}

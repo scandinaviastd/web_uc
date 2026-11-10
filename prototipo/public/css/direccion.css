@@ -219,3 +219,16 @@
 @media (prefers-reduced-motion: reduce) {
   .cgc-d-tarjeta, .cgc-d-tarjeta:hover { transition: none; transform: none; }
 }
+
+/* ---------- Bloque de fecha en la card de evento (Extensión y búsqueda) ----------
+   Sin foto real del evento, la card lleva el mismo bloque que la portada del evento (FechaEvento): azul 2727, segmento,
+   día y «mes año», con el acento cian en la esquina. Las fotos de stock salen del sitio (26-10); Mateo, 10-11. */
+.cgc-card-fecha { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; aspect-ratio: 16 / 9; padding: 28px; background: var(--cgc-superficie-marca); color: var(--cgc-texto-sobre-marca); overflow: hidden; }
+.cgc-card-fecha::after { content: ""; position: absolute; top: 0; right: 0; width: 28px; height: 28px; background: var(--cgc-acento-cian); }
+.cgc-card-fecha .cgc-d-segmento { background: var(--cgc-blanco); }
+.cgc-card-fecha_dia { font-size: 56px; line-height: 56px; font-weight: 700; letter-spacing: -.02em; }
+.cgc-card-fecha .cgc-d-ante { color: var(--cgc-blanco); }
+@media (max-width: 767.98px) {
+  .cgc-card-fecha { padding: 24px; }
+  .cgc-card-fecha_dia { font-size: 48px; line-height: 48px; }
+}

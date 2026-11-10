@@ -334,7 +334,9 @@
         // Programas y eventos: card completa con foto (misma estructura que Card/Programa y Card/Noticia)
         var card = function (r) {
           return '<div class="col-md-6 col-lg-4 mb-32"><article class="uc-card card-height--same cgc-card">' +
-            '<img src="' + r.card.imagen + '" class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />' +
+            (r.card.imagen || !r.card.bloque
+              ? '<img src="' + (r.card.imagen || '/img/ph-16x9.svg') + '" class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />'
+              : '<div class="cgc-card-fecha" aria-hidden="true"><span class="cgc-d-segmento"></span><span class="cgc-card-fecha_dia">' + esc2(r.card.bloque.dia) + '</span><span class="cgc-d-ante">' + esc2(r.card.bloque.mesAnio) + '</span></div>') +
             '<div class="uc-card_body"><div class="mb-12"><span class="uc-tag">' + esc2(r.card.tag) + '</span></div>' +
             '<h3 class="h5 cgc-clamp-3"><a href="' + r.url + '" class="cgc-card-link">' + marcar(r.titulo, palabras) + '</a></h3>' +
             (r.card.meta.length ? '<ul class="cgc-meta mt-4">' + r.card.meta.map(function (m) { return '<li><i class="uc-icon" aria-hidden="true">' + m[0] + '</i>' + esc2(m[1]) + '</li>'; }).join('') + '</ul>' : '') +
@@ -355,7 +357,8 @@
     }
   }
   // Cifras que cuentan de 0 al valor al entrar en pantalla (Cifra.astro). El HTML ya trae el valor final.
-  var conteos = $$('[data-conteo]');
+  // Solo las que traen un número: el contador de resultados de la búsqueda también usa data-conteo (vacío) y salía «NaN».
+  var conteos = $$('[data-conteo]').filter(function (el) { return /^\d+$/.test(el.getAttribute('data-conteo')); });
   var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (conteos.length && !quieto && 'IntersectionObserver' in window) {
     var miles = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };

@@ -62,24 +62,45 @@ export const resumenes = [
 // Un solo pool (minuta 07-09 §5). En WordPress: CPT "evento" con fecha ISO y tipo. Próximos y realizados se separan
 // solos según la fecha de hoy. Sin fecha exacta: «fechaTexto» (y «mes» si se sabe, para ordenarlo); no entra al calendario.
 // «Diálogo» deja de ser tipo de evento: sus resúmenes pasan a Prensa (26-10).
-// Filtro de Eventos (Sara, 03-11): solo estos cuatro tipos. Un evento de otro tipo (el seminario de enero) sale en «Todos».
+// Filtro de Eventos (Sara, 03-11): solo estos cuatro tipos. Un evento de otro tipo (la mesa de directores, el seminario
+// de enero) sale en «Todos».
 export const tiposEvento = ['Webinar', 'Debate', 'Desayuno', 'Jornada'];
 export const etiquetaTipoEvento = (t) => ({ Jornada: 'Jornadas de Gobierno Corporativo' })[t] ?? `${t}s`;
 
+// Eventos 2026: lista de Clara Lussich (Full Funnel), 09-11 — fecha, nombre, auspiciador («con» = auspiciador) y
+// panelistas. Campos: «serie» es el ciclo (va arriba del título en la página del evento y en el meta de la home);
+// «titulo», el tema; «socio», el auspiciador («Junto a»); «expositores», [nombre] o [nombre, rol].
+// Fotos (regla del 26-10): solo reales y del mismo evento. Las del banco de Full Funnel (28-10) cubren el debate del
+// 22-04 (DEBATE 1), el del 08-07 (DEBATE 2, con la clave del Wi-Fi difuminada) y la Jornada 2025 (JORNADA). Sin foto real,
+// la card y la portada llevan el bloque de fecha. Cuando Full Funnel mande las fotos de 2026, van en «foto».
+const DEBATES = 'Debates de Gobierno Corporativo';
+const WEBINARS = 'Webinars Asuntos de la Alta Dirección';
+const DESAYUNOS = 'Desayunos de directores';
 const eventosBase = [
-  // Próximos: calendario del Centro (P1-08, 26-10)
-  { fecha: '2026-11-04', tipo: 'Webinar', titulo: 'Webinar CGC UC y Cuprum: envejecimiento poblacional', hora: '08:30 – 09:15', lugar: 'Online', socio: 'Cuprum', imagen: '/img/eventos/webinar-cuprum-2026.jpg' },
-  { fecha: null, mes: '2026-12', fechaTexto: 'Primera semana de diciembre', tipo: 'Debate', titulo: 'Debate de Gobierno Corporativo con BH Compliance', hora: 'Por confirmar', lugar: 'Sede por confirmar', socio: 'BH Compliance', nota: 'Fecha exacta, hora y moderadores por confirmar.', imagen: '/img/eventos/debate-bh-compliance-2026.jpg' },
-  { fecha: null, fechaTexto: 'Fecha por confirmar', tipo: 'Desayuno', titulo: 'Desayuno de directores con Forvis Mazars', hora: 'Por confirmar', lugar: 'Por confirmar', socio: 'Forvis Mazars', imagen: '/img/eventos/desayuno-forvis-mazars-2026.jpg' },
-  // Realizados
-  { fecha: '2026-07-08', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: tensiones, desafíos y responsabilidades', imagen: '/img/eventos/debate-julio-2026.jpg' },
-  { fecha: '2026-06-11', tipo: 'Jornada', titulo: 'Jornada Gobierno Corporativo 2026', imagen: '/img/eventos/jornada-gobierno-corporativo-2026.jpg' },
-  { fecha: '2026-05-06', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Interlocking, el estándar de la CMF', imagen: '/img/eventos/webinar-interlocking-2026.jpg' },
-  { fecha: '2026-04-22', tipo: 'Webinar', titulo: 'Ciclo de webinars "Asuntos de la Alta Dirección": Responsabilidad de directores', imagen: '/img/eventos/webinar-responsabilidad-directores-2026.jpg' },
-  { fecha: '2026-04-08', tipo: 'Debate', titulo: 'Ciclo Debates de Gobierno Corporativo: sesión de abril', imagen: '/img/eventos/ciclo-debates-abril-2026.jpg' },
-  { fecha: '2026-01-20', tipo: 'Seminario', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones', imagen: '/img/eventos/seminario-fundaciones-2026.jpg' },
-  { fecha: '2025-12-10', tipo: 'Webinar', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo', imagen: '/img/eventos/webinar-delitos-economicos-2025.jpg' },
-  { fecha: '2025-11-26', tipo: 'Jornada', titulo: 'Jornada Gobierno Corporativo 2025', imagen: '/img/eventos/jornada-gobierno-corporativo-2025.jpg' },
+  // Próximo. Clara: 2 de diciembre, «panelistas por definir». Era el «debate con BH Compliance de la primera semana
+  // de diciembre» del calendario del Centro (P1-08, 26-10): Clara no tiene ese debate en el año.
+  { fecha: '2026-12-02', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Proyecciones 2027', slug: 'desayuno-proyecciones-2027', hora: 'Por confirmar', lugar: 'Por confirmar', socio: 'Forvis Mazars', nota: 'Horario, lugar y panelistas por confirmar.' },
+  // Realizados 2026
+  { fecha: '2026-11-04', tipo: 'Webinar', serie: WEBINARS, titulo: 'Cambios demográficos y el impacto empresarial', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', expositores: ['Claudia Martínez', 'Santiago Valdés'] },
+  { fecha: '2026-09-23', tipo: 'Webinar', serie: WEBINARS, titulo: 'Finanzas sostenibles', socio: 'AFP Cuprum', expositores: ['Javier Moraga', 'Eduardo Walker'] },
+  { fecha: '2026-09-09', tipo: 'Debate', serie: DEBATES, titulo: 'IA en el directorio', socio: 'BH Compliance', expositores: ['Hernán Orellana', 'Carmen Román'] },
+  { fecha: '2026-08-20', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Innovación en el directorio', socio: 'Forvis Mazars', expositores: ['Carolina Rossi', 'Cuky Pérez', 'María de los Ángeles Romo'] },
+  { fecha: '2026-08-05', tipo: 'Mesa de directores', titulo: 'Mesa de directores de empresas públicas', expositores: ['Anita Oligue', 'Jéssica López Saffie'] },
+  { fecha: '2026-07-15', tipo: 'Webinar', serie: WEBINARS, titulo: 'Responsabilidad de directores: ¿es asegurable?', socio: 'AFP Cuprum', expositores: ['Nicholas Le Blanc', 'Jorge Gutiérrez Cuadra', 'María Alicia Montes'] },
+  // 08-07: Alfredo Etchegaray y el moderador no están en la lista de Clara; salen de la nota de Forbes en el sitio actual
+  // (noticia 791, 17-07) y de la lámina del panel en las fotos.
+  { fecha: '2026-07-08', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del presidente del directorio', socio: 'BH Compliance', expositores: ['Bernardo Larrain Matte', 'Pilar Dañobeitía', 'Alfredo Etchegaray', ['Luis Hernán Paúl', 'Moderador']], foto: { src: '/img/eventos/debate-presidente-del-directorio-2026.jpg', alt: 'Panel del debate sobre el rol del presidente del directorio, con BH Compliance' } },
+  // Jornada 2026: tema y panel del sitio actual (noticia 779); auspicio de LarrainVial, en el auditorio de Deloitte.
+  { fecha: '2026-06-11', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2026', titulo: 'Ser director hoy: cómo decidir en un entorno más exigente', socio: 'LarrainVial', expositores: [['Catherine Tornel', 'Invitada especial'], 'Tamara Agnic', 'Marcela Toledo', 'Alex Van Weezel', 'Enrique Ostalé', 'Guillermo Tagle', 'Josefina Montenegro', 'Andrés Trivelli'] },
+  { fecha: '2026-05-06', tipo: 'Webinar', serie: WEBINARS, titulo: 'Interlocking: el estándar exigido por la Corte Suprema', socio: 'AFP Cuprum', expositores: ['Julio Pellegrini', 'Miguel Pelayo'] },
+  // 22-04: el prototipo lo tenía además como «sesión de abril» del 08-04; la foto de esa entrada es este mismo panel.
+  { fecha: '2026-04-22', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del director independiente', socio: 'BH Compliance', expositores: ['Manola Sánchez', 'Rafael Fernández', 'Rafael Guilisasti', ['Luis Hernán Paúl', 'Moderador']], foto: { src: '/img/eventos/debate-director-independiente-2026.jpg', alt: 'Panel del debate sobre el rol del director independiente, con BH Compliance, frente al público' } },
+  { fecha: '2026-04-16', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Cómo leer la nueva geopolítica', socio: 'Forvis Mazars', expositores: ['Jorge Sahd', 'Klaus Schmidt-Hebbel'] },
+  // Fuera de la lista de Clara: por confirmar con el Centro.
+  { fecha: '2026-01-20', tipo: 'Seminario', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones' },
+  // 2025 (sitio actual)
+  { fecha: '2025-12-10', tipo: 'Webinar', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo' },
+  { fecha: '2025-11-26', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2025', titulo: 'Cambia el juego: Ley de cuotas e interlocking', foto: { src: '/img/eventos/jornada-2025-panel.jpg', alt: 'Panel de la Jornada de Gobierno Corporativo 2025, «Cambia el juego: Ley de cuotas e interlocking»' } },
 ];
 
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
@@ -94,7 +115,7 @@ const slugDe = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').r
 const HOY = new Date().toISOString().slice(0, 10);
 export const eventos = eventosBase.map((e) => {
   const anio = (e.fecha ?? e.mes ?? HOY).slice(0, 4);
-  const slug = `${slugDe(e.titulo)}${e.titulo.includes(anio) ? '' : `-${anio}`}`;
+  const slug = e.slug ?? `${slugDe(e.titulo)}${e.titulo.includes(anio) ? '' : `-${anio}`}`;
   return {
     ...e,
     id: slug,
@@ -104,6 +125,12 @@ export const eventos = eventosBase.map((e) => {
     fechaLarga: e.fecha ? fechaEvento(e.fecha).larga : e.fechaTexto,
   };
 });
+// Bloque de fecha de la card sin foto real: día con dos cifras y «mes año»; sin fecha exacta, el mes o el texto.
+export const bloqueFecha = (e) => {
+  if (e.fecha) { const [a, m, d] = e.fecha.split('-').map(Number); return { dia: String(d).padStart(2, '0'), mesAnio: `${MESES[m - 1]} ${a}` }; }
+  if (e.mes) { const [a, m] = e.mes.split('-').map(Number); return { dia: MESES_CORTOS[m - 1].toUpperCase(), mesAnio: String(a) }; }
+  return { dia: '—', mesAnio: e.fechaTexto ?? '' };
+};
 export const eventosProximos = eventos.filter((e) => e.orden >= HOY).sort((a, b) => a.orden.localeCompare(b.orden));
 export const eventosRealizados = eventos.filter((e) => e.orden < HOY).sort((a, b) => b.orden.localeCompare(a.orden));
 export const getEvento = (slug) => eventos.find((e) => e.id === slug);

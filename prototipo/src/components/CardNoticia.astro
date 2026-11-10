@@ -2,11 +2,14 @@
 // Card/Noticia — card con imagen del Kit, fecha, título y enlace. Se usa en noticias, newsletters y eventos realizados.
 // Sin href: la página de detalle aún no existe (se arma en WordPress) y el enlace muestra un aviso en vez de saltar.
 // meta: datos prácticos bajo el título (hora y lugar en los próximos eventos).
-interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string; imagen?: string; meta?: { icono: string; texto: string }[]; pendiente?: string }
-const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo, imagen, meta, pendiente = 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' } = Astro.props;
+// bloque: en eventos sin foto real, el bloque de fecha (día y «mes año») en lugar de la imagen (regla del 26-10).
+interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string; imagen?: string; bloque?: { dia: string; mesAnio: string }; meta?: { icono: string; texto: string }[]; pendiente?: string }
+const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo, imagen, bloque, meta, pendiente = 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' } = Astro.props;
 ---
 <article class="uc-card card-height--same cgc-card" data-tipo={tipo}>
-  <img src={imagen ?? '/img/ph-16x9.svg'} class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />
+  {!imagen && bloque
+    ? <div class="cgc-card-fecha" aria-hidden="true"><span class="cgc-d-segmento"></span><span class="cgc-card-fecha_dia">{bloque.dia}</span><span class="cgc-d-ante">{bloque.mesAnio}</span></div>
+    : <img src={imagen ?? '/img/ph-16x9.svg'} class="uc-card-img cgc-img-16x9" alt="" loading="lazy" width="800" height="450" />}
   <div class="uc-card_body">
     <p class="text-size--sm text-color--gray mb-8">{tipo ? `${tipo} · ${fecha}` : fecha}</p>
     <h3 class="h5 cgc-clamp-3"><a href={href} class="cgc-card-link" data-pendiente={href === '#' ? pendiente : undefined}>{titulo}</a></h3>

@@ -67,3 +67,12 @@
 @media (max-width: 767.98px) {
   .cgc-v5e-fotos_grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 }
+
+/* ---------- Expositores (panelistas de Full Funnel, 09-11): la lista de la ficha, a tres columnas ---------- */
+.cgc-v5e-expositores .cgc-v5f-docentes-lista { margin-bottom: 0; }
+@media (min-width: 768px) {
+  .cgc-v5e-expositores_lista { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
+}
+@media (min-width: 992px) {
+  .cgc-v5e-expositores_lista { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
