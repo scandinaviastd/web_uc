@@ -3,11 +3,12 @@
 interface Props { titulo: string; link?: { label: string; href: string; pendiente?: string }; tag?: string; claro?: boolean; id?: string }
 const { titulo, link, tag = 'h2', claro = false, id } = Astro.props;
 const Tag = tag as any;
+const externo = !!link && /^https?:/.test(link.href);
 ---
 <div class="d-flex align-items-center flex-wrap mb-32 cgc-section-heading">
   <div class="d-flex align-items-center">
     <Tag id={id} class:list={['h2', 'mb-0', { 'color-white': claro }]}>{titulo}</Tag>
     <div class="uc-heading-decoration"></div>
   </div>
-  {link && <a href={link.href} data-pendiente={link.pendiente} class:list={['uc-btn', 'btn-inline', 'ml-auto', { 'color-white': claro }]}>{link.label} <i class="uc-icon">arrow_forward</i></a>}
+  {link && <a href={link.href} data-pendiente={link.pendiente} target={externo ? '_blank' : undefined} rel={externo ? 'noopener' : undefined} class:list={['uc-btn', 'btn-inline', 'ml-auto', { 'color-white': claro }]}>{link.label} <i class="uc-icon">{externo ? 'open_in_new' : 'arrow_forward'}</i>{externo && <span class="uc-sr-only"> (abre en una pestaña nueva)</span>}</a>}
 </div>

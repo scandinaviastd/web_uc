@@ -8,7 +8,8 @@ import FiltroFecha from '../../components/FiltroFecha.astro';
 import CardNoticia from '../../components/CardNoticia.astro';
 import CardOpinion from '../../components/CardOpinion.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
-import { eventosProximos, eventosRealizados, noticias, newsletters, prensa, tiposEvento, etiquetaTipoEvento, bloqueFecha } from '../../data/contenidos.js';
+import Pagination from '../../components/Pagination.astro';
+import { eventosProximos, eventosRealizados, noticias, newsletters, NEWSLETTER_URL, prensa, tiposEvento, etiquetaTipoEvento, bloqueFecha } from '../../data/contenidos.js';
 // Cada lista muestra los 3 eventos más cercanos a hoy (26-10); el calendario tiene todos. Con un filtro de fecha
 // activo se muestran todos los que coinciden.
 const LIMITE = 3;
@@ -79,11 +80,14 @@ const copyRealizados = nRealizados === 1 ? 'El último evento realizado. Los ant
   </section>
 
   <section id="newsletters" class="cgc-section" data-ancla-seccion>
-    <div class="container">
-      <div class="d-flex align-items-center mb-32"><h2 class="h2 mb-0">Newsletters</h2><div class="uc-heading-decoration"></div></div>
-      <div class="row">
-        {newsletters.map((n) => <div class="col-md-4 mb-32"><CardNoticia {...n} cta="Leer newsletter" pendiente="La página de cada newsletter se arma en WordPress." /></div>)}
+    <div class="container" data-filtro="newsletters">
+      <SectionHeading titulo="Newsletters" link={{ label: 'Suscríbete en LinkedIn', href: NEWSLETTER_URL }} />
+      <p class="mb-32">«Alta Dirección CGC UC», el newsletter del Centro en LinkedIn. Cada edición se abre en una pestaña nueva.</p>
+      {/* Once ediciones (Clara, 18-11): seis por página, con el paginador del Kit. */}
+      <div class="row" data-paginar="6">
+        {newsletters.map((n, i) => <div class:list={['col-md-4 mb-32', { 'is-otra-pagina': i >= 6 }]} data-item><CardNoticia {...n} cta="Leer newsletter" pendiente="La página de cada newsletter se arma en WordPress." /></div>)}
       </div>
+      <Pagination total={newsletters.length} porPagina={6} />
     </div>
   </section>
 

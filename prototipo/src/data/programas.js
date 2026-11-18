@@ -111,7 +111,7 @@ const base = [
           ['Álvaro Bustos Donoso', 'Ingeniero civil industrial y M.Sc. en Economía, Universidad de Chile. M.A. en Legal Studies, Northwestern University. M.A. y Ph.D. en Economía, Princeton University. Director de la Escuela de Administración UC y miembro del directorio del Centro de Gobierno Corporativo UC.'],
           ['Patricio Donoso Ibáñez', 'Ingeniero civil, Pontificia Universidad Católica de Chile. M.Sc., Massachusetts Institute of Technology (MIT). Académico de la Escuela de Administración UC.'],
           ['Andrés Ibáñez Tardel', 'Ingeniero comercial, Pontificia Universidad Católica de Chile. MBA, J.L. Kellogg School, Northwestern University. Director del Centro Desarrollo Directivo.'],
-          ['Fernando Gaziano Perales', 'Chairman de Deloitte Chile y miembro del directorio de Deloitte Canadá. Socio del área de Asesoría en Gestión del Riesgo, especialista en gobiernos corporativos, modelos de control y gestión de riesgos, auditoría interna y de sistemas. Contador auditor, Universidad Nacional del Litoral (Argentina); PADE, Universidad de Los Andes.'],
+          ['Fernando Gaziano Perales', 'Socio principal de Deloitte Chile, del área de Asesoría en Gestión de Riesgo. Especialista en gestión de riesgo, gobierno corporativo e implantación de modelos de control y gestión de riesgos. Académico del Centro de Gobierno Corporativo UC.'],
           ['Gabriela Ugalde', 'Psicóloga y MBA, Pontificia Universidad Católica de Chile. Gerente de Recursos Humanos Corporativo de CCU. Ha sido gerente de Desarrollo Organizacional en Grupo Quiñenco, gerente de Recursos Humanos en CMR Falabella y gerente de Compensaciones y Beneficios para la Región Austral América de Nestlé.'],
           ['Matías Larraín V.', 'Abogado, Universidad Diego Portales, y LL.M., Duke University. Ha sido asesor legal del Ministro de Hacienda, abogado de la División Jurídica de la Secretaría General de la Presidencia y asesor jurídico de la ex Superintendencia de Valores y Seguros (actual CMF). Consultor en regulación financiera, seguros y gobierno corporativo en Chile, América Latina, África y Asia.'],
           ['Rodrigo Aldoney Ramírez', 'Abogado, Universidad de Chile. Magíster y Doctor en Derecho, Universidad Albert-Ludwig de Friburgo de Brisgovia (Alemania). Académico de la Facultad de Derecho UC. Ex abogado asesor del Ministerio Público.'],
@@ -155,23 +155,27 @@ const base = [
     ],
     postularUrl: null,
     modalidad: 'Híbrido',
-    valor: '$2.400.000',
+    // Brochure 2027 (Sara, 18-11): valor, módulos y biografías alineados con él. Postulación: el brochure dice
+    // «Postula en educacioncontinua.uc.cl» y la ficha pide enviar los documentos; por confirmar con Sara.
+    valor: '$2.496.000',
+    brochure: '/docs/brochure-formando-nuevos-directores-2027.pdf',
     descripcion: 'Conocimientos y herramientas en las materias clave para el ejercicio de la función de director de empresas: misión, responsabilidades, jurisdicción vigente y gobernanza corporativa. Este programa entrega herramientas prácticas aplicables desde la primera sesión.',
     dirigido: 'Profesionales, gerentes y ejecutivos con interés en ejercer como director de una compañía o que estén iniciando sus funciones en ese ámbito.',
     requisitos: 'Se sugiere contar con título profesional y un mínimo de 5 años de experiencia laboral en cargos de responsabilidad en empresas.',
     // Descriptor 2027
     hora: '15:00 a 18:30 h',
     detalle: detalle({
-      modulos: ['El quehacer de un director/a', 'Las responsabilidades de un director/a', 'Responsabilidad penal de la persona jurídica', 'Buen gobierno corporativo', 'Estrategia y control de gestión corporativo', 'Sustentabilidad y criterios ESG', 'Gestión de riesgos', 'Un directorio efectivo'],
+      // Los ocho temas del brochure 2027, en el orden de sus tres módulos.
+      modulos: ['El quehacer de un director/a', 'Las responsabilidades de un director/a', 'Estatuto penal para directores, gerentes y persona jurídica', 'Buen gobierno', 'Estrategia y control de gestión corporativo', 'Sustentabilidad y criterios ESG', 'Gestión de riesgos', 'Un directorio efectivo: taller de role playing'],
       docentes: {
         nota: AVISO_CAMBIOS,
         personas: [
-          ['Roberto Guerrero', 'Abogado, Pontificia Universidad Católica de Chile, y Master of Laws (LL.M.), New York University. Profesor titular de Derecho Comercial y ex decano de la Facultad de Derecho UC. Director del Centro de Gobierno Corporativo UC y socio de Guerrero Olivos. Director de empresas y árbitro del Centro de Arbitraje y Mediación de la Cámara de Comercio de Santiago.'],
+          ['Roberto Guerrero Valenzuela', 'Abogado, Pontificia Universidad Católica de Chile. Master in Comparative Jurisprudence, New York University. Socio de Cuatrecasas, especialista en derecho societario, fusiones y adquisiciones, y derecho bancario y financiero. Profesor titular de derecho comercial de la Facultad de Derecho UC desde 1995 y decano de la Facultad entre 2010 y 2015. Miembro del directorio del Centro de Gobierno Corporativo UC.'],
           ['Luis Hernán Paúl Fresno', 'Ingeniero civil, Pontificia Universidad Católica de Chile. Master of Science in Management, Massachusetts Institute of Technology (MIT). Miembro del directorio del Centro de Gobierno Corporativo UC.'],
-          ['Rodrigo Aldoney', 'Abogado, Universidad de Chile. Doctor en Derecho y LL.M., Universidad Albert-Ludwig de Friburgo de Brisgovia (Alemania). Profesor de Derecho Penal en la Facultad de Derecho UC.'],
-          ['Verónica Rosenblut', 'Abogada, Universidad de Chile. Magíster en Derecho Penal y Ciencias Penales, Universitat Pompeu Fabra y Universitat de Barcelona.'],
-          ['Lucía Martínez', 'Ingeniera comercial, Pontificia Universidad Católica de Chile, y Magíster en Gestión de la Sustentabilidad. Ha sido gerente de sustentabilidad en diversas empresas, mentora en negocios sostenibles y asesora en estrategia de sostenibilidad. Certificada en análisis ESG por la Bolsa de Luxemburgo.'],
-          ['Fernando Gaziano Perales', 'Chairman de Deloitte Chile y miembro del directorio de Deloitte Canadá. Socio del área de Asesoría en Gestión de Riesgo, especialista en gestión de riesgo, gobierno corporativo y modelos de control. Académico del Centro de Gobierno Corporativo UC.'],
+          ['Rodrigo Aldoney', 'Abogado, Universidad de Chile. Doctor en Derecho y Magíster en Derecho (LL.M.), Universidad Albert-Ludwig de Friburgo de Brisgovia, Alemania. Profesor de derecho penal en la Facultad de Derecho UC.'],
+          ['Verónica Rosenblut', 'Abogada, Universidad de Chile. Magíster en Derecho Penal y Ciencias Penales, Universitat Pompeu Fabra y Universidad de Barcelona.'],
+          ['Lucía Martínez', 'Ingeniera comercial, Pontificia Universidad Católica de Chile, y magíster en Gestión de la Sustentabilidad. Ha sido gerenta de sustentabilidad en diversas empresas, mentora en negocios sostenibles y asesora en estrategias de sostenibilidad corporativa en varias industrias. Certificada en análisis ESG por la Bolsa de Luxemburgo.'],
+          ['Fernando Gaziano Perales', 'Socio principal de Deloitte Chile, del área de Asesoría en Gestión de Riesgo. Especialista en gestión de riesgo, gobierno corporativo e implantación de modelos de control y gestión de riesgos. Académico del Centro de Gobierno Corporativo UC.'],
           ['Gonzalo Jiménez Seminario', 'Doctor in Governance, University of Liverpool; MBA, PONTS Paris-Tech; primer Luksic-Rockefeller Scholar en Harvard University; economista y Master en Finanzas, Universidad de Chile. CEO de Proteus Management & Governance Consulting. Director, consejero y asesor de grupos empresariales familiares latinoamericanos.'],
           ['Patricio Donoso Ibáñez', 'Ingeniero civil, Pontificia Universidad Católica de Chile. M.Sc., Massachusetts Institute of Technology (MIT). Prorrector de Gestión Institucional de la Pontificia Universidad Católica de Chile y académico de la Escuela de Administración UC.'],
         ],
@@ -289,6 +293,8 @@ export const inCompany = {
   coordinacion: { titulo: '¿Quieres un programa para tu directorio?', persona: `${sara.nombre} · ${sara.cargo}`, correo: sara.correo },
   whatsappTema: 'programa In Company para Directorios',
   imagen: '/img/programas/in-company.jpg',
+  // Presentación en PDF (Sara, 16-11). Trae dos erratas que se le avisaron; se reemplaza cuando llegue la corregida.
+  presentacion: '/docs/presentacion-in-company-cgc-uc.pdf',
 };
 
 export const getPrograma = (slug) => programas.find((p) => p.slug === slug);

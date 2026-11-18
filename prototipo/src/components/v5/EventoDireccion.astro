@@ -81,9 +81,14 @@ const mas = [eventosProximos.find((x) => x.id !== e.id), eventosRealizados.find(
 const c = coordinacion;
 const [cNombre, cCargo] = c.persona.split(' · ');
 const webinar = e.tipo === 'Webinar';
+// Por invitación (Clara, 18-11, desayuno Proyecciones 2027): sin formulario de inscripción ni cupos.
+const invitacion = !!e.porInvitacion;
+// Webinar realizado: el registro es el video; no se piden fotos (Clara, 18-11: «no tengo fotos»).
 const pendientes = (proximo
-  ? [!e.descripcion && 'Descripción del evento', abierta && !e.inscripcion && 'Enlace de inscripción', !expositores.length && 'Expositores', online && 'Enlace de conexión', 'Cupos']
-  : [!e.descripcion && 'Resumen del evento', !expositores.length && 'Expositores', !e.fotos?.length && 'Fotos del evento', webinar && !e.youtube && 'Video del webinar en YouTube']).filter(Boolean);
+  ? [!e.descripcion && 'Descripción del evento', abierta && !invitacion && !e.inscripcion && 'Enlace de inscripción', !expositores.length && 'Expositores', online && 'Enlace de conexión', !invitacion && 'Cupos']
+  : [!e.descripcion && 'Resumen del evento', !expositores.length && 'Expositores', !webinar && !e.fotos?.length && 'Fotos del evento', webinar && !e.youtube && 'Video del webinar en YouTube']).filter(Boolean);
+// Resumen: un texto o una lista de párrafos; «## » marca un intertítulo (artículo de la Mesa de directores).
+const parrafos: string[] = e.descripcion ? [].concat(e.descripcion) : [];
 // Inscripción: el formulario es de Full Funnel; sin enlace todavía, el botón avisa en vez de saltar.
 const inscribirse = e.inscripcion
   ? { href: e.inscripcion, target: '_blank', rel: 'noopener' }
@@ -104,7 +109,7 @@ const inscribirse = e.inscripcion
             {datos.map(([k, v]) => <div class="cgc-v5f-dato"><dt class="cgc-d-ante">{k}</dt><dd>{v}</dd></div>)}
           </dl>
           <div class="cgc-v5f-acciones">
-            {abierta && <a href="#inscripcion" class="uc-btn btn-cta cgc-btn-auto">Inscribirme</a>}
+            {abierta && !invitacion && <a href="#inscripcion" class="uc-btn btn-cta cgc-btn-auto">Inscribirme</a>}
             {proximo
               ? <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">Conversemos por WhatsApp →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
               : <a href="/extension/#eventos" class="cgc-d-enlace">Ver todos los eventos →</a>}
@@ -126,7 +131,11 @@ const inscribirse = e.inscripcion
   <section class="cgc-v5e-mas" aria-labelledby="sobre-titulo">
     <div class="container">
       <h2 id="sobre-titulo" class="h2 cgc-v5f-h2">{proximo ? 'Sobre el evento' : 'Resumen del evento'}</h2>
-      <p class="p-size--lg cgc-v5f-cuerpo cgc-v5e-sobre mb-0">{e.descripcion}</p>
+      <div class="cgc-v5e-sobre">
+        {parrafos.map((t) => t.startsWith('## ')
+          ? <h3 class="h4 cgc-v5e-sobre_inter">{t.slice(3)}</h3>
+          : <p class="p-size--lg cgc-v5f-cuerpo">{t}</p>)}
+      </div>
     </div>
   </section>
 )}
@@ -150,10 +159,10 @@ const inscribirse = e.inscripcion
       <div class="cgc-v5e-inscripcion_grid">
         <div class="cgc-v5e-inscripcion_texto">
           <p class="cgc-d-ante cgc-d-texto-marca mb-0">Inscripción</p>
-          <h2 id="inscripcion-titulo" class="h2 cgc-v5f-h2">{abierta ? `Inscríbete ${e.tipo === 'Webinar' ? 'al webinar' : 'al evento'}` : 'Inscripción por abrir'}</h2>
-          <p class="cgc-v5f-texto-sec mb-0">{abierta ? `La inscripción se hace en el formulario ${webinar ? 'del webinar' : 'del evento'}.` : 'La inscripción se abre cuando el Centro confirme la fecha, el horario y el lugar.'}</p>
+          <h2 id="inscripcion-titulo" class="h2 cgc-v5f-h2">{invitacion ? 'Evento por invitación' : abierta ? `Inscríbete ${e.tipo === 'Webinar' ? 'al webinar' : 'al evento'}` : 'Inscripción por abrir'}</h2>
+          <p class="cgc-v5f-texto-sec mb-0">{invitacion ? 'Este evento no tiene inscripción abierta: el Centro invita directamente a sus participantes. Si quieres saber más, escríbenos.' : abierta ? `La inscripción se hace en el formulario ${webinar ? 'del webinar' : 'del evento'}.` : 'La inscripción se abre cuando el Centro confirme la fecha, el horario y el lugar.'}</p>
         </div>
-        {abierta && (
+        {abierta && !invitacion && (
           <div class="cgc-v5e-externo">
             <p class="cgc-d-ante cgc-d-texto-marca mb-0">Formulario de inscripción</p>
             <p class="p-size--lg mb-0">Se abre en una pestaña nueva. Ahí completas tus datos para inscribirte {webinar ? 'en el webinar' : 'en el evento'}.</p>
@@ -207,10 +216,10 @@ const inscribirse = e.inscripcion
   </section>
 )}
 
-<section class="cgc-d-suave cgc-v5f-pendientes" aria-labelledby="pendientes-titulo">
+{pendientes.length > 0 && <section class="cgc-d-suave cgc-v5f-pendientes" aria-labelledby="pendientes-titulo">
   <div class="container">
     <h2 id="pendientes-titulo" class="cgc-d-ante cgc-d-texto-marca">Por completar con el Centro</h2>
     <p class="cgc-v5f-pendientes-lista">{pendientes.join(' · ')}</p>
     <p class="cgc-v5f-texto-sec mb-0">Se muestran en la página del evento cuando el Centro o Full Funnel los entreguen; mientras tanto no se publican secciones vacías.</p>
   </div>
-</section>
+</section>}

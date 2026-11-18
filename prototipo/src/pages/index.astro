@@ -25,8 +25,8 @@ const oferta = (p) => `${p.tipo} · Oferta 2027`;
 const MES = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
 const fechaDe = (f) => { const [d, m, a] = f.split(' - '); return new Date(+a, MES[m.toLowerCase()], +d); };
 const actualidad = [
-  ...noticias.slice(0, 2).map((n) => ({ tipo: 'Noticia', fecha: n.fecha, titulo: n.titulo, pendiente: 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' })),
-  ...prensa.slice(0, 1).map((o) => ({ tipo: 'Prensa', fecha: o.fecha, titulo: o.titulo, firma: `${o.autor} · ${o.medio}`, pendiente: 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' })),
+  ...noticias.slice(0, 2).map((n) => ({ tipo: 'Noticia', fecha: n.fecha, titulo: n.titulo, href: n.href, pendiente: 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' })),
+  ...prensa.slice(0, 1).map((o) => ({ tipo: 'Prensa', fecha: o.fecha, titulo: o.titulo, href: o.href, firma: `${o.autor} · ${o.medio}`, pendiente: 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' })),
 ].sort((a, b) => fechaDe(b.fecha) - fechaDe(a.fecha));
 const fechaCorta = (f) => f.split(' - ').map((s, i) => (i === 1 ? s.toLowerCase() : s)).join(' ');
 const secciones = [
@@ -185,7 +185,9 @@ const secciones = [
           {actualidad.map((a) => (
             <article class="v5h-pieza">
               <div class="v5h-pieza_meta"><Etiqueta texto={a.tipo} estilo="contorno" /><span class="v5h-pieza_fecha">{fechaCorta(a.fecha)}</span></div>
-              <h4 class="v5h-pieza_titulo"><a href="#" data-pendiente={a.pendiente}>{a.titulo}</a></h4>
+              <h4 class="v5h-pieza_titulo">{a.href
+                ? <a href={a.href} target="_blank" rel="noopener">{a.titulo}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+                : <a href="#" data-pendiente={a.pendiente}>{a.titulo}</a>}</h4>
               {a.firma && <p class="v5h-pieza_firma mb-0">{a.firma}</p>}
             </article>
           ))}

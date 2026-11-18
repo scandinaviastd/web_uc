@@ -20,26 +20,44 @@ export const inicialesDe = (nombre = '') => nombre.split(' ').filter(Boolean).sl
 // En WordPress cada bloque es un CPT (o posts con categoría) con estos mismos campos.
 // Noticias y Newsletters viven en Extensión (P1-02, 26-10); el Home muestra las últimas.
 
+// Enlaces (Clara, 18-11): LinkedIn y Diario Financiero; la noticia del Diplomado, del sitio actual (Clara: «esto es con
+// Sara»). El estudio lleva el título del artículo del DF. Los enlaces externos abren en una pestaña nueva.
+const SITIO_ACTUAL = 'https://centrogobiernocorporativo.uc.cl';
 export const noticias = [
-  { fecha: '17 - Jul - 2026', titulo: 'Forbes Chile participó del debate coorganizado por el CGC UC y BH Compliance', imagen: '/img/noticias/forbes-debate-bh-compliance.jpg' },
-  { fecha: '11 - Jun - 2026', titulo: 'Jornada Gobierno Corporativo 2026', imagen: '/img/noticias/jornada-gobierno-corporativo-2026.jpg' },
-  { fecha: '12 - May - 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026', imagen: '/img/noticias/bienvenida-diplomado-2026.jpg' },
-  { fecha: '08 - May - 2026', titulo: 'Estudio CGC UC: representación femenina en empresas IPSA', imagen: '/img/noticias/estudio-representacion-femenina-ipsa.jpg' },
+  { fecha: '17 - Jul - 2026', titulo: 'Forbes Chile participó del debate coorganizado por el CGC UC y BH Compliance', imagen: '/img/noticias/forbes-debate-bh-compliance.jpg', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7484960416608088064' },
+  { fecha: '11 - Jun - 2026', titulo: 'Jornada Gobierno Corporativo 2026', imagen: '/img/noticias/jornada-gobierno-corporativo-2026.jpg', href: 'https://www.df.cl/mercados/bolsa-monedas/andres-trivelli-y-el-peso-de-los-controladores-de-empresas-no-es-algo' },
+  { fecha: '12 - May - 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026', imagen: '/img/noticias/bienvenida-diplomado-2026.jpg', href: `${SITIO_ACTUAL}/noticias/773-bienvenidos-al-diplomado-en-gobierno-corporativo-2026` },
+  { fecha: '08 - May - 2026', titulo: 'Zoom a las juntas de accionistas 2026 de las empresas IPSA: representación femenina llega a 56 cargos', imagen: '/img/noticias/estudio-representacion-femenina-ipsa.jpg', href: 'https://www.df.cl/mercados/banca-fintech/zoom-a-las-juntas-de-accionistas-2026-de-las-empresas-ipsa-representacion' },
 ];
 
+// Newsletter «Alta Dirección CGC UC» en LinkedIn (Clara, 18-11: «subir todas las que falten»). Las ocho nuevas, con su
+// enlace y su portada; las tres que ya estaban no salen en la página pública del newsletter y enlazan a ella.
+// Fechas de «capacidades», «protegido» y «clima»: aproximadas a la portada (LinkedIn limitó la consulta).
+export const NEWSLETTER_URL = 'https://www.linkedin.com/newsletters/alta-direcci%C3%B3n-cgc-uc-7322637919670685698/';
+const PULSE = 'https://es.linkedin.com/pulse/';
 export const newsletters = [
-  { fecha: '02 - Jul - 2026', titulo: 'El presidente del directorio también necesita ser supervisado', imagen: '/img/newsletters/2026-07.jpg' },
-  { fecha: '28 - May - 2026', titulo: 'Ser director de una fundación ya no es un rol simbólico', imagen: '/img/newsletters/2026-05-fundaciones.jpg' },
-  { fecha: '30 - Abr - 2026', titulo: 'La IA y nuevas exigencias de productividad', imagen: '/img/newsletters/2026-04-ia-productividad.jpg' },
+  { fecha: '13 - Nov - 2026', titulo: 'Por un romance perdí a mi CEO (volumen 2)', imagen: '/img/newsletters/2026-11-romance-ceo.jpg', href: `${PULSE}por-un-romance-perd%C3%AD-mi-ceo-volumen-6yhzf` },
+  { fecha: '30 - Oct - 2026', titulo: '¿Cuánto talento están perdiendo las empresas por mirar la edad?', imagen: '/img/newsletters/2026-10-talento-edad.jpg', href: `${PULSE}cu%C3%A1nto-talento-est%C3%A1n-perdiendo-las-empresas-fyavf` },
+  { fecha: '16 - Oct - 2026', titulo: 'Separar el poder no siempre significa equilibrarlo', imagen: '/img/newsletters/2026-10-separar-el-poder.jpg', href: `${PULSE}separar-el-poder-siempre-significa-equilibrarlo-8b5df` },
+  { fecha: '29 - Sep - 2026', titulo: 'Finanzas sostenibles: ¿crear valor o pagar por convicciones?', imagen: '/img/newsletters/2026-09-finanzas-sostenibles.jpg', href: `${PULSE}finanzas-sostenibles-crear-valor-o-pagar-cktnf` },
+  { fecha: '16 - Sep - 2026', titulo: 'El mayor riesgo de la IA para un directorio puede ser no hacer nada', imagen: '/img/newsletters/2026-09-riesgo-ia.jpg', href: `${PULSE}el-mayor-riesgo-de-la-ia-para-un-directorio-jv8kf` },
+  { fecha: '01 - Sep - 2026', titulo: '¿Qué capacidades necesita hoy un directorio?', imagen: '/img/newsletters/2026-09-capacidades-directorio.jpg', href: `${PULSE}qu%C3%A9-capacidades-necesita-hoy-un-directorio-z6qmf` },
+  { fecha: '19 - Ago - 2026', titulo: '¿Qué tan protegido está realmente un director?', imagen: '/img/newsletters/2026-08-director-protegido.jpg', href: `${PULSE}qu%C3%A9-tan-protegido-est%C3%A1-realmente-un-amnqf` },
+  { fecha: '04 - Ago - 2026', titulo: 'El clima ya entró al directorio. Aunque nadie lo tenga en la agenda', imagen: '/img/newsletters/2026-08-clima-directorio.jpg', href: `${PULSE}el-clima-ya-entr%C3%B3-al-directorio-aunque-rr4zf` },
+  { fecha: '02 - Jul - 2026', titulo: 'El presidente del directorio también necesita ser supervisado', imagen: '/img/newsletters/2026-07.jpg', href: NEWSLETTER_URL },
+  { fecha: '28 - May - 2026', titulo: 'Ser director de una fundación ya no es un rol simbólico', imagen: '/img/newsletters/2026-05-fundaciones.jpg', href: NEWSLETTER_URL },
+  { fecha: '30 - Abr - 2026', titulo: 'La IA y nuevas exigencias de productividad', imagen: '/img/newsletters/2026-04-ia-productividad.jpg', href: NEWSLETTER_URL },
 ];
 
+// Columnas (Clara, 18-11): tres llegaron como imagen del recorte (se abren en una pestaña nueva) y tres ya están en el
+// sitio actual. Resuelve P1-18: la columna enlaza a su fuente; no se publica completa en el sitio.
 export const prensa = [
-  { fecha: '28 - Abr - 2026', titulo: 'Las AFP ejerciendo su poder: qué observar', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero' },
-  { fecha: '24 - Abr - 2026', titulo: 'Gestión de tecnologIA: la prueba del directorio', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Mercurio' },
-  { fecha: '10 - Abr - 2026', titulo: 'Fallo de la Suprema: nuevo estándar para interlocking', autor: 'Roberto Guerrero', autorFiltro: 'Roberto Guerrero', cargo: 'Director CGC UC', medio: 'La Tercera' },
-  { fecha: '27 - Mar - 2026', titulo: 'Disclosure no es gobernanza', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero' },
-  { fecha: '12 - Mar - 2026', titulo: 'Lo bueno, lo malo y lo feo de las juntas de accionistas 2026', autor: 'Matías Zegers', autorFiltro: 'Matías Zegers', cargo: 'Presidente CGC UC', medio: 'El Mercurio' },
-  { fecha: '26 - Feb - 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Líbero' },
+  { fecha: '28 - Abr - 2026', titulo: 'Las AFP ejerciendo su poder: qué observar', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero', href: '/img/columnas/las-afp-ejerciendo-su-poder.jpg' },
+  { fecha: '24 - Abr - 2026', titulo: 'Gestión de tecnologIA: la prueba del directorio', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Mercurio', href: '/img/columnas/gestion-de-tecnologia.jpg' },
+  { fecha: '10 - Abr - 2026', titulo: 'Fallo de la Suprema: nuevo estándar para interlocking', autor: 'Roberto Guerrero', autorFiltro: 'Roberto Guerrero', cargo: 'Director CGC UC', medio: 'La Tercera', href: '/img/columnas/fallo-de-la-suprema-interlocking.jpg' },
+  { fecha: '27 - Mar - 2026', titulo: 'Disclosure no es gobernanza', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero', href: `${SITIO_ACTUAL}/informes-y-opinion/opinion/729-disclosure-no-es-gobernanza` },
+  { fecha: '12 - Mar - 2026', titulo: 'Lo bueno, lo malo y lo feo de las juntas de accionistas 2026', autor: 'Matías Zegers', autorFiltro: 'Matías Zegers', cargo: 'Presidente CGC UC', medio: 'El Mercurio', href: `${SITIO_ACTUAL}/noticias/765-lo-bueno-lo-malo-y-lo-feo-de-las-juntas-de-accionistas-2026` },
+  { fecha: '26 - Feb - 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Líbero', href: `${SITIO_ACTUAL}/noticias/747-directores-ante-el-nuevo-gobierno-desafios-y-oportunidades` },
 ];
 
 // Resúmenes de actividades (antes «Diálogo», en Informes y Opinión del sitio actual): van en Prensa (26-10).
@@ -76,31 +94,120 @@ export const etiquetaTipoEvento = (t) => ({ Jornada: 'Jornadas de Gobierno Corpo
 const DEBATES = 'Debates de Gobierno Corporativo';
 const WEBINARS = 'Webinars Asuntos de la Alta Dirección';
 const DESAYUNOS = 'Desayunos de directores';
+// Galería de un evento: /img/eventos/<carpeta>/01.jpg … NN.jpg (fotos reales del banco de Full Funnel, 1400 px).
+const fotosDe = (carpeta, n, alt) => Array.from({ length: n }, (_, i) => ({ src: `/img/eventos/${carpeta}/${String(i + 1).padStart(2, '0')}.jpg`, alt: `${alt}, foto ${i + 1} de ${n}` }));
 const eventosBase = [
   // Próximo. Clara: 2 de diciembre, «panelistas por definir». Era el «debate con BH Compliance de la primera semana
   // de diciembre» del calendario del Centro (P1-08, 26-10): Clara no tiene ese debate en el año.
-  { fecha: '2026-12-02', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Proyecciones 2027', slug: 'desayuno-proyecciones-2027', hora: 'Por confirmar', lugar: 'Por confirmar', socio: 'Forvis Mazars', nota: 'Horario, lugar y panelistas por confirmar.' },
-  // Realizados 2026
-  { fecha: '2026-11-04', tipo: 'Webinar', serie: WEBINARS, titulo: 'Cambios demográficos y el impacto empresarial', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', expositores: ['Claudia Martínez', 'Santiago Valdés'] },
-  { fecha: '2026-09-23', tipo: 'Webinar', serie: WEBINARS, titulo: 'Finanzas sostenibles', socio: 'AFP Cuprum', expositores: ['Javier Moraga', 'Eduardo Walker'] },
+  // Clara, 18-11: es por invitación («Cupos no porque no es abierto»); la infografía no llegó.
+  { fecha: '2026-12-02', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Proyecciones 2027', slug: 'desayuno-proyecciones-2027', hora: 'Por confirmar', lugar: 'Por confirmar', socio: 'Forvis Mazars', porInvitacion: true, nota: 'Evento por invitación. Horario, lugar y panelistas por confirmar.' },
+  // Realizados 2026. Lo que mandó Clara el 18-11: webinars con enlace de YouTube y la gráfica de invitación (de la gráfica
+  // salen título, expositores con cargo, horario y el texto del resumen); resúmenes de LinkedIn, del sitio actual y de
+  // dos Word; fotos del banco de Full Funnel (28-10). DEBATE 3, MESA y JORNADA 2026 siguen sin bajar del SharePoint.
+  // 03-11: la gráfica y YouTube dicen 3 de noviembre (la lista de Clara del 09-11 decía 4). Título de la gráfica y de YouTube.
+  { fecha: '2026-11-03', tipo: 'Webinar', serie: WEBINARS, titulo: 'Envejecimiento poblacional: ¿están las empresas preparadas para el cambio?', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'V9Jphtdhud0',
+    expositores: [['Santiago Valdés', 'CEO de Empresas Carozzi'], ['Claudia Martínez', 'Directora del Instituto de Economía UC'], ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
+    descripcion: 'Webinar del ciclo «Asuntos de la Alta Dirección», del Centro de Gobierno Corporativo UC junto a AFP Cuprum, sobre cómo el envejecimiento de la población desafía a las empresas. Conversaron Santiago Valdés, CEO de Empresas Carozzi, y Claudia Martínez, directora del Instituto de Economía UC, con la moderación de Alejandra Wood, directora ejecutiva del CGC UC.' },
+  { fecha: '2026-09-23', tipo: 'Webinar', serie: WEBINARS, titulo: 'Finanzas sostenibles: nuevas decisiones, nuevos riesgos', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'mlr3aRrbE6M',
+    expositores: [['Eduardo Walker', 'Director del CGC UC'], ['Javier Moraga', 'Jefe de Selección de Fondos de AFP Cuprum'], ['Marta del Sante', 'Moderadora · Directora del CGC UC']],
+    descripcion: 'Una conversación sobre cómo la sostenibilidad está cambiando la forma de evaluar inversiones, financiamiento y creación de valor. Webinar del ciclo «Asuntos de la Alta Dirección», del CGC UC junto a AFP Cuprum, con Eduardo Walker, director del CGC UC, y Javier Moraga, jefe de Selección de Fondos de AFP Cuprum, moderado por Marta del Sante, directora del CGC UC.' },
+  // 09-09: Clara no mandó resumen; las fotos están en la carpeta DEBATE 3 del SharePoint, que falta bajar.
   { fecha: '2026-09-09', tipo: 'Debate', serie: DEBATES, titulo: 'IA en el directorio', socio: 'BH Compliance', expositores: ['Hernán Orellana', 'Carmen Román'] },
-  { fecha: '2026-08-20', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Innovación en el directorio', socio: 'Forvis Mazars', expositores: ['Carolina Rossi', 'Cuky Pérez', 'María de los Ángeles Romo'] },
-  { fecha: '2026-08-05', tipo: 'Mesa de directores', titulo: 'Mesa de directores de empresas públicas', expositores: ['Anita Oligue', 'Jéssica López Saffie'] },
-  { fecha: '2026-07-15', tipo: 'Webinar', serie: WEBINARS, titulo: 'Responsabilidad de directores: ¿es asegurable?', socio: 'AFP Cuprum', expositores: ['Nicholas Le Blanc', 'Jorge Gutiérrez Cuadra', 'María Alicia Montes'] },
+  // 20-08: resumen del post de LinkedIn del Centro (25-08). Las fotos del post vienen en un documento que no se puede bajar.
+  { fecha: '2026-08-20', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Innovación en el directorio', socio: 'Forvis Mazars',
+    expositores: [['Carolina Rossi', 'Palabras de apertura · Subsecretaria de Ciencia, Tecnología, Conocimiento e Innovación'], ['María (Cuky) Pérez', 'Experta en ciencia de datos'], ['María de los Ángeles Romo', 'Experta en innovación y venture capital'], ['Luis Hernán Paúl', 'Moderador · Director del CGC UC']],
+    descripcion: [
+      'En un nuevo desayuno organizado por el Centro de Gobierno Corporativo UC y Forvis Mazars se conversó sobre el rol que pueden asumir los directorios para impulsar la innovación desde la estrategia, incorporar nuevas tecnologías en la toma de decisiones y enfrentar la tensión entre oportunidad y riesgo.',
+      'La jornada comenzó con palabras de Carolina Rossi, subsecretaria de Ciencia, Tecnología, Conocimiento e Innovación, y siguió con un panel junto a María (Cuky) Pérez, PhD, experta en ciencia de datos, y María de los Ángeles Romo, experta en innovación y venture capital, moderado por Luis Hernán Paúl, director del CGC UC.',
+      'Una conversación que dejó una idea central: innovar no es solo una tarea de las áreas técnicas o de la administración. También exige directorios capaces de hacer nuevas preguntas, mirar a largo plazo y generar las condiciones para que la innovación ocurra.',
+    ] },
+  // 05-08: resumen = el artículo en Word que mandó Clara. Nombres corregidos: Anita Holuigue (el Word dice «Holigue»);
+  // Luis Hernán Paúl como director del CGC UC (el Word lo llama presidente; el presidente es Matías Zegers). Fotos: carpeta MESA.
+  { fecha: '2026-08-05', tipo: 'Mesa de directores', titulo: 'Mesa de directores de empresas públicas',
+    expositores: ['Anita Holuigue', 'Jéssica López Saffie', ['Luis Hernán Paúl', 'Moderador · Director del CGC UC']],
+    descripcion: [
+      '## Empresas públicas: gobernar para el largo plazo y fortalecer la confianza',
+      'El primer encuentro de la Mesa de Directores de Empresas Públicas puso en el centro la continuidad institucional, la profesionalización de los directorios y el equilibrio entre propósito público y desempeño.',
+      'Las empresas públicas no son únicamente actores económicos. También forman parte de la infraestructura de desarrollo del país y constituyen uno de los espacios en que la ciudadanía evalúa la capacidad del Estado para administrar recursos, entregar servicios y generar valor.',
+      'Cuando una empresa pública funciona adecuadamente, fortalece la confianza en las instituciones. Cuando falla, las consecuencias no se limitan a los resultados financieros: también afectan la legitimidad de lo público.',
+      'Este fue el motivo detrás de la creación de la Mesa de Directores de Empresas Públicas, impulsada por el Centro de Gobierno Corporativo UC, que busca conformar una comunidad de aprendizaje e intercambio entre quienes participan en la dirección de empresas públicas chilenas.',
+      '## El desafío de equilibrar propósito y desempeño',
+      'Las empresas públicas deben responder a exigencias que no siempre enfrentan las compañías privadas. Se espera que operen con altos estándares de eficiencia y sostenibilidad, pero también que contribuyan al cumplimiento de objetivos de política pública, aseguren servicios estratégicos y mantengan presencia en áreas o territorios donde la lógica exclusivamente comercial puede resultar insuficiente.',
+      'Esta combinación exige directorios capaces de resguardar la coherencia entre el propósito público de la organización y su desempeño financiero. No se trata de optar entre ambos, sino de construir una estrategia que permita sostenerlos en el tiempo, protegiendo un patrimonio que pertenece a todos los ciudadanos.',
+      'Durante el primer encuentro se planteó, además, que la existencia de una empresa estatal no debiera justificarse solamente por la necesidad de corregir una falla de mercado. Estas organizaciones requieren un propósito claro y ambicioso, una visión estratégica propia y la capacidad de generar valor y orgullo en la ciudadanía.',
+      '## Proyectos de largo plazo frente a ciclos políticos breves',
+      'Uno de los principales temas de la conversación fue la tensión entre los horizontes de las empresas públicas y los ciclos políticos.',
+      'Muchas de estas organizaciones desarrollan proyectos que pueden extenderse durante décadas. Sin embargo, cada cambio de gobierno puede traer consigo una renovación significativa de directorios y equipos ejecutivos. En empresas de alta complejidad técnica, esta rotación puede debilitar la continuidad estratégica, afectar el aprendizaje institucional y dificultar el seguimiento de inversiones de largo plazo.',
+      'El desafío, por lo tanto, es avanzar hacia mecanismos que permitan compatibilizar la legítima orientación del propietario estatal con mayores niveles de continuidad, profesionalismo e independencia en la conducción de las empresas. Esto supone fortalecer los procesos de selección de directores, valorar la experiencia técnica y asegurar que la conformación de los gobiernos corporativos trascienda la afinidad con la administración política de turno.',
+      '## Diversidad y profesionalización de los directorios',
+      'La diversidad también ocupó un lugar relevante en el diálogo. No solo entendida en términos demográficos, sino como la capacidad de reunir experiencias, disciplinas y formas de pensamiento distintas.',
+      'Durante el panel también se abordaron realidades sectoriales específicas. Entre ellas, la necesidad de revisar estructuras capaces de responder a la complejidad de organizaciones como Codelco, así como el valor público de servicios que no siempre pueden financiarse exclusivamente mediante criterios privados, como la programación infantil de TVN o la presencia territorial de CorreosChile.',
+      'Estos ejemplos muestran que no existe una única fórmula de gobernanza para todas las empresas públicas. Cada organización requiere una estructura coherente con su propósito, su escala, sus riesgos y el servicio que entrega al país.',
+      '## Una comunidad para compartir experiencias',
+      'El encuentro contó con la participación de Anita Holuigue y Jéssica López, quienes aportaron su experiencia en la dirección de organizaciones públicas y privadas, en una conversación moderada por Luis Hernán Paúl, director del Centro de Gobierno Corporativo UC.',
+      'Sus reflexiones permitieron abordar con franqueza algunas de las principales tensiones que enfrentan quienes integran estos directorios y relevar la importancia de contar con espacios de intercambio entre pares.',
+      'Ese es, precisamente, el propósito de esta Mesa: generar una comunidad que permita compartir experiencias, identificar desafíos comunes y elevar la discusión sobre la gobernanza de las empresas públicas chilenas.',
+    ] },
+  // 15-07: gráfica: «Nicolás» Le Blanc (la lista de Clara decía Nicholas). Co-organiza el Centro UC Riesgos y Seguros.
+  { fecha: '2026-07-15', tipo: 'Webinar', serie: WEBINARS, titulo: 'Responsabilidad de directores: ¿es asegurable?', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'qcqmRnPqsEA',
+    expositores: [['Jorge Gutiérrez Cuadra', 'Gerente de Responsabilidad Civil Profesional y Líneas Financieras de Crawford Chile'], ['Nicolás Le Blanc', 'Socio de DAC Beachcroft Chile'], ['María Alicia Montes', 'Moderadora · Gerente de Asset Allocation de AFP Cuprum']],
+    descripcion: 'Límites, alcances y tensiones regulatorias: ¿qué pueden hacer hoy los directorios frente a su exposición a riesgo? Webinar del ciclo «Asuntos de la Alta Dirección», del CGC UC y el Centro UC Riesgos y Seguros junto a AFP Cuprum, con Jorge Gutiérrez Cuadra, de Crawford Chile, y Nicolás Le Blanc, socio de DAC Beachcroft Chile, moderado por María Alicia Montes, gerente de Asset Allocation de AFP Cuprum.' },
   // 08-07: Alfredo Etchegaray y el moderador no están en la lista de Clara; salen de la nota de Forbes en el sitio actual
-  // (noticia 791, 17-07) y de la lámina del panel en las fotos.
-  { fecha: '2026-07-08', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del presidente del directorio', socio: 'BH Compliance', expositores: ['Bernardo Larrain Matte', 'Pilar Dañobeitía', 'Alfredo Etchegaray', ['Luis Hernán Paúl', 'Moderador']], foto: { src: '/img/eventos/debate-presidente-del-directorio-2026.jpg', alt: 'Panel del debate sobre el rol del presidente del directorio, con BH Compliance' } },
-  // Jornada 2026: tema y panel del sitio actual (noticia 779); auspicio de LarrainVial, en el auditorio de Deloitte.
-  { fecha: '2026-06-11', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2026', titulo: 'Ser director hoy: cómo decidir en un entorno más exigente', socio: 'LarrainVial', expositores: [['Catherine Tornel', 'Invitada especial'], 'Tamara Agnic', 'Marcela Toledo', 'Alex Van Weezel', 'Enrique Ostalé', 'Guillermo Tagle', 'Josefina Montenegro', 'Andrés Trivelli'] },
-  { fecha: '2026-05-06', tipo: 'Webinar', serie: WEBINARS, titulo: 'Interlocking: el estándar exigido por la Corte Suprema', socio: 'AFP Cuprum', expositores: ['Julio Pellegrini', 'Miguel Pelayo'] },
+  // (noticia 791, 17-07) y de la lámina del panel en las fotos. Resumen armado con esa nota (Clara, 18-11: «aquí hay info
+  // para hacer breve resumen»). Galería: DEBATE 2, sin fotos donde se lea la clave del Wi-Fi de la lámina.
+  { fecha: '2026-07-08', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del presidente del directorio', socio: 'BH Compliance',
+    expositores: [['Pilar Dañobeitía', 'Presidenta de SMU'], ['Bernardo Larrain Matte', 'Presidente de CMPC'], ['Alfredo Etchegaray', 'Director de empresas'], ['Luis Hernán Paúl', 'Moderador · Director del CGC UC']],
+    foto: { src: '/img/eventos/debate-presidente-del-directorio-2026.jpg', alt: 'Panel del debate sobre el rol del presidente del directorio, con BH Compliance' },
+    descripcion: [
+      'Debate coorganizado por el Centro de Gobierno Corporativo UC y BH Compliance en torno a la pregunta «Presidente de directorio: ¿independiente o de la familia controladora?». Conversaron Pilar Dañobeitía, presidenta de SMU; Bernardo Larraín, presidente de CMPC, y el director de empresas Alfredo Etchegaray, con la moderación de Luis Hernán Paúl, director del CGC UC.',
+      'Entre los temas: la diversidad en los directorios, que vale por las perspectivas que suma a las decisiones y no por la cifra; el directorio como contrapeso activo de la administración, y la exposición creciente de los directores cuando llegan las crisis. Forbes Chile participó del debate y publicó sus claves.',
+    ],
+    fotos: fotosDe('debate-presidente-del-directorio-2026', 6, 'Debate sobre el rol del presidente del directorio, con BH Compliance') },
+  // Jornada 2026: tema y panel del sitio actual (noticia 779 y jornada 783); auspicio de LarrainVial, en el auditorio de
+  // Deloitte. Resumen y video (YouTube Short) de la página de la jornada en el sitio actual. Fotos: carpeta JORNADA 2026.
+  { fecha: '2026-06-11', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2026', titulo: 'Ser director hoy: cómo decidir en un entorno más exigente', socio: 'LarrainVial', youtube: '6kIMI7-8Up4',
+    expositores: [['Catherine Tornel', 'Invitada especial · Presidenta de la Comisión para el Mercado Financiero'], 'Tamara Agnic', 'Marcela Toledo', 'Alex Van Weezel', 'Enrique Ostalé', 'Guillermo Tagle', 'Josefina Montenegro', 'Andrés Trivelli'],
+    descripcion: [
+      '¿Qué significa ser director hoy, en un entorno donde las decisiones empresariales están bajo estándares cada vez más exigentes? Esa fue la pregunta central que reunió a directores, ejecutivos, abogados y líderes empresariales en la Jornada de Gobierno Corporativo 2026 del Centro de Gobierno Corporativo UC.',
+      'Durante la jornada se conversó sobre responsabilidad penal de la empresa y de los directores, regulación, riesgos, toma de decisiones y los nuevos desafíos que enfrentan los gobiernos corporativos en Chile.',
+      'Participó como invitada especial Catherine Tornel León, presidenta de la Comisión para el Mercado Financiero, con una mirada sobre el rol de los directorios en el actual contexto regulatorio. En los paneles estuvieron Marcela Toledo, Alex Van Weezel, Tamara Agnic, Enrique Ostalé, Guillermo Tagle, Josefina Montenegro y Andrés Trivelli.',
+      'La jornada contó con el auspicio de LarrainVial y el apoyo de Deloitte, que recibió el encuentro en su auditorio.',
+    ] },
+  { fecha: '2026-05-06', tipo: 'Webinar', serie: WEBINARS, titulo: 'Interlocking: el estándar exigido por la Corte Suprema', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'RJEXsdFHjdY',
+    expositores: [['Julio Pellegrini', 'Profesor de Derecho UC y director de empresas'], ['Miguel Pelayo', 'Director de AFP Cuprum'], ['Josefina Tocornal', 'Moderadora · Coordinadora de Investigación del CGC UC']],
+    descripcion: 'Webinar del ciclo «Asuntos de la Alta Dirección», del CGC UC junto a AFP Cuprum, sobre el estándar de interlocking que fijó la Corte Suprema y lo que significa para los directorios. Conversaron Julio Pellegrini, profesor de Derecho UC y director de empresas, y Miguel Pelayo, director de AFP Cuprum, con la moderación de Josefina Tocornal, coordinadora de Investigación del CGC UC.' },
   // 22-04: el prototipo lo tenía además como «sesión de abril» del 08-04; la foto de esa entrada es este mismo panel.
-  { fecha: '2026-04-22', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del director independiente', socio: 'BH Compliance', expositores: ['Manola Sánchez', 'Rafael Fernández', 'Rafael Guilisasti', ['Luis Hernán Paúl', 'Moderador']], foto: { src: '/img/eventos/debate-director-independiente-2026.jpg', alt: 'Panel del debate sobre el rol del director independiente, con BH Compliance, frente al público' } },
-  { fecha: '2026-04-16', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Cómo leer la nueva geopolítica', socio: 'Forvis Mazars', expositores: ['Jorge Sahd', 'Klaus Schmidt-Hebbel'] },
-  // Fuera de la lista de Clara: por confirmar con el Centro.
-  { fecha: '2026-01-20', tipo: 'Seminario', titulo: 'Seminario: buenas prácticas de gobierno corporativo para fundaciones' },
-  // 2025 (sitio actual)
-  { fecha: '2025-12-10', tipo: 'Webinar', titulo: 'Webinar: nueva ley de delitos económicos y gobierno corporativo' },
-  { fecha: '2025-11-26', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2025', titulo: 'Cambia el juego: Ley de cuotas e interlocking', foto: { src: '/img/eventos/jornada-2025-panel.jpg', alt: 'Panel de la Jornada de Gobierno Corporativo 2025, «Cambia el juego: Ley de cuotas e interlocking»' } },
+  // Galería: DEBATE 1. Clara no mandó resumen.
+  { fecha: '2026-04-22', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del director independiente', socio: 'BH Compliance', expositores: ['Manola Sánchez', 'Rafael Fernández', 'Rafael Guilisasti', ['Luis Hernán Paúl', 'Moderador']],
+    foto: { src: '/img/eventos/debate-director-independiente-2026.jpg', alt: 'Panel del debate sobre el rol del director independiente, con BH Compliance, frente al público' },
+    fotos: fotosDe('debate-director-independiente-2026', 6, 'Debate sobre el rol del director independiente, con BH Compliance') },
+  // 16-04: resumen del post de LinkedIn del Centro (17-04). La única foto pública del post es de otra actividad: sin fotos.
+  { fecha: '2026-04-16', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Cómo leer la nueva geopolítica', socio: 'Forvis Mazars',
+    expositores: [['Jorge Sahd', 'Director del Centro de Estudios Internacionales UC'], ['Klaus Schmidt-Hebbel', 'Economista'], ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
+    descripcion: [
+      'El Centro de Gobierno Corporativo UC, junto a Forvis Mazars, realizó el desayuno «Cómo leer la nueva geopolítica», que reunió a directores de empresas para analizar cómo los cambios del escenario global están impactando la toma de decisiones en la Alta Dirección.',
+      'En un contexto de mayor incertidumbre y reconfiguración del orden internacional, la conversación, moderada por Alejandra Wood, directora ejecutiva del CGC UC, contó con la participación de Jorge Sahd, director del Centro de Estudios Internacionales UC, y del economista Klaus Schmidt-Hebbel, quienes abordaron distintas miradas sobre los desafíos que enfrentan hoy las organizaciones.',
+      'La instancia permitió abrir una reflexión clave: entender la geopolítica ya no es opcional para los directorios, sino parte central de su agenda estratégica.',
+    ] },
+  // El seminario para fundaciones del 20-01 se canceló (Clara, 18-11): sale de la lista.
+  // 2025. Webinar del 03-12: Clara lo tenía como «Nueva ley de delitos económicos y gobierno corporativo» del 10-12; el
+  // nombre, la fecha y los expositores correctos salen de la gráfica (y de YouTube). La gráfica dice «Directora
+  // Ejecutiva» bajo Matías Zegers: es presidente del CGC UC, como dice la descripción del video.
+  { fecha: '2025-12-03', tipo: 'Webinar', serie: WEBINARS, titulo: '¿Quién elige a los directores? El caso de las AFP', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'R5NO1Yol8MM',
+    expositores: [['Mario Barrera', 'Head of Local Equities de AFP Cuprum'], ['Ornella Bono', 'Managing Partner de Humanitas Cornerstone'], ['Matías Zegers', 'Moderador · Presidente del CGC UC']],
+    descripcion: 'El Centro de Gobierno Corporativo UC, en alianza con AFP Cuprum, realizó la tercera edición del ciclo de webinars «Asuntos de la Alta Dirección», bajo el título «¿Quién elige a los directores? El caso de las AFP». Moderado por Matías Zegers, presidente del CGC UC, contó con la participación de Mario Barrera, de AFP Cuprum, y Ornella Bono, managing partner de Humanitas Cornerstone.' },
+  // Jornada 2025: resumen = comunicado de prensa que mandó Clara (el mismo texto de la jornada 705 del sitio actual).
+  // Ojo: el comunicado está fechado «Santiago, 12 de noviembre de 2025»; Clara dice 26 de noviembre. Por confirmar.
+  { fecha: '2025-11-26', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2025', titulo: 'Cambia el juego: Ley de cuotas e interlocking', socio: 'AFP Cuprum',
+    expositores: [['Solange Berstein', 'Invitada especial · Presidenta de la Comisión para el Mercado Financiero'], ['Julio Pellegrini', 'Profesor de Derecho Civil y Libre Competencia UC'], ['Matías Zegers', 'Presidente del directorio del CGC UC']],
+    foto: { src: '/img/eventos/jornada-2025-panel.jpg', alt: 'Panel de la Jornada de Gobierno Corporativo 2025, «Cambia el juego: Ley de cuotas e interlocking»' },
+    descripcion: [
+      'En la Jornada de Gobierno Corporativo UC 2025, la presidenta de la Comisión para el Mercado Financiero (CMF), Solange Berstein, llamó a fortalecer el rol estratégico de los directorios y avanzar hacia una gobernanza más diversa, informada y coherente con las demandas de la sociedad.',
+      'El encuentro, organizado por el Centro de Gobierno Corporativo UC en el Centro de Convenciones Deloitte, reunió a más de un centenar de directores, ejecutivos y autoridades en torno a los efectos de la nueva regulación y el futuro de la Alta Dirección en Chile, en un año marcado por la implementación de la Ley de Cuotas, que exige al menos un 40 % de mujeres en los directorios de empresas abiertas, y por el fallo del Tribunal de Defensa de la Libre Competencia sobre interlocking.',
+      '«Los directorios de hoy deben anticipar riesgos como el climático o el tecnológico, pero también fortalecer su legitimidad ante la sociedad», afirmó Berstein. Desde el ámbito jurídico, Julio Pellegrini, profesor de Derecho Civil y Libre Competencia UC, advirtió que «el fallo sobre interlocking plantea una interpretación completamente novedosa de la ley. Los directores deben mantenerse informados y actuar con prudencia ante las nuevas reglas del juego».',
+      'Matías Zegers, presidente del directorio del CGC UC, subrayó que «la presión regulatoria seguirá aumentando, especialmente en temas de compliance y sostenibilidad. El desafío será combinar la búsqueda del mejor talento con las nuevas exigencias normativas y la diversidad en sentido amplio».',
+    ],
+    fotos: fotosDe('jornada-2025', 6, 'Jornada de Gobierno Corporativo 2025, «Cambia el juego»') },
 ];
 
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];

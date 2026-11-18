@@ -4,8 +4,9 @@
 // para que el contacto llegue al correo de Sara con el detalle del curso (V-03, P1-19).
 // DED, 27-10: tipo «contacto» del Kit (aviso de obligatorios al inicio y cláusula con el texto del Kit).
 import BloquePrivacidad from './BloquePrivacidad.astro';
-interface Props { programa: string; slug: string }
-const { programa, slug } = Astro.props;
+interface Props { programa: string; slug: string; brochure?: string }
+// brochure: PDF del programa (Formando nuevos directores 2027, Sara, 18-11). Sin PDF, la descarga avisa que falta.
+const { programa, slug, brochure } = Astro.props;
 ---
 <div data-modal="modalBrochure" class="uc-modal cgc-modal" id="brochure">
   <div class="uc-modal_content cgc-modal_content">
@@ -24,7 +25,7 @@ const { programa, slug } = Astro.props;
       <button type="submit" class="uc-btn btn-secondary cgc-btn-auto mt-16" data-form-enviar>Enviar mis datos</button>
       <div class="mt-16 cgc-hidden" data-form-ok>
         <div class="uc-alert success mb-16"><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8">¡Gracias! Ya puedes descargar el brochure.</span></div></div>
-        <a href="#" class="uc-btn btn-primary cgc-btn-auto" data-pendiente="El brochure en PDF lo sube el Centro al panel de WordPress (P1-19); en el prototipo aún no está."><i class="uc-icon">download</i> Descargar brochure</a>
+        <a href={brochure ?? '#'} class="uc-btn btn-primary cgc-btn-auto" download={brochure ? '' : undefined} data-pendiente={brochure ? undefined : 'El brochure en PDF lo sube el Centro al panel de WordPress (P1-19); en el prototipo aún no está.'}><i class="uc-icon">download</i> Descargar brochure</a>
       </div>
     </form>
   </div>
