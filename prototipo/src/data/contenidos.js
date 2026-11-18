@@ -103,7 +103,7 @@ const eventosBase = [
   { fecha: '2026-12-02', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Proyecciones 2027', slug: 'desayuno-proyecciones-2027', hora: 'Por confirmar', lugar: 'Por confirmar', socio: 'Forvis Mazars', porInvitacion: true, nota: 'Evento por invitación. Horario, lugar y panelistas por confirmar.' },
   // Realizados 2026. Lo que mandó Clara el 18-11: webinars con enlace de YouTube y la gráfica de invitación (de la gráfica
   // salen título, expositores con cargo, horario y el texto del resumen); resúmenes de LinkedIn, del sitio actual y de
-  // dos Word; fotos del banco de Full Funnel (28-10). DEBATE 3, MESA y JORNADA 2026 siguen sin bajar del SharePoint.
+  // dos Word; fotos del banco de Full Funnel (28-10 y, DEBATE 3, MESA y JORNADA 2026, 18-11).
   // 03-11: la gráfica y YouTube dicen 3 de noviembre (la lista de Clara del 09-11 decía 4). Título de la gráfica y de YouTube.
   // Clara confirmó las fechas, títulos y nombres el 18-11 («ok todos»; YouTube sube los videos un día después).
   { fecha: '2026-11-03', tipo: 'Webinar', serie: WEBINARS, titulo: 'Envejecimiento poblacional: ¿están las empresas preparadas para el cambio?', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'V9Jphtdhud0',
@@ -112,8 +112,10 @@ const eventosBase = [
   { fecha: '2026-09-23', tipo: 'Webinar', serie: WEBINARS, titulo: 'Finanzas sostenibles: nuevas decisiones, nuevos riesgos', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'mlr3aRrbE6M',
     expositores: [['Eduardo Walker', 'Director del CGC UC'], ['Javier Moraga', 'Jefe de Selección de Fondos de AFP Cuprum'], ['Marta del Sante', 'Moderadora · Directora del CGC UC']],
     descripcion: 'Una conversación sobre cómo la sostenibilidad está cambiando la forma de evaluar inversiones, financiamiento y creación de valor. Webinar del ciclo «Asuntos de la Alta Dirección», del CGC UC junto a AFP Cuprum, con Eduardo Walker, director del CGC UC, y Javier Moraga, jefe de Selección de Fondos de AFP Cuprum, moderado por Marta del Sante, directora del CGC UC.' },
-  // 09-09: resumen de Clara (segunda respuesta, 18-11). Fotos: carpeta DEBATE 3 del SharePoint, que falta bajar.
-  { fecha: '2026-09-09', tipo: 'Debate', serie: DEBATES, titulo: 'IA en el directorio', socio: 'BH Compliance', expositores: ['Hernán Orellana', 'Carmen Román', ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
+  // 09-09: resumen de Clara (segunda respuesta, 18-11). Fotos: carpeta DEBATE 3 del SharePoint (bajada el 18-11).
+  { fecha: '2026-09-09', tipo: 'Debate', serie: DEBATES, titulo: 'IA en el directorio', socio: 'BH Compliance',
+    foto: { src: '/img/eventos/ia-en-el-directorio-2026/01.jpg', alt: 'Panel del debate «IA en el directorio», con BH Compliance' },
+    fotos: fotosDe('ia-en-el-directorio-2026', 6, 'Debate «IA en el directorio», con BH Compliance'), expositores: ['Hernán Orellana', 'Carmen Román', ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
     descripcion: 'El pasado 9 de septiembre, el Centro de Gobierno Corporativo UC, junto a BH Compliance, realizó una nueva edición del ciclo Debates de Gobierno Corporativo, centrada en los desafíos que plantea la inteligencia artificial para los directorios y la Alta Dirección. El encuentro, moderado por Alejandra Wood, directora ejecutiva del CGC UC, reunió a expertos para analizar cómo la IA está transformando la toma de decisiones, la gestión de riesgos y los modelos de gobernanza empresarial. Durante la conversación se destacó la necesidad de que los directores comprendan las oportunidades y amenazas de esta tecnología, fortalezcan sus capacidades y asuman un rol activo en su supervisión estratégica. Una de las principales conclusiones fue que la inacción frente a la IA se ha convertido en uno de los mayores riesgos para las organizaciones, en un escenario que exige avanzar hacia modelos de gestión capaces de integrar el talento humano y las nuevas tecnologías.' },
   // 20-08: resumen y fotos del post de LinkedIn del Centro (25-08). Clara: las fotos de los desayunos con Forvis Mazars solo
   // están en LinkedIn (los enlaces originales vencieron). Salen del carrusel del post, sin la franja blanca con el logo.
@@ -127,8 +129,10 @@ const eventosBase = [
       'Una conversación que dejó una idea central: innovar no es solo una tarea de las áreas técnicas o de la administración. También exige directorios capaces de hacer nuevas preguntas, mirar a largo plazo y generar las condiciones para que la innovación ocurra.',
     ] },
   // 05-08: resumen = el artículo en Word que mandó Clara. Nombres corregidos: Anita Holuigue (el Word dice «Holigue»);
-  // Luis Hernán Paúl como director del CGC UC (el Word lo llama presidente; el presidente es Matías Zegers). Fotos: carpeta MESA.
+  // Luis Hernán Paúl como director del CGC UC (el Word lo llama presidente; el presidente es Matías Zegers). Fotos: carpeta MESA (18-11).
   { fecha: '2026-08-05', tipo: 'Mesa de directores', titulo: 'Mesa de directores de empresas públicas',
+    foto: { src: '/img/eventos/mesa-de-directores-de-empresas-publicas-2026/01.jpg', alt: 'Primer encuentro de la Mesa de directores de empresas públicas' },
+    fotos: fotosDe('mesa-de-directores-de-empresas-publicas-2026', 6, 'Mesa de directores de empresas públicas'),
     expositores: ['Anita Holuigue', 'Jéssica López Saffie', ['Luis Hernán Paúl', 'Moderador · Director del CGC UC']],
     descripcion: [
       '## Empresas públicas: gobernar para el largo plazo y fortalecer la confianza',
@@ -169,8 +173,10 @@ const eventosBase = [
     ],
     fotos: fotosDe('debate-presidente-del-directorio-2026', 6, 'Debate sobre el rol del presidente del directorio, con BH Compliance') },
   // Jornada 2026: tema y panel del sitio actual (noticia 779 y jornada 783); auspicio de LarrainVial, en el auditorio de
-  // Deloitte. Resumen y video (YouTube Short) de la página de la jornada en el sitio actual. Fotos: carpeta JORNADA 2026.
+  // Deloitte. Resumen y video (YouTube Short) de la página de la jornada en el sitio actual. Fotos: carpeta JORNADA 2026 (18-11).
   { fecha: '2026-06-11', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2026', titulo: 'Ser director hoy: cómo decidir en un entorno más exigente', socio: 'LarrainVial', youtube: '6kIMI7-8Up4',
+    foto: { src: '/img/eventos/ser-director-hoy-2026/01.jpg', alt: 'Panel de la Jornada de Gobierno Corporativo 2026, «Ser director hoy»' },
+    fotos: fotosDe('ser-director-hoy-2026', 6, 'Jornada de Gobierno Corporativo 2026, «Ser director hoy»'),
     expositores: [['Catherine Tornel', 'Invitada especial · Presidenta de la Comisión para el Mercado Financiero'], 'Tamara Agnic', 'Marcela Toledo', 'Alex Van Weezel', 'Enrique Ostalé', 'Guillermo Tagle', 'Josefina Montenegro', 'Andrés Trivelli'],
     descripcion: [
       '¿Qué significa ser director hoy, en un entorno donde las decisiones empresariales están bajo estándares cada vez más exigentes? Esa fue la pregunta central que reunió a directores, ejecutivos, abogados y líderes empresariales en la Jornada de Gobierno Corporativo 2026 del Centro de Gobierno Corporativo UC.',
