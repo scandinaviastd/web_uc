@@ -153,10 +153,10 @@ const base = [
       { inicio: '2027-04-14', termino: '2027-06-02', dia: 'Miércoles' },
       { inicio: '2027-10-07', termino: '2027-11-25', dia: 'Jueves' },
     ],
-    postularUrl: null,
+    postularUrl: 'https://educacioncontinua.uc.cl/programas/formando-nuevos-directores/',
     modalidad: 'Híbrido',
-    // Brochure 2027 (Sara, 18-11): valor, módulos y biografías alineados con él. Postulación: el brochure dice
-    // «Postula en educacioncontinua.uc.cl» y la ficha pide enviar los documentos; por confirmar con Sara.
+    // Brochure 2027 (Sara, 18-11): valor, módulos y biografías alineados con él. Postulación (Sara, 18-11): por
+    // Educación Continua UC o con la coordinadora del Centro; el botón «Postular» lleva a Educación Continua.
     valor: '$2.496.000',
     brochure: '/docs/brochure-formando-nuevos-directores-2027.pdf',
     descripcion: 'Conocimientos y herramientas en las materias clave para el ejercicio de la función de director de empresas: misión, responsabilidades, jurisdicción vigente y gobernanza corporativa. Este programa entrega herramientas prácticas aplicables desde la primera sesión.',
@@ -192,7 +192,7 @@ const base = [
         texto: ['El curso no tiene evaluaciones: se aprueba con un mínimo de 75 % de asistencia a las sesiones.', 'Quienes aprueben reciben un certificado de asistencia digital otorgado por la Pontificia Universidad Católica de Chile y una insignia digital.'],
       },
       admision: {
-        texto: 'Envía estos documentos a la coordinadora de admisión del programa:',
+        texto: 'Puedes postular en el sitio de Educación Continua UC o enviando estos documentos a la coordinadora de admisión del programa:',
         lista: ['Currículum vitae actualizado', 'Copia de la cédula de identidad por ambos lados'],
         nota: `Postulaciones para la versión de abril: del 15 de noviembre de 2026 al 12 de abril de 2027, o hasta completar las 45 vacantes. ${SIN_CUPOS}`,
         enlace: RETIROS,
@@ -288,12 +288,13 @@ export const inCompany = {
   incluye: 'Set de 4 documentos de estudio y consulta de elaboración propia del CGC UC para cada participante.',
   // Franja de datos de la portada (Mateo, 09-11), sacada de la descripción y de «Incluye».
   datos: [['Formato', 'Exclusivo para tu directorio'], ['Contenidos', 'Diseñados con tu organización'], ['Incluye', '4 documentos de estudio por participante']],
-  contenidos: ['El quehacer de un director/a', 'Las responsabilidades de un director/a', 'Responsabilidad penal de la persona jurídica', 'Buen gobierno corporativo', 'Estrategia y control de gestión corporativo', 'Sustentabilidad y criterios ESG', 'Gestión de riesgos', 'Un directorio efectivo'],
+  // Los 13 módulos de la presentación 2027 (Sara, 18-11: «sí, poner los 13 módulos del PDF»).
+  contenidos: ['Conceptos generales sobre gobierno corporativo', 'Las responsabilidades de un director', 'Mejores prácticas de gobierno corporativo', 'Evaluación y autoevaluación de directores', 'Estatuto penal de directores y persona jurídica', 'Compliance y gobierno corporativo', 'Análisis de casos emblemáticos', 'Gestión de riesgos', 'ESG y sostenibilidad', 'Inteligencia artificial y ciberseguridad', 'Ley de Protección de Datos Personales', 'Demografía y trabajo', 'Comunicación estratégica, reputación y crisis'],
   // El contacto de In Company es el WhatsApp del Centro (P1-21) y el correo de Sara (P1-19).
   coordinacion: { titulo: '¿Quieres un programa para tu directorio?', persona: `${sara.nombre} · ${sara.cargo}`, correo: sara.correo },
   whatsappTema: 'programa In Company para Directorios',
   imagen: '/img/programas/in-company.jpg',
-  // Presentación en PDF (Sara, 16-11). Trae dos erratas que se le avisaron; se reemplaza cuando llegue la corregida.
+  // Presentación en PDF: la versión corregida que mandó Sara el 18-11.
   presentacion: '/docs/presentacion-in-company-cgc-uc.pdf',
 };
 

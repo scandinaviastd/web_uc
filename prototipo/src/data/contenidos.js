@@ -105,16 +105,21 @@ const eventosBase = [
   // salen título, expositores con cargo, horario y el texto del resumen); resúmenes de LinkedIn, del sitio actual y de
   // dos Word; fotos del banco de Full Funnel (28-10). DEBATE 3, MESA y JORNADA 2026 siguen sin bajar del SharePoint.
   // 03-11: la gráfica y YouTube dicen 3 de noviembre (la lista de Clara del 09-11 decía 4). Título de la gráfica y de YouTube.
+  // Clara confirmó las fechas, títulos y nombres el 18-11 («ok todos»; YouTube sube los videos un día después).
   { fecha: '2026-11-03', tipo: 'Webinar', serie: WEBINARS, titulo: 'Envejecimiento poblacional: ¿están las empresas preparadas para el cambio?', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'V9Jphtdhud0',
     expositores: [['Santiago Valdés', 'CEO de Empresas Carozzi'], ['Claudia Martínez', 'Directora del Instituto de Economía UC'], ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
     descripcion: 'Webinar del ciclo «Asuntos de la Alta Dirección», del Centro de Gobierno Corporativo UC junto a AFP Cuprum, sobre cómo el envejecimiento de la población desafía a las empresas. Conversaron Santiago Valdés, CEO de Empresas Carozzi, y Claudia Martínez, directora del Instituto de Economía UC, con la moderación de Alejandra Wood, directora ejecutiva del CGC UC.' },
   { fecha: '2026-09-23', tipo: 'Webinar', serie: WEBINARS, titulo: 'Finanzas sostenibles: nuevas decisiones, nuevos riesgos', hora: '08:30 – 09:15', lugar: 'Online', socio: 'AFP Cuprum', youtube: 'mlr3aRrbE6M',
     expositores: [['Eduardo Walker', 'Director del CGC UC'], ['Javier Moraga', 'Jefe de Selección de Fondos de AFP Cuprum'], ['Marta del Sante', 'Moderadora · Directora del CGC UC']],
     descripcion: 'Una conversación sobre cómo la sostenibilidad está cambiando la forma de evaluar inversiones, financiamiento y creación de valor. Webinar del ciclo «Asuntos de la Alta Dirección», del CGC UC junto a AFP Cuprum, con Eduardo Walker, director del CGC UC, y Javier Moraga, jefe de Selección de Fondos de AFP Cuprum, moderado por Marta del Sante, directora del CGC UC.' },
-  // 09-09: Clara no mandó resumen; las fotos están en la carpeta DEBATE 3 del SharePoint, que falta bajar.
-  { fecha: '2026-09-09', tipo: 'Debate', serie: DEBATES, titulo: 'IA en el directorio', socio: 'BH Compliance', expositores: ['Hernán Orellana', 'Carmen Román'] },
-  // 20-08: resumen del post de LinkedIn del Centro (25-08). Las fotos del post vienen en un documento que no se puede bajar.
+  // 09-09: resumen de Clara (segunda respuesta, 18-11). Fotos: carpeta DEBATE 3 del SharePoint, que falta bajar.
+  { fecha: '2026-09-09', tipo: 'Debate', serie: DEBATES, titulo: 'IA en el directorio', socio: 'BH Compliance', expositores: ['Hernán Orellana', 'Carmen Román', ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
+    descripcion: 'El pasado 9 de septiembre, el Centro de Gobierno Corporativo UC, junto a BH Compliance, realizó una nueva edición del ciclo Debates de Gobierno Corporativo, centrada en los desafíos que plantea la inteligencia artificial para los directorios y la Alta Dirección. El encuentro, moderado por Alejandra Wood, directora ejecutiva del CGC UC, reunió a expertos para analizar cómo la IA está transformando la toma de decisiones, la gestión de riesgos y los modelos de gobernanza empresarial. Durante la conversación se destacó la necesidad de que los directores comprendan las oportunidades y amenazas de esta tecnología, fortalezcan sus capacidades y asuman un rol activo en su supervisión estratégica. Una de las principales conclusiones fue que la inacción frente a la IA se ha convertido en uno de los mayores riesgos para las organizaciones, en un escenario que exige avanzar hacia modelos de gestión capaces de integrar el talento humano y las nuevas tecnologías.' },
+  // 20-08: resumen y fotos del post de LinkedIn del Centro (25-08). Clara: las fotos de los desayunos con Forvis Mazars solo
+  // están en LinkedIn (los enlaces originales vencieron). Salen del carrusel del post, sin la franja blanca con el logo.
   { fecha: '2026-08-20', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Innovación en el directorio', socio: 'Forvis Mazars',
+    foto: { src: '/img/eventos/innovacion-en-el-directorio-2026/01.jpg', alt: 'Panel del desayuno «Innovación en el directorio», con Forvis Mazars' },
+    fotos: fotosDe('innovacion-en-el-directorio-2026', 6, 'Desayuno «Innovación en el directorio», con Forvis Mazars'),
     expositores: [['Carolina Rossi', 'Palabras de apertura · Subsecretaria de Ciencia, Tecnología, Conocimiento e Innovación'], ['María (Cuky) Pérez', 'Experta en ciencia de datos'], ['María de los Ángeles Romo', 'Experta en innovación y venture capital'], ['Luis Hernán Paúl', 'Moderador · Director del CGC UC']],
     descripcion: [
       'En un nuevo desayuno organizado por el Centro de Gobierno Corporativo UC y Forvis Mazars se conversó sobre el rol que pueden asumir los directorios para impulsar la innovación desde la estrategia, incorporar nuevas tecnologías en la toma de decisiones y enfrentar la tensión entre oportunidad y riesgo.',
@@ -177,12 +182,16 @@ const eventosBase = [
     expositores: [['Julio Pellegrini', 'Profesor de Derecho UC y director de empresas'], ['Miguel Pelayo', 'Director de AFP Cuprum'], ['Josefina Tocornal', 'Moderadora · Coordinadora de Investigación del CGC UC']],
     descripcion: 'Webinar del ciclo «Asuntos de la Alta Dirección», del CGC UC junto a AFP Cuprum, sobre el estándar de interlocking que fijó la Corte Suprema y lo que significa para los directorios. Conversaron Julio Pellegrini, profesor de Derecho UC y director de empresas, y Miguel Pelayo, director de AFP Cuprum, con la moderación de Josefina Tocornal, coordinadora de Investigación del CGC UC.' },
   // 22-04: el prototipo lo tenía además como «sesión de abril» del 08-04; la foto de esa entrada es este mismo panel.
-  // Galería: DEBATE 1. Clara no mandó resumen.
-  { fecha: '2026-04-22', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del director independiente', socio: 'BH Compliance', expositores: ['Manola Sánchez', 'Rafael Fernández', 'Rafael Guilisasti', ['Luis Hernán Paúl', 'Moderador']],
+  // Galería: DEBATE 1. Resumen y cargos de Clara (segunda respuesta, 18-11).
+  { fecha: '2026-04-22', tipo: 'Debate', serie: DEBATES, titulo: 'El rol del director independiente', socio: 'BH Compliance',
+    expositores: [['Manola Sánchez', 'Directora de Bci'], ['Rafael Guilisasti', 'Director de Viña Concha y Toro'], ['Rafael Fernández', 'Director de SAAM'], ['Luis Hernán Paúl', 'Moderador · Director del CGC UC']],
+    descripcion: 'El pasado 22 de abril de 2026, el Centro de Gobierno Corporativo UC, junto a BH Compliance, inauguró el ciclo Debates de Gobierno Corporativo con un encuentro dedicado a «El rol del director independiente». La instancia contó con la participación de Manola Sánchez, directora de Bci; Rafael Guilisasti, director de Viña Concha y Toro, y Rafael Fernández, director de SAAM, bajo la moderación de Luis Hernán Paúl, director del CGC UC. Durante la conversación se abordaron las responsabilidades y desafíos que enfrentan los directores independientes, especialmente en la gestión de conflictos de interés, su relación con los accionistas controladores y su capacidad de influir en las decisiones estratégicas. Uno de los principales mensajes fue que la independencia no se limita a la ausencia de vínculos formales, sino que debe reflejarse en la capacidad de aportar criterio propio, cuestionar decisiones y contribuir constructivamente al debate. El encuentro también destacó la importancia de la cultura del directorio, la confianza y la mirada de largo plazo para fortalecer la gobernanza de las empresas.',
     foto: { src: '/img/eventos/debate-director-independiente-2026.jpg', alt: 'Panel del debate sobre el rol del director independiente, con BH Compliance, frente al público' },
     fotos: fotosDe('debate-director-independiente-2026', 6, 'Debate sobre el rol del director independiente, con BH Compliance') },
-  // 16-04: resumen del post de LinkedIn del Centro (17-04). La única foto pública del post es de otra actividad: sin fotos.
+  // 16-04: resumen y fotos del post de LinkedIn del Centro (17-04); las fotos, del carrusel del post (Clara, 18-11).
   { fecha: '2026-04-16', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Cómo leer la nueva geopolítica', socio: 'Forvis Mazars',
+    foto: { src: '/img/eventos/como-leer-la-nueva-geopolitica-2026/01.jpg', alt: 'Panel del desayuno «Cómo leer la nueva geopolítica», con Forvis Mazars' },
+    fotos: fotosDe('como-leer-la-nueva-geopolitica-2026', 6, 'Desayuno «Cómo leer la nueva geopolítica», con Forvis Mazars'),
     expositores: [['Jorge Sahd', 'Director del Centro de Estudios Internacionales UC'], ['Klaus Schmidt-Hebbel', 'Economista'], ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
     descripcion: [
       'El Centro de Gobierno Corporativo UC, junto a Forvis Mazars, realizó el desayuno «Cómo leer la nueva geopolítica», que reunió a directores de empresas para analizar cómo los cambios del escenario global están impactando la toma de decisiones en la Alta Dirección.',
@@ -197,8 +206,8 @@ const eventosBase = [
     expositores: [['Mario Barrera', 'Head of Local Equities de AFP Cuprum'], ['Ornella Bono', 'Managing Partner de Humanitas Cornerstone'], ['Matías Zegers', 'Moderador · Presidente del CGC UC']],
     descripcion: 'El Centro de Gobierno Corporativo UC, en alianza con AFP Cuprum, realizó la tercera edición del ciclo de webinars «Asuntos de la Alta Dirección», bajo el título «¿Quién elige a los directores? El caso de las AFP». Moderado por Matías Zegers, presidente del CGC UC, contó con la participación de Mario Barrera, de AFP Cuprum, y Ornella Bono, managing partner de Humanitas Cornerstone.' },
   // Jornada 2025: resumen = comunicado de prensa que mandó Clara (el mismo texto de la jornada 705 del sitio actual).
-  // Ojo: el comunicado está fechado «Santiago, 12 de noviembre de 2025»; Clara dice 26 de noviembre. Por confirmar.
-  { fecha: '2025-11-26', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2025', titulo: 'Cambia el juego: Ley de cuotas e interlocking', socio: 'AFP Cuprum',
+  // Fecha: 25 de noviembre (Clara, 18-11); su lista decía 26 y el comunicado está fechado el 12.
+  { fecha: '2025-11-25', tipo: 'Jornada', serie: 'Jornada de Gobierno Corporativo 2025', titulo: 'Cambia el juego: Ley de cuotas e interlocking', socio: 'AFP Cuprum',
     expositores: [['Solange Berstein', 'Invitada especial · Presidenta de la Comisión para el Mercado Financiero'], ['Julio Pellegrini', 'Profesor de Derecho Civil y Libre Competencia UC'], ['Matías Zegers', 'Presidente del directorio del CGC UC']],
     foto: { src: '/img/eventos/jornada-2025-panel.jpg', alt: 'Panel de la Jornada de Gobierno Corporativo 2025, «Cambia el juego: Ley de cuotas e interlocking»' },
     descripcion: [
