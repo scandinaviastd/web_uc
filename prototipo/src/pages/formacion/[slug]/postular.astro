@@ -19,7 +19,7 @@ const { p } = Astro.props;
         <h1 class="mt-16 mb-24">Prontamente habilitaremos la postulación 2027</h1>
         <p class="p-size--lg">La postulación al <strong>{p.titulo}</strong> para su versión 2027 todavía no está abierta. Déjanos tus datos y te avisamos apenas se habilite.</p>
         <div class="cgc-acciones-fila mt-32">
-          <a href={`/formacion/mas-informacion/?programa=${p.slug}`} class="uc-btn btn-secondary cgc-btn-auto">Quiero que me avisen</a>
+          <a href={`/formacion/mas-informacion/?programa=${p.slug}&aviso=1`} class="uc-btn btn-secondary cgc-btn-auto">Quiero que me avisen</a>
           <a href={whatsapp.url(p.whatsappTema)} class="uc-btn btn-primary cgc-btn-auto" target="_blank" rel="noopener"><img src="/img/whatsapp-verde.svg" alt="" width="18" height="18" class="mr-8" /> Escríbenos por WhatsApp<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
           <a href={`/formacion/${p.slug}/`} class="uc-btn btn-inline"><i class="uc-icon">keyboard_arrow_left</i> Volver al programa</a>
         </div>

@@ -9,6 +9,7 @@ import Cifra from '../components/v5/Cifra.astro';
 import Retrato from '../components/v5/Retrato.astro';
 import Cita from '../components/v5/Cita.astro';
 import { directorio, equipo } from '../data/contenidos.js';
+import ModalResena from '../components/v5/ModalResena.astro';
 import { quienesSomos, origen, pilares, voz } from '../data/v5-nosotros.js';
 ---
 <Base title="Nosotros" seccion="nosotros">
@@ -31,7 +32,7 @@ import { quienesSomos, origen, pilares, voz } from '../data/v5-nosotros.js';
           <div class="v5-nos-portada_media">
             <img src="/img/v5/nosotros/portada.jpg" class="v5-nos-portada_foto" alt="Clase del Diplomado en Gobierno Corporativo en una sala de la UC" width="1600" height="1066" />
             <span class="v5-nos-acento v5-nos-portada_acento" aria-hidden="true"></span>
-            <Cifra cifra="2012" etiqueta="Centro inter-facultades de Derecho y Administración UC" fondo="marca" class="v5-nos-portada_cifra" />
+            <Cifra cifra="2012" etiqueta="Centro interfacultades de Derecho y de Economía y Administración UC" fondo="marca" class="v5-nos-portada_cifra" />
           </div>
         </div>
       </div>
@@ -114,6 +115,8 @@ import { quienesSomos, origen, pilares, voz } from '../data/v5-nosotros.js';
           {directorio.map((p, i) => (
             <div class="col-md-4 col-lg-3 v5-nos-directorio_item">
               <Retrato nombre={p.nombre} cargo={p.cargo} nivel={4} acento={i % 2 ? 'marca' : 'cian'} />
+              {/* Toda la tarjeta abre la reseña (el botón se estira sobre ella); el texto queda visible bajo el cargo. */}
+              {p.resena && <button type="button" class="cgc-d-enlace v5-nos-resena_btn" data-mtarget={`resena-${i}`} aria-haspopup="dialog">Ver reseña<span class="uc-sr-only"> de {p.nombre}</span> →</button>}
             </div>
           ))}
         </div>
@@ -139,4 +142,5 @@ import { quienesSomos, origen, pilares, voz } from '../data/v5-nosotros.js';
     </div>
   </section>
 
+  {directorio.filter((p) => p.resena).map((p) => { const i = directorio.indexOf(p); return <ModalResena id={`resena-${i}`} nombre={p.nombre} cargo={p.cargo} resena={p.resena} acento={i % 2 ? 'marca' : 'cian'} />; })}
 </Base>

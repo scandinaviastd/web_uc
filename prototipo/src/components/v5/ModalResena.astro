@@ -1,0 +1,27 @@
+---
+// Ventana de reseña de un director (UC_CGC, «Ventana de reseña» 539:68): modal del Kit (data-modal / data-mtarget),
+// retrato a la izquierda y los tres bloques de la reseña. En móvil ocupa la pantalla completa.
+import Retrato from './Retrato.astro';
+import { BLOQUES_RESENA } from '../../data/contenidos.js';
+interface Props { id: string; nombre: string; cargo: string; resena: string[]; acento?: 'cian' | 'marca' }
+const { id, nombre, cargo, resena, acento = 'cian' } = Astro.props;
+---
+<div data-modal={id} class="uc-modal cgc-modal cgc-resena" role="dialog" aria-modal="true" aria-labelledby={`${id}-titulo`}>
+  <div class="uc-modal_content cgc-modal_content cgc-resena_contenido">
+    <button type="button" class="uc-message_close-button" data-mclosed aria-label="Cerrar la reseña"><i class="uc-icon">close</i></button>
+    <div class="cgc-resena_grid">
+      <div class="cgc-resena_retrato" aria-hidden="true"><Retrato nombre={nombre} cargo={cargo} acento={acento} nivel={4} /></div>
+      <div class="cgc-resena_texto">
+        <p class="cgc-d-ante cgc-d-texto-marca mb-8">Directorio</p>
+        <h2 id={`${id}-titulo`} class="h3 mb-4">{nombre}</h2>
+        <p class="cgc-d-texto-sec mb-24">{cargo}</p>
+        {resena.map((t, i) => (
+          <div class="cgc-resena_bloque">
+            <h3 class="cgc-d-ante cgc-d-texto-marca">{BLOQUES_RESENA[i]}</h3>
+            <p class="mb-0">{t}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

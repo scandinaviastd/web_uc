@@ -53,7 +53,9 @@ const detalle = ({ modulos, unidad, docentes, objetivos, metodologia, aprobacion
 // Textos comunes de los descriptores
 const AVISO_CAMBIOS = 'Puede haber modificaciones de fechas o docentes por razones de fuerza mayor.';
 const SIN_CUPOS = 'No se tramitan postulaciones incompletas ni se reservan cupos: el pago completo del valor del programa es requisito para gestionar la matrícula.';
-const RETIROS = { texto: 'Retiros y cancelaciones', href: 'https://educacioncontinua.uc.cl/pagos-y-convenios/' };
+// Política de pagos, retiros y cancelaciones de Educación Continua UC: va en «Valor y descuentos» de cada ficha
+// (Sara, 19-11: en Admisión no se entendía por qué estaba).
+export const PAGOS = { texto: 'Pagos, retiros y cancelaciones', href: 'https://educacioncontinua.uc.cl/pagos-y-convenios/' };
 
 // Fechas: se escriben una vez por versión (ISO) y todo lo demás se deriva.
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
@@ -86,7 +88,7 @@ const base = [
     versiones: [{ inicio: '2027-05-03', termino: '2027-11-29', dia: 'Lunes' }],
     postularUrl: null,
     modalidad: 'Híbrido',
-    valor: '$4.400.000',
+    valor: '$4.576.000', // precios 2027 (Sara, 19-11)
     descripcion: 'Con este diplomado podrás comprender el origen, desarrollo y relevancia del gobierno corporativo, en instituciones con y sin fines de lucro, en particular para las sociedades anónimas abiertas chilenas. Podrás identificar los aspectos económicos, buenas prácticas, teoría jurídica y regulación que fundamentan las principales instituciones relacionadas con el gobierno corporativo y resolver casos prácticos.',
     dirigido: 'Abogados, ingenieros comerciales, ingenieros civiles, economistas, auditores y otros profesionales que se relacionen con el gobierno corporativo de las instituciones.',
     requisitos: 'Grado académico de licenciado o título profesional universitario. Experiencia laboral de al menos 3 años.',
@@ -138,9 +140,8 @@ const base = [
       },
       admision: {
         texto: 'La postulación es online, en el Sistema de Educación Continua UC: primero te registras con tus datos y luego subes estos antecedentes:',
-        lista: ['Currículum vitae actualizado', 'Copia simple del título o la licenciatura', 'Copia de la cédula de identidad'],
+        lista: ['Currículum vitae actualizado', 'Copia simple del título o la licenciatura (de acuerdo a cada programa)', 'Copia de la cédula de identidad'],
         nota: `Vacantes: 20. ${SIN_CUPOS}`,
-        enlace: RETIROS,
       },
     }),
   },
@@ -153,10 +154,10 @@ const base = [
       { inicio: '2027-04-14', termino: '2027-06-02', dia: 'Miércoles' },
       { inicio: '2027-10-07', termino: '2027-11-25', dia: 'Jueves' },
     ],
-    postularUrl: 'https://educacioncontinua.uc.cl/programas/formando-nuevos-directores/',
+    postularUrl: null, // Sara, 19-11: por ahora «Postular» lleva a la página que avisa que pronto se abre; Educación Continua: https://educacioncontinua.uc.cl/programas/formando-nuevos-directores/
     modalidad: 'Híbrido',
     // Brochure 2027 (Sara, 18-11): valor, módulos y biografías alineados con él. Postulación (Sara, 18-11): por
-    // Educación Continua UC o con la coordinadora del Centro; el botón «Postular» lleva a Educación Continua.
+    // Educación Continua UC o con la coordinadora del Centro (la página de Educación Continua, en postularUrl, cuando se abra).
     valor: '$2.496.000',
     brochure: '/docs/brochure-formando-nuevos-directores-2027.pdf',
     descripcion: 'Conocimientos y herramientas en las materias clave para el ejercicio de la función de director de empresas: misión, responsabilidades, jurisdicción vigente y gobernanza corporativa. Este programa entrega herramientas prácticas aplicables desde la primera sesión.',
@@ -170,6 +171,8 @@ const base = [
       docentes: {
         nota: AVISO_CAMBIOS,
         personas: [
+          // Matías Zegers, jefe de programa, también en el equipo (Sara, 19-11); reseña del brochure 2027.
+          ['Matías Zegers Ruiz-Tagle', 'Profesor asociado de la Facultad de Derecho UC, director del Departamento de Derecho Económico, Comercial y Tributario de la Escuela de Derecho UC y presidente del directorio del Centro de Gobierno Corporativo UC. Miembro de la mesa redonda latinoamericana de Gobierno Corporativo de la OCDE y de varias de sus Task Forces. Director de la Fundación Carlos Vial Espantoso.'],
           ['Roberto Guerrero Valenzuela', 'Abogado, Pontificia Universidad Católica de Chile. Master in Comparative Jurisprudence, New York University. Socio de Cuatrecasas, especialista en derecho societario, fusiones y adquisiciones, y derecho bancario y financiero. Profesor titular de derecho comercial de la Facultad de Derecho UC desde 1995 y decano de la Facultad entre 2010 y 2015. Miembro del directorio del Centro de Gobierno Corporativo UC.'],
           ['Luis Hernán Paúl Fresno', 'Ingeniero civil, Pontificia Universidad Católica de Chile. Master of Science in Management, Massachusetts Institute of Technology (MIT). Miembro del directorio del Centro de Gobierno Corporativo UC.'],
           ['Rodrigo Aldoney', 'Abogado, Universidad de Chile. Doctor en Derecho y Magíster en Derecho (LL.M.), Universidad Albert-Ludwig de Friburgo de Brisgovia, Alemania. Profesor de derecho penal en la Facultad de Derecho UC.'],
@@ -192,10 +195,9 @@ const base = [
         texto: ['El curso no tiene evaluaciones: se aprueba con un mínimo de 75 % de asistencia a las sesiones.', 'Quienes aprueben reciben un certificado de asistencia digital otorgado por la Pontificia Universidad Católica de Chile y una insignia digital.'],
       },
       admision: {
-        texto: 'Puedes postular en el sitio de Educación Continua UC o enviando estos documentos a la coordinadora de admisión del programa:',
+        texto: 'Cuando se abra la postulación, podrás postular en el sitio de Educación Continua UC o enviando estos documentos a la coordinadora de admisión del programa:',
         lista: ['Currículum vitae actualizado', 'Copia de la cédula de identidad por ambos lados'],
         nota: `Postulaciones para la versión de abril: del 15 de noviembre de 2026 al 12 de abril de 2027, o hasta completar las 45 vacantes. ${SIN_CUPOS}`,
-        enlace: RETIROS,
       },
     }),
   },
@@ -207,7 +209,7 @@ const base = [
     versiones: [{ inicio: '2027-08-03', termino: '2027-09-07', dia: 'Martes' }],
     postularUrl: null,
     modalidad: 'Híbrido',
-    valor: '$1.900.000',
+    valor: '$1.976.000', // precios 2027 (Sara, 19-11)
     descripcion: 'Programa Governing: formación y entrenamiento para miembros y alta dirección de empresas familiares, que busca profesionalizar la governance con talleres dinámicos.',
     dirigido: 'Presidentes, directores y directorios de empresas familiares, family offices y holdings de grupos empresariales; fundadores, accionistas y socios familiares, y miembros de la siguiente generación; ejecutivos de alta dirección, y directores independientes que quieran profundizar en el gobierno corporativo de empresas familiares.',
     requisitos: 'Se sugiere tener vínculo con una empresa de origen familiar —como dueño(a), accionista, miembro de la familia empresaria, director(a) o ejecutivo(a) de alta dirección—, ya sea una empresa operativa, un family office o un holding.',
@@ -235,7 +237,6 @@ const base = [
         texto: 'Envía estos documentos a la coordinadora de admisión del programa:',
         lista: ['Currículum vitae actualizado', 'Copia de la cédula de identidad por ambos lados'],
         nota: `Vacantes: 30. ${SIN_CUPOS}`,
-        enlace: RETIROS,
       },
     }),
   },
@@ -250,7 +251,7 @@ const base = [
     hora: '9:00 a 13:30 h',
     postularUrl: null,
     modalidad: 'Híbrido',
-    valor: '$1.300.000',
+    valor: '$1.352.000', // precios 2027 (Sara, 19-11)
     descripcion: 'Conocimientos financieros sólidos para que directores y directoras tomen decisiones informadas y responsables que lideren el crecimiento de la organización.',
     dirigido: 'Directores y ejecutivos sin formación financiera formal que participan en decisiones de inversión y financiamiento.',
     requisitos: 'Título profesional universitario.',
@@ -266,10 +267,12 @@ export const programas = base.map((p) => {
     ...p,
     estado: estadoDe(p),
     inicioCorto: proxima ? `Inicio ${corta(proxima.inicio)}` : 'Fecha por confirmar',
-    fechas: !v.length ? 'Por confirmar' : v.length === 1 ? rango(v[0]) : `${v.length} versiones en ${ANIO(p)}`,
-    horario: !v.length ? 'Por confirmar' : [...new Set(v.map((x) => x.dia))].join(' o ') + ' · ' + (p.hora ?? 'horario por confirmar'),
-    // Versiones en texto, para el bloque «Fechas» de la ficha
-    calendario: v.map((x, i) => ({ nombre: v.length > 1 ? `Versión ${i + 1}` : null, texto: `Los ${x.dia.toLowerCase()}, del ${larga(x.inicio).replace(/ de \d{4}$/, '')} al ${larga(x.termino)}` })),
+    // Ficha y tabla comparativa: solo la próxima versión (Sara, 19-11: «para no confundir solo pondría la fecha
+    // de la siguiente versión»). Todas las versiones se ven solo en la línea del año de Programas abiertos.
+    proxima,
+    fechas: !proxima ? 'Por confirmar' : rango(proxima),
+    horario: !proxima ? 'Por confirmar' : `${proxima.dia} · ${p.hora ?? 'horario por confirmar'}`,
+    calendario: proxima ? [{ nombre: null, texto: `Los ${proxima.dia.toLowerCase()}, del ${larga(proxima.inicio).replace(/ de \d{4}$/, '')} al ${larga(proxima.termino)}` }] : [],
     descuentos,
     whatsappTema: temaWhatsApp(p),
     imagen: `/img/programas/${p.slug}.jpg`,
@@ -280,7 +283,8 @@ export const inCompany = {
   slug: 'in-company',
   tipo: 'In Company',
   estado: 'Programa a medida',
-  titulo: 'In Company para Directorios',
+  // «Alta Dirección» en vez de «Directorios» (Sara, 19-11: «nos achica sino mucho el pool de ventas»).
+  titulo: 'In Company para la Alta Dirección',
   frase: 'Formación exclusiva para el Directorio y la alta dirección de una empresa u organización, diseñada según sus intereses y necesidades.',
   intro: 'Diseñamos el programa según los desafíos de tu empresa. Cuéntanos qué necesita tu directorio y te contactamos.',
   descripcion: 'Programa de formación que se realiza de manera exclusiva para el Directorio y alta dirección de una empresa u organización, de acuerdo con sus intereses o necesidades. Contempla la capacitación y la entrega de un set de cuatro documentos de estudio de elaboración propia del Centro para cada participante.',
@@ -291,8 +295,8 @@ export const inCompany = {
   // Los 13 módulos de la presentación 2027 (Sara, 18-11: «sí, poner los 13 módulos del PDF»).
   contenidos: ['Conceptos generales sobre gobierno corporativo', 'Las responsabilidades de un director', 'Mejores prácticas de gobierno corporativo', 'Evaluación y autoevaluación de directores', 'Estatuto penal de directores y persona jurídica', 'Compliance y gobierno corporativo', 'Análisis de casos emblemáticos', 'Gestión de riesgos', 'ESG y sostenibilidad', 'Inteligencia artificial y ciberseguridad', 'Ley de Protección de Datos Personales', 'Demografía y trabajo', 'Comunicación estratégica, reputación y crisis'],
   // El contacto de In Company es el WhatsApp del Centro (P1-21) y el correo de Sara (P1-19).
-  coordinacion: { titulo: '¿Quieres un programa para tu directorio?', persona: `${sara.nombre} · ${sara.cargo}`, correo: sara.correo },
-  whatsappTema: 'programa In Company para Directorios',
+  coordinacion: { titulo: '¿Tienes dudas sobre el programa?', persona: `${sara.nombre} · ${sara.cargo}`, correo: sara.correo },
+  whatsappTema: 'programa In Company para la Alta Dirección',
   imagen: '/img/programas/in-company.jpg',
   // Presentación en PDF: la versión corregida que mandó Sara el 18-11.
   presentacion: '/docs/presentacion-in-company-cgc-uc.pdf',

@@ -292,6 +292,12 @@
     sync = function () { if (nombre) nombre.textContent = sel.options[sel.selectedIndex].text; };
     sel.addEventListener('change', sync); sync();
   }
+  // «Quiero que me avisen» (?aviso=1): la solicitud llega marcada como «Aviso de postulación» (Sara, 19-11).
+  var tipo = $('[data-tipo-solicitud]');
+  if (tipo && new URLSearchParams(location.search).get('aviso')) {
+    tipo.value = 'Aviso de postulación';
+    var okTexto = $('[data-form-ok-texto]'); if (okTexto) okTexto.textContent = '¡Listo! Te avisaremos apenas se abra la postulación.';
+  }
 
   /* ---------- Modal del brochure: abrir con ?brochure=1 o #brochure (para revisión y capturas) ---------- */
   var modal = $('[data-modal="modalBrochure"]');

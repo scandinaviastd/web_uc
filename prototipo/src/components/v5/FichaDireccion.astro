@@ -8,7 +8,7 @@ import Etiqueta from './Etiqueta.astro';
 import Barra from './Barra.astro';
 import Cifra from './Cifra.astro';
 import Retrato from './Retrato.astro';
-import { jefePrograma, coordinacion, condicionesDescuentos, PENDIENTE } from '../../data/programas.js';
+import { jefePrograma, coordinacion, condicionesDescuentos, PENDIENTE, PAGOS } from '../../data/programas.js';
 import { whatsapp } from '../../data/sitio.js';
 import { portadaV5, titularModulos, etiquetaEstado } from '../../data/v5-ficha.js';
 interface Props { p: any }
@@ -183,9 +183,13 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
             {p.descuentos.map(([k, v]: string[]) => <tr><th scope="row">{k}</th><td>{pct(v)}</td></tr>)}
           </tbody>
         </table>
-        <ul class="cgc-v5f-condiciones">
-          {condicionesDescuentos.map((t) => <li>{t}</li>)}
-        </ul>
+        <div class="cgc-v5f-condiciones-area">
+          <ul class="cgc-v5f-condiciones">
+            {condicionesDescuentos.map((t) => <li>{t}</li>)}
+          </ul>
+          {/* Política de Educación Continua UC; antes estaba en Admisión (Sara, 19-11). */}
+          <a href={PAGOS.href} class="cgc-d-enlace" target="_blank" rel="noopener">{PAGOS.texto} →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+        </div>
       </div>
     </div>
   </section>

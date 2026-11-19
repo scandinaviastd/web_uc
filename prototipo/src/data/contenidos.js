@@ -49,16 +49,63 @@ export const newsletters = [
   { fecha: '30 - Abr - 2026', titulo: 'La IA y nuevas exigencias de productividad', imagen: '/img/newsletters/2026-04-ia-productividad.jpg', href: NEWSLETTER_URL },
 ];
 
-// Columnas (Clara, 18-11): tres llegaron como imagen del recorte (se abren en una pestaña nueva) y tres ya están en el
-// sitio actual. Resuelve P1-18: la columna enlaza a su fuente; no se publica completa en el sitio.
+// Prensa (Sara, 19-11: «no me mata el formato en que se abren estos artículos, se ve medio copy paste»): cada pieza
+// tiene su página en el sitio (/extension/prensa/<slug>/) con el formato de la ficha. Columnas de académicos y
+// directores del Centro: texto completo, transcrito del recorte que mandó Clara (18-11) o del sitio actual. Entrevistas
+// y artículos de terceros: extracto y referencia al medio (el texto es del medio). Datos corregidos con el recorte y
+// el sitio actual (19-11): «Fallo de la Suprema» es de Alejandra Wood; «Disclosure no es gobernanza», de Roberto
+// Guerrero en El Mercurio (30-01); «Gestión de tecnologIA» salió en el Diario Financiero; «Lo bueno, lo malo y lo
+// feo…» es un artículo de El Mercurio (02-05) con Marta del Sante; «Directores ante el nuevo gobierno», una
+// entrevista a Luis Hernán Paúl en el DF (19-03). Medio de «Fallo de la Suprema»: por confirmar con el Centro.
 export const prensa = [
-  { fecha: '28 - Abr - 2026', titulo: 'Las AFP ejerciendo su poder: qué observar', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero', href: '/img/columnas/las-afp-ejerciendo-su-poder.jpg' },
-  { fecha: '24 - Abr - 2026', titulo: 'Gestión de tecnologIA: la prueba del directorio', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Mercurio', href: '/img/columnas/gestion-de-tecnologia.jpg' },
-  { fecha: '10 - Abr - 2026', titulo: 'Fallo de la Suprema: nuevo estándar para interlocking', autor: 'Roberto Guerrero', autorFiltro: 'Roberto Guerrero', cargo: 'Director CGC UC', medio: 'La Tercera', href: '/img/columnas/fallo-de-la-suprema-interlocking.jpg' },
-  { fecha: '27 - Mar - 2026', titulo: 'Disclosure no es gobernanza', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero', href: `${SITIO_ACTUAL}/informes-y-opinion/opinion/729-disclosure-no-es-gobernanza` },
-  { fecha: '12 - Mar - 2026', titulo: 'Lo bueno, lo malo y lo feo de las juntas de accionistas 2026', autor: 'Matías Zegers', autorFiltro: 'Matías Zegers', cargo: 'Presidente CGC UC', medio: 'El Mercurio', href: `${SITIO_ACTUAL}/noticias/765-lo-bueno-lo-malo-y-lo-feo-de-las-juntas-de-accionistas-2026` },
-  { fecha: '26 - Feb - 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'El Líbero', href: `${SITIO_ACTUAL}/noticias/747-directores-ante-el-nuevo-gobierno-desafios-y-oportunidades` },
-];
+  { slug: 'lo-bueno-lo-malo-y-lo-feo-de-las-juntas-2026', tipo: 'Artículo', fecha: '02 - May - 2026', fechaLarga: '2 de mayo de 2026', titulo: 'Lo bueno, lo malo y lo feo de las juntas de accionistas 2026', autor: 'Marta del Sante', autorFiltro: 'Marta del Sante', cargo: 'Directora CGC UC', medio: 'El Mercurio',
+    extracto: ['Cinco expertos en gobierno corporativo analizaron en El Mercurio el balance de las juntas de accionistas 2026: mujeres, independientes, minoritarios y otros temas bajo la lupa. Entre ellos, Marta del Sante, directora del Centro de Gobierno Corporativo UC, junto a Magdalena Aninat (UAI), Alfredo Enrione (Universidad de los Andes), Fadua Guajardo (IdDC) y Guillermo Rebolledo (FEN, Universidad de Chile).'] },
+  { slug: 'las-afp-ejerciendo-su-poder', tipo: 'Columna', fecha: '28 - Abr - 2026', fechaLarga: '28 de abril de 2026', titulo: 'Las AFP ejerciendo su poder: qué observar', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'Diario Financiero',
+    parrafos: [
+      'Durante años, las juntas de accionistas en Chile tuvieron un equilibrio implícito: los controladores decidían y los inversionistas institucionales acompañaban ese proceso. Ese equilibrio muestra señales de cambio. El ciclo 2026 está confirmando algo distinto: las AFP ya no solo están acompañando, sino también incidiendo. Y lo están haciendo de manera cada vez más profesional, coordinada y estratégica.',
+      'Los datos lo ilustran.',
+      'A febrero de este año, las AFP mantenían participaciones relevantes en varias de las principales compañías abiertas: 10,08% en Banco Santander Chile, 19,32% en Parque Arauco, 20,52% en Latam Airlines y 26,8% en SMU. En Falabella, aun con una participación menor –6,62%– lograron instalar a Carolina Schmidt como directora independiente en la última junta. No se trata solo del tamaño de sus participaciones, sino de la forma en que están ejerciendo su rol.',
+      'Las AFP están operando con mayor coordinación y con una oferta más estructurada de candidatos. Este proceso no es completamente nuevo, pero sí muestra mayor consistencia: hay un avance en la identificación de perfiles y en la construcción de propuestas de gobierno corporativo que llegan a las juntas con trabajo previo.',
+      'Y eso ya se ve en resultados concretos.',
+      'En Parque Arauco, la junta del 15 de abril renovó su directorio para el período 2026–2029, eligiendo a Pilar Lamana y Silvio Rostagno como directores independientes postulados por las AFP. El proceso se desarrolló sin sorpresas, con nueve candidatos para nueve cupos –señal de un diseño previo que logró materializarse en la votación.',
+      'En SMU, la dinámica se intensificó. Las AFP no solo mantuvieron a sus dos directores, sino que además sumaron uno nuevo, ampliando su representación, en línea con su participación accionaria del 26,8%.',
+      'En el caso de Latam Airlines, con una participación cercana al 20%, las AFP nominaron a Marcos Büchi y Felipe Cerón como candidatos a dos asientos en el directorio y ambos fueron confirmados. En Banco Santander Chile, confirmaron a Juan Benavides Feliú como candidato independiente de cara a la junta del 28 de abril. Y en Concha y Toro, no solo se mantuvo la representación, sino que además, se sumó como directora independiente Sandra Porcile, exdirectora de Ripley, nominada por las AFP.',
+      'Son señales de una dinámica que, más allá de un caso puntual, configura un patrón de mayor planificación, continuidad y coordinación en su participación en los directorios.',
+      'Ahora bien, mayor incidencia no es equivalente a mejor gobierno corporativo. La calidad de un directorio no se mide solo por su composición, sino que también por su capacidad de ejercer un rol efectivo: cuestionar estrategias, evaluar decisiones de inversión y acompañar –cuando corresponde– ajustes relevantes en la conducción de la empresa.',
+      'Las AFP tienen una ventaja estructural real: representan ahorro de largo plazo. Eso debiera alinearlas con decisiones que privilegien valor sostenido por sobre resultados tácticos. Pero esa promesa solo se materializa si los directores que promueven tienen la independencia real –y la capacidad– para ejercer ese rol. De lo contrario, el riesgo es otro: pasar de directorios dominados por controladores a esquemas más fragmentados, donde el poder se distribuye, pero la dirección estratégica se diluye.',
+      'La discusión de fondo ya se desplazó. No se trata solo de quién ocupa un asiento en la mesa, sino de cómo ese asiento contribuye a mejorar la calidad de las decisiones que allí se toman.',
+    ] },
+  { slug: 'gestion-de-tecnologia-la-prueba-del-directorio', tipo: 'Columna', fecha: '24 - Abr - 2026', fechaLarga: '24 de abril de 2026', titulo: 'Gestión de tecnologIA: la prueba del directorio', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'Diario Financiero', url: 'https://www.df.cl/gestion-de-tecnologia-la-prueba-del-directorio',
+    // El recorte que llegó está cortado al inicio: va el destacado de la columna y el enlace al DF.
+    extracto: ['«La supervisión de la transformación tecnológica y sus riesgos es parte del deber fiduciario del directorio. Eso implica exigir métricas de retorno y definir con claridad dónde recae la responsabilidad en los equipos ejecutivos».', 'En todas las empresas el rol del directorio es el mismo: no operar la tecnología, pero sí gobernar su impacto estratégico.'] },
+  { slug: 'fallo-de-la-suprema-nuevo-estandar-para-interlocking', tipo: 'Columna', fecha: '10 - Abr - 2026', fechaLarga: '10 de abril de 2026', titulo: 'Fallo de la Suprema: nuevo estándar para interlocking', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'La Tercera',
+    parrafos: [
+      'La reciente sentencia de la Corte Suprema sobre interlocking fija un precedente relevante para el gobierno corporativo en Chile. Más que un cierre, es una clarificación.',
+      'No se trata solo de una discusión jurídica. El fallo redefine cómo deben entender los directorios los límites de su participación en distintos mercados y estructuras empresariales. El fallo establece dos precisiones centrales.',
+      'Primero, la prohibición del artículo 3 inciso segundo letra d) del DL 211 –la regla per se– se aplica únicamente a personas naturales. Es decir, al director o ejecutivo relevante que participa simultáneamente en empresas competidoras entre sí. No a las empresas en que dichos directores o ejecutivos fueron designados, ni tampoco a quienes los eligieron.',
+      'Segundo, la restricción opera respecto de empresas que compiten directamente en el mismo mercado relevante. No aplica a las demás sociedades del mismo grupo empresarial, ni siquiera a sus matrices. No basta con que existan filiales que compitan si las matrices donde se desempeña el director no lo hacen. La Corte descarta extender automáticamente la noción de «empresa competidora» al grupo completo mediante la teoría de la unidad económica.',
+      'Esta distinción es sustantiva.',
+      'La regla per se es una norma de peligro que presume el riesgo competitivo y aligera la carga probatoria. Por ello –subraya la Corte– debe aplicarse de manera estricta y conforme a su tenor literal. Extenderla más allá de lo previsto por el legislador vulneraría el principio de legalidad.',
+      'Al mismo tiempo, el fallo deja abierta una puerta relevante: determinadas situaciones podrían analizarse bajo la norma general del inciso primero, si se acreditan efectos o riesgos anticompetitivos concretos. El estándar probatorio cambia, pero el deber de cautela permanece.',
+      '¿Qué implica esto para los directorios? El mensaje es doble: por un lado, la participación simultánea en empresas que compiten directamente sigue estando prohibida bajo la regla per se, si se cumplen los umbrales legales. Por otro lado, las estructuras de grupo no eliminan el riesgo regulatorio si existen dinámicas competitivas reales que puedan generar intercambio de información sensible o coordinación.',
+      'El desafío, por tanto, no es solo formal, sino sustantivo.',
+      'En un entorno donde la sofisticación de los grupos empresariales convive con mercados interconectados, los directorios deben reforzar sus análisis de mercado relevante, sus políticas de manejo de información y sus procesos de evaluación de conflictos.',
+      'La sentencia reafirma un principio fundamental del derecho sancionatorio: las normas per se deben aplicarse con estricto apego a su literalidad. Pero también recuerda que la libre competencia no se agota en esa regla específica. La calidad del gobierno corporativo se juega precisamente en esa frontera: entender no solo lo que está formalmente prohibido, sino también aquello que, aun siendo jurídicamente posible, puede tensionar la integridad competitiva del mercado.',
+      'El precedente está fijado. Ahora corresponde a los directorios internalizarlo con responsabilidad estratégica.',
+    ] },
+  { slug: 'directores-ante-el-nuevo-gobierno', tipo: 'Entrevista', fecha: '19 - Mar - 2026', fechaLarga: '19 de marzo de 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'Diario Financiero',
+    extracto: ['«El desafío de los directorios es aprovechar las oportunidades que deberían generarse con el nuevo Gobierno».', 'En entrevista con el Diario Financiero, Luis Hernán Paúl, director del Centro de Gobierno Corporativo UC, analizó cómo las mesas directivas están volviendo a mirar proyectos, aunque condicionan sus decisiones a certezas en permisología y a la agenda económica de la nueva administración.'] },
+  { slug: 'disclosure-no-es-gobernanza', tipo: 'Columna', fecha: '30 - Ene - 2026', fechaLarga: '30 de enero de 2026', titulo: 'Disclosure no es gobernanza', autor: 'Roberto Guerrero', autorFiltro: 'Roberto Guerrero', cargo: 'Director CGC UC', medio: 'El Mercurio',
+    parrafos: [
+      'Cada cierto tiempo, el debate sobre gobierno corporativo se simplifica peligrosamente. Ante una crisis, un anuncio sensible o un hecho con impacto público, reaparece la misma defensa: «se cumplió la norma». Como si eso, por sí solo, bastara.',
+      'El reciente caso de Los Andes Copper volvió a instalar esa discusión. La empresa informó la salida de su CEO anticipando su incorporación al gabinete entrante. El nombramiento finalmente no se concretó y el episodio generó efectos de mercado, ruido institucional y lecturas contrapuestas. Para algunos, el análisis termina ahí: si la información era relevante y la regulación exigía divulgarla, el directorio actuó correctamente.',
+      'El problema es que el buen gobierno corporativo no se agota en el cumplimiento formal de normas de disclosure. Ese es el piso, no el techo. La gobernanza exige algo más complejo: juicio, criterio y gestión integral del riesgo.',
+      'Un directorio responsable no solo debe preguntarse si puede comunicar un hecho, sino también qué tan cierto es, cuán consumado está, qué riesgos abre y si el contexto institucional lo vuelve prudente o prematuro. No es lo mismo informar un hecho irrevocable que una decisión aún contingente, dependiente de terceros o sujeta a confirmaciones políticas.',
+      'Confundir disclosure con buena gobernanza empobrece el análisis y puede resultar costoso. La materialidad no es binaria. El riesgo reputacional también es fiduciario. Y los efectos estratégicos de un anuncio mal calibrado no se corrigen simplemente diciendo que «la norma se cumplió».',
+      'Este caso deja aprendizajes relevantes para cualquier directorio expuesto a mercados y opinión pública. Primero, no todo lo relevante es inmediatamente divulgable: la certeza y el contexto importan tanto como la información misma. Segundo, el riesgo reputacional forma parte de las responsabilidades fiduciarias del directorio; su gestión incide directamente en el valor, la confianza y la sostenibilidad de la empresa. Tercero, los anuncios vinculados a personas clave requieren protocolos tan rigurosos como los de una operación relevante.',
+      'Las crisis no siempre avisan. En entornos de alta visibilidad, los directorios están llamados a ejercer algo más exigente que el cumplimiento: buen juicio estratégico. Y eso, a veces, implica saber cuándo hablar… y cuándo todavía no.',
+    ] },
+].map((o) => ({ ...o, href: `/extension/prensa/${o.slug}/` }));
 
 // Resúmenes de actividades (antes «Diálogo», en Informes y Opinión del sitio actual): van en Prensa (26-10).
 // El PDF se descarga del sitio actual hasta que el Centro lo suba al panel de WordPress.
@@ -238,7 +285,10 @@ export const fechaEvento = (iso) => {
 const slugDe = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const HOY = new Date().toISOString().slice(0, 10);
-export const eventos = eventosBase.map((e) => {
+// Eventos por invitación (privados): no se publican como próximos, ni en el calendario ni en las listas; aparecen
+// cuando ya se realizaron, con su resumen (Sara, 19-11: «no lo pondría en el calendario como algo que podría ir
+// la persona común»).
+export const eventos = eventosBase.filter((e) => !(e.porInvitacion && (e.fecha ?? '9999') >= HOY)).map((e) => {
   const anio = (e.fecha ?? e.mes ?? HOY).slice(0, 4);
   const slug = e.slug ?? `${slugDe(e.titulo)}${e.titulo.includes(anio) ? '' : `-${anio}`}`;
   return {
@@ -327,10 +377,24 @@ export const estudios = [
   { anio: '2013', titulo: 'Informe CGC UC: resultados de la NCG 341', portada: true, pdf: '25-informe-cgcuc-resultados-ncg-341' },
 ].map((d) => ({ ...d, href: `${PDF_INFORME}${d.pdf}/file` }));
 
+// Reseñas aprobadas por los directores (Sara, 02-11; P1-11), en tres bloques fijos. Se abren en una ventana desde
+// cada retrato (Sara, 19-11: «acá faltaría la reseña de los directores»; diseño en UC_CGC, «Ventana de reseña» 539:68).
+// Textos tal cual; solo se agregó el punto final que le faltaba a la de Teresita María Tagle.
+const RESENAS = {
+  'Matías Zegers': ['Abogado por la Pontificia Universidad Católica de Chile (UC). Master of Laws (LL.M.) The University of Michigan Law School. Visiting Scholar, Stanford University.', 'Profesor Asociado de la Facultad de Derecho UC (donde fue director del Departamento de Derecho Económico, Comercial y Tributario) y fundador y presidente del Centro de Gobierno Corporativo UC. Miembro del Consejo Asesor del Centro de Estudios de Gobierno Corporativo de la Universidad de los Andes (Colombia).', 'Miembro del Corporate Governance Roundtable de la OCDE, del COSOC de la CMF y autor de diversos libros, capítulos de libros y publicaciones en materia de sociedades y gobierno corporativo. Socio de CEPD.'],
+  'Álvaro Bustos': ['Ingeniero Civil Industrial y Magíster en Economía (Universidad de Chile); Master of Laws (LL.M.) (Northwestern University) y Ph.D. en Economía (Princeton University, EE. UU.).', 'Director de la Escuela de Administración UC; Profesor Asociado UC en Estrategia, Law & Economics, Regulación y Profesor Visitante en Northwestern (2006-2011) en Estrategia y Finanzas Corporativas.', 'Consultor en temas de Regulación y Estrategias; Fundador de LAWLE.'],
+  'Roberto Guerrero': ['Abogado por la Pontificia Universidad Católica de Chile (UC) y Master of Laws (LL.M.) por la Universidad de New York (NYU).', 'Profesor Titular y exdecano de la Facultad de Derecho UC.', 'Socio del estudio jurídico Cuatrecasas y director de diversas empresas.'],
+  'Enrique Alcalde': ['Abogado, Magíster en Ciencia Jurídica y Doctor en Derecho por la Pontificia Universidad Católica de Chile (UC).', 'Profesor Titular de Derecho Privado y Director del Centro de Gobierno Corporativo UC.', 'Socio de Marinovic & Alcalde y abogado integrante de la Excma. Corte Suprema (2021-2024). Árbitro del CAM Santiago y miembro de la Asociación Latinoamericana de Arbitraje.'],
+  'Marta del Sante': ['Ingeniero Comercial por la Pontificia Universidad Católica de Chile (UC) y Magíster en Finanzas de la misma casa de estudios.', 'Profesora de Contabilidad y Finanzas en Ingeniería Comercial UC, MBA UC y otros programas.', 'Ejecutiva con más de 15 años de experiencia en análisis financiero y consultoría estratégica. Especializada en la resolución de disputas complejas, valorizaciones de alto impacto y participación en directorios de empresas.'],
+  'Luis Hernán Paúl': ['Ingeniero Civil por la Pontificia Universidad Católica de Chile (UC) y Magíster en Administración de Empresas (MBA) por el Massachusetts Institute of Technology (MIT).', 'Académico del Centro de Gobierno Corporativo UC.', 'Socio de Paul y Cía Ltda. Presidente del Directorio de Khipu, Director de Empresas SB, Las Vertientes (Family Office), Broota y Cliperty. Ha sido director de empresas como Parque Arauco, Aguas Andinas, CGE, Banco Edwards, AFP Capital, Hoteles Explora y Camanchaca.'],
+  'Eduardo Walker': ['Ingeniero Comercial por la Pontificia Universidad Católica de Chile (UC) y Ph.D. en Finanzas por la University of California, Berkeley (EE. UU.).', 'Profesor Titular de la Escuela de Administración UC. Sus áreas de especialización e investigación incluyen inversiones, sistemas de pensiones, gobierno corporativo y finanzas sostenibles.', 'Director de LarrainVial Asset Management, donde integra los comités de Gobierno Corporativo y de Gestión de Riesgos, y es presidente del directorio de LAB Energía S.A. Ha integrado el Comité Asesor Financiero del Ministerio de Hacienda y el Consejo Técnico de Inversiones de la Superintendencia de Pensiones. Ha realizado consultorías para empresas, gobiernos y organismos internacionales.'],
+  'Teresita María Tagle': ['Abogada por la Pontificia Universidad Católica de Chile (UC) y Magíster en Derecho Laboral por la UCH de Santiago.', 'Profesora de Derecho del Trabajo y Vicedecana de la Facultad de Derecho UC.', 'Especialista en derecho corporativo, reorganizaciones empresariales y gobiernos corporativos.'],
+};
+export const BLOQUES_RESENA = ['Profesión y casa de estudios', 'Mundo académico', 'Desempeño profesional'];
 export const directorio = [
   ['Matías Zegers', 'Presidente del Directorio'], ['Álvaro Bustos', 'Director'], ['Roberto Guerrero', 'Director'], ['Enrique Alcalde', 'Director'],
   ['Marta del Sante', 'Directora'], ['Luis Hernán Paúl', 'Director'], ['Eduardo Walker', 'Director'], ['Teresita María Tagle', 'Directora'],
-].map(([nombre, cargo]) => ({ nombre, cargo }));
+].map(([nombre, cargo]) => ({ nombre, cargo, resena: RESENAS[nombre] }));
 
 // Equipo ejecutivo (26-10): Josefina Tocornal deja el Centro a fin de mes; su reemplazo aún no se define.
 export const equipo = [

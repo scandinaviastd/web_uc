@@ -1,0 +1,49 @@
+---
+// Página de cada pieza de Prensa (Sara, 19-11: antes la columna se abría como imagen suelta o en el sitio actual,
+// «se ve medio copy paste»). Columnas del Centro: texto completo. Entrevistas y artículos: extracto y referencia al
+// medio. En WordPress: single del CPT «prensa» con los mismos campos.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import Barra from '../../../components/v5/Barra.astro';
+import { prensa, fotoDe, inicialesDe } from '../../../data/contenidos.js';
+export function getStaticPaths() {
+  return prensa.map((o) => ({ params: { slug: o.slug }, props: { o } }));
+}
+const { o } = Astro.props;
+const foto = fotoDe(o.autor);
+const publicada = { Columna: 'Columna publicada', Entrevista: 'Entrevista publicada', Artículo: 'Artículo publicado' }[o.tipo] ?? 'Publicado';
+const texto = o.parrafos ?? o.extracto ?? [];
+const otras = prensa.filter((x) => x.slug !== o.slug).slice(0, 2);
+---
+<Base title={o.titulo} seccion="extension" descripcion={`${o.tipo} de ${o.autor} en ${o.medio}, ${o.fechaLarga}.`}>
+  <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Prensa', href: '/extension/prensa/' }, { label: o.titulo }]} />
+  <article class="container cgc-pieza-prensa" aria-labelledby="pieza-titulo">
+    <p class="cgc-d-ante cgc-d-texto-marca mb-16">{o.tipo} · {o.medio} · {o.fechaLarga}</p>
+    <h1 id="pieza-titulo" class="cgc-pieza-prensa_titulo">{o.titulo}</h1>
+    <div class="cgc-pieza-prensa_autor">
+      {foto
+        ? <img src={foto} alt="" class="cgc-pieza-prensa_foto" width="64" height="64" />
+        : <span class="avatar avatar--circle cgc-avatar-sm" aria-hidden="true"><span class="avatar--initials">{inicialesDe(o.autor)}</span></span>}
+      <p class="mb-0"><strong>{o.autor}</strong><br /><span class="cgc-d-texto-sec">{o.cargo}</span></p>
+    </div>
+    <Barra />
+    <div class:list={['cgc-pieza-prensa_cuerpo', { 'is-extracto': !o.parrafos }]}>
+      {texto.map((t: string) => <p>{t}</p>)}
+    </div>
+    <p class="cgc-pieza-prensa_fuente">{publicada} en {o.medio} el {o.fechaLarga}.</p>
+    <div class="cgc-pieza-prensa_acciones">
+      {o.url && <a href={o.url} class="cgc-d-enlace" target="_blank" rel="noopener">Leer en {o.medio} →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>}
+      <a href="/extension/prensa/" class="cgc-d-enlace">Ver toda la prensa →</a>
+    </div>
+  </article>
+  {otras.length > 0 && (
+    <section class="cgc-d-suave cgc-pieza-prensa_mas" aria-labelledby="mas-prensa">
+      <div class="container">
+        <h2 id="mas-prensa" class="h3 mb-24">Más prensa</h2>
+        <ul class="cgc-pieza-prensa_lista">
+          {otras.map((x) => <li><p class="cgc-d-ante cgc-d-texto-sec mb-4">{x.tipo} · {x.medio} · {x.fechaLarga}</p><a href={x.href} class="h5">{x.titulo}</a><p class="cgc-d-texto-sec mb-0">{x.autor}</p></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>

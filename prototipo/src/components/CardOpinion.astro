@@ -1,11 +1,11 @@
 ---
 // Card/Opinión (Prensa) — foto redonda del autor (avatar del Kit) + fecha + título + autor.
 import { fotoDe, inicialesDe } from '../data/contenidos.js';
-interface Props { fecha: string; titulo: string; autor: string; cargo?: string; autorFiltro?: string; href?: string; medio?: string }
-const { fecha, titulo, autor, cargo, autorFiltro, href = '#', medio } = Astro.props;
+interface Props { fecha: string; titulo: string; autor: string; cargo?: string; autorFiltro?: string; href?: string; medio?: string; tipo?: string }
+const { fecha, titulo, autor, cargo, autorFiltro, href = '#', medio, tipo } = Astro.props;
 const foto = fotoDe(autor);
-// La columna enlaza a su fuente (imagen del recorte o sitio actual) y se abre en una pestaña nueva (P1-18, 18-11).
-const nueva = href !== '#';
+// Cada pieza tiene su página en el sitio (Sara, 19-11); solo un enlace externo se abriría en otra pestaña.
+const nueva = /^https?:/.test(href);
 ---
 <article class="uc-card card-height--same cgc-card cgc-card-opinion" data-autor={autorFiltro ?? autor}>
   <div class="uc-card_body flex-row align-items-start">
@@ -13,7 +13,7 @@ const nueva = href !== '#';
       ? <div class="avatar avatar--bg avatar--circle cgc-avatar-sm mr-20"><img src={foto} alt={`Foto de ${autor}`} loading="lazy" width="72" height="72" /></div>
       : <div class="avatar avatar--circle cgc-avatar-sm mr-20" role="img" aria-label={`${autor} (foto pendiente)`}><span class="avatar--initials">{inicialesDe(autor)}</span></div>}
     <div>
-      <p class="text-size--sm text-color--gray mb-4">{medio ? `${medio} · ${fecha}` : fecha}</p>
+      <p class="text-size--sm text-color--gray mb-4">{[tipo, medio, fecha].filter(Boolean).join(' · ')}</p>
       <h3 class="h5 mb-8"><a href={href} class="cgc-card-link" data-pendiente={href === '#' ? 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' : undefined} target={nueva ? '_blank' : undefined} rel={nueva ? 'noopener' : undefined}>{titulo}{nueva && <span class="uc-sr-only"> (abre en una pestaña nueva)</span>}</a></h3>
       <p class="text-size--sm mb-0 cgc-autor"><strong>{autor}</strong>{cargo && <span class="text-color--gray"> · {cargo}</span>}</p>
     </div>

@@ -10,7 +10,8 @@ export const portada = {
   antetitulo: 'Servicios',
   titular: { claro: 'Asesoría y formación', enfasis: ['a la medida de', 'tu directorio'] },
   bajada: 'Diseñamos programas exclusivos para el directorio y la Alta Dirección de una empresa u organización, de acuerdo con sus intereses o necesidades específicas.',
-  cta: { label: 'Hablemos', href: '/formacion/mas-informacion/?programa=in-company' },
+  cta: { label: 'Más información', // Sara, 19-11 (antes «Hablemos»)
+    href: '/formacion/mas-informacion/?programa=in-company' },
   whatsapp: { label: 'Escríbenos por WhatsApp', href: whatsapp.url() },
   foto: { src: '/img/v5/servicios/panel-debate.jpg', alt: 'Panel de conversación en un debate organizado por el Centro, frente al público' },
   cifra: { cifra: '+500', etiqueta: 'personas en actividades con líderes empresariales' },

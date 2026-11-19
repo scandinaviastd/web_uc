@@ -25,7 +25,7 @@ const { seccion } = Astro.props;
                       <li class="dropdown_item--heading light"><a href={h.href} class="uc-btn">{h.label}</a></li>
                     ))}
                     <div class="dropdown_item--footer">
-                      <a href={item.href} class="uc-btn">Clic para ir a {item.label} <i class="uc-icon uc-icon--arrow-forward ml-4"></i></a>
+                      <a href={item.irA ?? item.href} class="uc-btn">Clic para ir a {item.label} <i class="uc-icon uc-icon--arrow-forward ml-4"></i></a>
                     </div>
                   </ul>
                 </li>

@@ -9,7 +9,9 @@ import { programas } from './programas.js';
 export const cifraPortada = { cifra: '+45', etiqueta: 'académicos UC y líderes empresariales en las aulas', etiquetaMovil: 'académicos UC y líderes empresariales' };
 export const cifrasCentro = [
   // Programas abiertos 2027 (Sara, 05-11: «son 4»; el brochure 2026 decía 10). Sale de programas.js, sin In Company.
-  { cifra: String(programas.length + 1), etiqueta: 'programas para la Alta Dirección' } /* los abiertos más In Company (la Ale, 06-11) */,
+  // Consenso de Sara (19-11): son 4 programas abiertos (un diplomado y tres cursos). La Ale había pedido 5, contando
+  // In Company (06-11); In Company sigue en la sección, aparte, como programa para empresas.
+  { cifra: String(programas.length), etiqueta: 'programas abiertos para la Alta Dirección' },
   { cifra: '+45', etiqueta: 'académicos UC y líderes empresariales' },
   { cifra: '+200', etiqueta: 'personas en la Jornada Anual de Gobierno Corporativo', etiquetaMovil: 'personas en la Jornada Anual' },
   { cifra: '+350', etiqueta: 'personas en los webinars con AFP Cuprum' },
@@ -54,10 +56,12 @@ const deEvento = (buscar) => {
   };
 };
 export const eventosHome = [
-  deEvento((e) => e.fecha === '2026-12-02'),
+  // El desayuno del 2 de diciembre es por invitación: no se muestra como próximo (Sara, 19-11).
+  deEvento((e) => e.orden >= HOY && !e.porInvitacion),
   deEvento((e) => e.fecha === '2026-11-03'),
+  deEvento((e) => e.fecha === '2026-09-09'),
   deEvento((e) => e.fecha === '2026-05-06'),
-].filter(Boolean);
+].filter(Boolean).slice(0, 3);
 
 // Fotos reales del banco de Full Funnel (28-10). Licencia y autorización de imagen: por confirmar con Clara.
 export const fotos = {

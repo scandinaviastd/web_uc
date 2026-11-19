@@ -2,14 +2,14 @@
 // En WordPress: campos de la página Nosotros.
 
 export const quienesSomos = [
-  'Somos un centro inter-facultades de la Pontificia Universidad Católica de Chile, creado en 2012 por la Facultad de Derecho y la Escuela de Administración UC, con la misión de ser un referente en gobierno corporativo en Chile y Latinoamérica.',
+  'Somos un centro interfacultades de la Pontificia Universidad Católica de Chile, creado en 2012 por la Facultad de Derecho y la Escuela de Administración de la Facultad de Economía y Administración UC, con la misión de ser un referente en gobierno corporativo en Chile y Latinoamérica.',
   'A través de la formación, la extensión y la investigación, y en colaboración con organismos públicos y privados, generamos conocimiento, buenas prácticas y propuestas de política pública que aportan a la creación de valor y a una mejor toma de decisiones en empresas y organizaciones, en conformidad con los principios de la UC.',
 ];
 
 export const origen = {
   sigla: 'UC',
-  fuentes: ['Facultad de Derecho', 'Escuela de Administración'],
-  centroAnte: 'Centro inter-facultades · desde 2012',
+  fuentes: ['Facultad de Derecho', 'Escuela de Administración de la Facultad de Economía y Administración'], // Sara, 19-11
+  centroAnte: 'Centro interfacultades · desde 2012',
   centro: 'Centro de Gobierno Corporativo UC',
 };
 

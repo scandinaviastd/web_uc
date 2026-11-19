@@ -24,7 +24,7 @@ const fin = (iso: string) => `${dia(iso)} ${mes(iso)}`;
       <h1 id="v5fo-titulo" class="cgc-d-display-l v5fo-titular">{portada.titular.claro}<br /><strong>{portada.titular.enfasis}</strong></h1>
       <p class="p-size--lg cgc-d-texto-sec v5fo-bajada">{portada.bajada}</p>
 
-      <div class="row v5fo-puertas">
+      <div class="row v5fo-puertas" id="programas">
         {puertas.map((pu) => (
           <div class="col-lg-6">
             <article class="v5fo-puerta" data-fondo={pu.fondo}>

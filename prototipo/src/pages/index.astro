@@ -30,9 +30,10 @@ const actualidad = [
 ].sort((a, b) => fechaDe(b.fecha) - fechaDe(a.fecha));
 const fechaCorta = (f) => f.split(' - ').map((s, i) => (i === 1 ? s.toLowerCase() : s)).join(' ');
 const secciones = [
-  { n: '01', label: 'Formación', href: '#formacion' },
-  { n: '02', label: 'Investigación', href: '#investigacion' },
-  { n: '03', label: 'Extensión', href: '#extension' },
+  // Los cuatro llevan a su página (Sara, 19-11: antes tres bajaban en la home y Servicios saltaba a su página).
+  { n: '01', label: 'Formación', href: '/formacion/' },
+  { n: '02', label: 'Investigación', href: '/investigacion/' },
+  { n: '03', label: 'Extensión', href: '/extension/' },
   { n: '04', label: 'Servicios', href: '/servicios/' },
 ];
 ---
@@ -95,6 +96,8 @@ const secciones = [
         <p class="v5h-bajada mb-0">Un diplomado y tres cursos abiertos para 2027, además de programas In Company a la medida de cada directorio.</p>
       </header>
 
+      {/* División de programas abiertos y para empresas (Sara, 19-11: «en todos lados haría la división»). */}
+      <h3 class="cgc-d-ante cgc-d-texto-marca v5h-grupo">Programas abiertos</h3>
       {diplomado && (
         <>
           <div class="d-none d-md-block">
@@ -120,6 +123,7 @@ const secciones = [
       </div>
 
       <!-- In Company: horizontal a todo el ancho como el diplomado (V-09); texto del Centro (V-02, 26-10) -->
+      <h3 class="cgc-d-ante cgc-d-texto-marca v5h-grupo">Programas para empresas</h3>
       <TarjetaPrograma horizontal titulo={inCompany.titulo} tipo={inCompany.tipo} meta="In Company · Programa a medida" href="/formacion/in-company/" descripcion="Diseñamos el programa según los desafíos de tu empresa." whatsapp={whatsapp.url(inCompany.whatsappTema)} />
 
       <div class="v5h-cierre">
@@ -185,9 +189,11 @@ const secciones = [
           {actualidad.map((a) => (
             <article class="v5h-pieza">
               <div class="v5h-pieza_meta"><Etiqueta texto={a.tipo} estilo="contorno" /><span class="v5h-pieza_fecha">{fechaCorta(a.fecha)}</span></div>
-              <h4 class="v5h-pieza_titulo">{a.href
-                ? <a href={a.href} target="_blank" rel="noopener">{a.titulo}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
-                : <a href="#" data-pendiente={a.pendiente}>{a.titulo}</a>}</h4>
+              <h4 class="v5h-pieza_titulo">{!a.href
+                ? <a href="#" data-pendiente={a.pendiente}>{a.titulo}</a>
+                : /^https?:/.test(a.href)
+                  ? <a href={a.href} target="_blank" rel="noopener">{a.titulo}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+                  : <a href={a.href}>{a.titulo}</a>}</h4>
               {a.firma && <p class="v5h-pieza_firma mb-0">{a.firma}</p>}
             </article>
           ))}

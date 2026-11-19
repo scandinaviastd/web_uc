@@ -146,3 +146,19 @@
   .v5-nos-cuerpo { line-height: 26px; letter-spacing: .1px; }
   .v5-nos-portada_foto { height: 260px; }
 }
+
+/* Reseñas del directorio (Sara, 19-11): la tarjeta entera abre la ventana; «Ver reseña →» queda visible. */
+.v5-nos-directorio_item { position: relative; }
+.v5-nos-resena_btn { background: none; border: 0; padding: 0; margin-top: 8px; cursor: pointer; font: inherit; }
+.v5-nos-resena_btn::after { content: ""; position: absolute; inset: 0; }
+.v5-nos-directorio_item:hover .cgc-d-retrato_nombre { text-decoration: underline; }
+.cgc-resena_contenido { max-width: 1040px; padding: 48px; }
+.cgc-resena_grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 48px; align-items: start; }
+.cgc-resena_retrato figcaption { display: none; }
+.cgc-resena_bloque { padding: 20px 0; border-top: 1px solid var(--cgc-borde, #e5e5e5); }
+.cgc-resena_bloque h3 { margin: 0 0 8px; }
+@media (max-width: 767.98px) {
+  .cgc-resena .cgc-modal_content.cgc-resena_contenido { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; border-radius: 0; padding: 56px 16px 32px; }
+  .cgc-resena_grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .cgc-resena_retrato { max-width: 160px; }
+}

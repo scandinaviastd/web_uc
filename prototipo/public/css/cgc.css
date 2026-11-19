@@ -309,3 +309,20 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
   .cgc-ic-portada { padding-bottom: 48px; }
   .cgc-ic-portada .cgc-ic-datos { margin: 32px 0 24px; gap: 20px 16px; }
 }
+
+/* ---------- Página de Prensa (Sara, 19-11): columna, entrevista o artículo con el formato del sitio ---------- */
+.cgc-pieza-prensa { max-width: 824px; padding-top: 24px; padding-bottom: 80px; }
+.cgc-pieza-prensa_titulo { font-size: 2.5rem; line-height: 1.15; font-weight: 700; margin: 0 0 32px; }
+.cgc-pieza-prensa_autor { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.cgc-pieza-prensa_foto { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: var(--cgc-superficie-retrato, #c9e0fa); }
+.cgc-pieza-prensa_cuerpo { margin-top: 40px; }
+.cgc-pieza-prensa_cuerpo p { font-size: 1.125rem; line-height: 1.75; margin: 0 0 24px; }
+.cgc-pieza-prensa_cuerpo.is-extracto p:first-child { font-size: 1.375rem; line-height: 1.5; }
+.cgc-pieza-prensa_fuente { font-size: .875rem; color: var(--cgc-texto-secundario, #666); margin: 16px 0 24px; }
+.cgc-pieza-prensa_acciones { display: flex; flex-wrap: wrap; gap: 24px; }
+.cgc-pieza-prensa_mas { padding: 60px 0 80px; }
+.cgc-pieza-prensa_lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+@media (max-width: 767.98px) {
+  .cgc-pieza-prensa_titulo { font-size: 1.875rem; }
+  .cgc-pieza-prensa_lista { grid-template-columns: minmax(0, 1fr); }
+}

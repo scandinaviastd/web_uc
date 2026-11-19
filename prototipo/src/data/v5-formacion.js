@@ -57,9 +57,10 @@ const tIzq = enAnio(`${ANIO}-${String(mIni).padStart(2, '0')}-01`);
 export const temporada = { izq: tIzq, ancho: Math.round((enAnio(finDeMes(mFin)) - tIzq) * 100) / 100, desde: MES[mIni - 1], hasta: MES[mFin - 1] };
 
 // ---------- Comparador ----------
-const durac = (p) => (!p.versiones.length ? 'Por confirmar' : [...new Set(p.versiones.map(semanas))].map((n) => `${n} semanas`).join(' / '));
-const iniciosDe = (p) => (!p.versiones.length ? 'Por confirmar' : p.versiones.map((v) => corta(v.inicio)).join(' y '));
-const dias = (p) => (!p.versiones.length ? 'Por confirmar' : [...new Set(p.versiones.map((v) => v.dia))].join(' o '));
+// Solo la próxima versión de cada programa (Sara, 19-11): las dos versiones de Formando se ven en la línea del año.
+const durac = (p) => (!p.proxima ? 'Por confirmar' : `${semanas(p.proxima)} semanas`);
+const iniciosDe = (p) => (!p.proxima ? 'Por confirmar' : corta(p.proxima.inicio));
+const dias = (p) => (!p.proxima ? 'Por confirmar' : p.proxima.dia);
 export const comparar = {
   programas: ordenados.map((p) => ({ titulo: p.titulo, tipo: p.tipo, href: href(p) })),
   filas: [
@@ -102,9 +103,11 @@ export const puertas = [
 export const portadaAbiertos = {
   antetitulo: 'Programas abiertos',
   titular: { claro: 'Diplomado y cursos 2027', enfasis: 'para directores y ejecutivos' },
-  bajada: `${resumenOferta[0].toUpperCase()}${resumenOferta.slice(1)} del Centro, todos en modalidad híbrida. Mira el año completo, compáralos y elige el tuyo.`,
+  // Consenso de Sara (19-11): son 4 programas, un diplomado y tres cursos, con Formando en dos versiones.
+  bajada: `${resumenOferta[0].toUpperCase()}${resumenOferta.slice(1)} del Centro (Formando nuevos directores, en dos versiones), todos en modalidad híbrida. Mira el año completo, compáralos y elige el tuyo.`,
   foto: { src: '/img/v5/ficha/diplomado-clase.jpg', alt: 'Profesor explicando frente a la pizarra en una clase del Diplomado' },
-  cifra: { cifra: String(inicios.length), etiqueta: 'inicios con fecha en el Calendario Académico 2027' },
+  // Cifra: los 4 programas (Sara, 19-11: «aparecen varios números distintos a lo largo de la página»).
+  cifra: { cifra: String(ordenados.length), etiqueta: 'programas abiertos en el Calendario Académico 2027' },
 };
 
 // Banda «¿Tienes dudas?»: solo el WhatsApp del Centro (Sara, 05-11), sin correo ni teléfono.

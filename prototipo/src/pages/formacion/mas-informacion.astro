@@ -33,8 +33,11 @@ const opciones = [...programas, inCompany];
           </div>
           <div class="uc-form-group"><label for="f-consulta">Consulta (opcional)</label><textarea id="f-consulta" class="uc-input-style cgc-textarea" rows="5" placeholder="¿Qué te gustaría saber del programa?"></textarea></div>
           <BloquePrivacidad id="f" finalidad="que me contacte el Centro UC Gobierno Corporativo sobre el programa que elegí" acepto="que me contacten" />
+          {/* Tipo de solicitud: viaja con el correo a Sara. Desde «Quiero que me avisen» (?aviso=1) es «Aviso de
+               postulación», para que sepa a quién escribirle cuando se abra la postulación (Sara, 19-11). */}
+          <input type="hidden" name="tipo" value="Más información" data-tipo-solicitud />
           <button type="submit" class="uc-btn btn-secondary cgc-btn-auto mt-16">Enviar solicitud</button>
-          <div class="uc-alert success mt-16 cgc-hidden" data-form-ok><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8">Recibimos tu solicitud. La coordinación te contactará (demo).</span></div></div>
+          <div class="uc-alert success mt-16 cgc-hidden" data-form-ok><div class="uc-alert_content"><i class="uc-icon icon-size--sm">check_circle</i><span class="p p-size--sm bold ml-8" data-form-ok-texto>Recibimos tu solicitud. La coordinación te contactará.</span></div></div>
         </form>
       </div>
       <aside class="col-lg-4">

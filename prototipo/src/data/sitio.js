@@ -2,7 +2,7 @@
 
 // Contacto del Centro y WhatsApp. Un solo campo cada uno: footer, fichas, In Company, formularios y equipo los
 // referencian desde acá. Los formularios (Más información y brochure) llegan al correo de Sara (P1-19, 26-10).
-export const sara = { nombre: 'Sara Marambio', cargo: 'Coordinadora de Gestión y Formación', correo: 's.marambio.bunster@uc.cl' };
+export const sara = { nombre: 'Sara Marambio', cargo: 'Coordinadora de Formación y Gestión', correo: 's.marambio.bunster@uc.cl' };
 
 const WHATSAPP = '56954183811';
 export const whatsapp = {
@@ -37,7 +37,8 @@ export const menu = [
   { id: 'inicio', label: 'Inicio', href: '/' },
   { id: 'nosotros', label: 'Nosotros', href: '/nosotros/' },
   {
-    id: 'formacion', label: 'Formación', href: '/formacion/',
+    // «Clic para ir a Formación» baja directo a Programas abiertos y para empresas (Sara, 19-11).
+    id: 'formacion', label: 'Formación', href: '/formacion/', irA: '/formacion/#programas',
     hijos: [
       // Un ítem por grupo, cada uno a su página (Sara y Mateo, 03-11): nada de anclas dentro de Formación.
       { label: 'Programas abiertos', href: '/formacion/programas-abiertos/' },

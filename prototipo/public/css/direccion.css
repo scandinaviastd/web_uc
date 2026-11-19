@@ -149,7 +149,10 @@
 /* ---------- Cita ---------- */
 .cgc-d-cita-bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 40px 40px; margin: 0; color: var(--cgc-texto-principal); }
 .cgc-d-cita-bloque_comilla { font-family: "Roboto Slab", serif; font-weight: 700; font-size: 160px; line-height: 120px; height: 120px; overflow: visible; color: var(--cgc-texto-marca); user-select: none; }
-.cgc-d-cita-bloque_firma { display: flex; align-items: center; gap: 16px; width: 100%; }
+/* Texto centrado entre la comilla y la firma (Sara y Mateo, 19-11): el texto sube hacia la comilla y la firma baja;
+   así quedan unos 50 px visibles arriba y abajo (antes 104 y 26). La comilla no se mueve. */
+.cgc-d-cita-bloque_comilla { margin-bottom: -54px; }
+.cgc-d-cita-bloque_firma { display: flex; align-items: center; gap: 16px; width: 100%; margin-top: 24px; }
 .cgc-d-cita-bloque_foto { width: 64px; height: 64px; flex-shrink: 0; background: var(--cgc-superficie-retrato); object-fit: cover; }
 .cgc-d-cita-bloque_datos { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .cgc-d-cita-bloque_nombre { font-size: 16px; line-height: 24px; font-weight: 700; letter-spacing: .25px; font-style: normal; }
