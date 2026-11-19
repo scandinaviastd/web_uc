@@ -15,6 +15,7 @@ import Colaboradores from '../components/Colaboradores.astro';
 import { programas, getPrograma, inCompany } from '../data/programas.js';
 import { noticias, prensa } from '../data/contenidos.js';
 import { whatsapp } from '../data/sitio.js';
+import ModalEstudio from '../components/ModalEstudio.astro';
 import { cifraPortada, cifrasCentro, descripcionDiplomado, ordenCursos, citaPortada, cifrasEstudio, eventosHome, fotos } from '../data/v5-home.js';
 
 const diplomado = programas.find((p) => p.tipo === 'Diplomado');
@@ -159,8 +160,8 @@ const secciones = [
       </div>
       <div class="v5h-cierre">
         <Barra indice={2} />
-        <!-- Destino pendiente: formulario de descarga del estudio (por definir con el Centro) -->
-        <a href="/investigacion/estudios/" class="cgc-d-enlace v5h-enlace-largo" data-pendiente="El formulario para recibir el estudio completo está por definir con el Centro.">Déjanos tus datos y recibe el estudio completo →</a>
+        <!-- Abre el formulario y, enviados los datos, se descarga el PDF (estudio completo: Clara, 19-11) -->
+        <button type="button" class="cgc-d-enlace v5h-enlace-largo v5h-enlace-boton" data-mtarget="modalEstudio">Déjanos tus datos y recibe el estudio completo →</button>
       </div>
     </div>
   </section>
@@ -208,4 +209,5 @@ const secciones = [
   </section>
 
   <Colaboradores />
+  <ModalEstudio />
 </Base>

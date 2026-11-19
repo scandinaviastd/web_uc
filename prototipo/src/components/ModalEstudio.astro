@@ -1,0 +1,19 @@
+---
+// Estudio «Mapa académico»: formulario antes de la descarga, como el brochure (ModalDescarga). Lo abren el enlace
+// de la home («Déjanos tus datos y recibe el estudio completo») y su tarjeta en Estudios. PDF: Clara, 19-11.
+import ModalDescarga from './ModalDescarga.astro';
+import { estudioMapa } from '../data/contenidos.js';
+---
+<ModalDescarga
+  modal={estudioMapa.modal}
+  id="estudio"
+  prefijo="e"
+  titulo="Descarga el estudio"
+  subtitulo={estudioMapa.titulo}
+  documento="el estudio"
+  campo={['estudio', 'mapa-academico-2026']}
+  archivo={estudioMapa.archivo}
+  boton="Descargar estudio"
+  finalidad="enviarme el estudio y para que me contacte el Centro UC Gobierno Corporativo"
+  acepto="recibir el estudio y que me contacten"
+/>

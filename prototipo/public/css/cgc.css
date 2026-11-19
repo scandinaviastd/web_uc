@@ -73,6 +73,8 @@
 .cgc-chip:focus-visible { outline: 2px solid var(--cgc-azul); outline-offset: 2px; }
 [data-item].is-oculto, [data-item].is-otra-pagina { display: none !important; }
 .uc-pagination[hidden] { display: none; }
+/* Formularios con descarga (brochure, estudio): enviados los datos, el botón de envío se oculta (.cgc-btn-auto lleva display !important) */
+.cgc-form [data-form-enviar][hidden] { display: none !important; }
 .uc-pagination button:disabled { opacity: .4; cursor: default; }
 
 /* ---------- Nosotros: barra de anclas sticky ---------- */

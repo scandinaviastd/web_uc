@@ -56,7 +56,7 @@ export const newsletters = [
 // el sitio actual (19-11): «Fallo de la Suprema» es de Alejandra Wood; «Disclosure no es gobernanza», de Roberto
 // Guerrero en El Mercurio (30-01); «Gestión de tecnologIA» salió en el Diario Financiero; «Lo bueno, lo malo y lo
 // feo…» es un artículo de El Mercurio (02-05) con Marta del Sante; «Directores ante el nuevo gobierno», una
-// entrevista a Luis Hernán Paúl en el DF (19-03). Medio de «Fallo de la Suprema»: por confirmar con el Centro.
+// entrevista a Luis Hernán Paúl en el DF (19-03). «Fallo de la Suprema» salió en La Tercera el 4 de marzo (Clara, 19-11).
 export const prensa = [
   { slug: 'lo-bueno-lo-malo-y-lo-feo-de-las-juntas-2026', tipo: 'Artículo', fecha: '02 - May - 2026', fechaLarga: '2 de mayo de 2026', titulo: 'Lo bueno, lo malo y lo feo de las juntas de accionistas 2026', autor: 'Marta del Sante', autorFiltro: 'Marta del Sante', cargo: 'Directora CGC UC', medio: 'El Mercurio',
     extracto: ['Cinco expertos en gobierno corporativo analizaron en El Mercurio el balance de las juntas de accionistas 2026: mujeres, independientes, minoritarios y otros temas bajo la lupa. Entre ellos, Marta del Sante, directora del Centro de Gobierno Corporativo UC, junto a Magdalena Aninat (UAI), Alfredo Enrione (Universidad de los Andes), Fadua Guajardo (IdDC) y Guillermo Rebolledo (FEN, Universidad de Chile).'] },
@@ -78,7 +78,9 @@ export const prensa = [
   { slug: 'gestion-de-tecnologia-la-prueba-del-directorio', tipo: 'Columna', fecha: '24 - Abr - 2026', fechaLarga: '24 de abril de 2026', titulo: 'Gestión de tecnologIA: la prueba del directorio', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'Diario Financiero', url: 'https://www.df.cl/gestion-de-tecnologia-la-prueba-del-directorio',
     // El recorte que llegó está cortado al inicio: va el destacado de la columna y el enlace al DF.
     extracto: ['«La supervisión de la transformación tecnológica y sus riesgos es parte del deber fiduciario del directorio. Eso implica exigir métricas de retorno y definir con claridad dónde recae la responsabilidad en los equipos ejecutivos».', 'En todas las empresas el rol del directorio es el mismo: no operar la tecnología, pero sí gobernar su impacto estratégico.'] },
-  { slug: 'fallo-de-la-suprema-nuevo-estandar-para-interlocking', tipo: 'Columna', fecha: '10 - Abr - 2026', fechaLarga: '10 de abril de 2026', titulo: 'Fallo de la Suprema: nuevo estándar para interlocking', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'La Tercera',
+  { slug: 'directores-ante-el-nuevo-gobierno', tipo: 'Entrevista', fecha: '19 - Mar - 2026', fechaLarga: '19 de marzo de 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'Diario Financiero',
+    extracto: ['«El desafío de los directorios es aprovechar las oportunidades que deberían generarse con el nuevo Gobierno».', 'En entrevista con el Diario Financiero, Luis Hernán Paúl, director del Centro de Gobierno Corporativo UC, analizó cómo las mesas directivas están volviendo a mirar proyectos, aunque condicionan sus decisiones a certezas en permisología y a la agenda económica de la nueva administración.'] },
+  { slug: 'fallo-de-la-suprema-nuevo-estandar-para-interlocking', tipo: 'Columna', fecha: '04 - Mar - 2026', fechaLarga: '4 de marzo de 2026', titulo: 'Fallo de la Suprema: nuevo estándar para interlocking', autor: 'Alejandra Wood Huidobro', autorFiltro: 'Alejandra Wood', cargo: 'Directora Ejecutiva CGC UC', medio: 'La Tercera',
     parrafos: [
       'La reciente sentencia de la Corte Suprema sobre interlocking fija un precedente relevante para el gobierno corporativo en Chile. Más que un cierre, es una clarificación.',
       'No se trata solo de una discusión jurídica. El fallo redefine cómo deben entender los directorios los límites de su participación en distintos mercados y estructuras empresariales. El fallo establece dos precisiones centrales.',
@@ -93,8 +95,6 @@ export const prensa = [
       'La sentencia reafirma un principio fundamental del derecho sancionatorio: las normas per se deben aplicarse con estricto apego a su literalidad. Pero también recuerda que la libre competencia no se agota en esa regla específica. La calidad del gobierno corporativo se juega precisamente en esa frontera: entender no solo lo que está formalmente prohibido, sino también aquello que, aun siendo jurídicamente posible, puede tensionar la integridad competitiva del mercado.',
       'El precedente está fijado. Ahora corresponde a los directorios internalizarlo con responsabilidad estratégica.',
     ] },
-  { slug: 'directores-ante-el-nuevo-gobierno', tipo: 'Entrevista', fecha: '19 - Mar - 2026', fechaLarga: '19 de marzo de 2026', titulo: 'Directores ante el nuevo gobierno: desafíos y oportunidades', autor: 'Luis Hernán Paúl', autorFiltro: 'Luis Hernán Paúl', cargo: 'Director CGC UC', medio: 'Diario Financiero',
-    extracto: ['«El desafío de los directorios es aprovechar las oportunidades que deberían generarse con el nuevo Gobierno».', 'En entrevista con el Diario Financiero, Luis Hernán Paúl, director del Centro de Gobierno Corporativo UC, analizó cómo las mesas directivas están volviendo a mirar proyectos, aunque condicionan sus decisiones a certezas en permisología y a la agenda económica de la nueva administración.'] },
   { slug: 'disclosure-no-es-gobernanza', tipo: 'Columna', fecha: '30 - Ene - 2026', fechaLarga: '30 de enero de 2026', titulo: 'Disclosure no es gobernanza', autor: 'Roberto Guerrero', autorFiltro: 'Roberto Guerrero', cargo: 'Director CGC UC', medio: 'El Mercurio',
     parrafos: [
       'Cada cierto tiempo, el debate sobre gobierno corporativo se simplifica peligrosamente. Ante una crisis, un anuncio sensible o un hecho con impacto público, reaparece la misma defensa: «se cumplió la norma». Como si eso, por sí solo, bastara.',
@@ -363,7 +363,17 @@ export const articulos = [
 // Los 11 informes del sitio actual (P1-15, 26-10). Card: portada + título + descargar, autor "CGC UC" (minuta §4).
 // Portada: imagen real de cada PDF en el marco 32:17; «true» = portada genérica mientras no se monta la real.
 const PDF_INFORME = 'https://centrogobiernocorporativo.uc.cl/informes-y-opinion/informes/';
+// Estudio «Mapa académico» (agosto 2026): PDF completo que mandó Clara (19-11). Es el de las cifras de la home y se
+// entrega después de dejar los datos (home: «Déjanos tus datos y recibe el estudio completo»), en Estudios también.
+export const estudioMapa = {
+  anio: '2026',
+  titulo: 'Mapa académico CGC UC: dónde se forman los directores de Chile',
+  portada: '/img/estudios/mapa-academico-directores-2026.jpg',
+  archivo: '/docs/mapa-academico-cgc-uc-directores-de-chile-2026.pdf',
+  modal: 'modalEstudio',
+};
 export const estudios = [
+  { ...estudioMapa, href: estudioMapa.archivo },
   { anio: '2026', titulo: 'Análisis Juntas de Accionistas IPSA 2026', portada: '/img/estudios/juntas-accionistas-ipsa-2026.jpg', pdf: '141-analisis-juntas-de-accionistas-ipsa-2026' },
   { anio: '2025', titulo: 'Informe CEOs y Directorio en Chile frente a la incertidumbre', portada: '/img/estudios/ceos-directorio-chile.jpg', pdf: '125-informe-ceos-y-directorio-en-chile' },
   { anio: '2024', titulo: 'Gobierno Corporativo y estrategias de inversión de impacto: Barrio 31, Buenos Aires', portada: '/img/estudios/barrio-31-buenos-aires.jpg', pdf: '111-gobierno-corporativo-y-estrategias-de-inversion-de-impacto-un-analisis-de-su-contribucion-al-desarrollo-sostenible-del-barrio-31-en-buenos-aires-argentina' },
@@ -375,7 +385,7 @@ export const estudios = [
   { anio: '2015', titulo: 'Comentarios CGC UC a la revisión de los Principios de Gobierno Corporativo de la OCDE', portada: true, pdf: '29-comentarios-cgcuc-review-to-the-oecd-principles-cg' },
   { anio: undefined, titulo: 'Gobierno Corporativo en Latinoamérica', portada: true, pdf: '27-gobierno-corporativo-en-latinoamerica' },
   { anio: '2013', titulo: 'Informe CGC UC: resultados de la NCG 341', portada: true, pdf: '25-informe-cgcuc-resultados-ncg-341' },
-].map((d) => ({ ...d, href: `${PDF_INFORME}${d.pdf}/file` }));
+].map((d) => ({ ...d, href: d.href ?? `${PDF_INFORME}${d.pdf}/file` }));
 
 // Reseñas aprobadas por los directores (Sara, 02-11; P1-11), en tres bloques fijos. Se abren en una ventana desde
 // cada retrato (Sara, 19-11: «acá faltaría la reseña de los directores»; diseño en UC_CGC, «Ventana de reseña» 539:68).

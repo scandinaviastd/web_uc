@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import CardDocumento from '../../components/CardDocumento.astro';
+import ModalEstudio from '../../components/ModalEstudio.astro';
 import Pagination from '../../components/Pagination.astro';
 import { estudios } from '../../data/contenidos.js';
 import { chipsAnio } from '../../data/filtros.js';
@@ -28,8 +29,9 @@ const { chips, valorDe } = chipsAnio(estudios, 4);
     <p class="text-size--sm text-color--gray mb-24" data-contador="estudios" data-total={estudios.length}>{estudios.length} estudios</p>
     <h2 class="uc-sr-only">Estudios publicados</h2>
     <div class="row" data-paginar="3">
-      {estudios.map((e, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={valorDe(e.anio)} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} anio={e.anio} autores="CGC UC" portada={e.portada} href={e.href} /></div>)}
+      {estudios.map((e, i) => <div class:list={['col-md-6 col-lg-4 mb-32', { 'is-otra-pagina': i >= 3 }]} data-item data-anio={valorDe(e.anio)} data-texto={e.titulo.toLowerCase()}><CardDocumento titulo={e.titulo} anio={e.anio} autores="CGC UC" portada={e.portada} href={e.href} modal={e.modal} /></div>)}
     </div>
     <Pagination total={estudios.length} porPagina={3} />
   </div>
+  <ModalEstudio />
 </Base>

@@ -83,6 +83,8 @@
 .v5h-estudio { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px; }
 .v5h-estudio .cgc-d-cifra-bloque { flex: 0 0 280px; }
 .v5h-enlace-largo { white-space: normal; }
+/* El enlace del estudio abre un modal: botón con aspecto de enlace (como «Descargar brochure →» de la ficha) */
+.v5h-enlace-boton { background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; text-align: left; }
 
 /* ---------- 03 Extensión ---------- */
 .v5h-fotos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
