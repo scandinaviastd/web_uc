@@ -7,8 +7,10 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import BloquePrivacidad from '../../components/BloquePrivacidad.astro';
 import { programas, inCompany } from '../../data/programas.js';
+import { asesoria } from '../../data/v5-servicios.js';
 import { sitio, sara } from '../../data/sitio.js';
-const opciones = [...programas, inCompany];
+// Asesoría estratégica a directorios: la piden los botones de Servicios (Sara, 19-11).
+const opciones = [...programas, inCompany, asesoria];
 ---
 <Base title="Solicita más información" seccion="formacion">
   <Breadcrumb items={[{ label: 'Formación', href: '/formacion/' }, { label: 'Más información' }]} />
@@ -19,11 +21,11 @@ const opciones = [...programas, inCompany];
         <form class="cgc-form" data-form="mas-informacion" novalidate>
           <p class="text-size--sm text-color--gray">(*) Campos obligatorios necesarios para poder responder a tu consulta. Los demás son opcionales.</p>
           <div class="uc-form-group">
-            <label for="f-programa">Programa de interés *</label>
+            <label for="f-programa">Programa o servicio de interés *</label>
             <select id="f-programa" class="uc-input-style" required data-programa-select>
               {opciones.map((o) => <option value={o.slug}>{o.titulo}</option>)}
             </select>
-            <p class="text-size--sm text-color--gray mt-8 mb-0" data-programa-ayuda hidden>Viene seleccionado desde la ficha del programa; puedes cambiarlo.</p>
+            <p class="text-size--sm text-color--gray mt-8 mb-0" data-programa-ayuda hidden>Viene seleccionado desde la página anterior; puedes cambiarlo.</p>
           </div>
           <div class="row">
             <div class="col-md-6 uc-form-group"><label for="f-nombre">Nombre y apellido *</label><input id="f-nombre" type="text" class="uc-input-style" placeholder="Ej: María González" required /></div>

@@ -33,9 +33,19 @@
 .v5s-servicio_bloque[data-fondo="noche"] .v5s-servicio_n { color: var(--cgc-acento-cian); }
 .v5s-servicio_titulo { color: var(--cgc-blanco); margin: 0; }
 .v5s-servicio_cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; flex: 1 1 auto; padding: 32px; color: var(--cgc-texto-principal); }
-.v5s-servicio_cuerpo .cgc-d-enlace { margin-top: auto; }
+/* Barra y enlace al pie: con tres tarjetas de textos distintos, quedan alineados entre sí (19-11) */
+.v5s-servicio_cuerpo .cgc-d-barra { margin-top: auto; }
 /* cgc-d-enlace no corta línea (nowrap): entre 992 y 1199 «¿Qué logras como Empresa Socia? →» se salía de la tarjeta */
 .v5s-servicio .cgc-d-enlace { white-space: normal; }
+
+/* ---------- Nuestro enfoque (gris suave): misma lista numerada que los módulos de In Company (v5-ficha.css) ---------- */
+.v5s-enfoque { padding: 96px 0; }
+.v5s-enfoque .v5s-encabezado { margin-bottom: 0; }
+.v5s-enfoque_texto { max-width: 720px; color: var(--cgc-texto-secundario); }
+.v5s-enfoque_lista { list-style: none; margin: 48px 0 0; padding: 0; columns: 2; column-gap: 64px; }
+.v5s-enfoque_lista li { display: flex; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--cgc-borde-sutil); break-inside: avoid; }
+.v5s-enfoque_lista .cgc-d-indice { color: var(--cgc-texto-marca); flex-shrink: 0; min-width: 18px; }
+.v5s-enfoque_punto { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); }
 
 /* ---------- Banda · Empresas Socias (azul 2727) ---------- */
 .v5s-banda { padding: 80px 0; }
@@ -55,6 +65,7 @@
   .v5s-composicion_acento { top: -12px; right: 0; width: 32px; height: 32px; }
   .v5s-composicion_cifra { width: 240px; }
   .v5s-banda_fila { row-gap: 32px; }
+  .v5s-enfoque_lista { columns: 1; }
   .v5s-banda_accion { max-width: none; margin-left: 0; }
 }
 
@@ -65,4 +76,9 @@
   .v5s-servicio_bloque { gap: 32px; padding: 24px; }
   .v5s-servicio_cuerpo { padding: 24px; }
   .v5s-banda { padding: 56px 0; }
+  .v5s-enfoque { padding: 56px 0; }
+  .v5s-enfoque_lista { margin-top: 24px; }
+  .v5s-enfoque_lista li { align-items: flex-start; gap: 16px; padding: 16px 0; }
+  .v5s-enfoque_lista .cgc-d-indice { padding-top: 4px; }
+  .v5s-enfoque_punto { font-size: 16px; letter-spacing: .1px; }
 }
