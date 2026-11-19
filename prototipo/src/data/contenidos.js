@@ -99,8 +99,11 @@ const fotosDe = (carpeta, n, alt) => Array.from({ length: n }, (_, i) => ({ src:
 const eventosBase = [
   // Próximo. Clara: 2 de diciembre, «panelistas por definir». Era el «debate con BH Compliance de la primera semana
   // de diciembre» del calendario del Centro (P1-08, 26-10): Clara no tiene ese debate en el año.
-  // Clara, 18-11: es por invitación («Cupos no porque no es abierto»); la infografía no llegó.
-  { fecha: '2026-12-02', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Proyecciones 2027', slug: 'desayuno-proyecciones-2027', hora: 'Por confirmar', lugar: 'Por confirmar', socio: 'Forvis Mazars', porInvitacion: true, nota: 'Evento por invitación. Horario, lugar y panelistas por confirmar.' },
+  // Clara, 18-11: es por invitación («Cupos no porque no es abierto»).
+  // Invitación de Forvis Mazars (Clara, 18-11; Mateo la sacó del correo): el título es «Perspectivas 2027», no «Proyecciones».
+  { fecha: '2026-12-02', tipo: 'Desayuno', serie: DESAYUNOS, titulo: 'Perspectivas 2027: ¿estamos preparados para lo que viene?', slug: 'desayuno-perspectivas-2027', hora: '08:30', lugar: 'Club 50, Av. El Golf 50, Las Condes', socio: 'Forvis Mazars', porInvitacion: true, nota: 'Economía, tecnología y geopolítica: los riesgos que pondrán a prueba a las empresas. Evento por invitación.',
+    expositores: [['Joaquín Vial', 'Presentación · Profesor adjunto del Instituto de Economía UC'], ['Nicolás Figueroa', 'Profesor titular UC, cátedra de Economía e Inteligencia Artificial'], ['Nicole Jenne', 'Doctora y profesora asociada del Instituto de Ciencia Política UC'], ['Alejandra Wood', 'Moderadora · Directora ejecutiva del CGC UC']],
+    descripcion: 'Desayuno del Centro de Gobierno Corporativo UC y Forvis Mazars, con una presentación de Joaquín Vial, profesor adjunto del Instituto de Economía UC, y una conversación entre Nicolás Figueroa, profesor titular UC de la cátedra de Economía e Inteligencia Artificial, y Nicole Jenne, profesora asociada del Instituto de Ciencia Política UC, moderada por Alejandra Wood, directora ejecutiva del CGC UC.' },
   // Realizados 2026. Lo que mandó Clara el 18-11: webinars con enlace de YouTube y la gráfica de invitación (de la gráfica
   // salen título, expositores con cargo, horario y el texto del resumen); resúmenes de LinkedIn, del sitio actual y de
   // dos Word; fotos del banco de Full Funnel (28-10 y, DEBATE 3, MESA y JORNADA 2026, 18-11).

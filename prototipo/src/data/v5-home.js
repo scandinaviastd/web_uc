@@ -49,12 +49,13 @@ const deEvento = (buscar) => {
     dia: f ? f.dia.padStart(2, '0') : '—', mes: f ? f.mes : '', tipo: e.tipo, titulo: e.titulo,
     meta: [serie, f ? f.larga : e.fechaTexto].filter(Boolean).join(' · '),
     href: e.url, fechaLarga: e.fechaLarga, estado: realizado ? 'realizado' : 'proximo',
-    accion: realizado ? undefined : confirmado ? 'Inscribirme →' : 'Ver evento →',
+    // Por invitación (desayuno 2027): sin inscripción, el enlace lleva al evento.
+    accion: realizado ? undefined : confirmado && !e.porInvitacion ? 'Inscribirme →' : 'Ver evento →',
   };
 };
 export const eventosHome = [
   deEvento((e) => e.fecha === '2026-12-02'),
-  deEvento((e) => e.fecha === '2026-11-04'),
+  deEvento((e) => e.fecha === '2026-11-03'),
   deEvento((e) => e.fecha === '2026-05-06'),
 ].filter(Boolean);
 

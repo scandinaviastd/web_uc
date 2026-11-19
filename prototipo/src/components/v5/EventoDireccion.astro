@@ -22,7 +22,8 @@ const { e } = Astro.props;
 const HOY = new Date().toISOString().slice(0, 10);
 const proximo = e.orden >= HOY;
 const porConfirmar = (v?: string) => !v || /confirmar/i.test(v);
-const abierta = proximo && !!e.fecha && !porConfirmar(e.hora);
+// Por invitación no hay inscripción abierta aunque la fecha y la hora estén confirmadas.
+const abierta = proximo && !!e.fecha && !porConfirmar(e.hora) && !e.porInvitacion;
 
 // Fecha: del campo ISO; sin fecha exacta, el mes (si se sabe) o el texto del Centro.
 const MESES_CORTOS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
@@ -45,7 +46,7 @@ const datos = [
 // Titular: la serie arriba y el tema en negrita; sin serie, se parte en el primer «: ».
 const corte = e.titulo.indexOf(': ');
 const [linea1, linea2] = e.serie ? [e.serie, e.titulo] : corte > 0 ? [e.titulo.slice(0, corte + 1), e.titulo.slice(corte + 2)] : [null, e.titulo];
-const estado = proximo ? (abierta ? 'Próximo · inscripción abierta' : 'Próximo') : 'Realizado';
+const estado = proximo ? (e.porInvitacion ? 'Próximo · por invitación' : abierta ? 'Próximo · inscripción abierta' : 'Próximo') : 'Realizado';
 const foto = e.foto;
 // Expositores: [nombre] o [nombre, rol] (moderador, invitada especial).
 const expositores = (e.expositores ?? []).map((x: string | string[]) => (Array.isArray(x) ? x : [x]));
@@ -73,7 +74,7 @@ const fila = (x: any) => {
     meta: `${x.tipo} · ${fx ? fx.larga : (x.fechaTexto ?? 'fecha por confirmar').toLowerCase()}`,
     estado: x.orden < HOY ? 'realizado' : 'proximo',
     // Próximo sin fecha u horario confirmados: todavía no hay inscripción, el enlace lleva al evento.
-    accion: x.orden < HOY ? undefined : x.fecha && !porConfirmar(x.hora) ? 'Inscribirme →' : 'Ver evento →',
+    accion: x.orden < HOY ? undefined : x.fecha && !porConfirmar(x.hora) && !x.porInvitacion ? 'Inscribirme →' : 'Ver evento →',
   };
 };
 const mas = [eventosProximos.find((x) => x.id !== e.id), eventosRealizados.find((x) => x.id !== e.id)].filter(Boolean).map(fila);
@@ -81,7 +82,7 @@ const mas = [eventosProximos.find((x) => x.id !== e.id), eventosRealizados.find(
 const c = coordinacion;
 const [cNombre, cCargo] = c.persona.split(' · ');
 const webinar = e.tipo === 'Webinar';
-// Por invitación (Clara, 18-11, desayuno Proyecciones 2027): sin formulario de inscripción ni cupos.
+// Por invitación (Clara, 18-11, desayuno Perspectivas 2027): sin formulario de inscripción ni cupos.
 const invitacion = !!e.porInvitacion;
 // Webinar realizado: el registro es el video; no se piden fotos (Clara, 18-11: «no tengo fotos»).
 const pendientes = (proximo
