@@ -1,0 +1,43 @@
+---
+// Página de cada noticia propia del Centro (DED, Rommy 24-11: «me queda la duda de si existirá una página interior de
+// noticias»). Las noticias de otros medios o de LinkedIn siguen abriendo afuera, con el ícono de enlace externo; las
+// del Centro tienen su página aquí, con la misma composición que una pieza de Prensa (.cgc-pieza-prensa).
+// En WordPress: single.php de las entradas (noticias), con imagen destacada, fecha y cuerpo.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import Barra from '../../../components/v5/Barra.astro';
+import { noticias } from '../../../data/contenidos.js';
+export function getStaticPaths() {
+  return noticias.filter((n) => n.slug).map((n) => ({ params: { slug: n.slug }, props: { n } }));
+}
+const { n } = Astro.props;
+const otras = noticias.filter((x) => x.slug !== n.slug).slice(0, 2);
+const externo = (href: string) => /^https?:/.test(href);
+---
+<Base title={n.titulo} seccion="extension" descripcion={n.descripcion}>
+  <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Noticias', href: '/extension/#noticias' }, { label: n.titulo }]} />
+  <article class="container cgc-pieza-prensa" aria-labelledby="noticia-titulo">
+    <p class="cgc-d-ante cgc-d-texto-marca mb-16">Noticia · {n.fechaLarga}</p>
+    <h1 id="noticia-titulo" class="cgc-pieza-prensa_titulo">{n.titulo}</h1>
+    <Barra />
+    {n.imagen && <img src={n.imagen} alt="" class="cgc-noticia_imagen" width="800" height="450" />}
+    <div class="cgc-pieza-prensa_cuerpo">
+      {n.parrafos.map((t: string) => <p set:html={t} />)}
+    </div>
+    <div class="cgc-pieza-prensa_acciones">
+      <a href="/extension/#noticias" class="cgc-d-enlace">Ver todas las noticias →</a>
+    </div>
+  </article>
+  {otras.length > 0 && (
+    <section class="cgc-d-suave cgc-pieza-prensa_mas" aria-labelledby="mas-noticias">
+      <div class="container">
+        <h2 id="mas-noticias" class="h3 mb-24">Más noticias</h2>
+        <ul class="cgc-pieza-prensa_lista">
+          {otras.map((x) => <li><p class="cgc-d-ante cgc-d-texto-sec mb-4">Noticia · {x.fecha}</p>{externo(x.href)
+            ? <a href={x.href} class="h5" target="_blank" rel="noopener">{x.titulo}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+            : <a href={x.href} class="h5">{x.titulo}</a>}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>

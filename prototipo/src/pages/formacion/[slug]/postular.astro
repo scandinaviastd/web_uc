@@ -5,12 +5,13 @@ import Base from '../../../layouts/Base.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import { programas } from '../../../data/programas.js';
 import { whatsapp } from '../../../data/sitio.js';
+import { descripcionPostular } from '../../../data/descripciones.js';
 export function getStaticPaths() {
   return programas.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
 ---
-<Base title={`Postulación: ${p.titulo}`} seccion="formacion">
+<Base title={`Postulación: ${p.titulo}`} seccion="formacion" descripcion={descripcionPostular(p)}>
   <Breadcrumb items={[{ label: 'Formación', href: '/formacion/' }, { label: `Postulación · ${p.titulo}` }]} />
   <div class="container mb-80">
     <div class="row">

@@ -104,7 +104,7 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
               {parrafos(d.texto).map((t: string) => <p class="cgc-v5f-texto-sec mb-0">{t}</p>)}
               {d.lista && <ul class="cgc-v5f-lista">{d.lista.map((t: string) => <li>{t}</li>)}</ul>}
               {d.nota && <p class="cgc-v5f-nota mb-0">{d.nota}</p>}
-              {d.enlace && <a href={d.enlace.href} class="cgc-d-enlace" target="_blank" rel="noopener">{d.enlace.texto} →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>}
+              {d.enlace && <a href={d.enlace.href} class="cgc-d-enlace" target="_blank" rel="noopener">{d.enlace.texto}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>}
             </div>
           ))}
         </div>
@@ -116,7 +116,7 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
           {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
           <Barra />
           {/* Solo el WhatsApp del Centro, sin teléfono fijo (Sara, 05-11) */}
-          <a href={whatsapp.url(p.whatsappTema)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          <a href={whatsapp.url(p.whatsappTema)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div>
       </aside>
     </div>
@@ -188,7 +188,7 @@ const pct = (v: string) => v.replace(/\s*%$/, ' %');
             {condicionesDescuentos.map((t) => <li>{t}</li>)}
           </ul>
           {/* Política de Educación Continua UC; antes estaba en Admisión (Sara, 19-11). */}
-          <a href={PAGOS.href} class="cgc-d-enlace" target="_blank" rel="noopener">{PAGOS.texto} →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+          <a href={PAGOS.href} class="cgc-d-enlace" target="_blank" rel="noopener">{PAGOS.texto}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
         </div>
       </div>
     </div>

@@ -318,6 +318,8 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 .cgc-pieza-prensa_autor { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
 .cgc-pieza-prensa_foto { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: var(--cgc-superficie-retrato, #c9e0fa); }
 .cgc-pieza-prensa_cuerpo { margin-top: 40px; }
+/* Noticia propia del Centro (24-11): imagen destacada bajo la barra, a todo el ancho del texto */
+.cgc-noticia_imagen { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin-top: 32px; border-radius: var(--cgc-radio-kit, 4px); }
 .cgc-pieza-prensa_cuerpo p { font-size: 1.125rem; line-height: 1.75; margin: 0 0 24px; }
 .cgc-pieza-prensa_cuerpo.is-extracto p:first-child { font-size: 1.375rem; line-height: 1.5; }
 .cgc-pieza-prensa_fuente { font-size: .875rem; color: var(--cgc-texto-secundario, #666); margin: 16px 0 24px; }
@@ -327,4 +329,30 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 @media (max-width: 767.98px) {
   .cgc-pieza-prensa_titulo { font-size: 1.875rem; }
   .cgc-pieza-prensa_lista { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- Enlaces que salen del sitio (DED, Rommy 24-11) ----------
+ * «Cualquier contenido que se abre en otro sitio web debe ir con el ícono de enlace externo»: el ícono «launch» del Kit,
+ * el mismo que pone a.external en la barra UC. Va solo en los enlaces a otro dominio (en el prototipo, href que empieza
+ * con http; en WordPress, los que no son del dominio del Centro). Quedan fuera los que ya traen su ícono (.uc-icon), los
+ * que el Kit ya marca (.external o con el ícono justo antes, como en la franja de la UC del footer) y los títulos de
+ * tarjeta, cuyo CTA lleva el ícono (CardNoticia).
+ * El texto del ícono no se lee en voz alta (content con texto alternativo vacío; el anterior queda para navegadores viejos). */
+a[href^="http"]:not(.external):not(.cgc-card-link):not(:has(.uc-icon)):not(.uc-icon + a)::after {
+  content: "launch";
+  content: "launch" / "";
+  display: inline-block;
+  margin-left: .25em;
+  font-family: "Material Icons";
+  font-size: .875em;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+  vertical-align: -.125em;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
 }

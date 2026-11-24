@@ -52,7 +52,7 @@ const [cNombre, cCargo] = p.coordinacion.persona.split(' · ');
           <p class="cgc-v5f-contacto-nombre">{cNombre}</p>
           {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
           <Barra />
-          <a href={whatsapp.url(p.whatsappTema)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          <a href={whatsapp.url(p.whatsappTema)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </div>
       </aside>
     </div>

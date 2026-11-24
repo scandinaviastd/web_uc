@@ -3,6 +3,7 @@
 // «se ve medio copy paste»). Columnas del Centro: texto completo. Entrevistas y artículos: extracto y referencia al
 // medio. En WordPress: single del CPT «prensa» con los mismos campos.
 import Base from '../../../layouts/Base.astro';
+import { descripcionPrensa } from '../../../data/descripciones.js';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import Barra from '../../../components/v5/Barra.astro';
 import { prensa, fotoDe, inicialesDe } from '../../../data/contenidos.js';
@@ -15,7 +16,7 @@ const publicada = { Columna: 'Columna publicada', Entrevista: 'Entrevista public
 const texto = o.parrafos ?? o.extracto ?? [];
 const otras = prensa.filter((x) => x.slug !== o.slug).slice(0, 2);
 ---
-<Base title={o.titulo} seccion="extension" descripcion={`${o.tipo} de ${o.autor} en ${o.medio}, ${o.fechaLarga}.`}>
+<Base title={o.titulo} seccion="extension" descripcion={descripcionPrensa(o)}>
   <Breadcrumb items={[{ label: 'Extensión', href: '/extension/' }, { label: 'Prensa', href: '/extension/prensa/' }, { label: o.titulo }]} />
   <article class="container cgc-pieza-prensa" aria-labelledby="pieza-titulo">
     <p class="cgc-d-ante cgc-d-texto-marca mb-16">{o.tipo} · {o.medio} · {o.fechaLarga}</p>
@@ -32,7 +33,7 @@ const otras = prensa.filter((x) => x.slug !== o.slug).slice(0, 2);
     </div>
     <p class="cgc-pieza-prensa_fuente">{publicada} en {o.medio} el {o.fechaLarga}.</p>
     <div class="cgc-pieza-prensa_acciones">
-      {o.url && <a href={o.url} class="cgc-d-enlace" target="_blank" rel="noopener">Leer en {o.medio} →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>}
+      {o.url && <a href={o.url} class="cgc-d-enlace" target="_blank" rel="noopener">Leer en {o.medio}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>}
       <a href="/extension/prensa/" class="cgc-d-enlace">Ver toda la prensa →</a>
     </div>
   </article>

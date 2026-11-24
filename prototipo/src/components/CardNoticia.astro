@@ -5,7 +5,8 @@
 // bloque: en eventos sin foto real, el bloque de fecha (día y «mes año») en lugar de la imagen (regla del 26-10).
 interface Props { fecha: string; titulo: string; href?: string; cta?: string; tipo?: string; imagen?: string; bloque?: { dia: string; mesAnio: string }; meta?: { icono: string; texto: string }[]; pendiente?: string }
 const { fecha, titulo, href = '#', cta = 'Leer noticia', tipo, imagen, bloque, meta, pendiente = 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' } = Astro.props;
-// Enlace externo (LinkedIn, Diario Financiero, sitio actual): pestaña nueva y aviso para lectores de pantalla.
+// Enlace externo (LinkedIn, Diario Financiero): pestaña nueva, aviso para lectores de pantalla y, en el CTA, el ícono
+// «launch» del Kit en vez de la flecha (DED, Rommy 24-11: todo lo que abre otro sitio lleva el ícono de enlace externo).
 const externo = /^https?:/.test(href);
 ---
 <article class="uc-card card-height--same cgc-card" data-tipo={tipo}>
@@ -16,6 +17,6 @@ const externo = /^https?:/.test(href);
     <p class="text-size--sm text-color--gray mb-8">{tipo ? `${tipo} · ${fecha}` : fecha}</p>
     <h3 class="h5 cgc-clamp-3"><a href={href} class="cgc-card-link" data-pendiente={href === '#' ? pendiente : undefined} target={externo ? '_blank' : undefined} rel={externo ? 'noopener' : undefined}>{titulo}{externo && <span class="uc-sr-only"> (abre en una pestaña nueva)</span>}</a></h3>
     {meta && <ul class="cgc-meta mt-4">{meta.map((m) => <li><i class="uc-icon" aria-hidden="true">{m.icono}</i>{m.texto}</li>)}</ul>}
-    <div class="mt-auto pt-16"><span class="uc-btn btn-inline">{cta} <i class="uc-icon">keyboard_arrow_right</i></span></div>
+    <div class="mt-auto pt-16"><span class="uc-btn btn-inline">{cta} <i class="uc-icon" aria-hidden="true">{externo ? 'launch' : 'keyboard_arrow_right'}</i></span></div>
   </div>
 </article>

@@ -1,0 +1,7 @@
+# robots.txt del prototipo del Centro UC Gobierno Corporativo (pedido de la DED, 24-11).
+# El prototipo no debe aparecer en Google: cada página lleva <meta name="robots" content="noindex, nofollow">,
+# y para que Google lea esa etiqueta no se bloquea el rastreo aquí. En WordPress se quita el noindex.
+User-agent: *
+Allow: /
+
+Sitemap: https://prototipo-jade-sigma.vercel.app/sitemap.xml

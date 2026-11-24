@@ -4,6 +4,7 @@
 // Propuesta v5: + direccion.css (sub-design system «Dirección») y el slot «head» para el CSS de cada página v5.
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { DESCRIPCIONES, SITIO } from '../data/descripciones.js';
 
 interface Props {
   title: string;
@@ -11,18 +12,47 @@ interface Props {
   descripcion?: string;
   h1Oculto?: string;
 }
-const { title, seccion, descripcion = 'Centro UC Gobierno Corporativo — Pontificia Universidad Católica de Chile', h1Oculto } = Astro.props;
+const { title, seccion, descripcion, h1Oculto } = Astro.props;
+// Metadatos (DED, Rommy 24-11): la home se titula solo con el nombre del sitio; cada página tiene su descripción
+// (las principales, de src/data/descripciones.js), su URL canónica y Open Graph para compartir.
+const ruta = Astro.url.pathname;
+const titulo = ruta === '/' ? SITIO : `${title} · ${SITIO}`;
+const desc = DESCRIPCIONES[ruta] ?? descripcion ?? `${title}, ${SITIO}, Pontificia Universidad Católica de Chile.`;
+const canonica = new URL(ruta, Astro.site).href;
+const imagenOg = new URL('/img/og-cgc-uc.jpg', Astro.site).href;
+// Google Tag Manager de los Centros UC (DED, 24-11: «GTM-CENTROS-UC [GTM-W5PTGZM].zip»). Va justo después de
+// abrir <head> y, el noscript, justo después de abrir <body>, tal cual vienen en el zip (ID GTM-W5PTGZM).
+// No debe haber otro código de analítica.
 const KIT = 'https://kit-digital-uc-prod.s3.amazonaws.com/uc-kitdigital';
 const VER = '1.23.15-beta.1';
 ---
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W5PTGZM');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} · Centro UC Gobierno Corporativo</title>
-    <meta name="description" content={descripcion} />
+    <title>{titulo}</title>
+    <meta name="description" content={desc} />
+    <!-- Prototipo: fuera de Google. En WordPress se quita esta línea (robots.txt ya permite el rastreo). -->
     <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={canonica} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITIO} />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagenOg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href={`${KIT}/css/uc-kitdigital.css?ver=${VER}`} />
     <link rel="stylesheet" href="/css/kit-theme.css" />
@@ -33,6 +63,9 @@ const VER = '1.23.15-beta.1';
     <slot name="head" />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5PTGZM" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a href="#contenido" class="uc-sr-only">Saltar al contenido</a>
     <Header seccion={seccion} />
     <main id="contenido">

@@ -22,7 +22,7 @@ import { portada, ofrecemos, servicios, enfoque, banda } from '../../data/v5-ser
           <p class="p-size--lg v5s-portada_bajada mb-0">{portada.bajada}</p>
           <div class="v5s-acciones">
             <a href={portada.cta.href} class="uc-btn btn-cta cgc-btn-auto v5s-cta">{portada.cta.label}</a>
-            <a href={portada.whatsapp.href} class="cgc-d-enlace" target="_blank" rel="noopener">{portada.whatsapp.label} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+            <a href={portada.whatsapp.href} class="cgc-d-enlace" target="_blank" rel="noopener">{portada.whatsapp.label}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
           </div>
         </div>
         <div class="col-lg-6">
@@ -55,7 +55,7 @@ import { portada, ofrecemos, servicios, enfoque, banda } from '../../data/v5-ser
                 <p class="mb-0">{s.texto}</p>
                 <Barra />
                 {s.accion.externo
-                  ? <a href={s.accion.href} class="cgc-d-enlace" target="_blank" rel="noopener">{s.accion.label} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+                  ? <a href={s.accion.href} class="cgc-d-enlace" target="_blank" rel="noopener">{s.accion.label}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
                   : <a href={s.accion.href} class="cgc-d-enlace">{s.accion.label} →</a>}
               </div>
             </article>
@@ -90,7 +90,7 @@ import { portada, ofrecemos, servicios, enfoque, banda } from '../../data/v5-ser
         <div class="col-lg-4">
           <div class="v5s-banda_accion">
             <p class="p-size--lg mb-0">{banda.texto}</p>
-            <a href={banda.accion.href} class="cgc-d-enlace" target="_blank" rel="noopener">{banda.accion.label} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+            <a href={banda.accion.href} class="cgc-d-enlace" target="_blank" rel="noopener">{banda.accion.label}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
           </div>
         </div>
       </div>

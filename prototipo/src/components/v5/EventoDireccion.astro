@@ -112,7 +112,7 @@ const inscribirse = e.inscripcion
           <div class="cgc-v5f-acciones">
             {abierta && !invitacion && <a href="#inscripcion" class="uc-btn btn-cta cgc-btn-auto">Inscribirme</a>}
             {proximo
-              ? <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">Conversemos por WhatsApp →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+              ? <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">Conversemos por WhatsApp<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
               : <a href="/extension/#eventos" class="cgc-d-enlace">Ver todos los eventos →</a>}
             {ics && <a href={ics} download={`${e.id}.ics`} class="cgc-d-enlace">Agregar a mi calendario →</a>}
           </div>
@@ -175,7 +175,7 @@ const inscribirse = e.inscripcion
           <p class="cgc-v5f-contacto-nombre">{cNombre}</p>
           {cCargo && <p class="cgc-v5f-contacto-cargo">{cCargo}</p>}
           <Barra />
-          <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero} →<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
+          <a href={whatsapp.url(`evento «${e.titulo}»`)} class="cgc-d-enlace" target="_blank" rel="noopener">WhatsApp {whatsapp.numero}<span class="uc-sr-only"> (abre WhatsApp en una pestaña nueva)</span></a>
         </aside>
       </div>
     </div>
@@ -189,7 +189,7 @@ const inscribirse = e.inscripcion
       <div class="cgc-v5e-video_marco">
         <iframe src={`https://www.youtube-nocookie.com/embed/${e.youtube}`} title={`Video: ${e.titulo}`} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <a href={`https://www.youtube.com/watch?v=${e.youtube}`} class="cgc-d-enlace" target="_blank" rel="noopener">Ver en YouTube →<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
+      <a href={`https://www.youtube.com/watch?v=${e.youtube}`} class="cgc-d-enlace" target="_blank" rel="noopener">Ver en YouTube<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
     </div>
   </section>
 )}

@@ -20,15 +20,27 @@ export const inicialesDe = (nombre = '') => nombre.split(' ').filter(Boolean).sl
 // En WordPress cada bloque es un CPT (o posts con categoría) con estos mismos campos.
 // Noticias y Newsletters viven en Extensión (P1-02, 26-10); el Home muestra las últimas.
 
-// Enlaces (Clara, 18-11): LinkedIn y Diario Financiero; la noticia del Diplomado, del sitio actual (Clara: «esto es con
-// Sara»). El estudio lleva el título del artículo del DF. Los enlaces externos abren en una pestaña nueva.
-const SITIO_ACTUAL = 'https://centrogobiernocorporativo.uc.cl';
+// Enlaces (Clara, 18-11): LinkedIn y Diario Financiero, que abren en una pestaña nueva con el ícono de enlace externo.
+// La del Diplomado (Clara: «esto es con Sara») tiene su página en el sitio desde el 24-11. El estudio lleva el título
+// del artículo del DF.
 export const noticias = [
   { fecha: '17 - Jul - 2026', titulo: 'Forbes Chile participó del debate coorganizado por el CGC UC y BH Compliance', imagen: '/img/noticias/forbes-debate-bh-compliance.jpg', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7484960416608088064' },
   { fecha: '11 - Jun - 2026', titulo: 'Jornada Gobierno Corporativo 2026', imagen: '/img/noticias/jornada-gobierno-corporativo-2026.jpg', href: 'https://www.df.cl/mercados/bolsa-monedas/andres-trivelli-y-el-peso-de-los-controladores-de-empresas-no-es-algo' },
-  { fecha: '12 - May - 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026', imagen: '/img/noticias/bienvenida-diplomado-2026.jpg', href: `${SITIO_ACTUAL}/noticias/773-bienvenidos-al-diplomado-en-gobierno-corporativo-2026` },
+  // Noticia propia del Centro: tiene su página en el sitio (DED, Rommy 24-11: llevaba al sitio actual, que desaparece con
+  // la migración). Texto del sitio actual (noticia 773), con tres arreglos: «Matías», «a partir del curso 2» y «6 de
+  // julio de 2026»; «Aquí» lleva a la ficha del Diplomado. Los párrafos admiten enlaces (HTML del propio sitio).
+  { fecha: '12 - May - 2026', fechaLarga: '12 de mayo de 2026', titulo: 'Bienvenidos al Diplomado en Gobierno Corporativo 2026', imagen: '/img/noticias/bienvenida-diplomado-2026.jpg', slug: 'bienvenidos-al-diplomado-en-gobierno-corporativo-2026',
+    descripcion: 'Comenzó una nueva versión del Diplomado en Gobierno Corporativo del Centro UC, a cargo de Matías Zegers, jefe del programa.',
+    parrafos: [
+      'Este lunes comenzó una nueva versión del Diplomado en Gobierno Corporativo del Centro de Gobierno Corporativo UC, a cargo de Matías Zegers, jefe del programa.',
+      'Un espacio de formación y conversación para quienes hoy están enfrentando uno de los mayores desafíos de la Alta Dirección: tomar mejores decisiones en entornos cada vez más complejos, exigentes y expuestos.',
+      'Gracias a todos quienes son parte de esta nueva generación del diplomado y a los profesores y expertos que acompañarán este proceso.',
+      '<a href="/formacion/diplomado-gobierno-corporativo/">Aquí</a> encontrarás el detalle de contenidos, profesores y toda la información de este diplomado.',
+      'El programa se organiza en 4 cursos; si quieres inscribirte, puedes unirte a partir del curso 2, que comienza el 6 de julio de 2026.',
+      'Para más información, escríbenos a <a href="mailto:s.marambio.bunster@uc.cl">s.marambio.bunster@uc.cl</a>.',
+    ] },
   { fecha: '08 - May - 2026', titulo: 'Zoom a las juntas de accionistas 2026 de las empresas IPSA: representación femenina llega a 56 cargos', imagen: '/img/noticias/estudio-representacion-femenina-ipsa.jpg', href: 'https://www.df.cl/mercados/banca-fintech/zoom-a-las-juntas-de-accionistas-2026-de-las-empresas-ipsa-representacion' },
-];
+].map((n) => (n.slug ? { ...n, href: `/extension/noticias/${n.slug}/` } : n));
 
 // Newsletter «Alta Dirección CGC UC» en LinkedIn (Clara, 18-11: «subir todas las que falten»). Las ocho nuevas, con su
 // enlace y su portada; las tres que ya estaban no salen en la página pública del newsletter y enlazan a ella.

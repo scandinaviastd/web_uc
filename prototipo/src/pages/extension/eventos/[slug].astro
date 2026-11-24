@@ -4,12 +4,13 @@
 import Base from '../../../layouts/Base.astro';
 import EventoDireccion from '../../../components/v5/EventoDireccion.astro';
 import { eventos } from '../../../data/contenidos.js';
+import { descripcionEvento } from '../../../data/descripciones.js';
 export function getStaticPaths() {
   return eventos.map((e) => ({ params: { slug: e.id }, props: { e } }));
 }
 const { e } = Astro.props;
 ---
-<Base title={e.titulo} seccion="extension" descripcion={`${e.tipo} · ${e.fechaLarga}`}>
+<Base title={e.titulo} seccion="extension" descripcion={descripcionEvento(e)}>
   <link slot="head" rel="stylesheet" href="/css/v5-ficha.css" />
   <link slot="head" rel="stylesheet" href="/css/v5-evento.css" />
   <EventoDireccion e={e} />
