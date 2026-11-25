@@ -287,11 +287,12 @@ export const inCompany = {
   titulo: 'In Company para la Alta Dirección',
   frase: 'Formación exclusiva para el Directorio y la alta dirección de una empresa u organización, diseñada según sus intereses y necesidades.',
   intro: 'Diseñamos el programa según los desafíos de tu empresa. Cuéntanos qué necesita tu directorio y te contactamos.',
-  descripcion: 'Programa de formación que se realiza de manera exclusiva para el Directorio y alta dirección de una empresa u organización, de acuerdo con sus intereses o necesidades. Contempla la capacitación y la entrega de un set de cuatro documentos de estudio de elaboración propia del Centro para cada participante.',
+  descripcion: 'Programa de formación que se realiza de manera exclusiva para el Directorio y alta dirección de una empresa u organización, de acuerdo con sus intereses o necesidades.',
   dirigido: 'Directorios y equipos de alta dirección de empresas y organizaciones, con o sin fines de lucro.',
-  incluye: 'Set de 4 documentos de estudio y consulta de elaboración propia del CGC UC para cada participante.',
-  // Franja de datos de la portada (Mateo, 09-11), sacada de la descripción y de «Incluye».
-  datos: [['Formato', 'Exclusivo para tu directorio'], ['Contenidos', 'Diseñados con tu organización'], ['Incluye', '4 documentos de estudio por participante']],
+  // Sin «Incluye: set de 4 documentos de estudio» (Sara, 25-11: «habría que eliminarlo»), ni en la portada, ni en el
+  // cuerpo, ni en la descripción.
+  // Franja de datos de la portada (Mateo, 09-11), sacada de la descripción.
+  datos: [['Formato', 'Exclusivo para tu directorio'], ['Contenidos', 'Diseñados con tu organización']],
   // Los 13 módulos de la presentación 2027 (Sara, 18-11: «sí, poner los 13 módulos del PDF»).
   contenidos: ['Conceptos generales sobre gobierno corporativo', 'Las responsabilidades de un director', 'Mejores prácticas de gobierno corporativo', 'Evaluación y autoevaluación de directores', 'Estatuto penal de directores y persona jurídica', 'Compliance y gobierno corporativo', 'Análisis de casos emblemáticos', 'Gestión de riesgos', 'ESG y sostenibilidad', 'Inteligencia artificial y ciberseguridad', 'Ley de Protección de Datos Personales', 'Demografía y trabajo', 'Comunicación estratégica, reputación y crisis'],
   // El contacto de In Company es el WhatsApp del Centro (P1-21) y el correo de Sara (P1-19).

@@ -380,3 +380,7 @@ a[href^="http"]:not(.external):not(.cgc-card-link):not(:has(.uc-icon)):not(.uc-i
 .uc-dev-footer a { padding-top: 4px; padding-bottom: 4px; }
 .cgc-logo { display: inline-block; min-height: 24px; }
 .cgc-footer-logo.cgc-logo { display: block; }
+
+/* Cita literal de Artículos y Working Papers (Sara, 25-11): las URL largas (DOI) cortan dentro de la tarjeta */
+.cgc-cita { line-height: 1.5; overflow-wrap: anywhere; }
+.cgc-cita em { font-weight: inherit; } /* cursiva, como en la portada; el Kit la ponía en negrita */
