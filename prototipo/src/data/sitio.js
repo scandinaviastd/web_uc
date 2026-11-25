@@ -26,7 +26,6 @@ export const sitio = {
   // Política de Privacidad UC: el enlace que usan los ejemplos de formulario del Kit (kitdigital.uc.cl/componentes/formulario).
   politicaPrivacidad: 'https://protecciondedatos.uc.cl/politicas',
   creditos: {
-    disenoDesarrollo: { nombre: 'Scandinavia Studio', url: '#' },
     administradoPor: { nombre: 'Centro UC Gobierno Corporativo', url: '/' },
   },
 };

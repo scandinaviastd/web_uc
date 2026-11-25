@@ -3,21 +3,22 @@
  * Espejo: Figma UC_CGC, «Evento v5 · propuesta Dirección» (520:1818) y móvil (522:2045).
  * Reusa la portada, el contacto y «Por completar» de v5-ficha.css; aquí va lo propio del evento. Prefijo cgc-v5e-.
  */
+/* Ac1 (autoauditoría, 16-11): tamaños de letra en rem (px / 16), sin cambio visible. */
 
 /* ---------- Fecha de evento (portada sin foto real) ---------- */
 .cgc-v5e-fecha { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; width: 100%; max-width: 440px; margin-left: auto; aspect-ratio: 1 / 1; padding: 40px; background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
 .cgc-v5e-fecha::after { content: ""; position: absolute; top: -24px; right: -24px; width: 48px; height: 48px; background: var(--cgc-acento-cian); }
 .cgc-v5e-fecha_arriba { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .cgc-v5e-fecha .cgc-d-segmento { background: var(--cgc-blanco); }
-.cgc-v5e-fecha_dia { font-size: 88px; line-height: 92px; font-weight: 700; letter-spacing: -.02em; }
+.cgc-v5e-fecha_dia { font-size: 5.5rem; line-height: 92px; font-weight: 700; letter-spacing: -.02em; }
 .cgc-v5e-fecha .cgc-d-ante { color: var(--cgc-blanco); }
-.cgc-v5e-fecha_detalle { font-size: 18px; line-height: 32px; letter-spacing: .5px; }
+.cgc-v5e-fecha_detalle { font-size: 1.125rem; line-height: 32px; letter-spacing: .5px; }
 @media (max-width: 991.98px) {
   .cgc-v5e-fecha { max-width: none; margin: 24px 0 0; aspect-ratio: 343 / 240; padding: 24px; }
   .cgc-v5e-fecha::after { top: -12px; right: 0; width: 32px; height: 32px; }
 }
 @media (max-width: 767.98px) {
-  .cgc-v5e-fecha_dia { font-size: 44px; line-height: 48px; }
+  .cgc-v5e-fecha_dia { font-size: 2.75rem; line-height: 48px; }
   .cgc-v5e-fecha_detalle { line-height: 30px; }
 }
 

@@ -14,6 +14,50 @@
     a.addEventListener('click', function (e) { e.preventDefault(); });
   });
 
+  // Desplegables con teclado (autoauditoría N3, 13-11): el Kit abre y cierra con clic (atributo data-show en el
+  // menú) pero no cierra al salir con Tab ni al abrir otro, y no informa el estado. Aquí: abrir uno cierra los
+  // demás; se cierran al perder el foco, con Escape o con un clic afuera; aria-expanded sigue el estado. Para cerrar
+  // se usa el mismo clic del Kit, así su lógica queda en orden.
+  var toggles = $$('.uc-navbar_nav > .uc-navbar-dropdown > a');
+  var abierto = function (a) { var m = a.parentElement.querySelector('.uc-navbar-dropdown_menu'); return !!m && m.hasAttribute('data-show'); };
+  var cerrarDesplegable = function (a) { if (abierto(a)) a.click(); };
+  var syncDesplegables = function () { toggles.forEach(function (a) { a.setAttribute('aria-expanded', abierto(a) ? 'true' : 'false'); }); };
+  toggles.forEach(function (a) {
+    var li = a.parentElement;
+    a.addEventListener('click', function () {
+      setTimeout(function () {
+        if (abierto(a)) toggles.forEach(function (o) { if (o !== a) cerrarDesplegable(o); });
+        syncDesplegables();
+      }, 0);
+    });
+    li.addEventListener('focusout', function (e) {
+      if (e.relatedTarget && !li.contains(e.relatedTarget)) { cerrarDesplegable(a); syncDesplegables(); }
+    });
+    li.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && abierto(a)) { cerrarDesplegable(a); syncDesplegables(); a.focus(); }
+    });
+    // En escritorio el Kit también abre al pasar el mouse: aria-expanded lo sigue
+    li.addEventListener('mouseenter', function () { setTimeout(syncDesplegables, 50); });
+    li.addEventListener('mouseleave', function () { setTimeout(syncDesplegables, 50); });
+  });
+  document.addEventListener('click', function (e) {
+    toggles.forEach(function (a) { if (!a.parentElement.contains(e.target)) cerrarDesplegable(a); });
+    syncDesplegables();
+  });
+
+  // Carruseles con scroll horizontal (cursos y fotos de la home, directorio en Nosotros): enfocables con Tab solo
+  // cuando de verdad se desplazan (en móvil), para recorrerlos con las flechas (autoauditoría, 16-11).
+  var carruseles = $$('[data-scroll-x]');
+  var tabularCarruseles = function () {
+    carruseles.forEach(function (c) {
+      if (c.scrollWidth > c.clientWidth + 1) c.setAttribute('tabindex', '0');
+      else c.removeAttribute('tabindex');
+    });
+  };
+  tabularCarruseles();
+  window.addEventListener('resize', tabularCarruseles);
+  window.addEventListener('load', tabularCarruseles);
+
   // Listas con mensaje propio cuando los filtros (chips o calendario) no dejan nada visible
   var actualizarVacios = function (cont) {
     $$('[data-lista]', cont).forEach(function (l) {
@@ -289,7 +333,7 @@
     var q = new URLSearchParams(location.search).get('programa');
     if (q && $('option[value="' + q + '"]', sel)) { sel.value = q; var ayuda = $('[data-programa-ayuda]'); if (ayuda) ayuda.hidden = false; }
     var nombre = $('[data-programa-nombre]');
-    sync = function () { if (nombre) nombre.textContent = sel.options[sel.selectedIndex].text; };
+    sync = function () { if (nombre) nombre.textContent = sel.value ? sel.options[sel.selectedIndex].text : 'Elige un programa en el formulario'; };
     sel.addEventListener('change', sync); sync();
   }
   // «Quiero que me avisen» (?aviso=1): la solicitud llega marcada como «Aviso de postulación» (Sara, 19-11).
@@ -376,13 +420,13 @@
   var conteos = $$('[data-conteo]').filter(function (el) { return /^\d+$/.test(el.getAttribute('data-conteo')); });
   var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var animar = conteos.length && !quieto && 'IntersectionObserver' in window;
-  // La cifra parte en 0 antes de mostrarse (direccion.css la oculta hasta .is-lista): antes se veía la cifra final,
-  // saltaba a 0 y volvía a subir (Mateo, 10-11).
+  // Responsive (autoauditoría, 16-11): la cifra muestra su valor final desde el inicio y cuenta desde 0 solo cuando
+  // entra en pantalla, para que no salga en «0» en capturas de página completa ni al imprimir.
   conteos.forEach(function (el) {
     el.cgcPunto = el.textContent.indexOf('.') > -1;
-    if (animar) el.textContent = '0';
-    var p = el.closest('.cgc-d-cifra'); if (p) p.classList.add('is-lista');
+    el.cgcFinal = el.textContent;
   });
+  window.addEventListener('beforeprint', function () { conteos.forEach(function (el) { el.textContent = el.cgcFinal; }); });
   if (animar) {
     var miles = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
     var contar = function (el) {

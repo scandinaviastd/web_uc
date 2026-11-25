@@ -5,6 +5,7 @@
  * colores #0176DE / #173F8A / #03122E / #FEC60D / grises. Prefijo cgc- para no chocar con el Kit.
  * En WordPress esto va en cgc-uc/style.css (ya encolado con dependencia de 'uc-kit').
  */
+/* Ac1 (autoauditoría, 16-11): tamaños de letra en rem (px / 16), sin cambio visible. */
 
 :root {
   --cgc-celeste: #0176de;
@@ -47,12 +48,12 @@
 .cgc-title-2l { min-height: 48px; }
 .cgc-meta { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--cgc-gris); font-size: .875em; }
 .cgc-meta li { display: inline-flex; align-items: center; gap: 4px; }
-.cgc-meta .uc-icon { font-size: 16px; }
+.cgc-meta .uc-icon { font-size: 1rem; }
 .cgc-card-acceso:hover { border-color: var(--cgc-celeste); }
 .cgc-card-persona .uc-card_body { padding: 16px 20px 20px; }
 .cgc-card-persona a { overflow-wrap: anywhere; } /* correos largos (s.marambio.bunster@uc.cl) no se salen de la card en 2 columnas */
-.cgc-avatar-card { --size: 100%; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 0; font-size: 48px; font-weight: 500; }
-.cgc-avatar-sm { --size: 72px; flex-shrink: 0; font-size: 24px; font-weight: 500; }
+.cgc-avatar-card { --size: 100%; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 0; font-size: 3rem; font-weight: 500; }
+.cgc-avatar-sm { --size: 72px; flex-shrink: 0; font-size: 1.5rem; font-weight: 500; }
 .cgc-avatar-sm img { height: 100%; }
 .cgc-card-opinion .uc-card_body { flex-direction: row; }
 .cgc-btn-auto { display: inline-flex !important; width: auto; align-self: flex-start; gap: 8px; }
@@ -86,7 +87,7 @@ html { scroll-behavior: smooth; }
 .cgc-origen_fuentes { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
 .cgc-origen_card { display: inline-flex; }
 .cgc-origen_card .uc-card_body { padding: 20px 32px; }
-.cgc-origen_mas { font-size: 32px; color: var(--cgc-gris); }
+.cgc-origen_mas { font-size: 2rem; color: var(--cgc-gris); }
 .cgc-origen_linea { width: 2px; height: 40px; background: var(--cgc-gris-claro); margin: 12px auto; }
 .cgc-origen_centro { display: inline-block; background: var(--cgc-azul); color: #fff; border-radius: 4px; padding: 28px 56px; }
 .cgc-icon-bubble { display: inline-flex; width: 48px; height: 48px; border-radius: 50%; background: #e5f3ff; color: var(--cgc-celeste); align-items: center; justify-content: center; }
@@ -112,7 +113,7 @@ html { scroll-behavior: smooth; }
 .cgc-mini { background: var(--cgc-gris-fondo); border-radius: 4px; padding: 24px; height: 100%; }
 /* Rótulo de la caja («Dirigido a», «Incluye») con el estilo de rótulo v5 (cgc-d-ante): azul de marca, mayúsculas
    y 12 px hasta el texto (Mateo, 09-11). */
-.cgc-mini h3 { color: var(--cgc-azul); font-size: 14px; line-height: 16px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin: 0 0 12px; }
+.cgc-mini h3 { color: var(--cgc-azul); font-size: .875rem; line-height: 16px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin: 0 0 12px; }
 .cgc-persona-h_foto { width: 120px; height: 120px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
 .cgc-detalle-item { border-bottom: 1px solid var(--cgc-gris-claro); padding: 24px 0; }
 .cgc-detalle-item:first-of-type { border-top: 1px solid var(--cgc-gris-claro); }
@@ -151,7 +152,8 @@ html { scroll-behavior: smooth; }
 .cgc-cal-dow { padding: 12px clamp(4px, 1vw, 12px); overflow: hidden; font-size: .875em; font-weight: 500; letter-spacing: 1px; color: var(--cgc-gris); }
 .cgc-cal-dia { min-height: min(116px, 12vw); padding: 8px; border-top: 1px solid var(--cgc-gris-claro); border-left: 1px solid var(--cgc-gris-claro); display: flex; flex-direction: column; gap: 6px; }
 .cgc-cal-dia:nth-child(7n + 1) { border-left: 0; }
-.cgc-cal-dia.is-fuera { color: #c6c6c6; }
+/* Ac3 (16-11): los días de otros meses, en un gris legible (antes #c6c6c6, 1,7:1) */
+.cgc-cal-dia.is-fuera { color: #707070; }
 .cgc-cal-num { font-size: 1em; }
 .cgc-cal-dia.is-con-evento .cgc-cal-num { color: var(--cgc-celeste); font-weight: 700; }
 .cgc-cal-evento { display: block; background: #e5f3ff; border-left: 3px solid var(--cgc-celeste); border-radius: 4px; padding: 6px 8px; font-size: .875em; line-height: 1.25; color: var(--cgc-azul-oscuro); text-decoration: none; }
@@ -169,12 +171,12 @@ html { scroll-behavior: smooth; }
 /* Filtro por fecha de cada sección: botón simple junto al título + calendario chico */
 .cgc-filtro-fecha { position: relative; display: inline-flex; align-items: center; gap: 8px; }
 .cgc-filtro-fecha_btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--cgc-gris-claro); border-radius: 4px; padding: 4px 12px; color: var(--cgc-celeste); font: inherit; cursor: pointer; }
-.cgc-filtro-fecha_btn .uc-icon { font-size: 18px; }
+.cgc-filtro-fecha_btn .uc-icon { font-size: 1.125rem; }
 .cgc-filtro-fecha_btn:hover, .cgc-filtro-fecha_btn[aria-expanded="true"] { border-color: var(--cgc-celeste); }
 .cgc-filtro-fecha_activo { display: inline-flex; align-items: center; gap: 4px; background: #e5f3ff; color: var(--cgc-azul); border-radius: 4px; padding: 4px 4px 4px 12px; }
 .cgc-filtro-fecha_activo[hidden], .cgc-filtro-fecha_panel[hidden] { display: none; }
 .cgc-filtro-fecha_quitar { display: inline-flex; background: none; border: 0; padding: 2px; color: inherit; cursor: pointer; border-radius: 4px; }
-.cgc-filtro-fecha_quitar .uc-icon { font-size: 18px; }
+.cgc-filtro-fecha_quitar .uc-icon { font-size: 1.125rem; }
 .cgc-filtro-fecha_quitar:hover { background: #d3e9fd; }
 .cgc-filtro-fecha_panel { position: absolute; top: calc(100% + 8px); left: 0; z-index: 20; width: 296px; background: #fff; border: 1px solid var(--cgc-gris-claro); border-radius: 4px; box-shadow: 0 4px 16px rgba(0, 0, 0, .12); padding: 16px; }
 .cgc-cal-btn--sm { width: 32px; height: 32px; }
@@ -194,7 +196,7 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 /* Solo el logo: sin recuadro ni fondo (Mateo, 29-10) */
 .cgc-marquee_item { width: 200px; height: 80px; padding: 12px 20px; margin-right: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; filter: grayscale(1); }
 .cgc-marquee_item img { max-width: 100%; max-height: 100%; }
-.cgc-logo-text { font-weight: 700; font-size: 20px; color: var(--cgc-gris); }
+.cgc-logo-text { font-weight: 700; font-size: 1.25rem; color: var(--cgc-gris); }
 @keyframes cgc-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .cgc-marquee_track { animation: none; } }
 /* Banda de colaboradores al cierre de la home v5: filete fino arriba, sin fondo propio */
@@ -209,7 +211,7 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 .cgc-tab[aria-pressed="true"] { color: var(--cgc-azul); border-bottom-color: var(--cgc-azul); font-weight: 700; }
 .cgc-resultados { list-style: none; margin: 0; padding: 0; }
 .cgc-resultados li { padding: 20px 0; border-bottom: 1px solid var(--cgc-gris-claro); }
-.cgc-resultados a { font-size: 18px; font-weight: 700; }
+.cgc-resultados a { font-size: 1.125rem; font-weight: 700; }
 .cgc-resultados mark { background: #fff3c4; padding: 0; }
 .cgc-url { color: var(--cgc-gris); font-size: .875em; }
 
@@ -225,6 +227,11 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 .cgc-footer-marca { margin-bottom: 32px; }
 /* El logo conserva su tamaño aunque su columna ahora ocupe media fila (como col-6 en móvil y col-md-5 en tablet) */
 .cgc-footer-logo { display: block; width: 50%; }
+/* Logo del Centro + sello de acreditación (vertical blanco del Kit), separados por una línea (16-11) */
+.cgc-footer-marcas { display: flex; align-items: center; gap: 24px; }
+.cgc-footer-marcas .cgc-footer-logo { flex: 0 1 auto; }
+.cgc-footer-separador { align-self: stretch; width: 1px; margin: 12px 0; background: rgba(255, 255, 255, .4); }
+.cgc-footer-sello { display: block; width: auto; height: 88px; flex: 0 0 auto; }
 .cgc-footer-col { margin-bottom: 32px; }
 .cgc-footer-col:last-child { margin-bottom: 0; }
 @media (min-width: 768px) { .cgc-footer-col { margin-bottom: 0; } .cgc-footer-logo { width: 41.666%; } }
@@ -278,16 +285,25 @@ span.cgc-mini-cal_dia:not(.is-fuera) { color: var(--cgc-gris); }
 /* Abstract plegable en Artículos y WP */
 .cgc-abstract summary { list-style: none; cursor: pointer; padding: 0; position: relative; z-index: 2; }
 .cgc-abstract summary::-webkit-details-marker { display: none; }
-.cgc-abstract summary::after { content: "expand_more"; font-family: "Material Icons"; font-size: 20px; margin-left: 4px; }
+.cgc-abstract summary::after { content: "expand_more"; font-family: "Material Icons"; font-size: 1.25rem; margin-left: 4px; }
 .cgc-abstract[open] summary::after { content: "expand_less"; }
 /* Página de evento */
 .cgc-evento-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
 
 
-/* Logo que vuelve a la home: sin recuadro de foco al hacer clic (Mateo, 09-11). El logo no lleva
-   indicador de foco; con Tab el foco pasa a «Inicio», justo al lado. */
-.cgc-logo, .cgc-logo:focus, .cgc-logo:focus-visible, .cgc-logo:active { outline: none !important; box-shadow: none !important; }
+/* Logo que vuelve a la home: sin recuadro de foco al hacer clic (Mateo, 09-11), pero visible con el teclado
+   (autoauditoría, 16-11: foco visible en el logo). */
+.cgc-logo, .cgc-logo:focus, .cgc-logo:active { outline: none !important; box-shadow: none !important; }
 .cgc-logo img { outline: none !important; box-shadow: none !important; }
+.cgc-logo:focus-visible { outline: 2px solid var(--cgc-celeste, #0176DE) !important; outline-offset: 4px; }
+.cgc-logo-img { max-height: 80px; }
+.cgc-logo-img--movil { max-height: 44px; }
+
+/* «Saltar al contenido»: oculto hasta recibir el foco con Tab (autoauditoría, 16-11) */
+.cgc-saltar:focus, .cgc-saltar:focus-visible { position: fixed !important; top: 8px; left: 8px; z-index: 10000; width: auto !important; height: auto !important; margin: 0 !important; padding: 12px 16px !important; overflow: visible !important; clip: auto !important; clip-path: none !important; white-space: nowrap; background: #fff; color: var(--cgc-azul, #173F8A); font-weight: 700; outline: 2px solid var(--cgc-celeste, #0176DE); outline-offset: 2px; border-radius: 4px; }
+
+/* Carruseles con scroll horizontal: con el teclado se enfocan y se recorren con las flechas (autoauditoría, 16-11) */
+[data-scroll-x]:focus-visible { outline: 2px solid var(--cgc-celeste, #0176DE); outline-offset: 4px; }
 
 /* Header (navbar, barra superior y menú móvil): sin el recuadro celeste del Kit al presionar con el mouse o el dedo
    (Mateo, 10-11: «un mal pressed state»). El Kit pone outline 2 px rgba(1,118,222,.7) en :focus, y el clic deja el
@@ -356,3 +372,11 @@ a[href^="http"]:not(.external):not(.cgc-card-link):not(:has(.uc-icon)):not(.uc-i
   font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }
+
+/* ---------- Responsive (autoauditoría, 16-11): área táctil de 24 px de alto ----------
+ * En el logo, las migas de pan y los enlaces del footer del Centro, sin agrandar el texto: el relleno vertical de un
+ * enlace en línea agranda la zona que se toca sin mover el diseño. El footer global UC (#uc-global-footer) es del Kit. */
+.uc-breadcrumb a, .cgc-footer-link { padding-top: 3px; padding-bottom: 3px; }
+.uc-dev-footer a { padding-top: 4px; padding-bottom: 4px; }
+.cgc-logo { display: inline-block; min-height: 24px; }
+.cgc-footer-logo.cgc-logo { display: block; }

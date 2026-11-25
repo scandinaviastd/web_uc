@@ -4,10 +4,11 @@
  * Usa los tokens y componentes de direccion.css; aquí va solo la composición de la página.
  * Breakpoints de Bootstrap 4: < 768 móvil · 768–1199 apilado · ≥ 1200 composición de escritorio.
  */
+/* Ac1 (autoauditoría, 16-11): tamaños de letra en rem (px / 16), sin cambio visible. */
 
 /* ---------- Comunes ---------- */
 .v5h-titulo { color: var(--cgc-texto-principal); }
-.v5h-bajada { font-size: 18px; line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-secundario); max-width: 720px; }
+.v5h-bajada { font-size: 1.125rem; line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-secundario); max-width: 720px; }
 .v5h-acento { position: absolute; background: var(--cgc-acento-cian); }
 .v5h-seccion { padding: 96px 0; }
 .v5h-seccion > .container { display: flex; flex-direction: column; gap: 48px; }
@@ -19,7 +20,7 @@
 .v5h-grupo { margin: 0 0 -32px; } /* la sección separa con gap de 48 px: el rótulo queda a 16 px de su tarjeta */
 .v5h-cursos + .v5h-grupo { margin-top: 16px; }
 .v5h-cursos { display: flex; flex-direction: column; gap: 16px; }
-.v5h-pista { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.v5h-pista { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 /* Carruseles con scroll-snap nativo: llegan al borde derecho de la pantalla (la tarjeta siguiente se asoma) */
 .v5h-carrusel, .v5h-fotos { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .v5h-carrusel::-webkit-scrollbar, .v5h-fotos::-webkit-scrollbar { display: none; }
@@ -96,8 +97,8 @@
 .v5h-actualidad_grid { display: grid; grid-template-columns: minmax(0, 1fr); }
 .v5h-pieza { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 0; border-top: 1px solid var(--cgc-borde-sutil); }
 .v5h-pieza_meta { display: flex; align-items: center; gap: 16px; }
-.v5h-pieza_fecha, .v5h-pieza_firma { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
-.v5h-pieza_titulo { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.v5h-pieza_fecha, .v5h-pieza_firma { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.v5h-pieza_titulo { font-size: 1.25rem; line-height: 28px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
 .v5h-pieza_titulo a { color: inherit; text-decoration: none; }
 .v5h-pieza_titulo a::after { content: ""; position: absolute; inset: 0; }
 .v5h-pieza:hover .v5h-pieza_titulo a { text-decoration: underline; }
@@ -117,7 +118,7 @@
 @media (max-width: 767.98px) {
   .v5h-portada { padding: 40px 0; }
   .v5h-portada_texto { gap: 24px; }
-  .v5h-bajada--portada { font-size: 18px; line-height: 30px; }
+  .v5h-bajada--portada { font-size: 1.125rem; line-height: 30px; }
   .v5h-acciones { flex-direction: column; align-items: flex-start; gap: 16px; }
   .v5h-indice { margin-top: 24px; gap: 12px; }
 
@@ -129,7 +130,7 @@
   .v5h-seccion > .container { gap: 32px; }
   .v5h-encabezado { gap: 12px; }
   .v5h-indice-sec { gap: 12px; }
-  .v5h-bajada { font-size: 16px; line-height: 26px; letter-spacing: .1px; }
+  .v5h-bajada { font-size: 1rem; line-height: 26px; letter-spacing: .1px; }
   .v5h-cierre { gap: 12px; }
 
   .v5h-voz { padding: 56px 0; }

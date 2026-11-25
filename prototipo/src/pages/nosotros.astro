@@ -111,7 +111,7 @@ import { quienesSomos, origen, pilares, voz } from '../data/v5-nosotros.js';
 
       <div class="v5-nos-grupo">
         <h3 class="cgc-d-ante cgc-d-texto-marca v5-nos-grupo_titulo">Directorio</h3>
-        <div class="row v5-nos-directorio" data-scroll-x role="region" aria-label="Directorio del Centro" tabindex="0">
+        <div class="row v5-nos-directorio" data-scroll-x role="region" aria-label="Directorio del Centro">
           {directorio.map((p, i) => (
             <div class="col-md-4 col-lg-3 v5-nos-directorio_item">
               <Retrato nombre={p.nombre} cargo={p.cargo} nivel={4} acento={i % 2 ? 'marca' : 'cian'} />

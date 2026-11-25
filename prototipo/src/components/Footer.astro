@@ -13,8 +13,14 @@ const direccion = sitio.direccion.split(/(?<=\.)\s+/);
 <footer class="uc-footer">
   <div class="container cgc-footer-franja">
     <div class="row align-items-center justify-content-between">
+      <!-- Sello de acreditación institucional (DED, crítico; Mateo 16-11: «en el footer», en todas las páginas): versión
+           vertical blanca del Kit, desde su CDN (kitdigital.uc.cl/diseno/recursos, «Logo CNA acreditación universitaria»). -->
       <div class="col-12 col-lg-6 cgc-footer-marca">
-        <a href="/" class="cgc-footer-logo cgc-logo"><img src="/img/logo-cgc-blanco.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid my-12" width="405" height="77" /></a>
+        <div class="cgc-footer-marcas">
+          <a href="/" class="cgc-footer-logo cgc-logo"><img src="/img/logo-cgc-blanco.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid my-12" width="405" height="77" /></a>
+          <span class="cgc-footer-separador" aria-hidden="true"></span>
+          <img src="https://kit-digital-uc-prod.s3.amazonaws.com/assets/acreditaciones/acreditacion-02.svg" alt="Sello de acreditación institucional de la Pontificia Universidad Católica de Chile" class="cgc-footer-sello" width="310" height="614" />
+        </div>
       </div>
       <!-- Mismas columnas que el footer global UC (cuatro iguales desde 992): «Centro» bajo la tercera, «Contacto» bajo la cuarta -->
       <div class="col-md-6 col-lg-3 cgc-footer-col">
@@ -39,10 +45,9 @@ const direccion = sitio.direccion.split(/(?<=\.)\s+/);
   <div class="uc-dev-footer">
     <div class="container">
       <ul class="uc-footer-dev_content">
-        <li>Diseño y desarrollo: {sitio.creditos.disenoDesarrollo.url === '#'
-          ? <a href="#" class="external" data-pendiente="Enlace de Scandinavia Studio por confirmar.">{sitio.creditos.disenoDesarrollo.nombre}</a>
-          : <a href={sitio.creditos.disenoDesarrollo.url} target="_blank" rel="noopener" class="external">{sitio.creditos.disenoDesarrollo.nombre}</a>}</li>
-        <li>Sitio administrado por: <a href={sitio.creditos.administradoPor.url} class="external">{sitio.creditos.administradoPor.nombre}</a></li>
+        <!-- Mateo, 13 y 16-11: sin el crédito del estudio («no pongamos los créditos de el estudio en el footer»). Riesgo
+             anotado: la planilla de la DED marca «Créditos» como crítico. «Administrado por» es un enlace interno: sin ícono. -->
+        <li>Sitio administrado por: <a href={sitio.creditos.administradoPor.url}>{sitio.creditos.administradoPor.nombre}</a></li>
         <li>Utilizando el <a href="https://kitdigital.uc.cl/" target="_blank" rel="noopener" class="external">Kit Digital UC</a></li>
       </ul>
     </div>

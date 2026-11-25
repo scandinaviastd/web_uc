@@ -11,6 +11,7 @@
  *   3. Radio completo de las etiquetas (el Kit pide 4 px).
  *   4. Roboto Slab 300 en citas (el Kit carga Roboto Slab 400).
  */
+/* Ac1 (autoauditoría, 16-11): tamaños de letra en rem (px / 16), sin cambio visible. */
 
 :root {
   /* Primitivos (CGC/Color + CGC/Dirección · Primitivos) */
@@ -73,35 +74,30 @@
 
 /* ---------- Tipografía Dirección (Roboto y Roboto Slab, familias del Kit) ---------- */
 .cgc-d-display-xl, .cgc-d-display-l, .cgc-d-cifra { font-family: Roboto, sans-serif; margin: 0; }
-.cgc-d-display-xl { font-size: 88px; line-height: 92px; font-weight: 300; letter-spacing: -.02em; }
-.cgc-d-display-l { font-size: 64px; line-height: 68px; font-weight: 300; letter-spacing: -.015em; }
+.cgc-d-display-xl { font-size: 5.5rem; line-height: 92px; font-weight: 300; letter-spacing: -.02em; }
+.cgc-d-display-l { font-size: 4rem; line-height: 68px; font-weight: 300; letter-spacing: -.015em; }
 .cgc-d-display-xl strong, .cgc-d-display-l strong, .cgc-d-display-xl b, .cgc-d-display-l b { font-weight: 700; }
-.cgc-d-cifra { font-size: 72px; line-height: 72px; font-weight: 700; letter-spacing: -.02em; }
+.cgc-d-cifra { font-size: 4.5rem; line-height: 72px; font-weight: 700; letter-spacing: -.02em; }
 /* Conteo: dígitos de ancho fijo (la cifra va sola en su línea, crecer no mueve la etiqueta) */
 .cgc-d-cifra_num { display: inline-block; font-variant-numeric: tabular-nums; }
-/* La cifra que cuenta no se pinta hasta que cgc.js la deja en 0 (.is-lista): sin esto se veía la cifra final, saltaba
-   a 0 y volvía a subir (Mateo, 10-11). Si el JS no llega, aparece igual a los 2,5 s; con movimiento reducido no hay
-   conteo y no se oculta. */
-@media (prefers-reduced-motion: no-preference) {
-  .cgc-d-cifra[data-cuenta]:not(.is-lista) > [aria-hidden] { visibility: hidden; animation: cgc-d-cifra-aparece 0s 2.5s forwards; }
-}
-@keyframes cgc-d-cifra-aparece { to { visibility: visible; } }
-.cgc-d-cita { font-family: "Roboto Slab", serif; font-size: 32px; line-height: 44px; font-weight: 300; margin: 0; }
-.cgc-d-cita--s { font-size: 24px; line-height: 36px; }
+/* La cifra ya no se oculta al cargar (autoauditoría, 16-11): muestra su valor final y cgc.js la cuenta desde 0 solo
+   cuando entra en pantalla. */
+.cgc-d-cita { font-family: "Roboto Slab", serif; font-size: 2rem; line-height: 44px; font-weight: 300; margin: 0; }
+.cgc-d-cita--s { font-size: 1.5rem; line-height: 36px; }
 .cgc-d-cita p { font-size: inherit; line-height: inherit; letter-spacing: inherit; }
-.cgc-d-ante { display: block; font-size: 14px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
-.cgc-d-indice { font-size: 14px; line-height: 16px; font-weight: 700; letter-spacing: .07em; }
+.cgc-d-ante { display: block; font-size: .875rem; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+.cgc-d-indice { font-size: .875rem; line-height: 16px; font-weight: 700; letter-spacing: .07em; }
 @media (max-width: 767.98px) {
-  .cgc-d-display-xl { font-size: 44px; line-height: 48px; letter-spacing: -.015em; }
-  .cgc-d-display-l { font-size: 32px; line-height: 36px; letter-spacing: -.01em; }
-  .cgc-d-cifra { font-size: 48px; line-height: 48px; }
-  .cgc-d-cita { font-size: 22px; line-height: 32px; }
+  .cgc-d-display-xl { font-size: 2.75rem; line-height: 48px; letter-spacing: -.015em; }
+  .cgc-d-display-l { font-size: 2rem; line-height: 36px; letter-spacing: -.01em; }
+  .cgc-d-cifra { font-size: 3rem; line-height: 48px; }
+  .cgc-d-cita { font-size: 1.375rem; line-height: 32px; }
 }
 .cgc-d-texto-marca { color: var(--cgc-texto-marca); }
 .cgc-d-texto-sec { color: var(--cgc-texto-secundario); }
 
 /* Enlace con flecha («Ver programa →»): estilo «a» del Kit, color según el modo */
-.cgc-d-enlace { font-size: 16px; line-height: 24px; font-weight: 500; letter-spacing: .5px; color: var(--cgc-texto-enlace); text-decoration: underline; }
+.cgc-d-enlace { font-size: 1rem; line-height: 24px; font-weight: 500; letter-spacing: .5px; color: var(--cgc-texto-enlace); text-decoration: underline; }
 .cgc-d-enlace:hover { color: var(--cgc-texto-enlace); text-decoration-thickness: 2px; }
 .cgc-d-enlace:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 2px; }
 
@@ -116,7 +112,7 @@
 .cgc-d-segmento { display: block; width: 40px; height: 4px; background: var(--cgc-barra-segmento); }
 
 /* ---------- Etiqueta ---------- */
-.cgc-d-etiqueta { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--cgc-radio-pill); font-size: 14px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
+.cgc-d-etiqueta { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--cgc-radio-pill); font-size: .875rem; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
 .cgc-d-etiqueta--azul { background: var(--cgc-accion-secundaria); color: var(--cgc-accion-secundaria-texto); }
 .cgc-d-etiqueta--contorno { border: 1px solid var(--cgc-texto-marca); color: var(--cgc-texto-marca); padding: 3px 11px; }
 .cgc-d-etiqueta--cian { background: var(--cgc-acento-cian); color: var(--cgc-azul-oscuro); }
@@ -124,7 +120,7 @@
 /* ---------- Cifra ---------- */
 .cgc-d-cifra-bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px; }
 .cgc-d-cifra-bloque .cgc-d-cifra { color: var(--cgc-texto-marca); }
-.cgc-d-cifra-bloque_etiqueta { font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-cifra-bloque_etiqueta { font-size: 1rem; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-secundario); margin: 0; }
 .cgc-d-cifra-bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); }
 .cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-segmento { background: var(--cgc-blanco); }
 .cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra { color: var(--cgc-blanco); }
@@ -142,21 +138,21 @@
 .cgc-d-retrato_foto::after { content: ""; position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; background: var(--cgc-acento-cian); }
 .cgc-d-retrato[data-acento="marca"] .cgc-d-retrato_foto::after { background: var(--cgc-superficie-marca); }
 .cgc-d-retrato figcaption { display: flex; flex-direction: column; gap: 12px; }
-.cgc-d-retrato_nombre { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
-.cgc-d-retrato_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
-.cgc-d-retrato .avatar { width: 100%; height: 100%; border-radius: 0; font-size: 48px; font-weight: 500; }
+.cgc-d-retrato_nombre { font-size: 1.125rem; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-retrato_cargo { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-retrato .avatar { width: 100%; height: 100%; border-radius: 0; font-size: 3rem; font-weight: 500; }
 
 /* ---------- Cita ---------- */
 .cgc-d-cita-bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 40px 40px; margin: 0; color: var(--cgc-texto-principal); }
-.cgc-d-cita-bloque_comilla { font-family: "Roboto Slab", serif; font-weight: 700; font-size: 160px; line-height: 120px; height: 120px; overflow: visible; color: var(--cgc-texto-marca); user-select: none; }
+.cgc-d-cita-bloque_comilla { font-family: "Roboto Slab", serif; font-weight: 700; font-size: 10rem; line-height: 120px; height: 120px; overflow: visible; color: var(--cgc-texto-marca); user-select: none; }
 /* Texto centrado entre la comilla y la firma (Sara y Mateo, 19-11): el texto sube hacia la comilla y la firma baja;
    así quedan unos 50 px visibles arriba y abajo (antes 104 y 26). La comilla no se mueve. */
 .cgc-d-cita-bloque_comilla { margin-bottom: -54px; }
 .cgc-d-cita-bloque_firma { display: flex; align-items: center; gap: 16px; width: 100%; margin-top: 24px; }
 .cgc-d-cita-bloque_foto { width: 64px; height: 64px; flex-shrink: 0; background: var(--cgc-superficie-retrato); object-fit: cover; }
 .cgc-d-cita-bloque_datos { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.cgc-d-cita-bloque_nombre { font-size: 16px; line-height: 24px; font-weight: 700; letter-spacing: .25px; font-style: normal; }
-.cgc-d-cita-bloque_cargo { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.cgc-d-cita-bloque_nombre { font-size: 1rem; line-height: 24px; font-weight: 700; letter-spacing: .25px; font-style: normal; }
+.cgc-d-cita-bloque_cargo { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 .cgc-d-cita-bloque[data-fondo="marca"] { background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
 .cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_comilla { color: var(--cgc-blanco); }
 /* Mateo, 02-11: la firma sobre el azul 2727 va en blanco, como la cita (mismo criterio que la etiqueta de Cifra, 4,1:1) */
@@ -174,12 +170,12 @@
 .cgc-d-tarjeta:focus-within { outline: 2px solid var(--cgc-celeste); outline-offset: 2px; }
 .cgc-d-tarjeta_bloque { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; padding: 24px; background: var(--cgc-superficie-marca); color: var(--cgc-blanco); }
 .cgc-d-tarjeta_cuerpo { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; flex: 1 1 auto; }
-.cgc-d-tarjeta_titulo { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-tarjeta_titulo { font-size: 1.25rem; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
 .cgc-d-tarjeta_titulo a, .cgc-d-tarjeta_link { color: inherit; text-decoration: none; }
 .cgc-d-tarjeta_titulo a::after, .cgc-d-tarjeta_link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .cgc-d-tarjeta_titulo a:focus, .cgc-d-tarjeta_link:focus { outline: none; }
 .cgc-d-tarjeta_link:hover { color: inherit; text-decoration: none; }
-.cgc-d-tarjeta_meta { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-tarjeta_meta { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
 .cgc-d-tarjeta_cuerpo .cgc-d-enlace { margin-top: auto; }
 .cgc-d-tarjeta_acciones { display: flex; flex-wrap: wrap; gap: 8px 32px; position: relative; z-index: 2; pointer-events: none; }
 /* La fila de acciones queda sobre el enlace estirado del título: deja pasar el clic («Ver programa →» es texto) y solo
@@ -188,11 +184,11 @@
 /* Vertical: nombre del curso en el bloque, abajo; la descripción crece para que meta, barra y enlace queden alineados */
 .cgc-d-tarjeta--vertical .cgc-d-tarjeta_bloque { justify-content: space-between; gap: 24px; min-height: 200px; }
 .cgc-d-tarjeta_titulo-bloque { overflow-wrap: break-word; }
-.cgc-d-tarjeta--vertical .cgc-d-tarjeta_descripcion { flex: 1 0 auto; font-size: 16px; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-tarjeta--vertical .cgc-d-tarjeta_descripcion { flex: 1 0 auto; font-size: 1rem; line-height: 24px; letter-spacing: .5px; color: var(--cgc-texto-principal); margin: 0; }
 /* Horizontal: Diplomado e In Company a todo el ancho */
 .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_bloque { gap: 24px; padding: 40px; }
 .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo { padding: 40px; }
-.cgc-d-tarjeta--horizontal .cgc-d-tarjeta_descripcion { font-size: 18px; line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-tarjeta--horizontal .cgc-d-tarjeta_descripcion { font-size: 1.125rem; line-height: 32px; letter-spacing: .5px; color: var(--cgc-texto-principal); margin: 0; }
 .cgc-d-tarjeta--horizontal .cgc-d-tarjeta_cuerpo .cgc-d-enlace { margin-top: 0; }
 @media (min-width: 992px) {
   .cgc-d-tarjeta--horizontal { flex-direction: row; }
@@ -208,20 +204,20 @@
 /* Bloque de fecha con aire propio (Mateo, 09-11): 20 px arriba y abajo, 6 px entre el día y el mes, y el día con
    interlineado igual a su tamaño para que quede centrado a la vista. */
 .cgc-d-evento_fecha { grid-area: fecha; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; align-self: center; padding: 20px 8px; min-height: 104px; background: var(--cgc-accion-secundaria); color: var(--cgc-texto-sobre-marca); }
-.cgc-d-evento_dia { font-size: 40px; line-height: 40px; font-weight: 700; }
+.cgc-d-evento_dia { font-size: 2.5rem; line-height: 40px; font-weight: 700; }
 .cgc-d-evento_fecha::after { content: ""; position: absolute; right: -10px; top: -10px; width: 20px; height: 20px; background: var(--cgc-acento-cian); }
 .cgc-d-evento[data-estado="realizado"] .cgc-d-evento_fecha { background: var(--cgc-superficie-suave); color: var(--cgc-texto-secundario); }
 .cgc-d-evento[data-estado="realizado"] .cgc-d-evento_fecha::after { content: none; }
 .cgc-d-evento_cuerpo { grid-area: cuerpo; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
-.cgc-d-evento_titulo { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
-.cgc-d-evento_meta { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
+.cgc-d-evento_titulo { font-size: 1.25rem; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
+.cgc-d-evento_meta { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); margin: 0; }
 .cgc-d-evento .cgc-d-enlace { grid-area: accion; }
 @media (max-width: 767.98px) {
   .cgc-d-evento { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "fecha cuerpo" "accion accion"; gap: 12px 16px; padding: 20px 0; align-items: start; }
   .cgc-d-evento_fecha { gap: 4px; padding: 14px 4px; min-height: 72px; align-self: start; }
-  .cgc-d-evento_dia { font-size: 24px; line-height: 24px; font-weight: 500; letter-spacing: .18px; }
+  .cgc-d-evento_dia { font-size: 1.5rem; line-height: 24px; font-weight: 500; letter-spacing: .18px; }
   .cgc-d-evento_fecha::after { right: -7px; top: -7px; width: 14px; height: 14px; }
-  .cgc-d-evento_titulo { font-size: 18px; }
+  .cgc-d-evento_titulo { font-size: 1.125rem; }
   .cgc-d-evento .cgc-d-enlace { justify-self: start; }
 }
 
@@ -236,9 +232,33 @@
 .cgc-card-fecha { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; aspect-ratio: 16 / 9; padding: 28px; background: var(--cgc-superficie-marca); color: var(--cgc-texto-sobre-marca); overflow: hidden; }
 .cgc-card-fecha::after { content: ""; position: absolute; top: 0; right: 0; width: 28px; height: 28px; background: var(--cgc-acento-cian); }
 .cgc-card-fecha .cgc-d-segmento { background: var(--cgc-blanco); }
-.cgc-card-fecha_dia { font-size: 56px; line-height: 56px; font-weight: 700; letter-spacing: -.02em; }
+.cgc-card-fecha_dia { font-size: 3.5rem; line-height: 56px; font-weight: 700; letter-spacing: -.02em; }
 .cgc-card-fecha .cgc-d-ante { color: var(--cgc-blanco); }
 @media (max-width: 767.98px) {
   .cgc-card-fecha { padding: 24px; }
-  .cgc-card-fecha_dia { font-size: 48px; line-height: 48px; }
+  .cgc-card-fecha_dia { font-size: 3rem; line-height: 48px; }
+}
+
+/* ---------- Autoauditoría (decisiones del 13 y 16-11, aplicadas el 25-11) ----------
+ * E7 · radios: se adopta el de 4 px del Kit. Las etiquetas dejan la píldora y los bloques que no tenían radio
+ * (cifra, cita, fecha de evento y retrato) lo toman. El acento cuadrado del retrato y de la fecha queda afuera,
+ * por eso el radio va en la foto y no se recorta el bloque. */
+.cgc-d-etiqueta { border-radius: var(--cgc-radio-kit); }
+.cgc-d-cifra-bloque, .cgc-d-cita-bloque, .cgc-d-evento_fecha, .cgc-v5e-fecha { border-radius: var(--cgc-radio-kit); }
+.cgc-d-retrato_foto, .cgc-d-retrato_foto img, .cgc-d-retrato .avatar, .cgc-d-cita-bloque_foto { border-radius: var(--cgc-radio-kit); }
+/* E8 · sombras: la del Kit en reposo (y su borde #EAEAEA) en las tarjetas clicables; al pasar el mouse siguen subiendo */
+.cgc-d-tarjeta.cgc-d-tarjeta, .v5fo-puerta.v5fo-puerta, .v5s-servicio.v5s-servicio { box-shadow: var(--cgc-sombra); border-color: #eaeaea; }
+/* Ac3 · contraste (16-11). Sobre el azul 2727 (blanco a 3,99:1) solo va texto grande: 19 px en negrita o 24 px,
+ * sin cambiar el color. Enlaces sobre el gris #F6F6F6 (4,18:1 con el celeste del Kit): pasan al azul #173F8A; dentro
+ * de tarjetas blancas siguen igual. */
+.cgc-d-cifra-bloque[data-fondo="marca"] .cgc-d-cifra-bloque_etiqueta { font-size: 1.1875rem; line-height: 26px; font-weight: 700; letter-spacing: .25px; }
+.cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_nombre,
+.cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita-bloque_cargo { font-size: 1.1875rem; line-height: 26px; font-weight: 700; letter-spacing: .25px; }
+.cgc-d-marca .cgc-d-enlace { font-size: 1.1875rem; font-weight: 700; }
+.cgc-d-marca p.p-size--lg { font-size: 1.5rem; line-height: 32px; }
+:is(.cgc-d-suave, .cgc-section--gray, .cgc-v5f-contacto) a:is(.h5, .cgc-d-enlace, .uc-btn.btn-inline):not(:is(.uc-card, .cgc-d-tarjeta, .v5fo-puerta, .uc-modal) a),
+:is(.cgc-d-suave, .cgc-section--gray, .cgc-v5f-contacto) a:is(.h5, .cgc-d-enlace, .uc-btn.btn-inline):not(:is(.uc-card, .cgc-d-tarjeta, .v5fo-puerta, .uc-modal) a):hover { color: var(--cgc-azul); }
+@media (max-width: 767.98px) {
+  /* En móvil la cita baja a 22 px: sobre el 2727 se queda en texto grande (el nombre del origen, en v5-nosotros.css) */
+  .cgc-d-cita-bloque[data-fondo="marca"] .cgc-d-cita { font-size: 1.5rem; line-height: 34px; }
 }

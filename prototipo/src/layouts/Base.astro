@@ -24,7 +24,6 @@ const imagenOg = new URL('/img/og-cgc-uc.jpg', Astro.site).href;
 // abrir <head> y, el noscript, justo después de abrir <body>, tal cual vienen en el zip (ID GTM-W5PTGZM).
 // No debe haber otro código de analítica.
 const KIT = 'https://kit-digital-uc-prod.s3.amazonaws.com/uc-kitdigital';
-const VER = '1.23.15-beta.1';
 ---
 <!doctype html>
 <html lang="es">
@@ -54,7 +53,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href={`${KIT}/css/uc-kitdigital.css?ver=${VER}`} />
+    <link rel="stylesheet" href={`${KIT}/css/uc-kitdigital.css`} />
     <link rel="stylesheet" href="/css/kit-theme.css" />
     <link rel="stylesheet" href="/css/cgc.css" />
     <!-- Propuesta v5: Roboto Slab 300 para las citas (el Kit carga solo la 400; a validar con la DED) -->
@@ -66,14 +65,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5PTGZM" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <a href="#contenido" class="uc-sr-only">Saltar al contenido</a>
+    <a href="#contenido" class="uc-sr-only cgc-saltar">Saltar al contenido</a>
     <Header seccion={seccion} />
     <main id="contenido">
       {h1Oculto && <h1 class="uc-sr-only">{h1Oculto}</h1>}
       <slot />
     </main>
     <Footer />
-    <script is:inline src={`${KIT}/js/uc-kitdigital.js?ver=${VER}`}></script>
+    <script is:inline src={`${KIT}/js/uc-kitdigital.js`}></script>
     <script is:inline src="/js/cgc.js"></script>
   </body>
 </html>

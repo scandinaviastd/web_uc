@@ -23,18 +23,18 @@ const { titulo, tipo, anio, autores, publicacion, abstract, portada = false, hre
     {publicacion && <p class="text-size--sm text-color--gray mb-0"><em>{publicacion}</em></p>}
     {abstract && (
       <details class="cgc-abstract mt-12">
-        <summary class="uc-btn btn-inline">Ver abstract</summary>
+        <summary class="uc-btn btn-inline">Ver abstract<span class="uc-sr-only"> de «{titulo}»</span></summary>
         <p class="text-size--sm mt-8 mb-0">{abstract}</p>
       </details>
     )}
     <div class="mt-auto pt-16">
       {modal
-        ? <button type="button" class="uc-btn btn-secondary cgc-btn-auto" data-mtarget={modal}>Descargar PDF <i class="uc-icon">download</i></button>
+        ? <button type="button" class="uc-btn btn-secondary cgc-btn-auto" data-mtarget={modal}>Descargar PDF<span class="uc-sr-only"> de «{titulo}»</span> <i class="uc-icon" aria-hidden="true">download</i></button>
         : href === '#'
-        ? <a href="#" class="uc-btn btn-secondary cgc-btn-auto" data-pendiente="El PDF lo sube el Centro al panel de WordPress; en el prototipo aún no está.">Descargar PDF <i class="uc-icon">download</i></a>
+        ? <a href="#" class="uc-btn btn-secondary cgc-btn-auto" data-pendiente="El PDF lo sube el Centro al panel de WordPress; en el prototipo aún no está.">Descargar PDF<span class="uc-sr-only"> de «{titulo}»</span> <i class="uc-icon" aria-hidden="true">download</i></a>
         : /^https?:/.test(href)
-        ? <a href={href} target="_blank" rel="noopener" class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF <i class="uc-icon" aria-hidden="true">launch</i><span class="uc-sr-only"> (archivo PDF, abre en una pestaña nueva)</span></a>
-        : <a href={href} download class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF <i class="uc-icon" aria-hidden="true">download</i><span class="uc-sr-only"> (archivo PDF)</span></a>}
+        ? <a href={href} target="_blank" rel="noopener" class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF<span class="uc-sr-only"> de «{titulo}»</span> <i class="uc-icon" aria-hidden="true">launch</i><span class="uc-sr-only"> (archivo PDF, abre en una pestaña nueva)</span></a>
+        : <a href={href} download class="uc-btn btn-secondary cgc-btn-auto">Descargar PDF<span class="uc-sr-only"> de «{titulo}»</span> <i class="uc-icon" aria-hidden="true">download</i><span class="uc-sr-only"> (archivo PDF)</span></a>}
     </div>
   </div>
 </article>

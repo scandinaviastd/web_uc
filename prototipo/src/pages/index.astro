@@ -174,7 +174,7 @@ const secciones = [
         <h2 id="extension-titulo" class="cgc-d-display-l v5h-titulo">Conversación estratégica<br /><strong>para la Alta Dirección</strong></h2>
         <p class="v5h-bajada mb-0">Jornadas, debates y webinars con líderes empresariales a lo largo del año.</p>
       </header>
-      <div class="v5h-fotos" data-scroll-x>
+      <div class="v5h-fotos" data-scroll-x role="region" aria-label="Fotos de actividades del Centro">
         {fotos.eventos.map((f) => <img src={f.src} alt={f.alt} width="1600" height="1066" loading="lazy" />)}
       </div>
       <!-- Provisorio: títulos del Figma v5; el título exacto de cada evento lo confirma el Centro -->

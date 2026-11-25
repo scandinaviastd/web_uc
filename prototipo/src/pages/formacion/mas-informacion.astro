@@ -23,6 +23,8 @@ const opciones = [...programas, inCompany, asesoria];
           <div class="uc-form-group">
             <label for="f-programa">Programa o servicio de interés *</label>
             <select id="f-programa" class="uc-input-style" required data-programa-select>
+              {/* W3C: un select requerido abre con una opción vacía */}
+              <option value="">Elige un programa o servicio</option>
               {opciones.map((o) => <option value={o.slug}>{o.titulo}</option>)}
             </select>
             <p class="text-size--sm text-color--gray mt-8 mb-0" data-programa-ayuda hidden>Viene seleccionado desde la página anterior; puedes cambiarlo.</p>
@@ -45,7 +47,7 @@ const opciones = [...programas, inCompany, asesoria];
       <aside class="col-lg-4">
         <div class="uc-card cgc-sticky"><div class="uc-card_body">
           <span class="uc-subtitle d-block mb-8">Programa</span>
-          <h2 class="h5 mb-16" data-programa-nombre>{programas[0].titulo}</h2>
+          <h2 class="h5 mb-16" data-programa-nombre>Elige un programa en el formulario</h2>
           <hr class="uc-hr my-16" />
           <p class="text-weight--bold mb-8">¿Prefieres hablar con alguien?</p>
           <p class="text-size--sm mb-8">{sara.nombre}, {sara.cargo}<br /><a href={`mailto:${sara.correo}`}>{sara.correo}</a></p>

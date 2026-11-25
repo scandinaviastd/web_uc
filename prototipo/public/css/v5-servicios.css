@@ -3,6 +3,7 @@
  * Espejo: Figma UC_CGC, «Servicios v5» 465:1049 (escritorio) y 468:1573 (móvil). Prefijo v5s-.
  * Solo composición de la página: colores, tipos y componentes vienen de direccion.css y del Kit.
  */
+/* Ac1 (autoauditoría, 16-11): tamaños de letra en rem (px / 16), sin cambio visible. */
 
 .v5s-titular { color: var(--cgc-texto-principal); }
 
@@ -45,7 +46,7 @@
 .v5s-enfoque_lista { list-style: none; margin: 48px 0 0; padding: 0; columns: 2; column-gap: 64px; }
 .v5s-enfoque_lista li { display: flex; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--cgc-borde-sutil); break-inside: avoid; }
 .v5s-enfoque_lista .cgc-d-indice { color: var(--cgc-texto-marca); flex-shrink: 0; min-width: 18px; }
-.v5s-enfoque_punto { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); }
+.v5s-enfoque_punto { font-size: 1.25rem; line-height: 24px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); }
 
 /* ---------- Banda · Empresas Socias (azul 2727) ---------- */
 .v5s-banda { padding: 80px 0; }
@@ -80,5 +81,5 @@
   .v5s-enfoque_lista { margin-top: 24px; }
   .v5s-enfoque_lista li { align-items: flex-start; gap: 16px; padding: 16px 0; }
   .v5s-enfoque_lista .cgc-d-indice { padding-top: 4px; }
-  .v5s-enfoque_punto { font-size: 16px; letter-spacing: .1px; }
+  .v5s-enfoque_punto { font-size: 1rem; letter-spacing: .1px; }
 }

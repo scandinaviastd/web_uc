@@ -4,6 +4,7 @@
  * La pieza propia es el calendario: la barra de dirección de la submarca (gris con segmento azul) convertida en
  * línea del año, con un segmento por versión de programa.
  */
+/* Ac1 (autoauditoría, 16-11): tamaños de letra en rem (px / 16), sin cambio visible. */
 
 .v5fo-titular { color: var(--cgc-texto-principal); }
 .v5fo-bajada { max-width: 600px; }
@@ -25,11 +26,11 @@
 .v5fo-cal { --col: 340px; }
 .v5fo-cal_meses { display: grid; grid-template-columns: var(--col) minmax(0, 1fr); column-gap: 32px; margin-bottom: 8px; }
 .v5fo-cal_escala { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
-.v5fo-cal_escala li { padding-left: 6px; border-left: 1px solid var(--cgc-borde-sutil); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--cgc-texto-secundario); }
+.v5fo-cal_escala li { padding-left: 6px; border-left: 1px solid var(--cgc-borde-sutil); font-size: .75rem; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--cgc-texto-secundario); }
 .v5fo-cal_filas { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--cgc-borde-sutil); }
 .v5fo-cal_fila { display: grid; grid-template-columns: var(--col) minmax(0, 1fr); column-gap: 32px; align-items: start; padding: 28px 0; border-top: 1px solid var(--cgc-borde-sutil); }
 .v5fo-cal_programa { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-.v5fo-cal_titulo { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: .25px; margin: 0; }
+.v5fo-cal_titulo { font-size: 1.125rem; line-height: 24px; font-weight: 700; letter-spacing: .25px; margin: 0; }
 .v5fo-cal_titulo a { color: var(--cgc-texto-principal); text-decoration: none; }
 .v5fo-cal_titulo a:hover { text-decoration: underline; }
 .v5fo-cal_titulo a:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 2px; }
@@ -43,7 +44,7 @@
 .v5fo-cal_segmento[data-version="2"] { background: var(--cgc-azul); }
 .v5fo-cal_muestra { display: inline-block; width: 16px; height: 8px; margin-right: 8px; vertical-align: 2px; background: var(--cgc-barra-segmento); }
 .v5fo-cal_muestra[data-version="2"] { background: var(--cgc-azul); }
-.v5fo-cal_fechas { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 20px 0 0; font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.v5fo-cal_fechas { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 20px 0 0; font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 .v5fo-cal_fechas strong { color: var(--cgc-texto-principal); font-weight: 500; }
 /* Los segmentos crecen de izquierda a derecha al entrar en pantalla (cgc.js pone .is-animado; sin JS, quietos) */
 .v5fo-cal.is-animado .v5fo-cal_segmento { transform: scaleX(0); }
@@ -55,27 +56,27 @@
 .v5fo-cursos { margin-top: 32px; row-gap: 32px; }
 
 /* ---------- 03 · Comparador ---------- */
-.v5fo-desliza { display: none; font-size: 14px; line-height: 20px; margin: 0 0 12px; }
+.v5fo-desliza { display: none; font-size: .875rem; line-height: 20px; margin: 0 0 12px; }
 .v5fo-tabla_marco { overflow-x: auto; border: 1px solid var(--cgc-borde-sutil); border-radius: var(--cgc-radio-kit); background: var(--cgc-superficie-base); }
 .v5fo-tabla_marco:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 2px; }
 .v5fo-tabla { width: 100%; min-width: 900px; border-collapse: collapse; color: var(--cgc-texto-principal); }
-.v5fo-tabla th, .v5fo-tabla td { padding: 20px 24px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 16px; line-height: 24px; }
+.v5fo-tabla th, .v5fo-tabla td { padding: 20px 24px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 1rem; line-height: 24px; }
 .v5fo-tabla tbody tr:last-child th, .v5fo-tabla tbody tr:last-child td { border-bottom: 0; }
 .v5fo-tabla thead th { width: calc((100% - 168px) / 4); }
-.v5fo-tabla thead th a { display: block; margin-top: 12px; font-size: 18px; line-height: 24px; font-weight: 700; color: var(--cgc-texto-principal); text-decoration: none; }
+.v5fo-tabla thead th a { display: block; margin-top: 12px; font-size: 1.125rem; line-height: 24px; font-weight: 700; color: var(--cgc-texto-principal); text-decoration: none; }
 .v5fo-tabla thead th a:hover { text-decoration: underline; }
 .v5fo-tabla thead td, .v5fo-tabla tbody th { position: sticky; left: 0; z-index: 1; width: 168px; background: var(--cgc-superficie-base); }
 .v5fo-tabla tbody th { color: var(--cgc-texto-secundario); line-height: 24px; }
 .v5fo-tabla tbody tr:nth-child(odd) td, .v5fo-tabla tbody tr:nth-child(odd) th { background: var(--cgc-superficie-suave); }
-.v5fo-tabla tr[data-fila="largo"] td { font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.v5fo-tabla tr[data-fila="largo"] td { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 
 /* ---------- 04 · Descuentos · modo Noche ---------- */
 .v5fo-dsc { row-gap: 40px; }
 .v5fo-dsc .v5fo-encabezado { margin-bottom: 0; }
 .v5fo-dsc_lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cgc-borde-sutil); }
-.v5fo-dsc_lista li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 16px; line-height: 24px; }
-.v5fo-dsc_lista strong { flex-shrink: 0; font-size: 20px; line-height: 24px; color: var(--cgc-texto-marca); font-variant-numeric: tabular-nums; }
-.v5fo-dsc_condiciones { margin: 24px 0 0; padding-left: 18px; font-size: 14px; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
+.v5fo-dsc_lista li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--cgc-borde-sutil); font-size: 1rem; line-height: 24px; }
+.v5fo-dsc_lista strong { flex-shrink: 0; font-size: 1.25rem; line-height: 24px; color: var(--cgc-texto-marca); font-variant-numeric: tabular-nums; }
+.v5fo-dsc_condiciones { margin: 24px 0 0; padding-left: 18px; font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
 
 /* ---------- Banda azul 2727: dudas + puente a empresas (texto blanco, criterio del 02-11, 4,1:1) ---------- */
 .v5fo-banda { padding: 80px 0; }
@@ -109,7 +110,7 @@
 .v5fo-mini_pista { position: relative; height: 6px; background: rgba(255, 255, 255, .35); }
 .v5fo-mini_pista span { position: absolute; top: -3px; left: var(--izq); width: var(--ancho); height: 12px; background: var(--cgc-blanco); }
 /* Los meses van en los bordes de la barra blanca, no en los extremos del año */
-.v5fo-mini_escala { display: flex; justify-content: space-between; margin-top: 12px; margin-left: var(--izq); width: var(--ancho); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+.v5fo-mini_escala { display: flex; justify-content: space-between; margin-top: 12px; margin-left: var(--izq); width: var(--ancho); font-size: .75rem; line-height: 16px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
 
 .v5fo-proximos { border-top: 1px solid var(--cgc-borde-sutil); }
 .v5fo-proximos_todos { display: inline-block; margin-top: 32px; }
@@ -137,7 +138,7 @@
   .v5fo-indice { gap: 12px; }
   .v5fo-cal_meses, .v5fo-cal_fila { grid-template-columns: minmax(0, 1fr); }
   .v5fo-cal_meses .v5fo-cal_vacio { display: none; }
-  .v5fo-cal_escala li { font-size: 11px; padding-left: 3px; }
+  .v5fo-cal_escala li { font-size: .75rem; padding-left: 3px; } /* meses: de 11 a 12 px (autoauditoría, 16-11) */
   .v5fo-cal_escala li:not(:nth-child(3n + 1)) { color: transparent; }
   .v5fo-cal_fila { row-gap: 16px; padding: 24px 0; }
   .v5fo-cal_carril { padding-top: 14px; background-size: 100% 26px; }

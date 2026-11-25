@@ -12,21 +12,22 @@ const { seccion } = Astro.props;
     <div class="container d-none d-lg-block">
       <div class="row align-items-center">
         <div class="col-lg-3">
-          <a href="/" class="cgc-logo"><img style="max-height:80px" src="/img/logo-cgc-color.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid" /></a>
+          <a href="/" class="cgc-logo"><img src="/img/logo-cgc-color.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid cgc-logo-img" /></a>
         </div>
         <div class="col-lg-9">
           <ul class="uc-navbar_nav">
             {menu.map((item) => (
               item.hijos ? (
                 <li class:list={['nav-item', 'uc-navbar-dropdown', 'light', { active: seccion === item.id }]}>
-                  <a href="#" class:list={['uc-btn', 'btn-inline', { active: seccion === item.id }]}>{item.label} <i class="uc-icon">arrow_drop_down</i></a>
+                  <a href="#" class:list={['uc-btn', 'btn-inline', { active: seccion === item.id }]} aria-expanded="false" aria-haspopup="true">{item.label} <i class="uc-icon" aria-hidden="true">arrow_drop_down</i></a>
                   <ul class="uc-navbar-dropdown_menu uc-navbar-dropdown_menu--footer">
                     {item.hijos.map((h) => (
                       <li class="dropdown_item--heading light"><a href={h.href} class="uc-btn">{h.label}</a></li>
                     ))}
-                    <div class="dropdown_item--footer">
+                    {/* W3C: el pie del desplegable es un <li> (el ejemplo del Kit usa un <div> dentro del <ul>) */}
+                    <li class="dropdown_item--footer">
                       <a href={item.irA ?? item.href} class="uc-btn">Clic para ir a {item.label} <i class="uc-icon uc-icon--arrow-forward ml-4"></i></a>
-                    </div>
+                    </li>
                   </ul>
                 </li>
               ) : (
@@ -46,7 +47,7 @@ const { seccion } = Astro.props;
     <div class="uc-navbar_mobile navbar_mobile-slide d-block d-lg-none">
       <div class="uc-navbar_mobile-bar navbar-brand">
         <div class="uc-navbar_mobile-logo navbar-light">
-          <a href="/" class="cgc-logo"><img src="/img/logo-cgc-color.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid" style="max-height:44px" /></a>
+          <a href="/" class="cgc-logo"><img src="/img/logo-cgc-color.svg" alt="Centro UC Gobierno Corporativo" class="img-fluid cgc-logo-img cgc-logo-img--movil" /></a>
         </div>
         <a href="javascript:void(0);" class="uc-navbar_mobile-button"><span class="uc-icon"></span>Menú</a>
       </div>
