@@ -27,9 +27,18 @@ const MES = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, se
 const fechaDe = (f) => { const [d, m, a] = f.split(' - '); return new Date(+a, MES[m.toLowerCase()], +d); };
 const actualidad = [
   ...noticias.slice(0, 2).map((n) => ({ tipo: 'Noticia', fecha: n.fecha, titulo: n.titulo, href: n.href, pendiente: 'La página de detalle se arma en WordPress; en el prototipo aún no existe.' })),
-  ...prensa.slice(0, 1).map((o) => ({ tipo: 'Prensa', fecha: o.fecha, titulo: o.titulo, href: o.href, firma: `${o.autor} · ${o.medio}`, pendiente: 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' })),
+  ...prensa.slice(0, 1).map((o) => ({ tipo: 'Prensa', fecha: o.fecha, titulo: o.titulo, href: o.href, firma: `${o.autor} · ${o.medio}`, clase: o.tipo, pendiente: 'Por definir si la columna se publica completa en el sitio o enlaza al medio (P1-18).' })),
 ].sort((a, b) => fechaDe(b.fecha) - fechaDe(a.fecha));
 const fechaCorta = (f) => f.split(' - ').map((s, i) => (i === 1 ? s.toLowerCase() : s)).join(' ');
+// CTA de cada card de Actualidad (Mateo, 25-11: cards de verdad, con la acción abajo y sin íconos sueltos).
+// Lo externo dice adónde lleva y usa el ícono «launch» del Kit; lo propio, la flecha.
+const MEDIOS = { 'linkedin.com': 'LinkedIn', 'df.cl': 'Diario Financiero' };
+const ctaDe = (a) => {
+  if (!/^https?:/.test(a.href ?? '')) return { texto: `Leer ${(a.clase ?? 'noticia').toLowerCase()}`, icono: 'keyboard_arrow_right', externo: false };
+  const host = new URL(a.href).hostname.replace(/^www\./, '');
+  const medio = Object.entries(MEDIOS).find(([h]) => host.endsWith(h))?.[1];
+  return { texto: medio ? `Leer en ${medio}` : 'Leer', icono: 'launch', externo: true };
+};
 const secciones = [
   // Los cuatro llevan a su página (Sara, 19-11: antes tres bajaban en la home y Servicios saltaba a su página).
   { n: '01', label: 'Formación', href: '/formacion/' },
@@ -187,17 +196,15 @@ const secciones = [
       <div class="v5h-actualidad">
         <h3 class="cgc-d-ante cgc-d-texto-sec mb-0">Actualidad</h3>
         <div class="v5h-actualidad_grid">
-          {actualidad.map((a) => (
+          {actualidad.map((a) => { const cta = ctaDe(a); return (
             <article class="v5h-pieza">
+              <span class="cgc-d-segmento" aria-hidden="true"></span>
               <div class="v5h-pieza_meta"><Etiqueta texto={a.tipo} estilo="contorno" /><span class="v5h-pieza_fecha">{fechaCorta(a.fecha)}</span></div>
-              <h4 class="v5h-pieza_titulo">{!a.href
-                ? <a href="#" data-pendiente={a.pendiente}>{a.titulo}</a>
-                : /^https?:/.test(a.href)
-                  ? <a href={a.href} target="_blank" rel="noopener">{a.titulo}<span class="uc-sr-only"> (abre en una pestaña nueva)</span></a>
-                  : <a href={a.href}>{a.titulo}</a>}</h4>
+              <h4 class="v5h-pieza_titulo"><a href={a.href ?? '#'} class="cgc-card-link" data-pendiente={a.href ? undefined : a.pendiente} target={cta.externo ? '_blank' : undefined} rel={cta.externo ? 'noopener' : undefined}>{a.titulo}{cta.externo && <span class="uc-sr-only"> (abre en una pestaña nueva)</span>}</a></h4>
               {a.firma && <p class="v5h-pieza_firma mb-0">{a.firma}</p>}
+              <span class="v5h-pieza_cta" aria-hidden="true">{cta.texto} <i class="uc-icon">{cta.icono}</i></span>
             </article>
-          ))}
+          ); })}
         </div>
         <div class="v5h-actualidad_enlaces">
           <a href="/extension/#noticias" class="cgc-d-enlace">Ver todas las noticias →</a>

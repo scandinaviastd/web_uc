@@ -92,21 +92,27 @@
 .v5h-fotos img { display: block; width: 100%; height: 300px; object-fit: cover; }
 .v5h-eventos { width: 100%; }
 
-/* ---------- Actualidad (dentro de 03 Extensión): Noticias y Prensa juntas, solo texto, filete arriba ---------- */
-.v5h-actualidad { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
-.v5h-actualidad_grid { display: grid; grid-template-columns: minmax(0, 1fr); }
-.v5h-pieza { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 0; border-top: 1px solid var(--cgc-borde-sutil); }
-.v5h-pieza_meta { display: flex; align-items: center; gap: 16px; }
+/* ---------- Actualidad (dentro de 03 Extensión): Noticias y Prensa juntas ----------
+   Mateo, 25-11: eran texto suelto bajo un filete, apretado y con el ícono externo flotando arriba. Ahora son cards
+   como las del resto del sitio (borde, sombra, radio del Kit), con aire, el segmento de marca arriba y la acción
+   anclada abajo: lo externo dice adónde lleva («Leer en LinkedIn ↗») en vez de un ícono suelto. */
+.v5h-actualidad { display: flex; flex-direction: column; gap: 24px; margin-top: 56px; }
+.v5h-actualidad_grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.v5h-pieza { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; height: 100%; padding: 24px; background: var(--cgc-superficie-base); border: 1px solid #eaeaea; border-radius: var(--cgc-radio-kit); box-shadow: var(--cgc-sombra); transition: box-shadow .2s ease, transform .2s ease; }
+.v5h-pieza:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(23, 63, 138, .14); }
+.v5h-pieza:focus-within { outline: 2px solid var(--cgc-celeste); outline-offset: 2px; }
+.v5h-pieza_meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
 .v5h-pieza_fecha, .v5h-pieza_firma { font-size: .875rem; line-height: 20px; letter-spacing: .28px; color: var(--cgc-texto-secundario); }
-.v5h-pieza_titulo { font-size: 1.25rem; line-height: 28px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; }
-.v5h-pieza_titulo a { color: inherit; text-decoration: none; }
-.v5h-pieza_titulo a::after { content: ""; position: absolute; inset: 0; }
-.v5h-pieza:hover .v5h-pieza_titulo a { text-decoration: underline; }
-.v5h-pieza_titulo a:focus-visible { outline: 2px solid var(--cgc-texto-enlace); outline-offset: 4px; }
-.v5h-actualidad_enlaces { display: flex; flex-wrap: wrap; gap: 8px 32px; }
+.v5h-pieza_titulo { font-size: 1.25rem; line-height: 28px; font-weight: 700; letter-spacing: .25px; color: var(--cgc-texto-principal); margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.v5h-pieza_titulo .cgc-card-link:focus-visible { outline: none; }
+.v5h-pieza:hover .v5h-pieza_titulo a { text-decoration: underline; text-underline-offset: 3px; }
+.v5h-pieza_firma { margin-top: -8px; }
+.v5h-pieza_cta { display: inline-flex; align-items: center; gap: 4px; margin-top: auto; padding-top: 8px; font-size: 1rem; line-height: 24px; font-weight: 500; color: var(--cgc-texto-enlace); }
+.v5h-pieza_cta .uc-icon { font-size: 1.125rem; }
+.v5h-actualidad_enlaces { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 8px; }
 @media (min-width: 992px) {
-  .v5h-actualidad_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
-  .v5h-pieza { padding-bottom: 0; }
+  .v5h-actualidad_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .v5h-pieza { padding: 32px; min-height: 280px; }
 }
 
 /* ---------- Apilado (768–991) ---------- */
